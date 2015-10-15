@@ -1,0 +1,56 @@
+{
+  "name": "Spectrum.Core.Ui.Web",
+  "version": "0.0.0",
+  "authors": [
+    "Patrick Welch <patrick.welch@spectrumoperational.com>"
+  ],
+  "description": "Core Suite for Spectrum Operational Applications",
+  "license": "Private Commercial",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.4.1",
+    "angular-ui": "~0.4.0",
+    "angular-touch": "~1.4.1",
+    "angular-ui-grid": "~3.0.0-rc.22",
+    "angular-ui-bootstrap": "~0.13.0",
+    "angular-animate": "~1.4.1",
+    "angular-bootstrap": "~0.13.0",
+    "angular-routing": "~0.1.2",
+    "angular-sweetalert": "~1.1.0",
+    "angular-route": "~1.4.1",
+    "metisMenu": "~2.0.2",
+    "animate.css": "~3.3.0",
+    "fullcalendar": "~2.3.2",
+    "angular-xeditable": "~0.1.9",
+    "bootstrap-touchspin": "~3.0.1",
+    "awesome-bootstrap-checkbox": "~0.3.4",
+    "blueimp-gallery": "~2.15.2",
+    "angular-bootstrap-tour": "~0.3.3",
+    "angular-summernote": "~0.4.0",
+    "angular-ui-calendar": "~1.0.1",
+    "angular-ui-map": "~0.5.0",
+    "angular-ui-utils": "~2.0.0",
+    "sparkline": "http://omnipotent.net/jquery.sparkline/2.1.2/jquery.sparkline.js",
+    "slimScroll": "~1.3.6",
+    "jquery-flot": "~0.8.3",
+    "angular-flot": "~0.0.9",
+    "iCheck": "~1.0.2",
+    "flot.curvedlines": "~1.1.1",
+    "bootstrap-tour": "~0.10.2",
+    "bootstrap": "~3.3.5"
+  },
+  "resolutions": {
+    "fullcalendar": "2.3.1",
+    "jquery": "2.x",
+    "angular": "1.3.15",
+    "sparkline": "~2.1.2",
+    "bootstrap-tour": "~0.9.3",
+    "bootstrap": ">=3.0.0"
+  }
+}

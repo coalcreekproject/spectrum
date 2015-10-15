@@ -1,0 +1,1 @@
+﻿This is the data core of the application platform.  It is the Core Bounded Context (or BoundedDbContext.) This is where Entity Framework models live and all data persistence.  This is the core in that users and organizations as well as supporting structures are kept here.

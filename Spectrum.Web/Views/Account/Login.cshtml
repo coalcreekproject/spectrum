@@ -1,0 +1,71 @@
+﻿@model Spectrum.Web.Models.LoginViewModel
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_Layout_Blank.cshtml";
+}
+
+<div class="login-container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="text-center m-b-md">
+                <h3>Please Login</h3>
+
+            </div>
+            <div class="hpanel">
+                <div class="panel-body">
+                    <section id="loginForm">
+                        @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            <div class="form-group">
+                                <label class="control-label" for="Email">Username</label>
+                                <input type="text" placeholder="username@domain.com" title="Please enter you username" required="" value="" name="Email" id="Email" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label" for="Password">Password</label>
+                                <input type="password" title="Please enter your password" placeholder="******" required="" value="" name="Password" id="Password" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <input icheck type="checkbox" ng-model="remember" ng-init="remember = true">
+                                Remember login
+                                <p class="help-block small">(if this is a private computer)</p>
+                            </div>
+                            <div class="form-group">
+                                @*<button class="btn btn-success btn-block">Login</button>*@
+                                <input type="submit" value="Log in" class="btn btn-primary"/>
+                                <div class="pull-right">
+                                    @Html.ActionLink("Register", "Register", new { @class = "btn btn-default" })
+                                </div>
+                            </div>
+                        }
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12 text-justify">
+            <small>
+                This system is for the use of authorized users only.
+                Individuals using this computer system without
+                authority, or in excess of their authority, are subject
+                to having all of their activities on this system
+                monitored and recorded by system personnel. In the
+                course of monitoring individuals improperly using this
+                system, or in the course of system maintenance, the
+                activities of authorized users may also be monitored.
+                Anyone using this system expressly consents to such
+                monitoring and is advised that if such monitoring
+                reveals possible evidence of criminal activity, system
+                personnel may provide the evidence of such monitoring
+                to law enforcement officials.
+            </small>
+        </div>
+    </div>
+    <br/>
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <strong>Spectrum Operational</strong> - Emergency Management Suite <br /> Copyright @DateTime.Now.Year Spectrum Operational LLC.
+        </div>
+    </div>
+</div>

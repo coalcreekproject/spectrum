@@ -1,0 +1,19 @@
+﻿@model System.Web.Mvc.HandleErrorInfo
+
+@{
+    ViewBag.Title = "Server Error";
+}
+
+<div class="back-link">
+    <a ui-sref="dashboard" class="btn btn-primary">Back to Dashboard</a>
+</div>
+<div class="error-container">
+    <i class="pe-7s-way text-success big-icon"></i>
+    <h1>500</h1>
+    <strong>Internal Server Error</strong>
+    <p>
+        The server encountered something unexpected that didn't allow it to complete the request. We apologize.
+        Please try your operation again, if the issue persists, please contact support.
+    </p>
+    <a ui-sref="dashboard" class="btn btn-xs btn-success">Go back to dashboard</a>
+</div>
