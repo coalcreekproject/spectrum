@@ -29,7 +29,7 @@
         <li ng-class="{active: $state.includes('administration')}">
             <a href="#"><span class="nav-label">Administration</span><span class="fa arrow"></span> </a>
             <ul class="nav nav-second-level" ng-class="{in: $state.includes('interface')}">
-                <li class="@Html.IsSelected(action: "Users")"><a href="@Url.Action("Index", "Users")">Manage Users<span class="label label-info pull-right">GRID</span> </a></li>
+                <li class="@Html.IsSelected(action: "Users")"><a href="@Url.Action("UsersPanelIndex", "Users")">Manage Users<span class="label label-info pull-right">GRID</span> </a></li>
                 <li class="@Html.IsSelected(action: "Organizations")"><a href="@Url.Action("Index", "Organization")">Manage Orgnaziations</a></li>
                 <li class="@Html.IsSelected(action: "Contacts")"><a href="@Url.Action("Index", "Contacts")">Contacts</a></li>
             </ul>

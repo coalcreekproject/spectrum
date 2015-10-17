@@ -311,7 +311,14 @@ namespace Spectrum.Core.Data.Repositories
 
         public Task<int> GetAccessFailedCountAsync(User user)
         {
-            throw new NotImplementedException();
+            //TODO:  Can all this be handles cached, do I need a round trip every time?
+            //return Task.FromResult(user.AccessFailedCount);
+
+            var result = Users.FirstOrDefault(u => u.Id.Equals(user.Id));
+            if (result == null)
+                return Task.FromResult(-1);
+
+            return Task.FromResult(result.AccessFailedCount);
         }
 
         public Task<bool> GetLockoutEnabledAsync(User user)

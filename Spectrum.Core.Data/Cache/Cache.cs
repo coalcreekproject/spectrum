@@ -1,4 +1,5 @@
 ﻿using System;
+using Spectrum.Core.Data.Cache.Extensions;
 using Spectrum.Core.Data.Context.Extensions;
 using StackExchange.Redis;
 
@@ -37,7 +38,7 @@ namespace Spectrum.Core.Data.Cache
 
         private static Lazy<ConnectionMultiplexer> lazyConnection = new Lazy<ConnectionMultiplexer>(() =>
         {
-            return ConnectionMultiplexer.Connect("contoso5.redis.cache.windows.net, abortConnect = false, ssl = true, password =...");
+            return ConnectionMultiplexer.Connect("spectrumoperational.redis.cache.windows.net, abortConnect = false, ssl = true, password = rXWM/RL/XC2vomxd/WyoxZRGDpkhRXwxKdYlOm9Os3g=");
         });
 
         public static ConnectionMultiplexer Connection

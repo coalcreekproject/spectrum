@@ -25,7 +25,7 @@
         'ui.select',                // AngularJS ui-select
         'ui.sortable',               // AngularJS ui-sortable
         'ngTouch',
-        'oitozero.ngSweetAlert',
+        //'oitozero.ngSweetAlert',
         'ui.grid',
         'ui.grid.selection'
     ]);

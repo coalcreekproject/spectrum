@@ -27,7 +27,7 @@ namespace Spectrum.Web.Controllers
         #region User CRUD
 
         // GET: User
-        public ActionResult Index()
+        public ActionResult UsersPanelIndex()
         {
             //UserViewModel
 

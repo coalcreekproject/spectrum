@@ -5,7 +5,7 @@ angular
     .controller('UserGridController', userGridController);
 
 //app.controller('UserGridController', ['$scope', '$http', '$location', '$modal', 'uiGridConstants', 'userFactory', 'sweetAlert',
-function userGridController($scope, $http, $location, $modal, uiGridConstants, userFactory, sweetAlert) {
+function userGridController($scope, $http, $location, $modal, uiGridConstants, userFactory) {
 
     $scope.data = userFactory;
 
@@ -37,7 +37,7 @@ function userGridController($scope, $http, $location, $modal, uiGridConstants, u
             },
             function() {
                 // error
-                sweetAlert.swal("Sorry!", "There was a problem loading users.  Please try again later.", "error");
+                alert("Sorry, there was a problem loading users.  Please try again later.");
             });
       //.then(function () {
       //    $scope.isBusy = false;

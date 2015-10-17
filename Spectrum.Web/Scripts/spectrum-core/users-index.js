@@ -6,7 +6,7 @@ angular
     .controller('UserPanelController', userPanelController);
 
 //app.controller('UserPanelController', ['$scope', '$http', '$modal', 'userFactory', 'sweetAlert',
-function userPanelController($scope, $http, $modal, userFactory, sweetAlert) {
+function userPanelController($scope, $http, $modal, userFactory) {
 
     $modal.scope = $scope;
 
@@ -19,7 +19,7 @@ function userPanelController($scope, $http, $modal, userFactory, sweetAlert) {
             },
             function() {
                 // error
-                sweetAlert.swal("Sorry!", "There was a problem loading users.  Please try again later.", "error");
+                alert("Sorry!", "There was a problem loading users.  Please try again later.", "error");
             });
 
     $scope.add = function () {

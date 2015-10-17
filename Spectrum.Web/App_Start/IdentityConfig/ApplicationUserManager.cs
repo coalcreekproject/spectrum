@@ -49,6 +49,7 @@ namespace Spectrum.Web.IdentityConfig
             {
                 MessageFormat = "Your security code is {0}"
             });
+
             manager.RegisterTwoFactorProvider("Email Code", new EmailTokenProvider<User, int>
             {
                 Subject = "Security Code",
@@ -64,6 +65,7 @@ namespace Spectrum.Web.IdentityConfig
                 manager.UserTokenProvider = 
                     new DataProtectorTokenProvider<User, int>(dataProtectionProvider.Create("ASP.NET Identity"));
             }
+
             return manager;
         }
     }

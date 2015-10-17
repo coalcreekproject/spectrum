@@ -1,13 +1,8 @@
-﻿using StackExchange.Redis;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
+﻿using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
-using System.Text;
-using System.Threading.Tasks;
+using StackExchange.Redis;
 
-namespace Spectrum.Core.Data.Context.Extensions
+namespace Spectrum.Core.Data.Cache.Extensions
 {
     public static class RedisCacheExtensions
     {

@@ -3,8 +3,7 @@ using System.Collections.Generic;
 
 namespace Spectrum.Logic.Models
 {
-    // User
-
+    [Serializable]
     public class UserModel
     {
         public UserModel()
