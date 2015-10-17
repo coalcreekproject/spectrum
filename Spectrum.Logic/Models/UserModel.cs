@@ -23,32 +23,36 @@ namespace Spectrum.Logic.Models
             Roles = new List<RoleModel>();
         }
 
-        public int Id { get; set; } // Id (Primary key)
-        public string UserName { get; set; } // UserName
-        public string Email { get; set; } // Email
-        public bool EmailConfirmed { get; set; } // EmailConfirmed
-        public string PasswordHash { get; set; } // PasswordHash
-        public string SecurityStamp { get; set; } // SecurityStamp
-        public string PhoneNumber { get; set; } // PhoneNumber
-        public bool PhoneNumberConfirmed { get; set; } // PhoneNumberConfirmed
-        public bool TwoFactorEnabled { get; set; } // TwoFactorEnabled
-        public DateTime? LockoutEndDateUtc { get; set; } // LockoutEndDateUtc
-        public bool LockoutEnabled { get; set; } // LockoutEnabled
-        public int AccessFailedCount { get; set; } // AccessFailedCount
+        public int Id { get; set; }
+        public string UserName { get; set; }
+        public string Email { get; set; }
+        public bool EmailConfirmed { get; set; }
+        public string PasswordHash { get; set; }
+        public string SecurityStamp { get; set; }
+        public string PhoneNumber { get; set; }
+        public bool PhoneNumberConfirmed { get; set; }
+        public bool TwoFactorEnabled { get; set; }
+        public DateTime? LockoutEndDateUtc { get; set; }
+        public bool LockoutEnabled { get; set; }
+        public int AccessFailedCount { get; set; }
+
+        //Used for logged in/cached user
+        public DateTime LoginTime { get; set; }
+        public DateTime LastActivity { get; set; }
+        public int SessionDuration { get; set; }
 
         // Reverse navigation
-        public virtual ICollection<AddressNorthAmericaModel> AddressNorthAmericas { get; set; } // Many to many mapping
+        public virtual ICollection<AddressNorthAmericaModel> AddressNorthAmericas { get; set; }
         public virtual ICollection<AreaOfResponsibilityModel> AreaOfResponsibilities { get; set; }
-        // Many to many mapping
-        public virtual ICollection<GroupModel> Groups { get; set; } // Many to many mapping
-        public virtual ICollection<JurisdictionModel> Jurisdictions { get; set; } // Many to many mapping
-        public virtual ICollection<OrganizationModel> Organizations { get; set; } // Many to many mapping
-        public virtual ICollection<PositionModel> Positions { get; set; } // Many to many mapping
-        public virtual ICollection<PreferenceModel> Preferences { get; set; } // Many to many mapping
-        public virtual ICollection<RoleModel> Roles { get; set; } // Many to many mapping
-        public virtual ICollection<UserApplicationModel> UserApplications { get; set; } // Many to many mapping
-        public virtual ICollection<UserClaimModel> UserClaims { get; set; } // UserClaim.FK_UserClaim_User
-        public virtual ICollection<UserLoginModel> UserExternalLogins { get; set; } // Many to many mapping
-        public virtual ICollection<UserProfileModel> UserProfiles { get; set; } // UserProfile.FK_UserProfile_User
+        public virtual ICollection<GroupModel> Groups { get; set; }
+        public virtual ICollection<JurisdictionModel> Jurisdictions { get; set; }
+        public virtual ICollection<OrganizationModel> Organizations { get; set; }
+        public virtual ICollection<PositionModel> Positions { get; set; }
+        public virtual ICollection<PreferenceModel> Preferences { get; set; }
+        public virtual ICollection<RoleModel> Roles { get; set; }
+        public virtual ICollection<UserApplicationModel> UserApplications { get; set; }
+        public virtual ICollection<UserClaimModel> UserClaims { get; set; }
+        public virtual ICollection<UserLoginModel> UserExternalLogins { get; set; }
+        public virtual ICollection<UserProfileModel> UserProfiles { get; set; }
     }
 }

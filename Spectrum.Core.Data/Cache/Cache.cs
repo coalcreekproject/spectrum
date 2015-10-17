@@ -1,12 +1,8 @@
-﻿using Spectrum.Core.Data.Context.Extensions;
+﻿using System;
+using Spectrum.Core.Data.Context.Extensions;
 using StackExchange.Redis;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Spectrum.Utility.Utilities.Cache
+namespace Spectrum.Core.Data.Cache
 {
     public class Cache
     {

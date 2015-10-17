@@ -18,8 +18,6 @@ namespace Spectrum.Utility.Utilities.Logging
             }
         }
 
-        
-
         //TODO: Find an efficient way to have providers passed in.
         public static void SetupSemanticLoggingApplicationBlock()
         {
