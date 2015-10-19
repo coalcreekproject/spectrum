@@ -113,7 +113,7 @@ namespace Spectrum.Web.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
-                    CacheUser(model.Email);
+ 
                     return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
                     return View("Lockout");
