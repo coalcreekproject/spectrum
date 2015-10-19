@@ -126,11 +126,6 @@ namespace Spectrum.Web.Controllers
             }
         }
 
-        private void CacheUser(string email)
-        {
-            var user = UserManager.FindByEmailAsync(email);
-        }
-
         //
         // GET: /Account/VerifyCode
         [AllowAnonymous]

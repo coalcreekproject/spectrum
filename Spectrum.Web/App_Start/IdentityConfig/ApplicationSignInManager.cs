@@ -1,9 +1,12 @@
 ﻿using System.Security.Claims;
 using System.Threading.Tasks;
+using System.Web.UI;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
 using Spectrum.Core.Data.Models;
+using Spectrum.Core.Data.Caching;
+using StackExchange.Redis;
 
 namespace Spectrum.Web.IdentityConfig
 {
@@ -17,12 +20,20 @@ namespace Spectrum.Web.IdentityConfig
 
         public override Task<ClaimsIdentity> CreateUserIdentityAsync(User user)
         {
-            return user.GenerateUserIdentityAsync((ApplicationUserManager)UserManager);
+            return user.GenerateUserIdentityAsync((ApplicationUserManager) UserManager);
         }
 
-        public static ApplicationSignInManager Create(IdentityFactoryOptions<ApplicationSignInManager> options, IOwinContext context)
+        public static ApplicationSignInManager Create(IdentityFactoryOptions<ApplicationSignInManager> options,
+            IOwinContext context)
         {
             return new ApplicationSignInManager(context.GetUserManager<ApplicationUserManager>(), context.Authentication);
+        }
+
+        public void CacheLoggedInUser(User user)
+        {
+            //var user = UserManager.FindByEmailAsync();
+            var cache = new RedisCache();
+            //cache.Set(user.Id.ToString(), user);
         }
     }
 }

@@ -1,11 +1,10 @@
 ﻿using System;
-using Spectrum.Core.Data.Cache.Extensions;
-using Spectrum.Core.Data.Context.Extensions;
+using Spectrum.Core.Data.Caching.Extensions;
 using StackExchange.Redis;
 
-namespace Spectrum.Core.Data.Cache
+namespace Spectrum.Core.Data.Caching
 {
-    public class Cache
+    public class RedisCache
     {
         public T GetFromCache<T>(string key, Func<T> missedCacheCall, TimeSpan timeToLive)
         {

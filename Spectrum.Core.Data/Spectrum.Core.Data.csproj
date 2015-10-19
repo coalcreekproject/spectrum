@@ -96,7 +96,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Cache\Cache.cs" />
+    <Compile Include="Caching\RedisCache.cs" />
     <Compile Include="Configuration\AddressInternationalConfiguration.cs" />
     <Compile Include="Configuration\AddressNorthAmericaConfiguration.cs" />
     <Compile Include="Configuration\ApplicationProfileConfiguration.cs" />
@@ -123,7 +123,7 @@
     <Compile Include="Configuration\UserExternalLoginConfiguration.cs" />
     <Compile Include="Context\BaseClasses\CoreInitializer.cs" />
     <Compile Include="Context\Extensions\ContextHelpers.cs" />
-    <Compile Include="Cache\Extensions\RedisCacheExtensions.cs" />
+    <Compile Include="Caching\Extensions\RedisCacheExtensions.cs" />
     <Compile Include="Context\Fakes\FakeDbSet.cs" />
     <Compile Include="Context\Fakes\FakeSpectrumCoreContext.cs" />
     <Compile Include="Context\Interfaces\ICoreDbContext.cs" />

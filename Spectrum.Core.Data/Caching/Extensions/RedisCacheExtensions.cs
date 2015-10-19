@@ -2,7 +2,7 @@
 using System.Runtime.Serialization.Formatters.Binary;
 using StackExchange.Redis;
 
-namespace Spectrum.Core.Data.Cache.Extensions
+namespace Spectrum.Core.Data.Caching.Extensions
 {
     public static class RedisCacheExtensions
     {

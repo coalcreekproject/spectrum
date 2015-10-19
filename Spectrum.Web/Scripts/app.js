@@ -5,7 +5,7 @@
  */
 (function () {
     angular.module('app', [
-        'ui.router',                // Angular flexible routing
+        //'ui.router',                // Angular flexible routing
         'ngSanitize',               // Angular-sanitize
         'ui.bootstrap',             // AngularJS native directives for Bootstrap
         'angular-flot',             // Flot chart
