@@ -2981,7 +2981,7 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Organization\Index.cshtml" />
+    <Content Include="Views\Organization\OrganizationIndex.cshtml" />
     <Content Include="Views\OrganizationProfile\Index.cshtml" />
     <Content Include="Views\UsersGrid\UsersGridIndex.cshtml" />
     <Content Include="Views\Shared\_Layout_Blank.cshtml" />

@@ -2,35 +2,35 @@
     .module('app')
     .controller('OrganizationController', organizationController);
 
-function organizationController($scope, $http, $modal, userFactory, sweetAlert) {
+function organizationController($scope, $http, $modal, organizationFactory) {
 
     $modal.scope = $scope;
 
-    $scope.data = userFactory;
+    $scope.data = organizationFactory;
 
-    userFactory.getOrganizations()
+    organizationFactory.getOrganizations()
         .then(function (organizations) {
             // success
-            //$scope.data = users;
+            //$scope.data = organization;
         },
             function () {
                 // error
-                sweetAlert.swal("Sorry!", "There was a problem loading organizations.  Please try again later.", "error");
+                alert("Sorry! There was a problem loading organizations.  Please try again later.");
             });
 
     $scope.add = function () {
         var modalInstance = $modal.open({
-            templateUrl: '/Templates/User/addOrganizationModal.html',
+            templateUrl: '/Templates/Organization/addOrganizationModal.html',
             controller: AddOrganizationModalController
         });
     };
 
     $scope.edit = function (organization) {
         var modalInstance = $modal.open({
-            templateUrl: '/Templates/User/editOrganizationModal.html',
+            templateUrl: '/Templates/Organization/editOrganizationModal.html',
             controller: EditOrganizationModalController,
             resolve: {
-                user: function () {
+                organization: function () {
                     return angular.copy(organization);
                 }
             }
@@ -38,17 +38,16 @@ function organizationController($scope, $http, $modal, userFactory, sweetAlert) 
     };
 
     $scope.profiles = function (organization) {
-        //var user = angular.copy(row.entity);
         window.location = "/OrganizationProfiles/Index/" + organization.Id;
     };
 
 
     $scope.delete = function (organization) {
         var modalInstance = $modal.open({
-            templateUrl: '/Templates/User/deleteOrganizationModal.html',
-            controller: DeleteUserModalController,
+            templateUrl: '/Templates/Organization/deleteOrganizationModal.html',
+            controller: DeleteOrganizationModalController,
             resolve: {
-                user: function () {
+                organization: function () {
                     return angular.copy(organization);
                 }
             }
@@ -56,21 +55,11 @@ function organizationController($scope, $http, $modal, userFactory, sweetAlert) 
     };
 };
 
-//Hard coded hack to make Angular 1.4 and accompanying UI library
-// dismiss modals properly.  This is a known bug, 
-// keep an eye on Angular-UI
-//function clearModalJqHack() {
-//    $('div.modal').removeClass('fade').addClass('hidden');
-//    $('body').removeClass('modal-open');
-//    $('.modal-backdrop').remove(); //problem
-//}
+function AddOrganizationModalController($scope, $modalInstance, organizationFactory) {
 
+    $scope.ok = function (organization) {
 
-function AddOrganizationModalController($scope, $modalInstance, userFactory) {
-
-    $scope.ok = function (user) {
-
-        userFactory.addUser(user)
+        organizationFactory.addOrganization(organization)
             .then(function () {
                 // success
                 $modalInstance.close();
@@ -90,13 +79,13 @@ function AddOrganizationModalController($scope, $modalInstance, userFactory) {
     };
 };
 
-function EditOrganizationModalController($scope, $modalInstance, userFactory, user) {
+function EditOrganizationModalController($scope, $modalInstance, organizationFactory, organization) {
 
-    $scope.user = user;
+    $scope.organization = organization;
 
     $scope.ok = function () {
 
-        userFactory.editUser(user)
+        organizationFactory.editOrganization(organization)
             .then(function () {
                 // success
             },
@@ -115,7 +104,7 @@ function EditOrganizationModalController($scope, $modalInstance, userFactory, us
     };
 };
 
-function DeleteOrganizationModalController($scope, $modalInstance, organizationFactory, user) {
+function DeleteOrganizationModalController($scope, $modalInstance, organizationFactory, organization) {
 
     $scope.organization = organization;
 
@@ -179,7 +168,7 @@ function organizationFactory($http, $q) {
          .then(function (result) {
              // success
              var newlyCreatedOrganization = result.data;
-             _users.splice(0, 0, newlyCreatedOrganization);
+             _organizations.splice(0, 0, newlyCreatedOrganization);
              deferred.resolve(newlyCreatedOrganization);
          },
          function () {
@@ -201,8 +190,8 @@ function organizationFactory($http, $q) {
 
              for (var i = 0; i < _organizations.length; i++) {
                  if (_organizations[i].Id === editedOrganization.Id) {
-                     _organizations[i].UserName = editedOrganization.UserName;
-                     _organizations[i].Email = editedOrganization.Email;
+                     _organizations[i].Name = editedOrganization.Name;
+                     _organizations[i].TypeId = editedOrganization.TypeId;
                      break;
                  }
              }

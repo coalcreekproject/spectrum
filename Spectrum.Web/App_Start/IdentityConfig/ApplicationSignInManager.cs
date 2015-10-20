@@ -6,6 +6,7 @@ using Microsoft.Owin;
 using Microsoft.Owin.Security;
 using Spectrum.Core.Data.Models;
 using Spectrum.Core.Data.Caching;
+using Spectrum.Core.Data.Caching.Extensions;
 using StackExchange.Redis;
 
 namespace Spectrum.Web.IdentityConfig
@@ -20,6 +21,7 @@ namespace Spectrum.Web.IdentityConfig
 
         public override Task<ClaimsIdentity> CreateUserIdentityAsync(User user)
         {
+            CacheLoggedInUser(user);
             return user.GenerateUserIdentityAsync((ApplicationUserManager) UserManager);
         }
 
@@ -32,8 +34,7 @@ namespace Spectrum.Web.IdentityConfig
         public void CacheLoggedInUser(User user)
         {
             //var user = UserManager.FindByEmailAsync();
-            var cache = new RedisCache();
-            //cache.Set(user.Id.ToString(), user);
+            RedisCache.Set(user.Id.ToString(), user);
         }
     }
 }

@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data.Entity;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Spectrum.Core.Data.Models;
 using Microsoft.AspNet.Identity;
+using Spectrum.Core.Data.Models;
 
-namespace Spectrum.Core.Data.Context.BaseClasses
+namespace Spectrum.Core.Data.Context.Initializers
 {
     class CoreInitializer : CreateDatabaseIfNotExists<CoreDbContext>
     {

@@ -1,9 +1,11 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System;
+using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.AspNet.Identity;
 using Spectrum.Core.Data.Models.Interfaces;
 
 namespace Spectrum.Core.Data.Models
 {
+    [Serializable]
     public partial class Role : IRole<int>, IObjectState
     {
         [NotMapped]

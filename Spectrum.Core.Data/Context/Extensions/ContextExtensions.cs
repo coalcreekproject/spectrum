@@ -4,7 +4,7 @@ using Spectrum.Core.Data.Models.ModelUtilities;
 
 namespace Spectrum.Core.Data.Context.Extensions
 {
-    public static class ContextHelpers
+    public static class ContextExtensions
     {
         public static void ApplyObjectStateChanges(this DbContext context)
         {

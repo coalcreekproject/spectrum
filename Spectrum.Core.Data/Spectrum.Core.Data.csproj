@@ -121,8 +121,8 @@
     <Compile Include="Configuration\UserConfiguration.cs" />
     <Compile Include="Configuration\UserProfileConfiguration.cs" />
     <Compile Include="Configuration\UserExternalLoginConfiguration.cs" />
-    <Compile Include="Context\BaseClasses\CoreInitializer.cs" />
-    <Compile Include="Context\Extensions\ContextHelpers.cs" />
+    <Compile Include="Context\Initializers\CoreInitializer.cs" />
+    <Compile Include="Context\Extensions\ContextExtensions.cs" />
     <Compile Include="Caching\Extensions\RedisCacheExtensions.cs" />
     <Compile Include="Context\Fakes\FakeDbSet.cs" />
     <Compile Include="Context\Fakes\FakeSpectrumCoreContext.cs" />
@@ -146,6 +146,7 @@
     <Compile Include="Models\Partials\OrganizationProfile.cs" />
     <Compile Include="Models\Partials\OrganizationType.cs" />
     <Compile Include="Models\Partials\Parameter.cs" />
+    <Compile Include="Models\Partials\Position.cs" />
     <Compile Include="Models\Partials\Preference.cs" />
     <Compile Include="Models\Partials\Rule.cs" />
     <Compile Include="Models\Partials\RuleType.cs" />

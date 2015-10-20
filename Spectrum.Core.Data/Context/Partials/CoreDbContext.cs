@@ -1,6 +1,7 @@
 using System.Data.Entity;
 using System.Diagnostics;
 using Spectrum.Core.Data.Context.BaseClasses;
+using Spectrum.Core.Data.Context.Initializers;
 
 namespace Spectrum.Core.Data.Context
 {
