@@ -1,6 +1,9 @@
+using System;
+
 namespace Spectrum.Logic.Models
 {
     // AddressInternational
+    [Serializable]
     public class AddressInternationalModel
     {
         public int Id { get; set; } // Id (Primary key)

@@ -1,9 +1,9 @@
+using System;
 using System.Collections.Generic;
 
 namespace Spectrum.Logic.Models
 {
-    // AddressNorthAmerica
-
+    [Serializable]
     public class AddressNorthAmericaModel
     {
         public int Id { get; set; } // Id (Primary key)

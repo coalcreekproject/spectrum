@@ -1,9 +1,9 @@
+using System;
 using System.Collections.Generic;
 
 namespace Spectrum.Logic.Models
 {
-    // OrganizationType
-
+    [Serializable]
     public class OrganizationTypeModel
     {
         public int Id { get; set; } // Id (Primary key)

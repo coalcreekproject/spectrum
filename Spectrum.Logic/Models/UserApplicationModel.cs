@@ -1,6 +1,8 @@
+using System;
+
 namespace Spectrum.Logic.Models
 {
-    // UserApplication
+    [Serializable]
     public class UserApplicationModel
     {
         public int UserId { get; set; } // UserId (Primary key)

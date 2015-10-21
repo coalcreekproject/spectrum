@@ -1,9 +1,9 @@
+using System;
 using System.Collections.Generic;
 
 namespace Spectrum.Logic.Models
 {
-    // Jurisdiction
-
+    [Serializable]
     public class JurisdictionModel
     {
         public int Id { get; set; } // Id (Primary key)

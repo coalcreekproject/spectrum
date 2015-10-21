@@ -1,6 +1,8 @@
+using System;
+
 namespace Spectrum.Logic.Models
 {
-    // OrganizationApplications
+    [Serializable]
     public class OrganizationApplicationModel
     {
         public int OrganizationId { get; set; } // OrganizationId (Primary key)

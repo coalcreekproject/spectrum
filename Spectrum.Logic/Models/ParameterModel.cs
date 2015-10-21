@@ -1,8 +1,9 @@
+using System;
 using System.Collections.Generic;
 
 namespace Spectrum.Logic.Models
 {
-    // Parameter
+    [Serializable]
     public class ParameterModel
     {
         public int Id { get; set; } // Id (Primary key)

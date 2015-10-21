@@ -1,6 +1,8 @@
+using System;
+
 namespace Spectrum.Logic.Models
 {
-    // UserExternalLogin
+    [Serializable]
     public class UserLoginModel
     {
         public int UserId { get; set; } // UserId (Primary key)

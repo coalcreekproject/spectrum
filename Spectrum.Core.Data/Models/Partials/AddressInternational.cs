@@ -5,7 +5,7 @@ using Spectrum.Core.Data.Models.Interfaces;
 namespace Spectrum.Core.Data.Models
 {
     // AddressInternational
-    [Serializable]
+
     public partial class AddressInternational : IObjectState
     {
         [NotMapped]

@@ -1,7 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Spectrum.Logic.Models
 {
+    [Serializable]
     public class PositionModel
     {
         public int Id { get; set; } // Id (Primary key)

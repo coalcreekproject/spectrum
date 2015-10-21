@@ -1,6 +1,8 @@
+using System;
+
 namespace Spectrum.Logic.Models
 {
-    // ApplicationProfile
+    [Serializable]
     public class ApplicationProfile
     {
         public int Id { get; set; } // Id (Primary key)
@@ -11,7 +13,7 @@ namespace Spectrum.Logic.Models
         public string License { get; set; } // License
 
         // Foreign keys
-        public virtual ApplicationModel Application { get; set; } // FK_ApplicationDetail_Application
+        public virtual ApplicationModel Application { get; set; }
     }
 
 }

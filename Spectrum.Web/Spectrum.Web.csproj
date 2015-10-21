@@ -48,6 +48,10 @@
       <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="AutoMapper, Version=4.0.4.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.4.0.4\lib\net45\AutoMapper.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
       <Private>True</Private>
@@ -248,14 +252,14 @@
     </Compile>
     <Compile Include="Helpers\HtmlHelperExtensions.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\ApplicationDbContext.cs" />
-    <Compile Include="Models\ApplicationUser.cs" />
-    <Compile Include="Models\CustomRole.cs" />
-    <Compile Include="Models\CustomRoleStore.cs" />
-    <Compile Include="Models\CustomUserClaim.cs" />
-    <Compile Include="Models\CustomUserRole.cs" />
-    <Compile Include="Models\CustomUserStore.cs" />
-    <Compile Include="Models\CustomUserLogin.cs" />
+    <Compile Include="Models\Identity\ApplicationDbContext.cs" />
+    <Compile Include="Models\Identity\ApplicationUser.cs" />
+    <Compile Include="Models\Identity\CustomRole.cs" />
+    <Compile Include="Models\Identity\CustomRoleStore.cs" />
+    <Compile Include="Models\Identity\CustomUserClaim.cs" />
+    <Compile Include="Models\Identity\CustomUserRole.cs" />
+    <Compile Include="Models\Identity\CustomUserStore.cs" />
+    <Compile Include="Models\Identity\CustomUserLogin.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\OrganizationProfileViewModel.cs" />
     <Compile Include="Models\OrganizationViewModel.cs" />
@@ -3093,6 +3097,10 @@
     <ProjectReference Include="..\Spectrum.Core.Data\Spectrum.Core.Data.csproj">
       <Project>{f3b0b351-0bca-485d-864a-6f299c2e4fa2}</Project>
       <Name>Spectrum.Core.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Spectrum.Logic\Spectrum.Logic.csproj">
+      <Project>{3417f4ad-c93a-45e0-9f40-7a1710410c1e}</Project>
+      <Name>Spectrum.Logic</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

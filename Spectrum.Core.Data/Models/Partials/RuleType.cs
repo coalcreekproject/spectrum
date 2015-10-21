@@ -5,7 +5,7 @@ using Spectrum.Core.Data.Models.Interfaces;
 namespace Spectrum.Core.Data.Models
 {
     // RuleType
-    [Serializable]
+
     public partial class RuleType : IObjectState
     {
         [NotMapped]

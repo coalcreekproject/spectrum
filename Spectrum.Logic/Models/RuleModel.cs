@@ -1,8 +1,9 @@
+using System;
 using System.Collections.Generic;
 
 namespace Spectrum.Logic.Models
 {
-    // Rule
+    [Serializable]
     public class RuleModel
     {
         public int Id { get; set; } // Id (Primary key)

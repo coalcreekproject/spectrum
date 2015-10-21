@@ -5,7 +5,7 @@ using Spectrum.Core.Data.Models.Interfaces;
 namespace Spectrum.Core.Data.Models
 {
     // Parameter
-    [Serializable]
+
     public partial class Parameter : IObjectState
     {
         [NotMapped]

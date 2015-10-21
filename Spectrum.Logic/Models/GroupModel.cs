@@ -1,9 +1,9 @@
+using System;
 using System.Collections.Generic;
 
 namespace Spectrum.Logic.Models
 {
-    // Group
-
+    [Serializable]
     public class GroupModel
     {
         public int Id { get; set; } // Id (Primary key)

@@ -2,6 +2,9 @@
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using AutoMapper;
+using Spectrum.Core.Data.Models;
+using Spectrum.Logic.Models;
 
 namespace Spectrum.Web
 {
@@ -14,6 +17,11 @@ namespace Spectrum.Web
             GlobalConfiguration.Configure(WebApiConfig.Register);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+            Mapper.Initialize(cfg =>
+            {
+                cfg.CreateMap<User, UserModel>();
+            });
         }
     }
 }

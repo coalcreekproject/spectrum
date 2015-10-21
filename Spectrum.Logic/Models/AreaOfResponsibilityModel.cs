@@ -1,9 +1,9 @@
+using System;
 using System.Collections.Generic;
 
 namespace Spectrum.Logic.Models
 {
-    // AreaOfResponsibility
-
+    [Serializable]
     public class AreaOfResponsibilityModel
     {
         public int Id { get; set; } // Id (Primary key)

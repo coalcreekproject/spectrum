@@ -1,6 +1,8 @@
+using System;
+
 namespace Spectrum.Logic.Models
 {
-    // UserClaim
+    [Serializable]
     public class UserClaimModel
     {
         public int UserId { get; set; } // UserId

@@ -5,7 +5,7 @@ using Spectrum.Core.Data.Models.Interfaces;
 namespace Spectrum.Core.Data.Models
 {
     // ApplicationProfile
-    [Serializable]
+
     public partial class ApplicationProfile : IObjectState
     {
         [NotMapped]

@@ -5,7 +5,7 @@ using Spectrum.Core.Data.Models.Interfaces;
 namespace Spectrum.Core.Data.Models
 {
     // Organization
-    [Serializable]
+
     public partial class Organization : IObjectState
     {
         [NotMapped]

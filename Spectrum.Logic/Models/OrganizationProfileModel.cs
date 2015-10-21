@@ -1,6 +1,8 @@
+using System;
+
 namespace Spectrum.Logic.Models
 {
-    // OrganizationProfile
+    [Serializable]
     public class OrganizationProfileModel
     {
         public int Id { get; set; } // Id (Primary key)
@@ -9,7 +11,7 @@ namespace Spectrum.Logic.Models
         public string ProfileName { get; set; } // ProfileName
         public string Description { get; set; } // Description
         public string StreetAddressOne { get; set; } // StreetAddressOne
-        public string StreetAddressTwo { get; set; } // StreetAddressTwo
+        public string StreetAddressTwo { get; set; } // StreetAddressTwoS
         public string City { get; set; } // City
         public string State { get; set; } // State
         public string Zip { get; set; } // Zip

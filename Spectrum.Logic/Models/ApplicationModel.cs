@@ -1,9 +1,9 @@
+using System;
 using System.Collections.Generic;
 
 namespace Spectrum.Logic.Models
 {
-    // Application
-
+    [Serializable]
     public class ApplicationModel
     {
         public int Id { get; set; } // Id (Primary key)

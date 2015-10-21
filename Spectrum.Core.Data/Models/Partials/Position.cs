@@ -8,7 +8,7 @@ using Spectrum.Core.Data.Models.Interfaces;
 
 namespace Spectrum.Core.Data.Models
 {
-    [Serializable]
+
     public partial class Position : IObjectState
     {
         [NotMapped]

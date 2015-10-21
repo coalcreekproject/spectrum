@@ -1,12 +1,14 @@
 ﻿using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web.UI;
+using AutoMapper;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
 using Spectrum.Core.Data.Models;
 using Spectrum.Core.Data.Caching;
 using Spectrum.Core.Data.Caching.Extensions;
+using Spectrum.Logic.Models;
 using StackExchange.Redis;
 
 namespace Spectrum.Web.IdentityConfig
@@ -33,8 +35,10 @@ namespace Spectrum.Web.IdentityConfig
 
         public void CacheLoggedInUser(User user)
         {
+            var userModel = Mapper.Map<UserModel>(user);
+
             var cache = RedisCache.Connection.GetDatabase();
-            cache.Set("user:" + user.Id, user);
+            cache.Set("user:" + userModel.Id, userModel);
         }
     }
 }
