@@ -119,6 +119,7 @@ namespace Spectrum.Web.Controllers.WebApiControllers
 
             organization.ObjectState = ObjectState.Deleted;
             _organizationRepository.Delete(organization.Id);
+            _context.SaveChangesAsync();
 
             return Request.CreateResponse(HttpStatusCode.OK, organization);
         }

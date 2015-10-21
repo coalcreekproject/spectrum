@@ -110,7 +110,7 @@ function DeleteOrganizationModalController($scope, $modalInstance, organizationF
 
     $scope.ok = function () {
 
-        organizationFactory.deleteOrganization(organization)
+        organizationFactory.deleteOrganizations(organization)
             .then(function () {
                 // success
 

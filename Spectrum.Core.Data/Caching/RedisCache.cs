@@ -1,103 +1,74 @@
 ﻿using System;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
+using System.Threading.Tasks;
 using Spectrum.Core.Data.Caching.Extensions;
 using StackExchange.Redis;
 
 namespace Spectrum.Core.Data.Caching
 {
-    public static class RedisCache
+    public class RedisCache
     {
-        static readonly IDatabase Cache = Connection.GetDatabase();
-
-        public static ConnectionMultiplexer Connection
+        public T GetFromCache<T>(string key, Func<T> missedCacheCall, TimeSpan timeToLive)
         {
-            //get { return lazyConnection.Value; }
-            get { return ConnectionMultiplexer.Connect("spectrumoperational.redis.cache.windows.net, abortConnect = false, ssl = true, password = rXWM/RL/XC2vomxd/WyoxZRGDpkhRXwxKdYlOm9Os3g="); }
-        }
-
-        //private static Lazy<ConnectionMultiplexer> lazyConnection = new Lazy<ConnectionMultiplexer>(() =>
-        //{
-        //    return ConnectionMultiplexer.Connect("spectrumoperational.redis.cache.windows.net, abortConnect = false, ssl = true, password = rXWM/RL/XC2vomxd/WyoxZRGDpkhRXwxKdYlOm9Os3g=");
-        //});
-
-
-        public static T GetFromCache<T>(string key, Func<T> missedCacheCall, TimeSpan timeToLive)
-        {
-
-            var obj = Cache.Get<T>(key);
-
+            IDatabase cache = Connection.GetDatabase();
+            var obj = cache.Get<T>(key);
             if (obj == null)
             {
                 obj = missedCacheCall();
-
                 if (obj != null)
                 {
-                    Cache.Set(key, obj);
+                    cache.Set(key, obj);
                 }
             }
-
             return obj;
         }
-
-        public static T GetFromCache<T>(string key, Func<T> missedCacheCall)
+        public T GetFromCache<T>(string key, Func<T> missedCacheCall)
         {
             return GetFromCache<T>(key, missedCacheCall, TimeSpan.FromMinutes(5));
         }
 
-        public static void InvalidateCache(string key)
+        public async Task<T> GetFromCacheAsync<T>(string key, Func<Task<T>> missedCacheCall, TimeSpan timeToLive)
         {
-            //IDatabase cache = Connection.GetDatabase();
-            //cache.KeyDelete(key);
-            Cache.KeyDelete(key);
-        }
-
-        //"Extension Methods"
-        public static T Get<T>(string key)
-        {
-            return Deserialize<T>(Cache.StringGet(key));
-        }
-
-        public static object Get(string key)
-        {
-            return Deserialize<object>(Cache.StringGet(key));
-        }
-
-        public static void Set(string key, object value)
-        {
-            Cache.StringSet(key, Serialize(value));
-        }
-
-
-        //Serializers
-        static byte[] Serialize(object o)
-        {
-            if (o == null)
+            IDatabase cache = Connection.GetDatabase();
+            var obj = await cache.GetAsync<T>(key);
+            if (obj == null)
             {
-                return null;
+                obj = await missedCacheCall();
+                if (obj != null)
+                {
+                    cache.Set(key, obj);
+                }
             }
-
-            BinaryFormatter binaryFormatter = new BinaryFormatter();
-            using (MemoryStream memoryStream = new MemoryStream())
-            {
-                binaryFormatter.Serialize(memoryStream, o);
-                byte[] objectDataAsStream = memoryStream.ToArray();
-                return objectDataAsStream;
-            }
+            return obj;
+        }
+        public async Task<T> GetFromCacheAsync<T>(string key, Func<Task<T>> missedCacheCall)
+        {
+            return await GetFromCacheAsync<T>(key, missedCacheCall, TimeSpan.FromMinutes(5));
         }
 
-        static T Deserialize<T>(byte[] stream)
+        public void InvalidateCache(string key)
         {
-            if (stream == null)
-            {
-                return default(T);
-            }
+            IDatabase cache = Connection.GetDatabase();
+            cache.KeyDelete(key);
+        }
 
-            BinaryFormatter binaryFormatter = new BinaryFormatter();
-            using (MemoryStream memoryStream = new MemoryStream(stream))
+        private static Lazy<ConnectionMultiplexer> lazyConnection = new Lazy<ConnectionMultiplexer>(() =>
+        {
+            ConfigurationOptions options = new ConfigurationOptions();
+            options.EndPoints.Add("spectrumoperational.redis.cache.windows.net");
+            options.Ssl = true;
+            options.Password = "rXWM/RL/XC2vomxd/WyoxZRGDpkhRXwxKdYlOm9Os3g=";
+            options.ConnectTimeout = 1000;
+            options.SyncTimeout = 2500;
+            return ConnectionMultiplexer.Connect(options);
+        });
+
+        public static ConnectionMultiplexer Connection
+        {
+            get
             {
-                T result = (T)binaryFormatter.Deserialize(memoryStream);
-                return result;
+                return lazyConnection.Value;
             }
         }
     }

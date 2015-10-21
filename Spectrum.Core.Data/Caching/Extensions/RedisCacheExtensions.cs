@@ -1,5 +1,6 @@
 ﻿using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
+using System.Threading.Tasks;
 using StackExchange.Redis;
 
 namespace Spectrum.Core.Data.Caching.Extensions
@@ -11,10 +12,20 @@ namespace Spectrum.Core.Data.Caching.Extensions
             return Deserialize<T>(cache.StringGet(key));
         }
 
-        public static object Get(this IDatabase cache, string key)
+        //public static object Get(this IDatabase cache, string key)
+        //{
+        //    return Deserialize<object>(cache.StringGet(key));
+        //}
+
+        public async static Task<T> GetAsync<T>(this IDatabase cache, string key)
         {
-            return Deserialize<object>(cache.StringGet(key));
+            return Deserialize<T>(await cache.StringGetAsync(key));
         }
+
+        //public async static Task<object> GetAsync(this IDatabase cache, string key)
+        //{
+        //    return Deserialize<object>(await cache.StringGetAsync(key));
+        //}
 
         public static void Set(this IDatabase cache, string key, object value)
         {

@@ -33,8 +33,8 @@ namespace Spectrum.Web.IdentityConfig
 
         public void CacheLoggedInUser(User user)
         {
-            //var user = UserManager.FindByEmailAsync();
-            RedisCache.Set(user.Id.ToString(), user);
+            var cache = RedisCache.Connection.GetDatabase();
+            cache.Set("user:" + user.Id, user);
         }
     }
 }
