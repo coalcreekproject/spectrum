@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Threading.Tasks;
 using System.Web.Http;
 using Spectrum.Core.Data.Context.Interfaces;
 using Spectrum.Core.Data.Context.UnitOfWork;
@@ -67,7 +68,7 @@ namespace Spectrum.Web.Controllers.WebApiControllers
         }
 
         // POST: api/Organization
-        public HttpResponseMessage Post([FromBody]OrganizationViewModel newOrganization)
+        public async Task<HttpResponseMessage> Post([FromBody]OrganizationViewModel newOrganization)
         {
             Organization organization = new Organization
             {
@@ -77,7 +78,7 @@ namespace Spectrum.Web.Controllers.WebApiControllers
                 ObjectState = ObjectState.Added
             };
 
-            var result = _organizationRepository.CreateOrganization(organization);
+            var result = Task.FromResult(_organizationRepository.CreateOrganization(organization));
 
             if (result.IsCompleted)
             {
