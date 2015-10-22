@@ -1,4 +1,5 @@
-﻿using System.Security.Claims;
+﻿using System;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web.UI;
 using AutoMapper;
@@ -9,7 +10,6 @@ using Spectrum.Core.Data.Models;
 using Spectrum.Core.Data.Caching;
 using Spectrum.Core.Data.Caching.Extensions;
 using Spectrum.Logic.Models;
-using StackExchange.Redis;
 
 namespace Spectrum.Web.IdentityConfig
 {
@@ -37,8 +37,16 @@ namespace Spectrum.Web.IdentityConfig
         {
             var userModel = Mapper.Map<UserModel>(user);
 
-            var cache = RedisCache.Connection.GetDatabase();
-            cache.Set("user:" + userModel.Id, userModel);
+            try
+            {
+                var cache = RedisCache.Connection.GetDatabase();
+                cache.Set("user:" + userModel.Id, userModel);
+            }
+            catch (Exception ex)
+            {
+                //TODO: Log something
+            }
+        
         }
     }
 }

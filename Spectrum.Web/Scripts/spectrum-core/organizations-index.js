@@ -37,11 +37,6 @@ function organizationController($scope, $http, $modal, organizationFactory) {
         });
     };
 
-    $scope.profiles = function (organization) {
-        window.location = "/OrganizationProfiles/Index/" + organization.Id;
-    };
-
-
     $scope.delete = function (organization) {
         var modalInstance = $modal.open({
             templateUrl: '/Templates/Organization/deleteOrganizationModal.html',
@@ -53,13 +48,17 @@ function organizationController($scope, $http, $modal, organizationFactory) {
             }
         });
     };
+
+    $scope.profiles = function (organization) {
+        window.location = "/OrganizationProfiles/Index/" + organization.Id;
+    };
 };
 
 function AddOrganizationModalController($scope, $modalInstance, organizationFactory) {
 
     $scope.ok = function (organization) {
 
-        organizationFactory.addOrganization(organization)
+        organizationFactory.addOrganizations(organization)
             .then(function () {
                 // success
                 $modalInstance.close();
