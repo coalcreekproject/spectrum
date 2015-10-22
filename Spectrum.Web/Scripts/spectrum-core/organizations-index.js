@@ -63,7 +63,7 @@ function AddOrganizationModalController($scope, $modalInstance, organizationFact
             .then(function () {
                 // success
                 $modalInstance.close();
-                //clearModalJqHack();
+        
             },
                 function () {
                     // error
@@ -75,7 +75,7 @@ function AddOrganizationModalController($scope, $modalInstance, organizationFact
 
     $scope.cancel = function () {
         $modalInstance.dismiss('cancel');
-        //clearModalJqHack();
+
     };
 };
 
@@ -85,7 +85,7 @@ function EditOrganizationModalController($scope, $modalInstance, organizationFac
 
     $scope.ok = function () {
 
-        organizationFactory.editOrganization(organization)
+        organizationFactory.editOrganizations(organization)
             .then(function () {
                 // success
             },
@@ -95,12 +95,11 @@ function EditOrganizationModalController($scope, $modalInstance, organizationFac
                 });
 
         $modalInstance.close();
-        //clearModalJqHack();
+
     };
 
     $scope.cancel = function () {
         $modalInstance.dismiss('cancel');
-        //clearModalJqHack();
     };
 };
 
@@ -121,12 +120,12 @@ function DeleteOrganizationModalController($scope, $modalInstance, organizationF
                 });
 
         $modalInstance.close();
-        //clearModalJqHack();
+
     };
 
     $scope.cancel = function () {
         $modalInstance.dismiss('cancel');
-        //clearModalJqHack();
+
     };
 };
 
