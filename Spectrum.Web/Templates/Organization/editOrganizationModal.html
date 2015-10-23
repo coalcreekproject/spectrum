@@ -1,8 +1,8 @@
 ﻿<div class="modal-dialog">
 
     <div class="modal-header">
-        <h4 class="modal-title">Add an Organization</h4>
-        <small class="font-bold">Add an organization to the system.</small>
+        <h4 class="modal-title">Edit an Organization</h4>
+        <small class="font-bold">Edit an organization in the system.</small>
     </div>
 
     <div class="modal-body">
@@ -10,6 +10,7 @@
             <div class="form-group">
                 <div class="row">
                     <div class="col-md-6">
+                        <label for="OrganizationTypeId">Name</label>
                         <input type="text" placeholder="Name" ng-model="organization.Name" class="form-control">
                     </div>
                 </div>
@@ -18,8 +19,8 @@
             <div class="form-group">
                 <div class="row">
                     <div class="col-md-6">
-                        <label for="Name">Organization Type</label>
-                        <input type="text" placeholder="TypeId" ng-model="organization.TypeId" class="form-control">
+                        <label for="OrganizationTypeId">Organization Type</label>
+                        <input type="text" id="OrganizationTypeId" placeholder="OrganizationTypeId" ng-model="organization.OrganizationTypeId" class="form-control">
                     </div>
                 </div>
             </div>
