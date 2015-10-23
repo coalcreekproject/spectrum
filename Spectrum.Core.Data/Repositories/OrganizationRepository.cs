@@ -39,16 +39,22 @@ namespace Spectrum.Core.Data.Repositories
             return _context.Organizations.Find(id);
         }
 
+        public Task<Organization> FindAsync(int organizationId)
+        {
+            return _context.Organizations.FirstOrDefaultAsync(o => o.Id.Equals(organizationId));
+        }
+
         public void InsertOrUpdate(Organization organization)
         {
-            if (organization.ObjectState == ObjectState.Added) {
+            if (organization.ObjectState == ObjectState.Added)
+            {
                 // New entity
                 _context.Organizations.Add(organization);
-                Save();
-            } else {
+            }
+            else
+            {
                 // Existing entity
                 _context.Entry(organization).State = EntityState.Modified;
-                Save();
             }
         }
 
@@ -70,22 +76,6 @@ namespace Spectrum.Core.Data.Repositories
             return this._context.SaveChangesAsync();
         }
 
-        public Task DeleteAsync(Organization organization)
-        {
-            this._context.Organizations.Remove(organization);
-            return this._context.SaveChangesAsync();
-        }
-
-        public Task<Organization> FindByIdAsync(int organizationId)
-        {
-            return Organizations.FirstOrDefaultAsync(o => o.Id.Equals(organizationId));
-        }
-
-        public Task<Organization> FindByNameAsync(string organizationName)
-        {
-            return Organizations.FirstOrDefaultAsync(o => o.Name.Equals(organizationName));
-        }
-
         public void Delete(int id)
         {
             var organization = _context.Organizations.Find(id);
@@ -95,6 +85,11 @@ namespace Spectrum.Core.Data.Repositories
         public void Save()
         {
             _context.SaveChanges();
+        }
+
+        public Task SaveAsync()
+        {
+            return _context.SaveChangesAsync();
         }
 
         public void Dispose()

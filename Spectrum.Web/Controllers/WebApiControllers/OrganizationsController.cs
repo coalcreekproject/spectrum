@@ -49,8 +49,7 @@ namespace Spectrum.Web.Controllers.WebApiControllers
         // GET: api/Organization/5
         public HttpResponseMessage Get(int id)
         {
-
-            var organization = _organizationRepository.All.FirstOrDefault(u => u.Id == id);
+            var organization = _organizationRepository.FindAsync(id).Result;
 
             if (organization == null)
             {
@@ -78,7 +77,8 @@ namespace Spectrum.Web.Controllers.WebApiControllers
                 ObjectState = ObjectState.Added
             };
 
-            var result = Task.FromResult(_organizationRepository.CreateOrganization(organization));
+            _organizationRepository.InsertOrUpdate(organization);
+            var result = Task.FromResult(_organizationRepository.SaveAsync());
 
             if (result.IsCompleted)
             {
@@ -92,7 +92,7 @@ namespace Spectrum.Web.Controllers.WebApiControllers
         // PUT: api/Organization/5
         public HttpResponseMessage Put([FromBody]OrganizationViewModel editOrganization)
         {
-            var organization = _organizationRepository.FindByIdAsync(editOrganization.Id).Result;
+            var organization = _organizationRepository.FindAsync(editOrganization.Id).Result;
 
             if (organization == null)
             {
@@ -102,8 +102,8 @@ namespace Spectrum.Web.Controllers.WebApiControllers
             organization.Name = editOrganization.Name;
             organization.OrganizationTypeId = editOrganization.OrganizationTypeId;
             organization.ObjectState = ObjectState.Modified;
-
             _organizationRepository.InsertOrUpdate(organization);
+            _organizationRepository.Save();
             
             return Request.CreateResponse(HttpStatusCode.OK, organization);
         }
@@ -120,7 +120,7 @@ namespace Spectrum.Web.Controllers.WebApiControllers
 
             organization.ObjectState = ObjectState.Deleted;
             _organizationRepository.Delete(organization.Id);
-            _context.SaveChangesAsync();
+            _organizationRepository.SaveAsync();
 
             return Request.CreateResponse(HttpStatusCode.OK, organization);
         }

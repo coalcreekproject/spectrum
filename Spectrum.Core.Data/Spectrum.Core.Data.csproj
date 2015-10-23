@@ -171,6 +171,7 @@
     <Compile Include="Repositories\Interfaces\IRuleRepository.cs" />
     <Compile Include="Repositories\Interfaces\IRuleTypeRepository.cs" />
     <Compile Include="Repositories\Interfaces\IUserProfileRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IRoleRepository.cs" />
     <Compile Include="Utilities\PasswordHash.cs" />
     <Compile Include="Utilities\PasswordUtility.cs" />
     <Compile Include="Utilities\SpectrumPasswordHasher.cs" />
