@@ -9,7 +9,7 @@ using Spectrum.Core.Data.Models;
 
 namespace Spectrum.Core.Data.Repositories
 {
-    public class RoleRepository : IQueryableRoleStore<Role, int>
+    public class RoleRepository : IQueryableRoleStore<Role, int>, IRoleRepository
     {
         private readonly CoreDbContext _context;
 

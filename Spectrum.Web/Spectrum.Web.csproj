@@ -2905,6 +2905,9 @@
     <Content Include="Templates\Common\navigation.html" />
     <Content Include="Templates\Common\panel_tools.html" />
     <Content Include="Templates\Dashboard\dashboard.html" />
+    <Content Include="Templates\OrganizationProfile\addOrganizationProfileModal.html" />
+    <Content Include="Templates\OrganizationProfile\deleteOrganizationProfileModal.html" />
+    <Content Include="Templates\OrganizationProfile\editOrganizationProfileModal.html" />
     <Content Include="Templates\Organization\addOrganizationModal.html" />
     <Content Include="Templates\Organization\deleteOrganizationModal.html" />
     <Content Include="Templates\Organization\editOrganizationModal.html" />

@@ -6,6 +6,7 @@ using Spectrum.Core.Data.Context;
 using Spectrum.Core.Data.Context.UnitOfWork;
 using Spectrum.Core.Data.Models;
 using Spectrum.Core.Data.Repositories.Interfaces;
+using System.Threading.Tasks;
 
 namespace Spectrum.Core.Data.Repositories
 { 
@@ -37,6 +38,11 @@ namespace Spectrum.Core.Data.Repositories
             return _context.OrganizationProfiles.Find(id);
         }
 
+        public Task<OrganizationProfile> FindAsync(int id)
+        {
+            return _context.OrganizationProfiles.FirstOrDefaultAsync(p => p.Id.Equals(id));
+        }
+
         public void InsertOrUpdate(OrganizationProfile organizationprofile)
         {
             if (organizationprofile.Id == default(int)) {
@@ -48,6 +54,12 @@ namespace Spectrum.Core.Data.Repositories
             }
         }
 
+        public Task CreateOrganization(OrganizationProfile organizationProfile)
+        {
+            this._context.OrganizationProfiles.Add(organizationProfile);
+            return this._context.SaveChangesAsync();
+        }
+
         public void Delete(int id)
         {
             var organizationprofile = _context.OrganizationProfiles.Find(id);
@@ -57,6 +69,11 @@ namespace Spectrum.Core.Data.Repositories
         public void Save()
         {
             _context.SaveChanges();
+        }
+
+        public Task SaveAsync()
+        {
+            return _context.SaveChangesAsync();
         }
 
         public void Dispose() 

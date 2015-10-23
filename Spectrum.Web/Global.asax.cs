@@ -5,6 +5,7 @@ using System.Web.Routing;
 using AutoMapper;
 using Spectrum.Core.Data.Models;
 using Spectrum.Logic.Models;
+using Spectrum.Web.Models;
 
 namespace Spectrum.Web
 {
@@ -21,6 +22,7 @@ namespace Spectrum.Web
             Mapper.Initialize(cfg =>
             {
                 cfg.CreateMap<User, UserModel>();
+                cfg.CreateMap<OrganizationProfile, OrganizationProfileViewModel>();
             });
         }
     }
