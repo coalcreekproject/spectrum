@@ -2357,11 +2357,11 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\fonts\pe-icon-7-stroke\css\helper.css" />
     <Content Include="Content\fonts\pe-icon-7-stroke\css\pe-icon-7-stroke.css" />
-    <Content Include="Content\fonts\fontawesome-webfont.svg" />
     <Content Include="Content\fonts\pe-icon-7-stroke\fonts\Pe-icon-7-stroke.svg" />
-    <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\images\green%402x.png" />
     <Content Include="Content\images\green.png" />
     <Content Include="Content\style.css" />
@@ -2669,9 +2669,6 @@
     <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.woff2" />
-    <Content Include="Content\fonts\pe-icon-7-stroke\fonts\Pe-icon-7-stroke.eot" />
-    <Content Include="Content\fonts\pe-icon-7-stroke\fonts\Pe-icon-7-stroke.ttf" />
-    <Content Include="Content\fonts\pe-icon-7-stroke\fonts\Pe-icon-7-stroke.woff" />
     <Content Include="bower_components\jquery.flot.spline\.bower.json" />
     <Content Include="bower_components\bootstrap-tour\.bower.json" />
     <Content Include="bower_components\bootstrap-tour\.editorconfig" />
@@ -2833,6 +2830,9 @@
     <Content Include="bower_components\bootstrap\README.md" />
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="Content\fonts\pe-icon-7-stroke\fonts\Pe-icon-7-stroke.eot" />
+    <Content Include="Content\fonts\pe-icon-7-stroke\fonts\Pe-icon-7-stroke.ttf" />
+    <Content Include="Content\fonts\pe-icon-7-stroke\fonts\Pe-icon-7-stroke.woff" />
     <None Include="Content\images\landing\header.jpg.old" />
     <Content Include="Content\images\landing\s1.png" />
     <Content Include="Content\images\landing\s2.png" />
@@ -2989,11 +2989,11 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Organization\OrganizationIndex.cshtml" />
-    <Content Include="Views\OrganizationProfile\Index.cshtml" />
+    <Content Include="Views\OrganizationProfile\OrganizationProfileIndex.cshtml" />
     <Content Include="Views\UsersGrid\UsersGridIndex.cshtml" />
     <Content Include="Views\Shared\_Layout_Blank.cshtml" />
     <Content Include="Views\Shared\_Layout_Landing.cshtml" />
-    <Content Include="Views\UserProfile\Index.cshtml" />
+    <Content Include="Views\UserProfile\UserProfileIndex.cshtml" />
     <Content Include="Views\Dashboard\Index.cshtml" />
     <Content Include="Views\View.cshtml" />
     <Content Include="Views\Users\UsersPanelIndex.cshtml" />

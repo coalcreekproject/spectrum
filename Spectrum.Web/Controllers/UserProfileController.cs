@@ -26,7 +26,7 @@ namespace Spectrum.Web.Controllers
         }
 
 
-        public ActionResult Index(int id)
+        public ActionResult UserProfileIndex(int id)
         {
             //if (id == default(int))
             //{

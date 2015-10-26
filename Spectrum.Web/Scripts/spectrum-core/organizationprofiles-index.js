@@ -2,13 +2,13 @@
     .module('app')
     .controller('OrganizationProfileController', organizationProfileController);
 
-function organizationController($scope, $http, $modal, organizationFactory) {
+function organizationProfileController($scope, $http, $modal, organizationProfileFactory) {
 
     $modal.scope = $scope;
 
-    $scope.data = organizationFactory;
+    $scope.data = organizationProfileFactory;
 
-    organizationFactory.getOrganizations()
+    organizationProfileFactory.getOrganizationProfiles()
         .then(function (organizations) {
             // success
             //$scope.data = organization;
@@ -20,14 +20,14 @@ function organizationController($scope, $http, $modal, organizationFactory) {
 
     $scope.add = function () {
         var modalInstance = $modal.open({
-            templateUrl: '/Templates/Organization/addOrganizationProfileModal.html',
+            templateUrl: '/Templates/OrganizationProfile/addOrganizationProfileModal.html',
             controller: AddOrganizationProfileModalController
         });
     };
 
     $scope.edit = function (organization) {
         var modalInstance = $modal.open({
-            templateUrl: '/Templates/Organization/editOrganizationProfileModal.html',
+            templateUrl: '/Templates/OrganizationProfile/editOrganizationProfileModal.html',
             controller: EditOrganizationProfileModalController,
             resolve: {
                 organization: function () {
@@ -39,7 +39,7 @@ function organizationController($scope, $http, $modal, organizationFactory) {
 
     $scope.delete = function (organization) {
         var modalInstance = $modal.open({
-            templateUrl: '/Templates/Organization/deleteOrganizationProfileModal.html',
+            templateUrl: '/Templates/OrganizationProfile/deleteOrganizationProfileModal.html',
             controller: DeleteOrganizationProfileModalController,
             resolve: {
                 organization: function () {
@@ -54,11 +54,11 @@ function organizationController($scope, $http, $modal, organizationFactory) {
     };
 };
 
-function AddOrganizationProfileModalController($scope, $modalInstance, organizationFactory) {
+function AddOrganizationProfileModalController($scope, $modalInstance, organizationProfileFactory) {
 
-    $scope.ok = function (organization) {
+    $scope.ok = function (organizationProfile) {
 
-        organizationFactory.addOrganizations(organization)
+        organizationProfileFactory.addOrganizationProfiles(organizationProfile)
             .then(function () {
                 // success
                 $modalInstance.close();
@@ -78,11 +78,11 @@ function AddOrganizationProfileModalController($scope, $modalInstance, organizat
 
 function EditOrganizationProfileProfileModalController($scope, $modalInstance, organizationProfileFactory, organizationProfile) {
 
-    $scope.organization = organization;
+    $scope.organizationProfile = organizationProfile;
 
     $scope.ok = function () {
 
-        organizationFactory.editOrganization(organization)
+        organizationFactory.editOrganizationProfile(organizationProfile)
             .then(function () {
                 // success
             },
@@ -99,13 +99,13 @@ function EditOrganizationProfileProfileModalController($scope, $modalInstance, o
     };
 };
 
-function DeleteOrganizationProfileModalController($scope, $modalInstance, organizationFactory, organization) {
+function DeleteOrganizationProfileModalController($scope, $modalInstance, organizationProfileFactory, organizationProfile) {
 
-    $scope.organization = organization;
+    $scope.organizationProfile = organizationProfile;
 
     $scope.ok = function () {
 
-        organizationFactory.deleteOrganizations(organization)
+        organizationProfileFactory.deleteOrganizationProfile(organizationProfile)
             .then(function () {
                 // success
 
@@ -227,10 +227,10 @@ function organizationProfileFactory($http, $q) {
     };
 
     return {
-        organizationProfiles: _organizationProfile,
-        getOrganizations: _getOrganizationProfile,
-        addOrganizations: _addOrganizationProfile,
-        editOrganizations: _editOrganizationProfile,
-        deleteOrganizations: _deleteOrganizationProfile
+        organizationProfiles: _organizationProfiles,
+        getOrganizationProfiles: _getOrganizationProfile,
+        addOrganizationProfiles: _addOrganizationProfile,
+        editOrganizationProfiles: _editOrganizationProfile,
+        deleteOrganizationProfiles: _deleteOrganizationProfile
     };
 };
