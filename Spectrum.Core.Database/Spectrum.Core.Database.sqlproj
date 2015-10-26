@@ -83,6 +83,7 @@
     <Build Include="Tables\UserRole.sql" />
     <Build Include="User Defined Types\Flag.sql" />
     <None Include="CreationScriptNotInBuild.sql" />
+    <None Include="Spectrum.Core.Database.publish.xml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Publish Profiles\Local.publish.xml" />
@@ -124,6 +125,7 @@
     <Build Include="Tables\RuleParameter.sql" />
     <Build Include="Tables\Position.sql" />
     <Build Include="Tables\UserPosition.sql" />
+    <Build Include="Tables\Contact.sql" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />

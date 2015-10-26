@@ -13,6 +13,7 @@ namespace Spectrum.Core.Data.Context.Interfaces
         IDbSet<Application> Applications { get; set; } // Application
         IDbSet<ApplicationProfile> ApplicationProfiles { get; set; } // ApplicationProfile
         IDbSet<AreaOfResponsibility> AreaOfResponsibilities { get; set; } // AreaOfResponsibility
+        IDbSet<Contact> Contacts { get; set; } // Contact
         IDbSet<Group> Groups { get; set; } // Group
         IDbSet<Jurisdiction> Jurisdictions { get; set; } // Jurisdiction
         IDbSet<JusrisdictionProfile> JusrisdictionProfiles { get; set; } // JusrisdictionProfile

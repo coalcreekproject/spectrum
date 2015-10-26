@@ -12,6 +12,7 @@ namespace Spectrum.Core.Data.Context
         public IDbSet<Application> Applications { get; set; } // Application
         public IDbSet<ApplicationProfile> ApplicationProfiles { get; set; } // ApplicationProfile
         public IDbSet<AreaOfResponsibility> AreaOfResponsibilities { get; set; } // AreaOfResponsibility
+        public IDbSet<Contact> Contacts { get; set; } // Contact
         public IDbSet<Group> Groups { get; set; } // Group
         public IDbSet<Jurisdiction> Jurisdictions { get; set; } // Jurisdiction
         public IDbSet<JusrisdictionProfile> JusrisdictionProfiles { get; set; } // JusrisdictionProfile
@@ -45,6 +46,7 @@ namespace Spectrum.Core.Data.Context
             modelBuilder.Configurations.Add(new ApplicationConfiguration());
             modelBuilder.Configurations.Add(new ApplicationProfileConfiguration());
             modelBuilder.Configurations.Add(new AreaOfResponsibilityConfiguration());
+            modelBuilder.Configurations.Add(new ContactConfiguration());
             modelBuilder.Configurations.Add(new GroupConfiguration());
             modelBuilder.Configurations.Add(new JurisdictionConfiguration());
             modelBuilder.Configurations.Add(new JusrisdictionProfileConfiguration());
@@ -74,6 +76,7 @@ namespace Spectrum.Core.Data.Context
             modelBuilder.Configurations.Add(new ApplicationConfiguration(schema));
             modelBuilder.Configurations.Add(new ApplicationProfileConfiguration(schema));
             modelBuilder.Configurations.Add(new AreaOfResponsibilityConfiguration(schema));
+            modelBuilder.Configurations.Add(new ContactConfiguration(schema));
             modelBuilder.Configurations.Add(new GroupConfiguration(schema));
             modelBuilder.Configurations.Add(new JurisdictionConfiguration(schema));
             modelBuilder.Configurations.Add(new JusrisdictionProfileConfiguration(schema));

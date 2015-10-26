@@ -18,10 +18,12 @@ namespace Spectrum.Core.Data.Models
 
         // Reverse navigation
         public virtual ICollection<Organization> Organizations { get; set; } // Many to many mapping
+        public virtual ICollection<OrganizationProfile> OrganizationProfiles { get; set; } // OrganizationProfile.FK_OrganizationProfile_AddressNorthAmerica
         public virtual ICollection<User> Users { get; set; } // Many to many mapping
 
         public AddressNorthAmerica()
         {
+            OrganizationProfiles = new List<OrganizationProfile>();
             Organizations = new List<Organization>();
             Users = new List<User>();
             InitializePartial();

@@ -101,6 +101,7 @@
     <Compile Include="Configuration\AddressNorthAmericaConfiguration.cs" />
     <Compile Include="Configuration\ApplicationProfileConfiguration.cs" />
     <Compile Include="Configuration\AreaOfResponsibilityConfiguration.cs" />
+    <Compile Include="Configuration\ContactConfiguration.cs" />
     <Compile Include="Configuration\JurisdictionProfileConfiguration.cs" />
     <Compile Include="Configuration\OrganizationProfileConfiguration.cs" />
     <Compile Include="Configuration\ParameterConfiguration.cs" />
@@ -132,6 +133,7 @@
     <Compile Include="Context\UnitOfWork\CoreUnitOfWork.cs" />
     <Compile Include="Context\UnitOfWork\ICoreUnitOfWork.cs" />
     <Compile Include="Models\AddressInternational.cs" />
+    <Compile Include="Models\Contact.cs" />
     <Compile Include="Models\Interfaces\IObjectState.cs" />
     <Compile Include="Models\ModelUtilities\ObjectStateUtility.cs" />
     <Compile Include="Models\Partials\AddressInternational.cs" />

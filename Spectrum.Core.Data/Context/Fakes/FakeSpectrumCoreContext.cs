@@ -14,6 +14,7 @@ namespace Spectrum.Core.Data.Context.Fakes
         public IDbSet<Application> Applications { get; set; }
         public IDbSet<ApplicationProfile> ApplicationProfiles { get; set; }
         public IDbSet<AreaOfResponsibility> AreaOfResponsibilities { get; set; }
+        public IDbSet<Contact> Contacts { get; set; }
         public IDbSet<Group> Groups { get; set; }
         public IDbSet<Jurisdiction> Jurisdictions { get; set; }
         public IDbSet<JusrisdictionProfile> JusrisdictionProfiles { get; set; }
@@ -40,6 +41,7 @@ namespace Spectrum.Core.Data.Context.Fakes
             Applications = new FakeDbSet<Application>();
             ApplicationProfiles = new FakeDbSet<ApplicationProfile>();
             AreaOfResponsibilities = new FakeDbSet<AreaOfResponsibility>();
+            Contacts = new FakeDbSet<Contact>();
             Groups = new FakeDbSet<Group>();
             Jurisdictions = new FakeDbSet<Jurisdiction>();
             JusrisdictionProfiles = new FakeDbSet<JusrisdictionProfile>();
