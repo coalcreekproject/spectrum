@@ -218,13 +218,9 @@ namespace SpectrumEm.Data.Core.Tests.Stores
             var organizationDetail = new OrganizationProfile()
             {
                 ProfileName = "New County Office of Emergency Management",
-                City = "Round Rock",
                 Default = true,
                 Description = "Test Detail Record",
                 Organization = CreateOrganization(),
-                StreetAddressOne = "New County Municipal Drive",
-                StreetAddressTwo = "Building 6",
-                State = "CO"
             };
 
             return organizationDetail;

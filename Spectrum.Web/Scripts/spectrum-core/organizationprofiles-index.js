@@ -2,10 +2,17 @@
     .module('app')
     .controller('OrganizationProfileController', organizationProfileController);
 
-function organizationProfileController($scope, $http, $modal, organizationProfileFactory) {
+function organizationProfileParameters() {
+    this.OrganizationId = null;
+};
+
+function organizationProfileController($scope, $http, $window, $modal, organizationProfileFactory) {
+
+    var splitUrl = $window.location.href.split("/");
+    $scope.OrganizationId = splitUrl[splitUrl.length - 1];
+    organizationProfileParameters.OrganizationId = $scope.OrganizationId;
 
     $modal.scope = $scope;
-
     $scope.data = organizationProfileFactory;
 
     organizationProfileFactory.getOrganizationProfiles()
@@ -57,6 +64,8 @@ function organizationProfileController($scope, $http, $modal, organizationProfil
 function AddOrganizationProfileModalController($scope, $modalInstance, organizationProfileFactory) {
 
     $scope.ok = function (organizationProfile) {
+
+        organizationProfile.OrganizationId = organizationProfileParameters.OrganizationId;
 
         organizationProfileFactory.addOrganizationProfiles(organizationProfile)
             .then(function () {

@@ -50,7 +50,7 @@ function organizationController($scope, $http, $modal, organizationFactory) {
     };
 
     $scope.profiles = function (organization) {
-        window.location = "/OrganizationProfile/Index/" + organization.Id;
+        window.location = "/OrganizationProfile/OrganizationProfileIndex/" + organization.Id;
     };
 };
 
