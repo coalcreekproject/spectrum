@@ -43,7 +43,7 @@ function userPanelController($scope, $http, $modal, userFactory) {
 
     $scope.profiles = function (user) {
         //var user = angular.copy(row.entity);
-        window.location = "/UserProfile/Index/" + user.Id;
+        window.location = "/UserProfile/UserProfileIndex/" + user.Id;
     };
 
 

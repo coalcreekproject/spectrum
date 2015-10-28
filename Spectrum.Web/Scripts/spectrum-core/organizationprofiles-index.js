@@ -15,8 +15,8 @@ function organizationProfileController($scope, $http, $window, $modal, organizat
     $modal.scope = $scope;
     $scope.data = organizationProfileFactory;
 
-    organizationProfileFactory.getOrganizationProfiles()
-        .then(function (organizations) {
+    organizationProfileFactory.getOrganizationProfiles($scope.OrganizationId)
+        .then(function (organizationProfiles) {
             // success
             //$scope.data = organization;
         },
@@ -144,11 +144,11 @@ function organizationProfileFactory($http, $q) {
 
     var _organizationProfiles = [];
 
-    var _getOrganizationProfile = function () {
+    var _getOrganizationProfiles = function (id) {
 
         var deferred = $q.defer();
 
-        $http.get('/api/OrganizationProfiles')
+        $http.get('/api/OrganizationProfiles/' + id)
           .then(function (result) {
               // Successful
               angular.copy(result.data, _organizationProfiles);
@@ -237,7 +237,7 @@ function organizationProfileFactory($http, $q) {
 
     return {
         organizationProfiles: _organizationProfiles,
-        getOrganizationProfiles: _getOrganizationProfile,
+        getOrganizationProfiles: _getOrganizationProfiles,
         addOrganizationProfiles: _addOrganizationProfile,
         editOrganizationProfiles: _editOrganizationProfile,
         deleteOrganizationProfiles: _deleteOrganizationProfile

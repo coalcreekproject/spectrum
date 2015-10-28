@@ -23,7 +23,7 @@ namespace Spectrum.Core.Data.Configuration
             Property(x => x.LastName).HasColumnName("LastName").IsOptional().HasMaxLength(100);
             Property(x => x.Nickname).HasColumnName("Nickname").IsOptional().HasMaxLength(100);
             Property(x => x.SecondaryEmail).HasColumnName("SecondaryEmail").IsOptional().HasMaxLength(100);
-            Property(x => x.SecondaryPhoneNumber).HasColumnName("SecondaryPhone").IsOptional().HasMaxLength(25);
+            Property(x => x.SecondaryPhoneNumber).HasColumnName("SecondaryPhoneNumber").IsOptional().HasMaxLength(25);
             Property(x => x.TimeZone).HasColumnName("TimeZone").IsOptional().HasMaxLength(100);
             Property(x => x.DstAdjust).HasColumnName("DstAdjust").IsOptional();
             Property(x => x.Language).HasColumnName("Language").IsOptional().HasMaxLength(100);

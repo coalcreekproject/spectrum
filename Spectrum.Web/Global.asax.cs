@@ -23,6 +23,7 @@ namespace Spectrum.Web
             {
                 cfg.CreateMap<User, UserModel>();
                 cfg.CreateMap<OrganizationProfileViewModel, OrganizationProfile>();
+                cfg.CreateMap<OrganizationProfile, OrganizationProfileViewModel>();
             });
 
         }

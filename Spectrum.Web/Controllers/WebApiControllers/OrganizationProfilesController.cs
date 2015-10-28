@@ -44,19 +44,20 @@ namespace Spectrum.Web.Controllers.WebApiControllers
             return organizationProfileViewModels;
         }
 
+        [System.Web.Http.HttpGet]
         // GET: api/OrganizationProfiles/5
         public HttpResponseMessage Get(int id)
         {
-            var organizationProfile = _organizationProfileRepository.FindAsync(id).Result;
+            var organizationProfile = _organizationProfileRepository.All.Where(p => p.OrganizationId == id);
 
             if (organizationProfile == null)
             {
                 return Request.CreateResponse(HttpStatusCode.NotFound);
             }
 
-            var organizationProfileViewModel = Mapper.Map<OrganizationProfileViewModel>(organizationProfile);
+            //var organizationProfileViewModel = Mapper.Map<OrganizationProfileViewModel>(organizationProfile);
 
-            return Request.CreateResponse(HttpStatusCode.OK, organizationProfileViewModel);
+            return Request.CreateResponse(HttpStatusCode.OK, organizationProfile);
         }
 
         // POST: api/OrganizationProfiles

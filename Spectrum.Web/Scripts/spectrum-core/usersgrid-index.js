@@ -66,7 +66,7 @@ function userGridController($scope, $http, $location, $modal, uiGridConstants, u
     $scope.profiles = function (row) {
 
         var user = angular.copy(row.entity);
-        window.location = "/UserProfile/Index/" + user.Id;
+        window.location = "/UserProfile/UserProfileIndex/" + user.Id;
     };
 
     //$scope.customNavigate = function (id) {
