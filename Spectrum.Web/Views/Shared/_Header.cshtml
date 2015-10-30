@@ -2,15 +2,15 @@
 <div class="color-line">
 </div>
 <div id="logo" class="light-version">
-    <span>
-        Spectrum Operational
-    </span>
+        <span>
+            Emergency Management Suite
+        </span>
 </div>
 <nav role="navigation">
     <minimaliza-menu></minimaliza-menu>
-    <div class="small-logo">
+    @*<div class="small-logo">
         <span class="text-primary">Emergency Management</span>
-    </div>
+    </div>*@
     <form role="search" class="navbar-form-custom" method="post" action="#">
         <div class="form-group">
             <input type="text" placeholder="Enter search term..." class="form-control" name="search">
@@ -18,19 +18,68 @@
     </form>
 
     <div class="navbar-right">
-        <ul class="nav navbar-nav no-borders">
 
+        <div class="pull-left" style="padding-top: 17px">
+            @if (User.Identity.IsAuthenticated)
+            {
+                <span class="label label-info">
+                    @Html.ActionLink(User.Identity.GetUserName() + " as SuperUser", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+                </span>
+            }
+        </div>
+
+        <ul class="nav navbar-nav no-borders">
             <li class="dropdown" dropdown>
-                @if (User.Identity.IsAuthenticated)
-                {
-                    <div>
-                        <b>
-                            <span class="label label-info">
-                                    @Html.ActionLink(User.Identity.GetUserName() + " as SuperUser", "Index", "Manage", routeValues: null, htmlAttributes: new {title = "Manage"})
-                                </span>
-                        </b>
-                    </div>
-                }
+                <a class="dropdown-toggle" href="#" dropdown-toggle>
+                    <i class="pe-7s-config"></i>
+                </a>
+
+                <div class="dropdown-menu hdropdown bigmenu animated flipInX">
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <a href="">
+                                        <i class="pe pe-7s-config text-info"></i>
+                                        <h5>Settings</h5>
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="@Url.Action("Index", "Contacts")">
+                                        <i class="pe pe-7s-user-female text-success"></i>
+                                        <h5>Contacts</h5>
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="@Url.Action("UsersPanelIndex", "Users")">
+                                        <i class="pe pe-7s-users text-info"></i>
+                                        <h5>Users</h5>
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <a href="@Url.Action("OrganizationIndex", "Organization")">
+                                        <i class="pe pe-7s-global text-info"></i>
+                                        <h5>Organizations</h5>
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="" >
+                                        <i class="pe pe-7s-folder text-success"></i>
+                                        <h5>Files</h5>
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="">
+                                        <i class="pe pe-7s-help1 text-warning"></i>
+                                        <h5>Help</h5>
+                                    </a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </li>
 
             <li class="dropdown" dropdown>
@@ -56,64 +105,6 @@
                     <li class="summary"><a href="#">See all notifications</a></li>
                 </ul>
             </li>
-
-            <li class="dropdown" dropdown>
-                <a class="dropdown-toggle" href="#" dropdown-toggle>
-                    <i class="pe-7s-keypad"></i>
-                </a>
-                <div class="dropdown-menu hdropdown bigmenu animated flipInX">
-                    <table>
-                        <tbody>
-                            <tr>
-                                <td>
-                                    <a href="">
-                                        @*<i class="pe pe-7s-portfolio text-info"></i>*@
-                                        <i class="pe pe-7s-config text-info"></i>
-                                        <h5>Settings</h5>
-                                    </a>
-                                </td>
-                                <td>
-                                    <a href="">
-                                        <i class="pe pe-7s-mail text-warning"></i>
-                                        <h5>Messages</h5>
-                                    </a>
-                                </td>
-                                <td>
-                                    <a href="">
-                                        <i class="pe pe-7s-user-female text-success"></i>
-                                        <h5>Contacts</h5>
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    @*<a href="">
-                                        <i class="pe pe-7s-comment text-info"></i>
-                                        <h5>Forum</h5>
-                                    </a>*@
-                                    <a href="">
-                                        <i class="pe pe-7s-users text-info"></i>
-                                        <h5>Users</h5>
-                                    </a>
-                                </td>
-                                <td>
-                                    <a href="">
-                                        <i class="pe pe-7s-graph1 text-danger"></i>
-                                        <h5>Analytics</h5>
-                                    </a>
-                                </td>
-                                <td>
-                                    <a href="">
-                                        <i class="pe pe-7s-box1 text-success"></i>
-                                        <h5>Files</h5>
-                                    </a>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </li>
-
 
             <li class="dropdown" dropdown>
                 <a class="dropdown-toggle label-menu-corner" href="#" dropdown-toggle>

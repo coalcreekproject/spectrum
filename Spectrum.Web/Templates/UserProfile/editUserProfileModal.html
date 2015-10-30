@@ -1,8 +1,8 @@
 ﻿<div class="modal-dialog">
 
     <div class="modal-header">
-        <h4 class="modal-title">Edit a Profile</h4>
-        <small class="font-bold">Edit a profile for this user.</small>
+        <h4 class="modal-title">Add a Profile</h4>
+        <small class="font-bold">Add a profile for this organization.</small>
     </div>
 
     <div class="modal-body">
@@ -11,7 +11,8 @@
             <div class="form-group">
                 <div class="row">
                     <div class="col-md-6">
-                        <div><label> <input icheck type="checkbox" name="checkboxDefault" ng-model="userProfile.Default"> Make this my default profile </label>
+                        <div>
+                            <label> <input icheck type="checkbox" name="checkboxDefault" ng-model="userProfile.Default"> Make this my default profile </label>
                         </div>
                     </div>
                 </div>
@@ -63,15 +64,15 @@
             <div class="form-group">
                 <div class="row">
                     <div class="col-md-4">
-                        <label for="nickName">Nickname</label>                        
+                        <label for="nickName">Nickname</label>
                         <input type="text" id="nickName" placeholder="Nickname" ng-model="userProfile.Nickname" class="form-control">
                     </div>
                     <div class="col-md-4">
-                        <label for="secondaryMail">Secondary Mail</label> 
+                        <label for="secondaryMail">Secondary Mail</label>
                         <input type="text" id="secondaryMail" placeholder="Secondary Email" ng-model="userProfile.SecondaryEmail" class="form-control">
                     </div>
                     <div class="col-md-4">
-                        <label for="secondaryMail">Secondary Phone</label> 
+                        <label for="secondaryMail">Secondary Phone</label>
                         <input type="text" id="secondaryPhone" placeholder="Secondary Phone" ng-model="userProfile.SecondaryPhone" class="form-control">
                     </div>
                 </div>
@@ -80,7 +81,7 @@
             <div class="form-group">
                 <div class="row">
                     <div class="col-md-6">
-                        <label for="timeZone">TimeZone</label> 
+                        <label for="timeZone">TimeZone</label>
                         <input type="text" id="timeZone" placeholder="TimeZone" ng-model="userProfile.TimeZone" class="form-control">
                     </div>
                     <div class="col-md-6">
@@ -95,5 +96,5 @@
 
 <div class="modal-footer">
     <button type="button" class="btn btn-default" ng-click="cancel()">Close</button>
-    <button type="button" class="btn btn-success" ng-click="ok(userProfile)">Save changes</button>
+    <button type="button" class="btn btn-warning" ng-click="ok(userProfile)">Delete</button>
 </div>

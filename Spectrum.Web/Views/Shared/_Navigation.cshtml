@@ -6,7 +6,7 @@
         </a>
 
         <div class="stats-label text-color">
-            <span class="font-extra-bold">Emergency Management Suite</span>
+            <span class="font-extra-bold">Spectrum Operational<br/></span>
             <div class="dropdown" dropdown>
                 <ul class="dropdown-menu animated fadeInRight m-t-xs">
                     <li><a ui-sref="app_views.contacts">Contacts</a></li>
@@ -26,14 +26,14 @@
         <li ui-sref-active="active">
             <a ui-sref="analytics"> <span class="nav-label">Analytics</span><span class="label label-warning pull-right">NEW</span> </a>
         </li>
-        <li ng-class="{active: $state.includes('administration')}">
+        @*<li ng-class="{active: $state.includes('administration')}">
             <a href="#"><span class="nav-label">Administration</span><span class="fa arrow"></span> </a>
             <ul class="nav nav-second-level" ng-class="{in: $state.includes('interface')}">
                 <li class="@Html.IsSelected(action: "Users")"><a href="@Url.Action("UsersPanelIndex", "Users")">Manage Users<span class="label label-info pull-right">GRID</span> </a></li>
                 <li class="@Html.IsSelected(action: "Organizations")"><a href="@Url.Action("OrganizationIndex", "Organization")">Manage Organizations</a></li>
                 <li class="@Html.IsSelected(action: "Contacts")"><a href="@Url.Action("Index", "Contacts")">Contacts</a></li>
             </ul>
-        </li>
+        </li>*@
         <li ng-class="{'active': $state.includes('EOC') || $state.includes('blog_details')}">
             <a href="#"><span class="nav-label">EOC</span><span class="fa arrow"></span> </a>
             <ul class="nav nav-second-level">
@@ -58,15 +58,15 @@
         <li ng-class="{active: $state.includes('intelligence')}">
             <a href="#"><span class="nav-label">Intelligence</span><span class="fa arrow"></span> </a>
             <ul class="nav nav-second-level">
+                <li class="@Html.IsSelected(action: "Login")"><a href="@Url.Action("Action", "Controller")">Hazard Analysis</a></li>
                 <li class="@Html.IsSelected(action: "Login")"><a href="@Url.Action("Action", "Controller")">Geospatial</a></li>
                 <li class="@Html.IsSelected(action: "Login")"><a href="@Url.Action("Action", "Controller")">Social Networks</a></li>
-                <li class="@Html.IsSelected(action: "Login")"><a href="@Url.Action("Action", "Controller")">Hazard Analysis</a></li>
             </ul>
         </li>
         <li ng-class="{active: $state.includes('planning')}">
             <a href="#"><span class="nav-label">Planning</span><span class="fa arrow"></span> </a>
             <ul class="nav nav-second-level">
-                <li class="@Html.IsSelected(action: "EOP")"><a href="@Url.Action("Action", "Controller")">Emergency Opearions Plan CPG 101)</a></li>
+                <li class="@Html.IsSelected(action: "EOP")"><a href="@Url.Action("Action", "Controller")">Emergency Opearions Plan (CPG 101)</a></li>
                 <li class="@Html.IsSelected(action: "Contacts")"><a href="@Url.Action("Action", "Controller")">Annexes</a></li>
             </ul>
         </li>

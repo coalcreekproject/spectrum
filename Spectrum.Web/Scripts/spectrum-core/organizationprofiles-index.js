@@ -32,32 +32,28 @@ function organizationProfileController($scope, $http, $window, $modal, organizat
         });
     };
 
-    $scope.edit = function (organization) {
+    $scope.edit = function (organizationProfile) {
         var modalInstance = $modal.open({
             templateUrl: '/Templates/OrganizationProfile/editOrganizationProfileModal.html',
             controller: EditOrganizationProfileModalController,
             resolve: {
-                organization: function () {
-                    return angular.copy(organization);
+                organizationProfile: function () {
+                    return angular.copy(organizationProfile);
                 }
             }
         });
     };
 
-    $scope.delete = function (organization) {
+    $scope.delete = function (organizationProfile) {
         var modalInstance = $modal.open({
             templateUrl: '/Templates/OrganizationProfile/deleteOrganizationProfileModal.html',
             controller: DeleteOrganizationProfileModalController,
             resolve: {
-                organization: function () {
-                    return angular.copy(organization);
+                organizationProfile: function () {
+                    return angular.copy(organizationProfile);
                 }
             }
         });
-    };
-
-    $scope.profiles = function (organization) {
-        window.location = "/OrganizationProfiles/Index/" + organization.Id;
     };
 };
 
@@ -85,7 +81,7 @@ function AddOrganizationProfileModalController($scope, $modalInstance, organizat
     };
 };
 
-function EditOrganizationProfileProfileModalController($scope, $modalInstance, organizationProfileFactory, organizationProfile) {
+function EditOrganizationProfileModalController($scope, $modalInstance, organizationProfileFactory, organizationProfile) {
 
     $scope.organizationProfile = organizationProfile;
 
@@ -171,7 +167,7 @@ function organizationProfileFactory($http, $q) {
          .then(function (result) {
              // success
              var newlyCreatedOrganizationProfile = result.data;
-             _organizationProfiles.splice(0, 0, newlyCreatedOrganization);
+             _organizationProfiles.splice(0, 0, newOrganizationProfile);
              deferred.resolve(newlyCreatedOrganizationProfile);
          },
          function () {
@@ -194,7 +190,10 @@ function organizationProfileFactory($http, $q) {
              for (var i = 0; i < _organizationProfiles.length; i++) {
                  if (_organizationProfiles[i].Id === editedOrganizationProfile.Id) {
                      _organizationProfiles[i].Name = editedOrganizationProfile.Name;
-                     _organizationProfiles[i].TypeId = editedOrganizationProfile.TypeId;
+
+
+                     _organizationProfiles[i].val = editedOrganizationProfile.val;
+
                      break;
                  }
              }
