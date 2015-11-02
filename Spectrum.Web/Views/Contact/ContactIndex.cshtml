@@ -1,0 +1,340 @@
+﻿@*@model IEnumerable<Spectrum.Web.Models.ContactViewModel>*@
+
+@{
+    ViewBag.Title = "Contacts";
+}
+
+<div @*ng-controller="ContactPanelController as contactPanelController"*@>
+    <div small-header class="normalheader transition">
+        <div class="hpanel" title="Page header" content="Place your page title and breadcrumb." placement="bottom">
+            <div class="panel-body">
+                <a ng-click="small()" href="">
+                    <div class="clip-header">
+                        <i class="fa fa-arrow-up"></i>
+                    </div>
+                </a>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="pull-right">
+                            <a href="@Url.Action("ContactsGridIndex", "ContactsGrid")"><span class="label label-info">Switch to Grid View</span></a>
+                        </div>
+                    </div>
+                </div>
+                <div id="hbreadcrumb" class="pull-right m-t-lg">
+                    <ol class="hbreadcrumb breadcrumb">
+                        <li>
+                            <a href="@Url.Action("Index", "Dashboard")">Dashboard</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("UsersPanelIndex", "Users")">Contacts - Panel View</a>
+                        </li>
+                    </ol>
+                </div>
+                <h2 class="font-light m-b-xs">
+                    Contacts
+                </h2>
+                <small>Manage your Contacts</small>
+            </div>
+        </div>
+    </div>
+
+    <div small-header child="row " class="normalheader transition">
+        <div animate-panel effect="fadeInUp">
+            <div class="hpanel">
+                <div class="panel-body">
+                    <div class="form-inline">
+                        <div class="col-md-6">
+                            <input class="form-control" type="text" placeholder="Search contacts...">
+                        </div>
+                        <div class="col-md-2">
+                            <button class="btn btn-default">Search</button>
+                        </div>
+                        <div>
+                            <div class=pull-right>
+                                <div style="padding-bottom: 15px">
+                                    <button id="add" class="btn btn-primary" ng-click="add()">Add a Contact</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="content">
+        <div animate-panel child="row" effect="fadeInTop">
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="hpanel hgreen contact-panel">
+                        <div class="panel-body">
+                            <span class="label label-success pull-right">NEW</span>
+                            <img alt="logo" class="img-circle m-b" src="images/profile.jpg">
+                            <h3>
+                                <a href=""> Bradly Danforth </a>
+                            </h3>
+                            <div class="text-muted font-bold m-b-xs">California, LA</div>
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tincidunt est vitae ultrices accumsan.
+                            </p>
+                        </div>
+                        <div class="panel-footer contact-footer">
+                            <div class="row">
+                                <div class="col-md-4 border-right">
+                                    <div class="contact-stat">
+                                        <span>Projects: </span> <strong>200</strong>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 border-right">
+                                    <div class="contact-stat">
+                                        <span>Messages: </span> <strong>300</strong>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="contact-stat">
+                                        <span>Views: </span> <strong>400</strong>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="hpanel hyellow contact-panel">
+                        <div class="panel-body">
+                            <img alt="logo" class="img-circle m-b" src="images/a4.jpg">
+                            <h3>
+                                <a href=""> Tangela Sternberg </a>
+                            </h3>
+                            <div class="text-muted font-bold m-b-xs">California, LA</div>
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tincidunt est vitae ultrices accumsan.
+                            </p>
+                        </div>
+                        <div class="panel-footer contact-footer">
+                            <div class="row">
+                                <div class="col-md-4 border-right">
+                                    <div class="contact-stat">
+                                        <span>Projects: </span> <strong>200</strong>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 border-right">
+                                    <div class="contact-stat">
+                                        <span>Messages: </span> <strong>300</strong>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="contact-stat">
+                                        <span>Views: </span> <strong>400</strong>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="hpanel hviolet contact-panel">
+                        <div class="panel-body">
+                            <img alt="logo" class="img-circle m-b" src="images/a2.jpg">
+                            <h3>
+                                <a href=""> Claud Vogan </a>
+                            </h3>
+                            <div class="text-muted font-bold m-b-xs">California, LA</div>
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tincidunt est vitae ultrices accumsan.
+                            </p>
+                        </div>
+                        <div class="panel-footer contact-footer">
+                            <div class="row">
+                                <div class="col-md-4 border-right">
+                                    <div class="contact-stat">
+                                        <span>Projects: </span> <strong>200</strong>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 border-right">
+                                    <div class="contact-stat">
+                                        <span>Messages: </span> <strong>300</strong>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="contact-stat">
+                                        <span>Views: </span> <strong>400</strong>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="hpanel hblue contact-panel">
+                        <div class="panel-body">
+                            <img alt="logo" class="img-circle m-b" src="images/a3.jpg">
+                            <h3>
+                                <a href=""> Valda Purdy </a>
+                            </h3>
+                            <div class="text-muted font-bold m-b-xs">California, LA</div>
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tincidunt est vitae ultrices accumsan.
+                            </p>
+                        </div>
+                        <div class="panel-footer contact-footer">
+                            <div class="row">
+                                <div class="col-md-4 border-right">
+                                    <div class="contact-stat">
+                                        <span>Projects: </span> <strong>200</strong>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 border-right">
+                                    <div class="contact-stat">
+                                        <span>Messages: </span> <strong>300</strong>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="contact-stat">
+                                        <span>Views: </span> <strong>400</strong>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="hpanel hblue contact-panel">
+                        <div class="panel-body">
+                            <img alt="logo" class="img-circle m-b" src="images/a9.jpg">
+                            <h3>
+                                <a href="">Max Simson</a>
+                            </h3>
+                            <div class="text-muted font-bold m-b-xs">California, LA</div>
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tincidunt est vitae ultrices accumsan.
+                            </p>
+                        </div>
+                        <div class="panel-footer contact-footer">
+                            <div class="row">
+                                <div class="col-md-4 border-right">
+                                    <div class="contact-stat">
+                                        <span>Projects: </span> <strong>200</strong>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 border-right">
+                                    <div class="contact-stat">
+                                        <span>Messages: </span> <strong>300</strong>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="contact-stat">
+                                        <span>Views: </span> <strong>400</strong>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="hpanel hgreen contact-panel">
+                        <div class="panel-body">
+                            <img alt="logo" class="img-circle m-b" src="images/a5.jpg">
+                            <h3>
+                                <a href="">Max Simson</a>
+                            </h3>
+                            <div class="text-muted font-bold m-b-xs">California, LA</div>
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tincidunt est vitae ultrices accumsan.
+                            </p>
+                        </div>
+                        <div class="panel-footer contact-footer">
+                            <div class="row">
+                                <div class="col-md-4 border-right">
+                                    <div class="contact-stat">
+                                        <span>Projects: </span> <strong>200</strong>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 border-right">
+                                    <div class="contact-stat">
+                                        <span>Messages: </span> <strong>300</strong>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="contact-stat">
+                                        <span>Views: </span> <strong>400</strong>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="hpanel hyellow contact-panel">
+                        <div class="panel-body">
+                            <span class="label label-warning pull-right">SPECIAL</span>
+                            <img alt="logo" class="img-circle m-b" src="images/a6.jpg">
+                            <h3>
+                                <a href="">Max Simson</a>
+                            </h3>
+                            <div class="text-muted font-bold m-b-xs">California, LA</div>
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tincidunt est vitae ultrices accumsan.
+                            </p>
+                        </div>
+                        <div class="panel-footer contact-footer">
+                            <div class="row">
+                                <div class="col-md-4 border-right">
+                                    <div class="contact-stat">
+                                        <span>Projects: </span> <strong>200</strong>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 border-right">
+                                    <div class="contact-stat">
+                                        <span>Messages: </span> <strong>300</strong>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="contact-stat">
+                                        <span>Views: </span> <strong>400</strong>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="hpanel hred contact-panel">
+                        <div class="panel-body">
+                            <img alt="logo" class="img-circle m-b" src="images/a7.jpg">
+                            <h3>
+                                <a href="">Max Simson</a>
+                            </h3>
+                            <div class="text-muted font-bold m-b-xs">California, LA</div>
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tincidunt est vitae ultrices accumsan.
+                            </p>
+                        </div>
+                        <div class="panel-footer contact-footer">
+                            <div class="row">
+                                <div class="col-md-4 border-right">
+                                    <div class="contact-stat">
+                                        <span>Projects: </span> <strong>200</strong>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 border-right">
+                                    <div class="contact-stat">
+                                        <span>Messages: </span> <strong>300</strong>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="contact-stat">
+                                        <span>Views: </span> <strong>400</strong>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

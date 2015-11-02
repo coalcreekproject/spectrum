@@ -234,6 +234,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\Eoc\EocAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -2881,6 +2882,38 @@
     <Content Include="Scripts\factories\sweet-alert.js" />
     <Content Include="Scripts\filters\props.js" />
     <Content Include="Scripts\homer.js" />
+    <Content Include="Less\alerts.less" />
+    <Content Include="Less\base.less" />
+    <Content Include="Less\blog.less" />
+    <Content Include="Less\buttons.less" />
+    <Content Include="Less\calendar.less" />
+    <Content Include="Less\chat.less" />
+    <Content Include="Less\contact.less" />
+    <Content Include="Less\dropdown.less" />
+    <Content Include="Less\fonts.less" />
+    <Content Include="Less\forum.less" />
+    <Content Include="Less\grid.less" />
+    <Content Include="Less\icheck.less" />
+    <Content Include="Less\landing.less" />
+    <Content Include="Less\layout.less" />
+    <Content Include="Less\lists.less" />
+    <Content Include="Less\login.less" />
+    <Content Include="Less\mailbox.less" />
+    <Content Include="Less\margins.less" />
+    <Content Include="Less\modal.less" />
+    <Content Include="Less\nestable_list.less" />
+    <Content Include="Less\panels.less" />
+    <Content Include="Less\progress_bar.less" />
+    <Content Include="Less\projects.less" />
+    <Content Include="Less\social_board.less" />
+    <Content Include="Less\style.less" />
+    <Content Include="Less\tabs.less" />
+    <Content Include="Less\text_editor.less" />
+    <Content Include="Less\timeline.less" />
+    <Content Include="Less\tooltip.less" />
+    <Content Include="Less\tour.less" />
+    <Content Include="Less\various.less" />
+    <Content Include="Less\wizard.less" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -3000,6 +3033,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\_Navigation.cshtml" />
     <Content Include="Views\Shared\ServerError.cshtml" />
+    <Content Include="Views\Contact\ContactIndex.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

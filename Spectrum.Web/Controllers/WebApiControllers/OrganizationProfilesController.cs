@@ -79,7 +79,7 @@ namespace Spectrum.Web.Controllers.WebApiControllers
         }
 
         // PUT: api/OrganizationProfiles/5
-        public HttpResponseMessage Put(int id, [FromBody]OrganizationViewModel editOrganizationProfile)
+        public HttpResponseMessage Put(int id, [FromBody]OrganizationProfileViewModel editOrganizationProfile)
         {
             var organizationProfile = _organizationProfileRepository.FindAsync(editOrganizationProfile.Id).Result;
 

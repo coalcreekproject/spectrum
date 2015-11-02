@@ -87,7 +87,7 @@ function EditOrganizationProfileModalController($scope, $modalInstance, organiza
 
     $scope.ok = function () {
 
-        organizationFactory.editOrganizationProfile(organizationProfile)
+        organizationProfileFactory.editOrganizationProfiles(organizationProfile)
             .then(function () {
                 // success
             },
@@ -110,7 +110,7 @@ function DeleteOrganizationProfileModalController($scope, $modalInstance, organi
 
     $scope.ok = function () {
 
-        organizationProfileFactory.deleteOrganizationProfile(organizationProfile)
+        organizationProfileFactory.deleteOrganizationProfiles(organizationProfile)
             .then(function () {
                 // success
 

@@ -30,13 +30,9 @@
                                 Remember login
                                 <p class="help-block small">(if this is a private computer)</p>
                             </div>
-                            <div class="form-group">
-                                @*<button class="btn btn-success btn-block">Login</button>*@
-                                <input type="submit" value="Log in" class="btn btn-primary"/>
-                                <div class="pull-right">
-                                    @Html.ActionLink("Register", "Register", new { @class = "btn btn-default" })
-                                </div>
-                            </div>
+
+                            <button class="btn btn-primary btn-block">Login</button>
+                            <a href="@Url.Action("Register", "Account")" class="btn btn-default btn-block">Register</a>
                         }
                     </section>
                 </div>
