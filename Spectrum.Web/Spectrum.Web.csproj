@@ -232,6 +232,7 @@
     <Compile Include="App_Start\UnityMvcActivator.cs" />
     <Compile Include="App_Start\UnityWebApiActivator.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Areas\Eoc\Controllers\EocController.cs" />
     <Compile Include="Areas\Eoc\EocAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ContactController.cs" />
@@ -2944,6 +2945,7 @@
     <Content Include="Templates\Organization\addOrganizationModal.html" />
     <Content Include="Templates\Organization\deleteOrganizationModal.html" />
     <Content Include="Templates\Organization\editOrganizationModal.html" />
+    <Content Include="Templates\Organization\roles.html" />
     <Content Include="Templates\UserProfile\deleteUserProfileModal.html" />
     <Content Include="Templates\UserProfile\editUserProfileModal.html" />
     <Content Include="Templates\UserProfile\addUserProfileModal.html" />
@@ -3037,8 +3039,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Eoc\Controllers\" />
     <Folder Include="Areas\Eoc\Models\" />
+    <Folder Include="Areas\Eoc\Views\Eoc\" />
     <Folder Include="Areas\Eoc\Views\Shared\" />
     <Folder Include="Views\Role\" />
   </ItemGroup>

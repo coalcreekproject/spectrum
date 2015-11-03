@@ -1,8 +1,28 @@
 ﻿angular
     .module('app')
-    .controller('OrganizationController', organizationController);
+    .controller('OrganizationController', organizationController)
+    .config(config);
 
-function organizationController($scope, $http, $modal, organizationFactory) {
+
+function config($stateProvider, $urlRouterProvider, $compileProvider) {
+    // Optimize load start with remove binding information inside the DOM element
+    $compileProvider.debugInfoEnabled(true);
+
+    // Set default state
+    //$urlRouterProvider.otherwise("/dashboard");
+
+    $stateProvider
+        .state('roles', {
+            url: "roles",
+            templateUrl: "/Templates/Organization/roles.html",
+            data: {
+                pageTitle: 'roles',
+            }
+        })
+}
+
+
+function organizationController($scope, $http, $modal, $state, organizationFactory) {
 
     $modal.scope = $scope;
 
@@ -47,6 +67,11 @@ function organizationController($scope, $http, $modal, organizationFactory) {
                 }
             }
         });
+    };
+
+    $scope.roles = function (organization) {
+        $state.go('roles', { 'ID': organization.Id })
+        //window.location = "#/roles/" + organization.Id;
     };
 
     $scope.profiles = function (organization) {
