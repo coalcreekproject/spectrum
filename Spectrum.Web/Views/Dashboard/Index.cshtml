@@ -29,9 +29,9 @@
                             </div>
                             <div>
                                 <h1 class="font-extra-bold m-t-xl m-b-xs">
-                                    226,802
+                                    1,802
                                 </h1>
-                                <small>Page views in last month</small>
+                                <small>Resources dispatched to events</small>
                             </div>
                             <div class="small m-t-xl">
                                 <i class="fa fa-clock-o"></i> Data from January
@@ -39,24 +39,24 @@
                         </div>
                         <div class="col-md-6">
                             <div class="text-center small">
-                                <i class="fa fa-laptop"></i> Active users in current month (December)
+                                <i class="fa fa-laptop"></i> Active events in the current month.
                             </div>
                             <div class="flot-chart" style="height: 160px">
-                                <div flot class="flot-chart-content" dataset="chartUsersData" options="chartUsersOptions"></div>
+                                @*<div flot class="flot-chart-content" dataset="chartUsersData" options="chartUsersOptions"></div>*@
                             </div>
                         </div>
                         <div class="col-md-3 text-center">
                             <div class="small">
-                                <i class="fa fa-clock-o"></i> Active duration
+                                <i class="fa fa-clock-o"></i> Average event duration
                             </div>
                             <div>
                                 <h1 class="font-extra-bold m-t-xl m-b-xs">
-                                    10 Months
+                                    32 hours
                                 </h1>
-                                <small>And four weeks</small>
+                                <small>and 10 minutes</small>
                             </div>
                             <div class="small m-t-xl">
-                                <i class="fa fa-clock-o"></i> Last active in 12.10.2015
+                                <i class="fa fa-clock-o"></i> Last active in @DateTime.Today.ToShortDateString()
                             </div>
                         </div>
                     </div>
@@ -65,7 +65,7 @@
                     <span class="pull-right">
                         You have two new messages from <a href="">Monica Bolt</a>
                     </span>
-                    Last update: 21.05.2015
+                    Last update: @DateTime.Now.ToLongTimeString()
                 </div>
             </div>
         </div>
@@ -157,7 +157,7 @@
                     </div>
                     <div class="clearfix"></div>
                     <div class="flot-chart">
-                        <div flot class="flot-chart-content" dataset="chartIncomeData" options="chartIncomeOptions"></div>
+                        @*<div flot class="flot-chart-content" dataset="chartIncomeData" options="chartIncomeOptions"></div>*@
                     </div>
                     <div class="m-t-xs">
 
