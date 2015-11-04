@@ -9,7 +9,7 @@ using Spectrum.Core.Data.Models.Interfaces;
 using Spectrum.Core.Data.Repositories;
 using Spectrum.Core.Data.Repositories.Interfaces;
 
-namespace Spectrum.Web.Controllers.WebApiControllers
+namespace Spectrum.Web.Controllers.Api
 {
     public class UserProfilesController : ApiController
     {

@@ -5,7 +5,7 @@ using Spectrum.Core.Data.Context.UnitOfWork;
 using Spectrum.Core.Data.Models;
 using Spectrum.Core.Data.Repositories;
 
-namespace Spectrum.Web.Controllers
+namespace Spectrum.Web.Controllers.Web
 {
 
     public class UserProfileController : Controller

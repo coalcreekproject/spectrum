@@ -1,4 +1,10 @@
-﻿using AutoMapper;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Net;
+using System.Net.Http;
+using System.Threading.Tasks;
+using System.Web.Http;
+using AutoMapper;
 using Spectrum.Core.Data.Context.Interfaces;
 using Spectrum.Core.Data.Context.UnitOfWork;
 using Spectrum.Core.Data.Models;
@@ -6,14 +12,8 @@ using Spectrum.Core.Data.Models.Interfaces;
 using Spectrum.Core.Data.Repositories;
 using Spectrum.Core.Data.Repositories.Interfaces;
 using Spectrum.Web.Models;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Threading.Tasks;
-using System.Web.Http;
 
-namespace Spectrum.Web.Controllers.WebApiControllers
+namespace Spectrum.Web.Controllers.Api
 {
     public class OrganizationProfilesController : ApiController
     {

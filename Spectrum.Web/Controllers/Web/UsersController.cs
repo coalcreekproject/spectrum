@@ -8,7 +8,7 @@ using Spectrum.Core.Data.Models;
 using Spectrum.Core.Data.Repositories;
 using Spectrum.Web.Models;
 
-namespace Spectrum.Web.Controllers
+namespace Spectrum.Web.Controllers.Web
 {
     //[Authorize]
     public class UsersController : Controller

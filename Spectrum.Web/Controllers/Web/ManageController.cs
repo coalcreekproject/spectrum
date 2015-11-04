@@ -8,7 +8,7 @@ using Microsoft.Owin.Security;
 using Spectrum.Web.IdentityConfig;
 using Spectrum.Web.Models;
 
-namespace Spectrum.Web.Controllers
+namespace Spectrum.Web.Controllers.Web
 {
     [Authorize]
     public class ManageController : Controller

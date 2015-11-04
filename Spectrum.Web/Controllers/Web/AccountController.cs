@@ -14,7 +14,7 @@ using Spectrum.Core.Data.Repositories;
 using Spectrum.Web.IdentityConfig;
 using Spectrum.Web.Models;
 
-namespace Spectrum.Web.Controllers
+namespace Spectrum.Web.Controllers.Web
 {
     [Authorize]
     public class AccountController : Controller

@@ -6,6 +6,7 @@ using Spectrum.Core.Data.Context.UnitOfWork;
 using Spectrum.Core.Data.Models;
 using Spectrum.Core.Data.Repositories;
 using Spectrum.Web.Controllers;
+using Spectrum.Web.Controllers.Web;
 
 namespace Spectrum.Web
 {

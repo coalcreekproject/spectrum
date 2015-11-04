@@ -1,6 +1,7 @@
 ﻿using System.Web.Mvc;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Spectrum.Web.Controllers;
+using Spectrum.Web.Controllers.Web;
 
 namespace Spectrum.Web.Tests.Controllers
 {

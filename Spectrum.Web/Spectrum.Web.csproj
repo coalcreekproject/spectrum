@@ -234,21 +234,21 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\Eoc\Controllers\EocController.cs" />
     <Compile Include="Areas\Eoc\EocAreaRegistration.cs" />
-    <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\ContactController.cs" />
-    <Compile Include="Controllers\DashboardController.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="Controllers\OrganizationProfileController.cs" />
-    <Compile Include="Controllers\RoleController.cs" />
-    <Compile Include="Controllers\UserProfileController.cs" />
-    <Compile Include="Controllers\UsersController.cs" />
-    <Compile Include="Controllers\UsersGridController.cs" />
-    <Compile Include="Controllers\OrganizationController.cs" />
-    <Compile Include="Controllers\WebApiControllers\OrganizationProfilesController.cs" />
-    <Compile Include="Controllers\WebApiControllers\OrganizationsController.cs" />
-    <Compile Include="Controllers\WebApiControllers\UserProfilesController.cs" />
-    <Compile Include="Controllers\WebApiControllers\UsersController.cs" />
+    <Compile Include="Controllers\Web\AccountController.cs" />
+    <Compile Include="Controllers\Web\ContactController.cs" />
+    <Compile Include="Controllers\Web\DashboardController.cs" />
+    <Compile Include="Controllers\Web\HomeController.cs" />
+    <Compile Include="Controllers\Web\ManageController.cs" />
+    <Compile Include="Controllers\Web\OrganizationProfileController.cs" />
+    <Compile Include="Controllers\Web\RoleController.cs" />
+    <Compile Include="Controllers\Web\UserProfileController.cs" />
+    <Compile Include="Controllers\Web\UsersController.cs" />
+    <Compile Include="Controllers\Web\UsersGridController.cs" />
+    <Compile Include="Controllers\Web\OrganizationController.cs" />
+    <Compile Include="Controllers\Api\OrganizationProfilesController.cs" />
+    <Compile Include="Controllers\Api\OrganizationsController.cs" />
+    <Compile Include="Controllers\Api\UserProfilesController.cs" />
+    <Compile Include="Controllers\Api\UsersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

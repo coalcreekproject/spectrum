@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -12,7 +11,7 @@ using Spectrum.Core.Data.Repositories;
 using Spectrum.Core.Data.Repositories.Interfaces;
 using Spectrum.Web.Models;
 
-namespace Spectrum.Web.Controllers.WebApiControllers
+namespace Spectrum.Web.Controllers.Api
 {
     public class OrganizationsController : ApiController
     {

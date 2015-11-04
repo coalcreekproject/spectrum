@@ -11,7 +11,7 @@ using Spectrum.Core.Data.Models.Interfaces;
 using Spectrum.Core.Data.Repositories;
 using Spectrum.Web.Models;
 
-namespace Spectrum.Web.Controllers.WebApiControllers
+namespace Spectrum.Web.Controllers.Api
 {
     public class UsersController : ApiController
     {
