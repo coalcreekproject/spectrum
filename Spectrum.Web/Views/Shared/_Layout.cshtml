@@ -40,7 +40,6 @@
     <link href="~/Content/style.css" rel="stylesheet" />
 </head>
 <body class="@Html.PageClass()">
-    <div ui-view></div>
     <!-- Simple splash screen-->
     <div class="splash">
         <div class="color-line"></div>
@@ -65,10 +64,8 @@
     </aside>
 
     <!-- Main view  -->
-    <div class="content">
-        <div ui-view animate-panel>
-            @RenderBody()
-        </div>
+    <div id="wrapper">
+        @RenderBody()
     </div>
 
 <!-- Section for main scripts render -->

@@ -5,6 +5,7 @@
 
 
 function config($stateProvider, $urlRouterProvider, $compileProvider) {
+
     // Optimize load start with remove binding information inside the DOM element
     $compileProvider.debugInfoEnabled(true);
 
@@ -14,14 +15,13 @@ function config($stateProvider, $urlRouterProvider, $compileProvider) {
     $stateProvider
         .state('index', {
             url: "",
-            controller: "",
             templateUrl: "/Templates/Organization/OrganizationIndex",
             data: {
                 pageTitle: 'index'
             }
         })
         .state('roles', {
-            url: "roles",
+            url: "/roles",
             templateUrl: "/Templates/Organization/OrganizationRoles",
             data: {
                 pageTitle: 'roles'

@@ -2956,7 +2956,7 @@
     <None Include="Views\Organization\Partials\AddOrganizationModal.cshtml" />
     <None Include="Views\Organization\Partials\DeleteOrganizationModal.cshtml" />
     <None Include="Views\Organization\Partials\EditOrganizationModal.cshtml" />
-    <None Include="Views\Organization\Partials\OrganizationIndex.cshtml" />
+    <Content Include="Views\Organization\Partials\OrganizationIndex.cshtml" />
     <None Include="Views\Organization\Partials\OrganizationRoles.cshtml" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
