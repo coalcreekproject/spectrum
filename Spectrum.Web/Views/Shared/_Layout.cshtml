@@ -65,11 +65,13 @@
     </aside>
 
     <!-- Main view  -->
-    <div id="wrapper">
-        @RenderBody()
+    <div class="content">
+        <div ui-view animate-panel>
+            @RenderBody()
+        </div>
     </div>
 
-    <!-- Section for main scripts render -->
+<!-- Section for main scripts render -->
     <script src="~/bower_components/jquery/dist/jquery.min.js"></script>
     <script src="~/bower_components/jquery-ui/jquery-ui.min.js"></script>
     <script src="~/bower_components/slimScroll/jquery.slimscroll.min.js"></script>

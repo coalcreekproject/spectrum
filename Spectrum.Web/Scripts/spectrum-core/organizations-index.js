@@ -12,13 +12,21 @@ function config($stateProvider, $urlRouterProvider, $compileProvider) {
     //$urlRouterProvider.otherwise("/dashboard");
 
     $stateProvider
-        .state('roles', {
-            url: "roles",
-            templateUrl: "/Templates/Organization/roles.html",
+        .state('index', {
+            url: "",
+            controller: "",
+            templateUrl: "/Templates/Organization/OrganizationIndex",
             data: {
-                pageTitle: 'roles',
+                pageTitle: 'index'
             }
         })
+        .state('roles', {
+            url: "roles",
+            templateUrl: "/Templates/Organization/OrganizationRoles",
+            data: {
+                pageTitle: 'roles'
+            }
+        });
 }
 
 

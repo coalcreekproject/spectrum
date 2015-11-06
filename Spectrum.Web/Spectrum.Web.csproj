@@ -2945,6 +2945,7 @@
     <Content Include="Templates\Organization\addOrganizationModal.html" />
     <Content Include="Templates\Organization\deleteOrganizationModal.html" />
     <Content Include="Templates\Organization\editOrganizationModal.html" />
+    <Content Include="Templates\Organization\organizationIndex.html" />
     <Content Include="Templates\Organization\roles.html" />
     <Content Include="Templates\UserProfile\deleteUserProfileModal.html" />
     <Content Include="Templates\UserProfile\editUserProfileModal.html" />
@@ -2952,6 +2953,11 @@
     <Content Include="Templates\User\deleteUserModal.html" />
     <Content Include="Templates\User\editUserModal.html" />
     <Content Include="Templates\User\addUserModal.html" />
+    <None Include="Views\Organization\Partials\AddOrganizationModal.cshtml" />
+    <None Include="Views\Organization\Partials\DeleteOrganizationModal.cshtml" />
+    <None Include="Views\Organization\Partials\EditOrganizationModal.cshtml" />
+    <None Include="Views\Organization\Partials\OrganizationIndex.cshtml" />
+    <None Include="Views\Organization\Partials\OrganizationRoles.cshtml" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>

@@ -10,6 +10,12 @@ namespace Spectrum.Web
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
+                name: "Templates",
+                url: "Templates/{controller}/{template}",
+                defaults: new { action = "Template" }
+            );
+
+            routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Dashboard", action = "Index", id = UrlParameter.Optional }

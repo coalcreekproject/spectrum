@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Web.Mvc;
 using Spectrum.Core.Data.Context;
 using Spectrum.Core.Data.Context.UnitOfWork;
@@ -39,6 +40,25 @@ namespace Spectrum.Web.Controllers.Web
             }
 
             return View(organizationViewModels);
+        }
+
+        public ActionResult Template(string template)
+        {
+            switch (template.ToLower())
+            {
+                case "organizationindex":
+                    return PartialView("~/Views/Organization/Partials/OrganizationIndex.cshtml");
+                //case "add":
+                //    return PartialView("~/Views/Organization/Partials/AddOrganizationModal.cshtml");
+                //case "edit":
+                //    return PartialView("~/Views/Organization/Partials/EditOrganizationModal.cshtml");
+                //case "delete":
+                //    return PartialView("~/Views/Organization/Partials/DeleteOrganizationModal.cshtml");
+                case "organizationroles":
+                    return PartialView("~/Views/Organization/Partials/OrganizationRoles.cshtml");
+                default:
+                    throw new ApplicationException("template not known");
+            }
         }
 
         protected override void Dispose(bool disposing)
