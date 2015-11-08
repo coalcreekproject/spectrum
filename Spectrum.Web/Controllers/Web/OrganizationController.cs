@@ -48,12 +48,12 @@ namespace Spectrum.Web.Controllers.Web
             {
                 case "organizationindex":
                     return PartialView("~/Views/Organization/Partials/OrganizationIndex.cshtml");
-                //case "add":
-                //    return PartialView("~/Views/Organization/Partials/AddOrganizationModal.cshtml");
-                //case "edit":
-                //    return PartialView("~/Views/Organization/Partials/EditOrganizationModal.cshtml");
-                //case "delete":
-                //    return PartialView("~/Views/Organization/Partials/DeleteOrganizationModal.cshtml");
+                case "add":
+                    return PartialView("~/Views/Organization/Partials/AddOrganizationModal.cshtml");
+                case "edit":
+                    return PartialView("~/Views/Organization/Partials/EditOrganizationModal.cshtml");
+                case "delete":
+                    return PartialView("~/Views/Organization/Partials/DeleteOrganizationModal.cshtml");
                 case "organizationroles":
                     return PartialView("~/Views/Organization/Partials/OrganizationRoles.cshtml");
                 default:

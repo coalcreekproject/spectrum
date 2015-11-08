@@ -31,7 +31,7 @@
         <ul class="nav navbar-nav no-borders">
             <li class="dropdown" dropdown>
                 <a class="dropdown-toggle" href="#" dropdown-toggle>
-                    <i class="pe-7s-menu"></i>
+                    <i class="fa fa-th-large"></i>
                 </a>
 
                 <div class="dropdown-menu hdropdown bigmenu animated flipInX">
@@ -70,10 +70,16 @@
                                         <h5>Files</h5>
                                     </a>
                                 </td>
-                                <td>
+                                @*<td>
                                     <a href="@Url.Action("OrganizationIndex", "Organization")">
                                         <i class="pe pe-7s-id text-info"></i>
                                         <h5>Identity Manager</h5>
+                                    </a>
+                                </td>*@
+                                <td>
+                                    <a href="@Url.Action("OrganizationIndex", "Organization")">
+                                        <i class="fa fa-credit-card"></i>
+                                        <h5>Billing</h5>
                                     </a>
                                 </td>
                             </tr>
