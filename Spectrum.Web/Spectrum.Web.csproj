@@ -2916,7 +2916,7 @@
     <Content Include="Less\tour.less" />
     <Content Include="Less\various.less" />
     <Content Include="Less\wizard.less" />
-    <None Include="Properties\PublishProfiles\spectrumoperational %282%29.pubxml" />
+    <None Include="Properties\PublishProfiles\spectrumoperational.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -3011,11 +3011,6 @@
     <Content Include="packages.config">
       <SubType>Designer</SubType>
     </Content>
-    <None Include="Properties\PublishProfiles\spectrumoperational - FTP %282%29.pubxml" />
-    <None Include="Properties\PublishProfiles\spectrumoperational - FTP.pubxml" />
-    <None Include="Properties\PublishProfiles\spectrumoperational - Web Deploy %282%29.pubxml" />
-    <None Include="Properties\PublishProfiles\spectrumoperational - Web Deploy.pubxml" />
-    <None Include="Properties\PublishProfiles\spectrumoperational.pubxml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <None Include="Views\Account\Login.old.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />

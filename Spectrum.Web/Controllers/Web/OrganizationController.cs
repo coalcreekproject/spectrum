@@ -42,6 +42,7 @@ namespace Spectrum.Web.Controllers.Web
             return View(organizationViewModels);
         }
 
+        //TODO: Complete these views
         public ActionResult Template(string template)
         {
             switch (template.ToLower())
@@ -49,15 +50,18 @@ namespace Spectrum.Web.Controllers.Web
                 case "organizationindex":
                     return PartialView("~/Views/Organization/Partials/OrganizationIndex.cshtml");
                 case "add":
-                    return PartialView("~/Views/Organization/Partials/AddOrganizationModal.cshtml");
+                    throw new NotImplementedException("Add view not implemented");
+                    //return PartialView("~/Views/Organization/Partials/???.cshtml");
                 case "edit":
-                    return PartialView("~/Views/Organization/Partials/EditOrganizationModal.cshtml");
+                    throw new NotImplementedException("Edit view not implemented");
+                //return PartialView("~/Views/Organization/Partials//???.cshtml");
                 case "delete":
-                    return PartialView("~/Views/Organization/Partials/DeleteOrganizationModal.cshtml");
+                    throw new NotImplementedException("Delete view not implemented");
+                //return PartialView("~/Views/Organization/Partials//???.cshtml");
                 case "organizationroles":
                     return PartialView("~/Views/Organization/Partials/OrganizationRoles.cshtml");
                 default:
-                    throw new ApplicationException("template not known");
+                    throw new ApplicationException("Unknown Template");
             }
         }
 
