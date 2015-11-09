@@ -42,24 +42,27 @@ namespace Spectrum.Web.Controllers.Web
             return View(organizationViewModels);
         }
 
-        //TODO: Complete these views
+        //TODO: 
         public ActionResult Template(string template)
         {
             switch (template.ToLower())
             {
                 case "organizationindex":
                     return PartialView("~/Views/Organization/Partials/OrganizationIndex.cshtml");
-                case "add":
-                    throw new NotImplementedException("Add view not implemented");
-                    //return PartialView("~/Views/Organization/Partials/???.cshtml");
-                case "edit":
-                    throw new NotImplementedException("Edit view not implemented");
-                //return PartialView("~/Views/Organization/Partials//???.cshtml");
-                case "delete":
-                    throw new NotImplementedException("Delete view not implemented");
-                //return PartialView("~/Views/Organization/Partials//???.cshtml");
+                case "addorganizationmodal":
+                    return PartialView("~/Views/Organization/Partials/AddOrganizationModal.cshtml");
+                case "editorganizationmodal":
+                    return PartialView("~/Views/Organization/Partials/EditOrganizationModal.cshtml");
+                case "deleteorganizationmodal":
+                    return PartialView("~/Views/Organization/Partials/DeleteOrganizationModal.cshtml");
                 case "organizationroles":
                     return PartialView("~/Views/Organization/Partials/OrganizationRoles.cshtml");
+                case "addorganizationroles":
+                    return PartialView("~/Views/Organization/Partials/AddOrganizationRoles.cshtml");
+                case "editorganizationroles":
+                    return PartialView("~/Views/Organization/Partials/EditOrganizationRoles.cshtml");
+                case "deleteorganizationroles":
+                    return PartialView("~/Views/Organization/Partials/DeleteOrganizationRoles.cshtml");
                 default:
                     throw new ApplicationException("Unknown Template");
             }

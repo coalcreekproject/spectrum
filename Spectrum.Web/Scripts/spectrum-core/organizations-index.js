@@ -48,14 +48,14 @@ function organizationController($scope, $http, $modal, $state, organizationFacto
 
     $scope.add = function () {
         var modalInstance = $modal.open({
-            templateUrl: '/Templates/Organization/addOrganizationModal.html',
+            templateUrl: "/Templates/Organization/addOrganizationModal",
             controller: AddOrganizationModalController
         });
     };
 
     $scope.edit = function (organization) {
         var modalInstance = $modal.open({
-            templateUrl: '/Templates/Organization/editOrganizationModal.html',
+            templateUrl: "/Templates/Organization/editOrganizationModal",
             controller: EditOrganizationModalController,
             resolve: {
                 organization: function () {
@@ -67,7 +67,7 @@ function organizationController($scope, $http, $modal, $state, organizationFacto
 
     $scope.delete = function (organization) {
         var modalInstance = $modal.open({
-            templateUrl: '/Templates/Organization/deleteOrganizationModal.html',
+            templateUrl: "/Templates/Organization/deleteOrganizationModal",
             controller: DeleteOrganizationModalController,
             resolve: {
                 organization: function () {
@@ -78,7 +78,7 @@ function organizationController($scope, $http, $modal, $state, organizationFacto
     };
 
     $scope.roles = function (organization) {
-        $state.go('roles', { 'ID': organization.Id })
+        $state.go('roles', { 'Id': organization.Id })
         //window.location = "#/roles/" + organization.Id;
     };
 

@@ -31,7 +31,7 @@
         <ul class="nav navbar-nav no-borders">
             <li class="dropdown" dropdown>
                 <a class="dropdown-toggle" href="#" dropdown-toggle>
-                    <i class="fa fa-th-large"></i>
+                    <i class="pe pe-7s-angle-down-circle"></i>
                 </a>
 
                 <div class="dropdown-menu hdropdown bigmenu animated flipInX">
@@ -40,7 +40,7 @@
                             <tr>
                                 <td>
                                     <a href="">
-                                        <i class="pe pe-7s-menu text-info"></i>
+                                        <i class="pe pe-7s-config text-info"></i>
                                         <h5>Settings</h5>
                                     </a>
                                 </td>
@@ -78,7 +78,7 @@
                                 </td>*@
                                 <td>
                                     <a href="@Url.Action("OrganizationIndex", "Organization")">
-                                        <i class="fa fa-credit-card"></i>
+                                        <i class="pe pe-7s-portfolio"></i>
                                         <h5>Billing</h5>
                                     </a>
                                 </td>
@@ -107,65 +107,69 @@
                     </table>
                 </div>
             </li>
-        
-                <li class="dropdown" dropdown>
-                    <a class="dropdown-toggle" href="#" dropdown-toggle>
-                        <i class="pe-7s-speaker"></i>
-                    </a>
-                    <ul class="dropdown-menu hdropdown notification animated flipInX">
-                        <li>
-                            <a>
-                                <span class="label label-success">NEW</span> Update:  The New County fire has been 80% contained.
-                            </a>
-                        </li>
-                        <li>
-                            <a>
-                                <span class="label label-warning">MSG</span> Request for volunteers in Jefferson county MO needed for .
-                            </a>
-                        </li>
-                        <li>
-                            <a>
-                                <span class="label label-danger">SYS</span> System advisory message: slowness in planning module under investigation.
-                            </a>
-                        </li>
-                        <li class="summary"><a href="#">See all notifications</a></li>
-                    </ul>
-                </li>
 
-                <li class="dropdown" dropdown>
-                    <a class="dropdown-toggle label-menu-corner" href="#" dropdown-toggle>
-                        <i class="pe-7s-mail"></i>
-                        <span class="label label-warning">4</span>
-                    </a>
-                    <ul class="dropdown-menu hdropdown animated flipInX">
-                        <div class="title">
-                            You have 4 new messages
-                        </div>
-                        <li>
-                            <a>
-                                It is a long established.
-                            </a>
-                        </li>
-                        <li>
-                            <a>
-                                There are many variations.
-                            </a>
-                        </li>
-                        <li>
-                            <a>
-                                Lorem Ipsum is simply dummy.
-                            </a>
-                        </li>
-                        <li>
-                            <a>
-                                Contrary to popular belief.
-                            </a>
-                        </li>
-                        <li class="summary"><a href="#">See All Messages</a></li>
-                    </ul>
-                </li>
+            <li class="dropdown" dropdown>
+                <a class="dropdown-toggle" href="#" dropdown-toggle>
+                    <i class="pe-7s-speaker"></i>
+                </a>
+                <ul class="dropdown-menu hdropdown notification animated flipInX">
+                    <li>
+                        <a>
+                            <span class="label label-success">NEW</span> Update: The New County fire has been 80% contained.
+                        </a>
+                    </li>
+                    <li>
+                        <a>
+                            <span class="label label-warning">MSG</span> Request for volunteers in Jefferson county MO needed for .
+                        </a>
+                    </li>
+                    <li>
+                        <a>
+                            <span class="label label-danger">SYS</span> System advisory message: slowness in planning module under investigation.
+                        </a>
+                    </li>
+                    <li class="summary">
+                        <a href="#">See all notifications</a>
+                    </li>
+                </ul>
+            </li>
 
-                <li class="dropdown" dropdown>
+            <li class="dropdown" dropdown>
+                <a class="dropdown-toggle label-menu-corner" href="#" dropdown-toggle>
+                    <i class="pe-7s-mail"></i>
+                    <span class="label label-warning">4</span>
+                </a>
+                <ul class="dropdown-menu hdropdown animated flipInX">
+                    <div class="title">
+                        You have 4 new messages
+                    </div>
+                    <li>
+                        <a>
+                            RE: Wild Canyon Fire
+                        </a>
+                    </li>
+                    <li>
+                        <a>
+                            Volunteers in Jefferson County
+                        </a>
+                    </li>
+                    <li>
+                        <a>
+                            Mutual aid request response
+                        </a>
+                    </li>
+                    <li>
+                        <a>
+                            Governor briefed
+                        </a>
+                    </li>
+                    <li class="summary">
+                        <a href="#">See All Messages</a>
+                    </li>
+                </ul>
+            </li>
+
+                @*<li class="dropdown" dropdown>
                     <a class="dropdown-toggle" href="#" dropdown-toggle>
                         <i class="pe-7s-config"></i>
                     </a>
@@ -187,27 +191,27 @@
                         </li>
                         <li class="summary"><a href="#">See all notifications</a></li>
                     </ul>
-                </li>
+                </li>*@
 
-                <li class="dropdown" dropdown>
-                    <a class="dropdown-toggle label-menu-corner" href="#" dropdown-toggle>
-                        <i class="pe-7s-user"></i>
-                    </a>
-                    <ul class="dropdown-menu hdropdown animated flipInX">
-                        <div class="title">
-                            Login or Register
-                        </div>
-                        <li>
-                            @Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })
-                        </li>
-                        <li>
-                            @Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })
-                        </li>
-                        <li>
-                            @Html.ActionLink("Sign Out", "LogOff", "Account", routeValues: null, htmlAttributes: new { id = "signOutLink" })
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-</div>
+            <li class="dropdown" dropdown>
+                <a class="dropdown-toggle label-menu-corner" href="#" dropdown-toggle>
+                    <i class="pe-7s-user"></i>
+                </a>
+                <ul class="dropdown-menu hdropdown animated flipInX">
+                    <div class="title">
+                        Login or Register
+                    </div>
+                    <li>
+                        @Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new {id = "loginLink"})
+                    </li>
+                    <li>
+                        @Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new {id = "registerLink"})
+                    </li>
+                    <li>
+                        @Html.ActionLink("Sign Out", "LogOff", "Account", routeValues: null, htmlAttributes: new {id = "signOutLink"})
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
 </nav>
