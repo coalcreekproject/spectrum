@@ -1,12 +1,33 @@
-﻿//var app = angular.module('app', ['ngAnimate', 'ngTouch', 'ui.bootstrap', 'oitozero.ngSweetAlert']);
-
-
-angular
+﻿angular
     .module('app')
-    .controller('UserPanelController', userPanelController);
+    .controller('UserPanelController', userPanelController)
+    .config(config);
 
-//app.controller('UserPanelController', ['$scope', '$http', '$modal', 'userFactory', 'sweetAlert',
-function userPanelController($scope, $http, $modal, userFactory) {
+function config($stateProvider, $urlRouterProvider, $compileProvider) {
+
+    // Optimize load start with remove binding information inside the DOM element
+    $compileProvider.debugInfoEnabled(true);
+
+    // Set default state
+    //$urlRouterProvider.otherwise("/dashboard");
+
+    $stateProvider
+        .state('index', {
+            url: "",
+            templateUrl: "/Templates/User/UserPanelIndex",
+            data: {
+                pageTitle: 'index'
+            }
+        })
+        .state('profiles', {
+            url: "/profiles/:userId",
+            templateUrl: "/Templates/User/UserProfileIndex",
+            params: { userId: null},
+            data: { pageTitle: 'profiles' }
+        });
+}
+
+function userPanelController($scope, $http, $modal, $state, userFactory) {
 
     $modal.scope = $scope;
 
@@ -24,14 +45,14 @@ function userPanelController($scope, $http, $modal, userFactory) {
 
     $scope.add = function () {
         var modalInstance = $modal.open({
-            templateUrl: '/Templates/User/addUserModal.html',
+            templateUrl: '/Templates/User/AddUserModal',
             controller: AddUserModalController
         });
     };
 
     $scope.edit = function (user) {
         var modalInstance = $modal.open({
-            templateUrl: '/Templates/User/editUserModal.html',
+            templateUrl: '/Templates/User/EditUserModal',
             controller: EditUserModalController,
             resolve: {
                 user: function() {
@@ -41,34 +62,22 @@ function userPanelController($scope, $http, $modal, userFactory) {
         });
     };
 
-    $scope.profiles = function (user) {
-        //var user = angular.copy(row.entity);
-        window.location = "/UserProfile/UserProfileIndex/" + user.Id;
+    $scope.delete = function (user) {
+        var modalInstance = $modal.open({
+            templateUrl: '/Templates/User/DeleteUserModal',
+            controller: DeleteUserModalController,
+            resolve: {
+                user: function () {
+                    return angular.copy(user);
+                }
+            }
+        });
     };
 
-
-    $scope.delete = function (user) {
-            var modalInstance = $modal.open({
-                templateUrl: '/Templates/User/deleteUserModal.html',
-                controller: DeleteUserModalController,
-                resolve: {
-                    user: function () {
-                        return angular.copy(user);
-                    }
-                }
-            });
-        };
+    $scope.profiles = function (user) {
+        $state.go('profiles', { 'userId': user.Id });
+    };
 };
-
-//Hard coded hack to make Angular 1.4 and accompanying UI library
-// dismiss modals properly.  This is a known bug, 
-// keep an eye on Angular-UI
-//function clearModalJqHack() {
-//    $('div.modal').removeClass('fade').addClass('hidden');
-//    $('body').removeClass('modal-open');
-//    $('.modal-backdrop').remove(); //problem
-//}
-
 
 function AddUserModalController($scope, $modalInstance, userFactory) {
 

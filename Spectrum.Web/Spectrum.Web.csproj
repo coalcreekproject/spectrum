@@ -243,7 +243,7 @@
     <Compile Include="Controllers\Web\OrganizationProfileController.cs" />
     <Compile Include="Controllers\Web\RoleController.cs" />
     <Compile Include="Controllers\Web\UserProfileController.cs" />
-    <Compile Include="Controllers\Web\UsersController.cs" />
+    <Compile Include="Controllers\Web\UserController.cs" />
     <Compile Include="Controllers\Web\UsersGridController.cs" />
     <Compile Include="Controllers\Web\OrganizationController.cs" />
     <Compile Include="Controllers\Api\OrganizationProfilesController.cs" />
@@ -2944,22 +2944,17 @@
     <Content Include="Templates\OrganizationProfile\addOrganizationProfileModal.html" />
     <Content Include="Templates\OrganizationProfile\deleteOrganizationProfileModal.html" />
     <Content Include="Templates\OrganizationProfile\editOrganizationProfileModal.html" />
-    <Content Include="Templates\Organization\addOrganizationModal.html" />
-    <Content Include="Templates\Organization\deleteOrganizationModal.html" />
-    <Content Include="Templates\Organization\editOrganizationModal.html" />
-    <Content Include="Templates\Organization\organizationIndex.html" />
-    <Content Include="Templates\Organization\roles.html" />
-    <Content Include="Templates\UserProfile\deleteUserProfileModal.html" />
-    <Content Include="Templates\UserProfile\editUserProfileModal.html" />
-    <Content Include="Templates\UserProfile\addUserProfileModal.html" />
-    <Content Include="Templates\User\deleteUserModal.html" />
-    <Content Include="Templates\User\editUserModal.html" />
-    <Content Include="Templates\User\addUserModal.html" />
+    <None Include="Views\User\Partials\DeleteUserProfileModal.cshtml" />
+    <None Include="Views\User\Partials\EditUserProfileModal.cshtml" />
+    <None Include="Views\User\Partials\AddUserProfileModal.cshtml" />
+    <None Include="Views\User\Partials\DeleteUserModal.cshtml" />
+    <None Include="Views\User\Partials\EditUserModal.cshtml" />
+    <None Include="Views\User\Partials\AddUserModal.cshtml" />
     <None Include="Views\Organization\Partials\AddOrganizationModal.cshtml" />
     <None Include="Views\Organization\Partials\DeleteOrganizationModal.cshtml" />
     <None Include="Views\Organization\Partials\EditOrganizationModal.cshtml" />
     <Content Include="Views\Organization\Partials\OrganizationIndex.cshtml" />
-    <None Include="Views\Organization\Partials\OrganizationRoles.cshtml" />
+    <None Include="Views\Organization\Partials\OrganizationRole.cshtml" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -3026,7 +3021,7 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Organization\OrganizationIndex.cshtml" />
+    <Content Include="Views\Organization\Index.cshtml" />
     <Content Include="Views\OrganizationProfile\OrganizationProfileIndex.cshtml" />
     <Content Include="Views\UsersGrid\UsersGridIndex.cshtml" />
     <Content Include="Views\Shared\_Layout_Blank.cshtml" />
@@ -3034,11 +3029,13 @@
     <Content Include="Views\UserProfile\UserProfileIndex.cshtml" />
     <Content Include="Views\Dashboard\Index.cshtml" />
     <Content Include="Views\View.cshtml" />
-    <Content Include="Views\Users\UsersPanelIndex.cshtml" />
+    <Content Include="Views\User\Index.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\_Navigation.cshtml" />
     <Content Include="Views\Shared\ServerError.cshtml" />
     <Content Include="Views\Contact\ContactIndex.cshtml" />
+    <Content Include="Views\User\Partials\UserProfileIndex.cshtml" />
+    <Content Include="Views\User\Partials\UserPanelIndex.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

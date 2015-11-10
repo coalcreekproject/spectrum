@@ -22,6 +22,7 @@ namespace Spectrum.Web
             Mapper.Initialize(cfg =>
             {
                 cfg.CreateMap<User, UserModel>();
+                cfg.CreateMap<UserProfile, UserProfileModel>();
                 cfg.CreateMap<OrganizationProfileViewModel, OrganizationProfile>();
                 cfg.CreateMap<OrganizationProfile, OrganizationProfileViewModel>();
             });

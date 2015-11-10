@@ -24,7 +24,7 @@ namespace Spectrum.Web.Controllers.Web
         }
 
         // GET: Organization
-        public ActionResult OrganizationIndex()
+        public ActionResult Index()
         {
             List<OrganizationViewModel> organizationViewModels = new List<OrganizationViewModel>();
 
@@ -56,13 +56,13 @@ namespace Spectrum.Web.Controllers.Web
                 case "deleteorganizationmodal":
                     return PartialView("~/Views/Organization/Partials/DeleteOrganizationModal.cshtml");
                 case "organizationroles":
-                    return PartialView("~/Views/Organization/Partials/OrganizationRoles.cshtml");
+                    return PartialView("~/Views/Organization/Partials/OrganizationRole.cshtml");
                 case "addorganizationroles":
-                    return PartialView("~/Views/Organization/Partials/AddOrganizationRoles.cshtml");
+                    return PartialView("~/Views/Organization/Partials/AddOrganizationRoleModal.cshtml");
                 case "editorganizationroles":
-                    return PartialView("~/Views/Organization/Partials/EditOrganizationRoles.cshtml");
+                    return PartialView("~/Views/Organization/Partials/EditOrganizationRoleModal.cshtml");
                 case "deleteorganizationroles":
-                    return PartialView("~/Views/Organization/Partials/DeleteOrganizationRoles.cshtml");
+                    return PartialView("~/Views/Organization/Partials/DeleteOrganizationRoleModal.cshtml");
                 default:
                     throw new ApplicationException("Unknown Template");
             }
