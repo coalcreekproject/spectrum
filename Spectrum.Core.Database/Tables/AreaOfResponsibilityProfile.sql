@@ -1,7 +1,7 @@
-﻿CREATE TABLE [dbo].[JusrisdictionProfile]
+﻿CREATE TABLE [dbo].[AreaOfResponsibilityProfile]
 (
-	[Id] INT NOT NULL PRIMARY KEY, 
-    [JurisdictionId] INT NOT NULL, 
+	[Id] INT NOT NULL PRIMARY KEY,
+    [AreaOfResponsibilityId] INT NOT NULL, 
     [Name] NVARCHAR(128) NOT NULL,
     [Description] NVARCHAR(MAX) NULL,
     [Cloaked]			   BIT					  NULL, 
@@ -11,5 +11,5 @@
     [ModifiedDate]		   DATETIME				  NULL DEFAULT (GETDATE()), 
 	[ModifiedByUserId]	   INT					  NULL
 
-	CONSTRAINT [FK_JurisdictionProfile_Jurisdiction] FOREIGN KEY ([JurisdictionId]) REFERENCES [Jurisdiction]([Id]) ON DELETE CASCADE
+	CONSTRAINT [FK_AreaOfResponsibilityProfile_AreaOfResponsibility] FOREIGN KEY ([AreaOfResponsibilityId]) REFERENCES [AreaOfResponsibility]([Id]) ON DELETE CASCADE
 )

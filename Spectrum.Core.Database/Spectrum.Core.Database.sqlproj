@@ -109,10 +109,7 @@
     <Build Include="Tables\RuleType.sql" />
     <Build Include="Tables\Rule.sql" />
     <Build Include="Tables\Preference.sql" />
-    <Build Include="Tables\AddressNorthAmerica.sql" />
-    <Build Include="Tables\AddressInternational.sql" />
-    <Build Include="Tables\UserAddressNorthAmerica.sql" />
-    <Build Include="Tables\OrganizationAddressNorthAmerica.sql" />
+    <Build Include="Tables\AddressUnitedStates.sql" />
     <Build Include="Tables\UserPreference.sql" />
     <Build Include="Tables\Parameter.sql" />
     <Build Include="Tables\ApplicationParameter.sql" />
@@ -122,6 +119,10 @@
     <Build Include="Tables\Position.sql" />
     <Build Include="Tables\UserPosition.sql" />
     <Build Include="Tables\Contact.sql" />
+    <Build Include="Tables\UserProfileAddressNorthAmerica.sql" />
+    <Build Include="Tables\OrganizationProfileAddressUnitedStates.sql" />
+    <Build Include="Tables\Message.sql" />
+    <Build Include="Tables\AreaOfResponsibilityProfile.sql" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />

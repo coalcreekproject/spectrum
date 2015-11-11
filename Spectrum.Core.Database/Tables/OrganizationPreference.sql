@@ -1,7 +1,7 @@
 ﻿CREATE TABLE [dbo].[OrganizationPreference]
 (
 	[OrganizationId] INT NOT NULL, 
-    [PreferenceId] INT NOT NULL
+    [PreferenceId] INT NOT NULL,
 
 	CONSTRAINT [PK_OrganizationPreference_OrganizationId_PrefernceId] PRIMARY KEY CLUSTERED ([OrganizationId], [PreferenceId]),
 	CONSTRAINT [FK_OrganizationPreference_Organization] FOREIGN KEY ([OrganizationId]) REFERENCES [Organization]([Id]) ON DELETE CASCADE, 

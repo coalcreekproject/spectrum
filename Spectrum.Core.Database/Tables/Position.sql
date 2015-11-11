@@ -4,5 +4,11 @@
     [OrganizationId] NVARCHAR(100) NULL, 
     [Name] NVARCHAR(100) NULL, 
     [Description] NVARCHAR(100) NULL, 
-    [Value] NVARCHAR(100) NULL
+    [Value] NVARCHAR(100) NULL,
+    [Cloaked]			   BIT					  NULL, 
+    [Archive]			   BIT					  NULL, 
+    [CreatedDate]		   DATETIME				  NULL DEFAULT (GETDATE()),
+	[CreatedByUserId]	   INT					  NULL,
+    [ModifiedDate]		   DATETIME				  NULL DEFAULT (GETDATE()), 
+	[ModifiedByUserId]	   INT					  NULL
 )

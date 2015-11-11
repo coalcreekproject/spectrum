@@ -1,7 +1,13 @@
 ﻿CREATE TABLE [dbo].[ApplicationParameter]
 (
 	[ApplicationId] INT NOT NULL, 
-    [ParameterId] INT NOT NULL
+    [ParameterId] INT NOT NULL,
+    [Cloaked]			   BIT					  NULL, 
+    [Archive]			   BIT					  NULL, 
+    [CreatedDate]		   DATETIME				  NULL DEFAULT (GETDATE()),
+	[CreatedByUserId]	   INT					  NULL,
+    [ModifiedDate]		   DATETIME				  NULL DEFAULT (GETDATE()), 
+	[ModifiedByUserId]	   INT					  NULL
 
 	CONSTRAINT [PK_ApplicationParameter_Application_Parameter] PRIMARY KEY CLUSTERED ([ApplicationId], [ParameterId]), 
     CONSTRAINT [FK_ApplicationParameter_Application] FOREIGN KEY ([ApplicationId]) REFERENCES [Application]([Id]) ON DELETE CASCADE, 
