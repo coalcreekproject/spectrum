@@ -1,0 +1,8 @@
+﻿CREATE TABLE [dbo].[UserNote]
+(
+	[Id] INT NOT NULL PRIMARY KEY,
+	[UserId] INT NOT NULL,
+	[Note] NVARCHAR(MAX) NOT NULL
+
+    CONSTRAINT [FK_UserNotes_User] FOREIGN KEY ([UserId]) REFERENCES [User]([Id]) ON DELETE CASCADE
+)

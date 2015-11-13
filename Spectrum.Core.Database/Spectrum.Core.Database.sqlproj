@@ -123,6 +123,11 @@
     <Build Include="Tables\OrganizationProfileAddressUnitedStates.sql" />
     <Build Include="Tables\Message.sql" />
     <Build Include="Tables\AreaOfResponsibilityProfile.sql" />
+    <Build Include="Tables\ApplicationNote.sql" />
+    <Build Include="Tables\AreaOfResponsibilityNote.sql" />
+    <Build Include="Tables\JurisdictionNote.sql" />
+    <Build Include="Tables\OrganizationNote.sql" />
+    <Build Include="Tables\UserNote.sql" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
