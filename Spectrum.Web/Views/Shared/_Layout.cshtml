@@ -40,7 +40,6 @@
     <link href="~/Content/style.css" rel="stylesheet" />
 </head>
 <body class="@Html.PageClass()">
-    <div ui-view></div>
     <!-- Simple splash screen-->
     <div class="splash">
         <div class="color-line"></div>
@@ -69,7 +68,7 @@
         @RenderBody()
     </div>
 
-    <!-- Section for main scripts render -->
+<!-- Section for main scripts render -->
     <script src="~/bower_components/jquery/dist/jquery.min.js"></script>
     <script src="~/bower_components/jquery-ui/jquery-ui.min.js"></script>
     <script src="~/bower_components/slimScroll/jquery.slimscroll.min.js"></script>
@@ -91,7 +90,8 @@
     <script src="~/bower_components/sparkline/index.js"></script>
     <script src="~/bower_components/chartjs/Chart.min.js"></script>
     <script src="~/bower_components/angles/angles.js"></script>
-    <script src="~/bower_components/peity/jquery.peity.min.js"></script>
+@*<script src="~/bower_components/peity/jquery.peity.min.js"></script>*@
+    <script src="~/bower_components/peity/jquery.peity.js"></script>
     <script src="~/bower_components/angular-peity/angular-peity.js"></script>
     <script src="~/bower_components/angular-notify/dist/angular-notify.min.js"></script>
     <script src="~/bower_components/chartjs/Chart.min.js"></script>
@@ -141,7 +141,6 @@
     <script src="~/Scripts/controllers/forms.js"></script>
     <script src="~/Scripts/controllers/draggable.js"></script>
     <script src="~/Scripts/directives/touchSpin.js"></script>
-
 
     <!-- Handler for local scripts -->
     @RenderSection("scripts", required: false)

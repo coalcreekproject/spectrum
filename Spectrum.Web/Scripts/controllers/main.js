@@ -38,11 +38,11 @@ function appCtrl($http, $scope, $timeout) {
                 show: true,
                 lineWidth: 0,
                 fill: true,
-                fillColor: "#64cc34"
+                fillColor: "#3497db"
 
             }
         },
-        colors: ["#62cb31"],
+        colors: ["#3497db"],
         grid: {
             show: false
         },
@@ -138,7 +138,7 @@ function appCtrl($http, $scope, $timeout) {
             borderColor: 'f0f0f0',
             color: '#6a6c6f'
         },
-        colors: [ "#62cb31", "#efefef"],
+        colors: ["#3199cb", "#efefef"],
     };
 
 
@@ -149,38 +149,38 @@ function appCtrl($http, $scope, $timeout) {
     $scope.PieChart = {
         data: [1, 5],
         options: {
-            fill: ["#62cb31", "#edf0f5"]
+            fill: ["#3497db", "#edf0f5"]
         }
     };
 
     $scope.PieChart2 = {
         data: [226, 360],
         options: {
-            fill: ["#62cb31", "#edf0f5"]
+            fill: ["#3497db", "#edf0f5"]
         }
     };
     $scope.PieChart3 = {
         data: [0.52, 1.561],
         options: {
-            fill: ["#62cb31", "#edf0f5"]
+            fill: ["#3497db", "#edf0f5"]
         }
     };
     $scope.PieChart4 = {
         data: [1, 4],
         options: {
-            fill: ["#62cb31", "#edf0f5"]
+            fill: ["#3497db", "#edf0f5"]
         }
     };
     $scope.PieChart5 = {
         data: [226, 134],
         options: {
-            fill: ["#62cb31", "#edf0f5"]
+            fill: ["#3497db", "#edf0f5"]
         }
     };
     $scope.PieChart6 = {
         data: [0.52, 1.041],
         options: {
-            fill: ["#62cb31", "#edf0f5"]
+            fill: ["#3497db", "#edf0f5"]
         }
     };
 

@@ -5,6 +5,7 @@
 
 
 function config($stateProvider, $urlRouterProvider, $compileProvider) {
+
     // Optimize load start with remove binding information inside the DOM element
     $compileProvider.debugInfoEnabled(true);
 
@@ -12,13 +13,20 @@ function config($stateProvider, $urlRouterProvider, $compileProvider) {
     //$urlRouterProvider.otherwise("/dashboard");
 
     $stateProvider
-        .state('roles', {
-            url: "roles",
-            templateUrl: "/Templates/Organization/roles.html",
+        .state('index', {
+            url: "",
+            templateUrl: "/Templates/Organization/OrganizationIndex",
             data: {
-                pageTitle: 'roles',
+                pageTitle: 'index'
             }
         })
+        .state('roles', {
+            url: "/roles",
+            templateUrl: "/Templates/Organization/OrganizationRoles",
+            data: {
+                pageTitle: 'roles'
+            }
+        });
 }
 
 
@@ -40,14 +48,14 @@ function organizationController($scope, $http, $modal, $state, organizationFacto
 
     $scope.add = function () {
         var modalInstance = $modal.open({
-            templateUrl: '/Templates/Organization/addOrganizationModal.html',
+            templateUrl: "/Templates/Organization/addOrganizationModal",
             controller: AddOrganizationModalController
         });
     };
 
     $scope.edit = function (organization) {
         var modalInstance = $modal.open({
-            templateUrl: '/Templates/Organization/editOrganizationModal.html',
+            templateUrl: "/Templates/Organization/editOrganizationModal",
             controller: EditOrganizationModalController,
             resolve: {
                 organization: function () {
@@ -59,7 +67,7 @@ function organizationController($scope, $http, $modal, $state, organizationFacto
 
     $scope.delete = function (organization) {
         var modalInstance = $modal.open({
-            templateUrl: '/Templates/Organization/deleteOrganizationModal.html',
+            templateUrl: "/Templates/Organization/deleteOrganizationModal",
             controller: DeleteOrganizationModalController,
             resolve: {
                 organization: function () {
@@ -70,7 +78,7 @@ function organizationController($scope, $http, $modal, $state, organizationFacto
     };
 
     $scope.roles = function (organization) {
-        $state.go('roles', { 'ID': organization.Id })
+        $state.go('roles', { 'Id': organization.Id })
         //window.location = "#/roles/" + organization.Id;
     };
 

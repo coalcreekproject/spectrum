@@ -1,13 +1,4 @@
-﻿@model IEnumerable<Spectrum.Web.Models.UserViewModel>
-
-@{
-    ViewBag.Title = "Users";
-}
-
-@section Styles {
-}
-
-<div ng-controller="UserPanelController as userPanelController">
+﻿<div ng-controller="UserPanelController as userPanelController">
     <div small-header class="normalheader transition">
         <div class="hpanel" title="Page header" content="Place your page title and breadcrumb." placement="bottom">
             <div class="panel-body">
@@ -26,7 +17,7 @@
                 <div id="hbreadcrumb" class="pull-right m-t-lg">
                     <ol class="hbreadcrumb breadcrumb">
                         <li><a href="@Url.Action("Index", "Dashboard")">Dashboard</a></li>
-                        <li><a href="@Url.Action("UsersPanelIndex", "Users")">Users - Panel View</a></li>
+                        <li><a href="@Url.Action("Index", "User")">Users - Panel View</a></li>
                     </ol>
                 </div>
                 <h2 class="font-light m-b-xs">
@@ -60,7 +51,6 @@
             </div>
         </div>
     </div>
-
 
     <div class="content">
         <div ng-repeat="u in data.users track by u.Id">
@@ -104,6 +94,3 @@
         </div>
     </div>
 </div>
-    @section Scripts {
-        <script src="~/Scripts/spectrum-core/users-index.js"></script>
-    }

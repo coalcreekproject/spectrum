@@ -16,5 +16,11 @@
     [Language] NVARCHAR(100) NULL,
 	[Note] NVARCHAR(MAX) NULL,
 	[Photo] VARBINARY(MAX) NULL, 
-    [Position] NVARCHAR(100) NULL
+    [Position] NVARCHAR(100) NULL,
+    [Cloaked]			   BIT					  NULL, 
+    [Archive]			   BIT					  NULL, 
+    [CreatedDate]		   DATETIME				  NULL DEFAULT (GETDATE()),
+	[CreatedByUserId]	   INT					  NULL,
+    [ModifiedDate]		   DATETIME				  NULL DEFAULT (GETDATE()), 
+	[ModifiedByUserId]	   INT					  NULL
 )

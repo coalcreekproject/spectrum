@@ -2,7 +2,6 @@
 (
 	[Id] INT NOT NULL PRIMARY KEY IDENTITY(1000, 1), 
     [OrganizationId] INT NOT NULL,
-    [AddressNorthAmericaId] INT,
 	[Default] [dbo].[Flag] NOT NULL,
     [ProfileName] NVARCHAR(MAX) NOT NULL, 
     [Description] NVARCHAR(MAX) NULL,
@@ -15,8 +14,13 @@
     [TimeZone] NVARCHAR(100) NULL, 
     [DstAdjust] BIT NULL, 
     [Language] NVARCHAR(100) NULL,
-	[Notes] NVARCHAR(MAX) NULL
+	[Notes] NVARCHAR(MAX) NULL,
+    [Cloaked]			   BIT					  NULL, 
+    [Archive]			   BIT					  NULL, 
+    [CreatedDate]		   DATETIME				  NULL DEFAULT (GETDATE()),
+	[CreatedByUserId]	   INT					  NULL,
+    [ModifiedDate]		   DATETIME				  NULL DEFAULT (GETDATE()), 
+	[ModifiedByUserId]	   INT					  NULL
 	 
     CONSTRAINT [FK_OrganizationProfile_Organization] FOREIGN KEY ([OrganizationId]) REFERENCES [Organization]([Id]) ON DELETE CASCADE
-	CONSTRAINT [FK_OrganizationProfile_AddressNorthAmerica] FOREIGN KEY ([AddressNorthAmericaId]) REFERENCES [AddressNorthAmerica]([Id])
 )

@@ -1,7 +1,13 @@
 ﻿CREATE TABLE [dbo].[RuleParameter]
 (
 	[RuleId] INT NOT NULL,
-    [ParameterId] INT NOT NULL
+    [ParameterId] INT NOT NULL,
+    [Cloaked]			   BIT					  NULL, 
+    [Archive]			   BIT					  NULL, 
+    [CreatedDate]		   DATETIME				  NULL DEFAULT (GETDATE()),
+	[CreatedByUserId]	   INT					  NULL,
+    [ModifiedDate]		   DATETIME				  NULL DEFAULT (GETDATE()), 
+	[ModifiedByUserId]	   INT					  NULL
 
 	CONSTRAINT [PK_RuleParameter_RuleId_ParameterId] PRIMARY KEY ([RuleId], [ParameterId]),
 	CONSTRAINT [FK_RuleParameter_RuleId] FOREIGN KEY ([RuleId]) REFERENCES [Rule]([Id]) ON DELETE CASCADE,

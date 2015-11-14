@@ -1,13 +1,4 @@
-﻿@model IEnumerable<Spectrum.Web.Models.OrganizationViewModel>
-
-@{
-    ViewBag.Title = "Organizations";
-}
-
-@section Styles {
-}
-
-<div ng-controller="OrganizationController as organizationController">
+﻿<div ng-view ng-controller="OrganizationController as organizationController">
     <div small-header class="normalheader transition">
         <div class="hpanel" title="Page header" content="Place your page title and breadcrumb." placement="bottom">
             <div class="panel-body">
@@ -18,8 +9,8 @@
                 </a>
                 <div id="hbreadcrumb" class="pull-right m-t-lg">
                     <ol class="hbreadcrumb breadcrumb">
-                        <li><a href="@Url.Action("Index", "Dashboard")">Dashboard</a></li>
-                        <li><a href="@Url.Action("OrganizationIndex", "Organization")">Organizations</a></li>
+                        <li><a href="@Url.Action(" Index", "Dashboard" )">Dashboard</a></li>
+                        <li><a href="@Url.Action(" OrganizationIndex", "Organization" )">Organizations</a></li>
                     </ol>
                 </div>
                 <h2 class="font-light m-b-xs">
@@ -93,8 +84,3 @@
         </div>
     </div>
 </div>
-@section Scripts {
-    <script src="~/Scripts/spectrum-core/organizations-index.js"></script>
-}
-
-

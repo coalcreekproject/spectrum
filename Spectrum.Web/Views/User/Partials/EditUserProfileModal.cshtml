@@ -1,8 +1,8 @@
 ﻿<div class="modal-dialog">
 
     <div class="modal-header">
-        <h4 class="modal-title">Delete Profile</h4>
-        <small class="font-bold">Are you sure you want to delete this user profile?</small>
+        <h4 class="modal-title">Edit Profile</h4>
+        <small class="font-bold">Edit this user profile?</small>
     </div>
 
     <div class="modal-body">
@@ -11,7 +11,8 @@
             <div class="form-group">
                 <div class="row">
                     <div class="col-md-6">
-                        <div><label> <input icheck type="checkbox" name="checkboxDefault" ng-model="userProfile.Default"> Make this my default profile </label>
+                        <div>
+                            <label><input icheck type="checkbox" name="checkboxDefault" ng-model="userProfile.Default"> Make this my default profile </label>
                         </div>
                     </div>
                 </div>
@@ -21,7 +22,7 @@
                 <div class="row">
                     <div class="col-md-6">
                         <label for="organization">Organization</label>
-                        <input type="text" id="organization" placeholder="Organization" ng-model="userProfile.OrganizationId" class="form-control" disabled>
+                        <input type="text" id="organization" placeholder="Organization" ng-model="userProfile.OrganizationId" class="form-control">
                     </div>
                 </div>
             </div>
@@ -30,15 +31,15 @@
                 <div class="row">
                     <div class="col-md-4">
                         <label for="profileName">Profile Name</label>
-                        <input type="text" Id="profileName" placeholder="Profile Name" ng-model="userProfile.ProfileName" class="form-control" disabled>
+                        <input type="text" Id="profileName" placeholder="Profile Name" ng-model="userProfile.ProfileName" class="form-control">
                     </div>
                     <div class="col-md-4">
                         <label for="title">Title</label>
-                        <input type="text" Id="title" placeholder="Title" ng-model="userProfile.Title" class="form-control" disabled>
+                        <input type="text" Id="title" placeholder="Title" ng-model="userProfile.Title" class="form-control">
                     </div>
                     <div class="col-md-4">
                         <label for="title">Position</label>
-                        <input type="text" Id="position" placeholder="Position" ng-model="userProfile.Position" class="form-control" disabled>
+                        <input type="text" Id="position" placeholder="Position" ng-model="userProfile.Position" class="form-control">
                     </div>
                 </div>
             </div>
@@ -47,15 +48,15 @@
                 <div class="row">
                     <div class="col-md-4">
                         <label for="firstName">First Name</label>
-                        <input type="text" id="firstName" placeholder="First Name" ng-model="userProfile.FirstName" class="form-control" disabled>
+                        <input type="text" id="firstName" placeholder="First Name" ng-model="userProfile.FirstName" class="form-control">
                     </div>
                     <div class="col-md-4">
                         <label for="middleName">Middle Name</label>
-                        <input type="text" id="middleName" placeholder="Middle Name" ng-model="userProfile.MiddleName" class="form-control" disabled>
+                        <input type="text" id="middleName" placeholder="Middle Name" ng-model="userProfile.MiddleName" class="form-control">
                     </div>
                     <div class="col-md-4">
                         <label for="lastName">Last Name</label>
-                        <input type="text" id="lastName" placeholder="Last Name" ng-model="userProfile.LastName" class="form-control" disabled>
+                        <input type="text" id="lastName" placeholder="Last Name" ng-model="userProfile.LastName" class="form-control">
                     </div>
                 </div>
             </div>
@@ -63,16 +64,16 @@
             <div class="form-group">
                 <div class="row">
                     <div class="col-md-4">
-                        <label for="nickName">Nickname</label>                        
-                        <input type="text" id="nickName" placeholder="Nickname" ng-model="userProfile.Nickname" class="form-control" disabled>
+                        <label for="nickName">Nickname</label>
+                        <input type="text" id="nickName" placeholder="Nickname" ng-model="userProfile.Nickname" class="form-control">
                     </div>
                     <div class="col-md-4">
-                        <label for="secondaryMail">Secondary Mail</label> 
-                        <input type="text" id="secondaryMail" placeholder="Secondary Email" ng-model="userProfile.SecondaryEmail" class="form-control" disabled>
+                        <label for="secondaryMail">Secondary Mail</label>
+                        <input type="text" id="secondaryMail" placeholder="Secondary Email" ng-model="userProfile.SecondaryEmail" class="form-control">
                     </div>
                     <div class="col-md-4">
-                        <label for="secondaryMail">Secondary Phone</label> 
-                        <input type="text" id="secondaryPhone" placeholder="Secondary Phone" ng-model="userProfile.SecondaryPhone" class="form-control" disabled>
+                        <label for="secondaryMail">Secondary Phone</label>
+                        <input type="text" id="secondaryPhone" placeholder="Secondary Phone" ng-model="userProfile.SecondaryPhone" class="form-control">
                     </div>
                 </div>
             </div>
@@ -80,12 +81,12 @@
             <div class="form-group">
                 <div class="row">
                     <div class="col-md-6">
-                        <label for="timeZone">TimeZone</label> 
-                        <input type="text" id="timeZone" placeholder="TimeZone" ng-model="userProfile.TimeZone" class="form-control" disabled>
+                        <label for="timeZone">TimeZone</label>
+                        <input type="text" id="timeZone" placeholder="TimeZone" ng-model="userProfile.TimeZone" class="form-control">
                     </div>
                     <div class="col-md-6">
                         <label for="language">Language</label>
-                        <input type="text" id="language" placeholder="Language" ng-model="userProfile.Language" class="form-control" disabled>
+                        <input type="text" id="language" placeholder="Language" ng-model="userProfile.Language" class="form-control">
                     </div>
                 </div>
             </div>
@@ -95,5 +96,5 @@
 
 <div class="modal-footer">
     <button type="button" class="btn btn-default" ng-click="cancel()">Close</button>
-    <button type="button" class="btn btn-danger" ng-click="ok(userProfile)">Delete</button>
+    <button type="button" class="btn btn-success" ng-click="ok(userProfile)">Update</button>
 </div>

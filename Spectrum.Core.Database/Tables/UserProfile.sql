@@ -16,7 +16,13 @@
     [DstAdjust] BIT NULL, 
     [Language] NVARCHAR(100) NULL,
 	[Photo] VARBINARY(MAX) NULL, 
-    [Position] NVARCHAR(100) NULL, 
+    [Position] NVARCHAR(100) NULL,
+    [Cloaked]			   BIT					  NULL, 
+    [Archive]			   BIT					  NULL, 
+    [CreatedDate]		   DATETIME				  NULL DEFAULT (GETDATE()),
+	[CreatedByUserId]	   INT					  NULL,
+    [ModifiedDate]		   DATETIME				  NULL DEFAULT (GETDATE()), 
+	[ModifiedByUserId]	   INT					  NULL
      
 	CONSTRAINT [FK_UserProfile_User] FOREIGN KEY ([UserId]) REFERENCES [User]([Id]) ON DELETE CASCADE,
 )

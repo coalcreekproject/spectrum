@@ -24,10 +24,16 @@ namespace Spectrum.Core.Data.Repositories
             get { return _context.UserProfiles; }
         }
 
+        /// <summary>
+        /// Example Usage: instanceRepository.AllIncluding(x => x.FirstName, x => x.LastName, x => x.DateOfBirth);
+        /// </summary>
+        /// <param name="includeProperties"></param>
+        /// <returns></returns>
         public IQueryable<UserProfile> AllIncluding(params Expression<Func<UserProfile, object>>[] includeProperties)
         {
             IQueryable<UserProfile> query = _context.UserProfiles;
-            foreach (var includeProperty in includeProperties) {
+            foreach (var includeProperty in includeProperties)
+            {
                 query = query.Include(includeProperty);
             }
             return query;

@@ -4,29 +4,18 @@
     .service('UserProfileParameters', userProfileParameters);
 
 function userProfileParameters() {
-    this.UserId = null;
+    this.userId = null;
 };
 
-//app.config(["$routeProvider", function ($routeProvider) {
-//    $routeProvider.when('/:id', {
-//        controller: 'UserProfileController'
-//        //templateUrl: '/'
-//    });
+function userProfileController($scope, $http, $window, $modal, $stateParams, userProfileFactory) {
 
-//    //$routeProvider.otherwise({ redirectTo: "/" });
-//}]);
-
-
-function userProfileController($scope, $http, $window, $modal, userProfileFactory) {
-
-    var splitUrl = $window.location.href.split("/");
-    $scope.UserId = splitUrl[splitUrl.length - 1];
-    userProfileParameters.UserId = $scope.UserId;
+    $scope.userId = $stateParams.userId;
+    userProfileParameters.userId = $scope.userId;
 
     $modal.scope = $scope;
     $scope.data = userProfileFactory;
 
-    userProfileFactory.getUserProfiles($scope.UserId)
+    userProfileFactory.getUserProfiles($scope.userId)
         .then(function(userProfiles) {
             // success
         },
@@ -37,14 +26,14 @@ function userProfileController($scope, $http, $window, $modal, userProfileFactor
 
     $scope.add = function () {
         var modalInstance = $modal.open({
-            templateUrl: '/Templates/UserProfile/addUserProfileModal.html',
+            templateUrl: '/Templates/User/AddUserProfileModal',
             controller: AddUserProfileModalController
         });
     };
 
     $scope.edit = function (userProfile) {
         var modalInstance = $modal.open({
-            templateUrl: '/Templates/UserProfile/editUserProfileModal.html',
+            templateUrl: '/Templates/User/EditUserProfileModal',
             controller: EditUserProfileModalController,
             resolve: {
                 userProfile: function () {
@@ -56,7 +45,7 @@ function userProfileController($scope, $http, $window, $modal, userProfileFactor
 
     $scope.delete = function (userProfile) {
         var modalInstance = $modal.open({
-            templateUrl: '/Templates/UserProfile/deleteUserProfileModal.html',
+            templateUrl: '/Templates/User/DeleteUserProfileModal',
             controller: DeleteUserProfileModalController,
             resolve: {
                 userProfile: function () {
@@ -71,7 +60,7 @@ function AddUserProfileModalController($scope, $modalInstance, userProfileFactor
 
     $scope.ok = function (userProfile) {
 
-        userProfile.UserId = userProfileParameters.UserId;
+        userProfile.UserId = userProfileParameters.userId;
 
         userProfileFactory.addUserProfile(userProfile)
             .then(function () {
