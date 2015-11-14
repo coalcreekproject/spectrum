@@ -4,15 +4,17 @@ using Spectrum.Core.Data.Models;
 
 namespace Spectrum.Core.Data.Configuration
 {
-    // UserProfile
-    internal partial class UserProfileConfiguration : EntityTypeConfiguration<UserProfile>
+    internal class UserProfileConfiguration : EntityTypeConfiguration<UserProfile>
     {
         public UserProfileConfiguration(string schema = "dbo")
         {
             ToTable(schema + ".UserProfile");
             HasKey(x => x.Id);
 
-            Property(x => x.Id).HasColumnName("Id").IsRequired().HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
+            Property(x => x.Id)
+                .HasColumnName("Id")
+                .IsRequired()
+                .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
             Property(x => x.UserId).HasColumnName("UserId").IsRequired();
             Property(x => x.OrganizationId).HasColumnName("OrganizationId").IsOptional();
             Property(x => x.Default).HasColumnName("Default").IsOptional();
@@ -29,12 +31,14 @@ namespace Spectrum.Core.Data.Configuration
             Property(x => x.Language).HasColumnName("Language").IsOptional().HasMaxLength(100);
             Property(x => x.Photo).HasColumnName("Photo").IsOptional();
             Property(x => x.Position).HasColumnName("Position").IsOptional().HasMaxLength(100);
+            Property(x => x.Cloaked).HasColumnName("Cloaked").IsOptional();
+            Property(x => x.Archive).HasColumnName("Archive").IsOptional();
+            Property(x => x.CreatedDate).HasColumnName("CreatedDate").IsOptional();
+            Property(x => x.CreatedByUserId).HasColumnName("CreatedByUserId").IsOptional();
+            Property(x => x.ModifiedDate).HasColumnName("ModifiedDate").IsOptional();
+            Property(x => x.ModifiedByUserId).HasColumnName("ModifiedByUserId").IsOptional();
 
-            // Foreign keys
-            HasRequired(a => a.User).WithMany(b => b.UserProfiles).HasForeignKey(c => c.UserId); // FK_UserProfile_User
-            InitializePartial();
+            HasRequired(a => a.User).WithMany(b => b.UserProfiles).HasForeignKey(c => c.UserId);
         }
-        partial void InitializePartial();
     }
-
 }

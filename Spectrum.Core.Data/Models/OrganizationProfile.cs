@@ -1,28 +1,42 @@
+using System;
+using System.Collections.Generic;
+
 namespace Spectrum.Core.Data.Models
 {
-    // OrganizationProfile
     public partial class OrganizationProfile
     {
-        public int Id { get; set; } // Id (Primary key)
-        public int OrganizationId { get; set; } // OrganizationId
-        public int? AddressNorthAmericaId { get; set; } // AddressNorthAmericaId
-        public bool Default { get; set; } // Default
-        public string ProfileName { get; set; } // ProfileName
-        public string Description { get; set; } // Description
-        public string PrimaryContact { get; set; } // PrimaryContact
-        public string Phone { get; set; } // Phone
-        public string Fax { get; set; } // Fax
-        public string Email { get; set; } // Email
-        public string Country { get; set; } // Country
-        public string County { get; set; } // County
-        public string TimeZone { get; set; } // TimeZone
-        public bool? DstAdjust { get; set; } // DstAdjust
-        public string Language { get; set; } // Language
-        public string Notes { get; set; } // Notes
+        public OrganizationProfile()
+        {
+            Addresses = new List<Address>();
+            InitializePartial();
+        }
 
-        // Foreign keys
-        public virtual AddressNorthAmerica AddressNorthAmerica { get; set; } // FK_OrganizationProfile_AddressNorthAmerica
-        public virtual Organization Organization { get; set; } // FK_OrganizationProfile_Organization
+        public int Id { get; set; }
+        public int OrganizationId { get; set; }
+        public bool Default { get; set; }
+        public string ProfileName { get; set; }
+        public string Description { get; set; }
+        public string PrimaryContact { get; set; }
+        public string Phone { get; set; }
+        public string Fax { get; set; }
+        public string Email { get; set; }
+        public string Country { get; set; }
+        public string County { get; set; }
+        public string TimeZone { get; set; }
+        public bool? DstAdjust { get; set; }
+        public string Language { get; set; }
+        public string Notes { get; set; }
+        public bool? Cloaked { get; set; }
+        public bool? Archive { get; set; }
+        public DateTime? CreatedDate { get; set; }
+        public int? CreatedByUserId { get; set; }
+        public DateTime? ModifiedDate { get; set; }
+        public int? ModifiedByUserId { get; set; }
+
+        public virtual ICollection<Address> Addresses { get; set; }
+
+        public virtual Organization Organization { get; set; }
+
+        partial void InitializePartial();
     }
-
 }

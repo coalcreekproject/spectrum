@@ -4,20 +4,19 @@ using Spectrum.Core.Data.Models;
 
 namespace Spectrum.Core.Data.Configuration
 {
-    // RuleType
-    internal partial class RuleTypeConfiguration : EntityTypeConfiguration<RuleType>
+    internal class RuleTypeConfiguration : EntityTypeConfiguration<RuleType>
     {
         public RuleTypeConfiguration(string schema = "dbo")
         {
             ToTable(schema + ".RuleType");
             HasKey(x => x.Id);
 
-            Property(x => x.Id).HasColumnName("Id").IsRequired().HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
+            Property(x => x.Id)
+                .HasColumnName("Id")
+                .IsRequired()
+                .HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
             Property(x => x.Name).HasColumnName("Name").IsRequired().HasMaxLength(128);
             Property(x => x.Description).HasColumnName("Description").IsOptional().HasMaxLength(256);
-            InitializePartial();
         }
-        partial void InitializePartial();
     }
-
 }

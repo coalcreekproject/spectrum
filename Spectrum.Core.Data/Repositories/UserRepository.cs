@@ -121,7 +121,7 @@ namespace Spectrum.Core.Data.Repositories
 
         public Task AddLoginAsync(User user, UserLoginInfo login)
         {
-            var externalLogin = new UserLogin
+            var externalLogin = new UserExternalLogin
             {
                 LoginProvider = login.LoginProvider,
                 ProviderKey = login.ProviderKey
@@ -151,7 +151,7 @@ namespace Spectrum.Core.Data.Repositories
 
         public Task RemoveLoginAsync(User user, UserLoginInfo login)
         {
-            var externalLogin = new UserLogin
+            var externalLogin = new UserExternalLogin
             {
                 LoginProvider = login.LoginProvider,
                 ProviderKey = login.ProviderKey

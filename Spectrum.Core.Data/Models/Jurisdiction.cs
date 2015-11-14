@@ -1,30 +1,34 @@
+using System;
 using System.Collections.Generic;
 
 namespace Spectrum.Core.Data.Models
 {
-    // Jurisdiction
-
     public partial class Jurisdiction
     {
-        public int Id { get; set; } // Id (Primary key)
-        public string Name { get; set; } // Name
-        public int OrganizationId { get; set; } // OrganizationId
-
-        // Reverse navigation
-        public virtual ICollection<JusrisdictionProfile> JusrisdictionProfiles { get; set; } // JusrisdictionProfile.FK_JurisdictionProfile_Jurisdiction
-        public virtual ICollection<User> Users { get; set; } // Many to many mapping
-
-        // Foreign keys
-        public virtual Organization Organization { get; set; } // FK_Jurisdiction_Organization
-
         public Jurisdiction()
         {
-            JusrisdictionProfiles = new List<JusrisdictionProfile>();
+            JurisdictionNotes = new List<JurisdictionNote>();
+            JurisdictionProfiles = new List<JurisdictionProfile>();
             Users = new List<User>();
             InitializePartial();
         }
 
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public int OrganizationId { get; set; }
+        public bool? Cloaked { get; set; }
+        public bool? Archive { get; set; }
+        public DateTime? CreatedDate { get; set; }
+        public int? CreatedByUserId { get; set; }
+        public DateTime? ModifiedDate { get; set; }
+        public int? ModifiedByUserId { get; set; }
+
+        public virtual ICollection<JurisdictionNote> JurisdictionNotes { get; set; }
+        public virtual ICollection<JurisdictionProfile> JurisdictionProfiles { get; set; }
+        public virtual ICollection<User> Users { get; set; }
+
+        public virtual Organization Organization { get; set; }
+
         partial void InitializePartial();
     }
-
 }

@@ -8,9 +8,9 @@
 	[License] NVARCHAR(256),
     [Cloaked]			   BIT					  NULL, 
     [Archive]			   BIT					  NULL, 
-    [CreatedDate]		   DATETIME				  NULL DEFAULT (GETDATE()),
+    [CreatedDate]		   DATETIME				  NULL,
 	[CreatedByUserId]	   INT					  NULL,
-    [ModifiedDate]		   DATETIME				  NULL DEFAULT (GETDATE()), 
+    [ModifiedDate]		   DATETIME				  NULL, 
 	[ModifiedByUserId]	   INT					  NULL
     
 	CONSTRAINT [FK_ApplicationDetail_Application] FOREIGN KEY ([ApplicationId]) REFERENCES [Application]([Id])

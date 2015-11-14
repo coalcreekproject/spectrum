@@ -4,23 +4,28 @@ using Spectrum.Core.Data.Models;
 
 namespace Spectrum.Core.Data.Configuration
 {
-    // JusrisdictionProfile
-    internal partial class JusrisdictionProfileConfiguration : EntityTypeConfiguration<JusrisdictionProfile>
+    internal class JurisdictionProfileConfiguration : EntityTypeConfiguration<JurisdictionProfile>
     {
-        public JusrisdictionProfileConfiguration(string schema = "dbo")
+        public JurisdictionProfileConfiguration(string schema = "dbo")
         {
             ToTable(schema + ".JusrisdictionProfile");
             HasKey(x => x.Id);
 
-            Property(x => x.Id).HasColumnName("Id").IsRequired().HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
+            Property(x => x.Id)
+                .HasColumnName("Id")
+                .IsRequired()
+                .HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
             Property(x => x.JurisdictionId).HasColumnName("JurisdictionId").IsRequired();
+            Property(x => x.Name).HasColumnName("Name").IsRequired().HasMaxLength(128);
             Property(x => x.Description).HasColumnName("Description").IsOptional();
+            Property(x => x.Cloaked).HasColumnName("Cloaked").IsOptional();
+            Property(x => x.Archive).HasColumnName("Archive").IsOptional();
+            Property(x => x.CreatedDate).HasColumnName("CreatedDate").IsOptional();
+            Property(x => x.CreatedByUserId).HasColumnName("CreatedByUserId").IsOptional();
+            Property(x => x.ModifiedDate).HasColumnName("ModifiedDate").IsOptional();
+            Property(x => x.ModifiedByUserId).HasColumnName("ModifiedByUserId").IsOptional();
 
-            // Foreign keys
-            HasRequired(a => a.Jurisdiction).WithMany(b => b.JusrisdictionProfiles).HasForeignKey(c => c.JurisdictionId); // FK_JurisdictionProfile_Jurisdiction
-            InitializePartial();
+            HasRequired(a => a.Jurisdiction).WithMany(b => b.JurisdictionProfiles).HasForeignKey(c => c.JurisdictionId);
         }
-        partial void InitializePartial();
     }
-
 }

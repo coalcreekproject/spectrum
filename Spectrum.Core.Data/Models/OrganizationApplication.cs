@@ -1,15 +1,20 @@
+using System;
+
 namespace Spectrum.Core.Data.Models
 {
-    // OrganizationApplications
     public partial class OrganizationApplication
     {
-        public int OrganizationId { get; set; } // OrganizationId (Primary key)
-        public int ApplicationId { get; set; } // ApplicationId (Primary key)
-        public string Key { get; set; } // Key
+        public int OrganizationId { get; set; }
+        public int ApplicationId { get; set; }
+        public string Key { get; set; }
+        public bool? Cloaked { get; set; }
+        public bool? Archive { get; set; }
+        public DateTime? CreatedDate { get; set; }
+        public int? CreatedByUserId { get; set; }
+        public DateTime? ModifiedDate { get; set; }
+        public int? ModifiedByUserId { get; set; }
 
-        // Foreign keys
-        public virtual Application Application { get; set; } // FK_OrganizationApplications_Application
-        public virtual Organization Organization { get; set; } // FK_OrganizationApplications_Organization
+        public virtual Application Application { get; set; }
+        public virtual Organization Organization { get; set; }
     }
-
 }

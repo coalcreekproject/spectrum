@@ -1,32 +1,37 @@
+using System;
 using System.Collections.Generic;
 
 namespace Spectrum.Core.Data.Models
 {
-    // Application
-
     public partial class Application
     {
-        public int Id { get; set; } // Id (Primary key)
-        public string Name { get; set; } // Name
-
-        // Reverse navigation
-        public virtual ICollection<ApplicationProfile> ApplicationProfiles { get; set; } // ApplicationProfile.FK_ApplicationDetail_Application
-        public virtual ICollection<OrganizationApplication> OrganizationApplications { get; set; } // Many to many mapping
-        public virtual ICollection<Parameter> Parameters { get; set; } // Many to many mapping
-        public virtual ICollection<Role> Roles { get; set; } // Role.FK_Role_Application
-        public virtual ICollection<UserApplication> UserApplications { get; set; } // Many to many mapping
-
         public Application()
         {
+            ApplicationNotes = new List<ApplicationNote>();
+            ApplicationParameters = new List<ApplicationParameter>();
             ApplicationProfiles = new List<ApplicationProfile>();
             OrganizationApplications = new List<OrganizationApplication>();
             Roles = new List<Role>();
             UserApplications = new List<UserApplication>();
-            Parameters = new List<Parameter>();
             InitializePartial();
         }
 
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public bool? Cloaked { get; set; }
+        public bool? Archive { get; set; }
+        public DateTime? CreatedDate { get; set; }
+        public int? CreatedByUserId { get; set; }
+        public DateTime? ModifiedDate { get; set; }
+        public int? ModifiedByUserId { get; set; }
+
+        public virtual ICollection<ApplicationNote> ApplicationNotes { get; set; }
+        public virtual ICollection<ApplicationParameter> ApplicationParameters { get; set; }
+        public virtual ICollection<ApplicationProfile> ApplicationProfiles { get; set; }
+        public virtual ICollection<OrganizationApplication> OrganizationApplications { get; set; }
+        public virtual ICollection<Role> Roles { get; set; }
+        public virtual ICollection<UserApplication> UserApplications { get; set; }
+
         partial void InitializePartial();
     }
-
 }

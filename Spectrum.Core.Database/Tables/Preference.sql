@@ -6,8 +6,8 @@
     [Value] NVARCHAR(MAX) NOT NULL,
     [Cloaked]			   BIT					  NULL, 
     [Archive]			   BIT					  NULL, 
-    [CreatedDate]		   DATETIME				  NULL DEFAULT (GETDATE()),
+    [CreatedDate]		   DATETIME				  NULL,
 	[CreatedByUserId]	   INT					  NULL,
-    [ModifiedDate]		   DATETIME				  NULL DEFAULT (GETDATE()), 
+    [ModifiedDate]		   DATETIME				  NULL, 
 	[ModifiedByUserId]	   INT					  NULL
 )

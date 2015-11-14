@@ -4,26 +4,25 @@ using Spectrum.Core.Data.Models;
 
 namespace Spectrum.Core.Data.Configuration
 {
-    // Parameter
-    internal partial class ParameterConfiguration : EntityTypeConfiguration<Parameter>
+    internal class ParameterConfiguration : EntityTypeConfiguration<Parameter>
     {
         public ParameterConfiguration(string schema = "dbo")
         {
             ToTable(schema + ".Parameter");
             HasKey(x => x.Id);
 
-            Property(x => x.Id).HasColumnName("Id").IsRequired().HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
+            Property(x => x.Id)
+                .HasColumnName("Id")
+                .IsRequired()
+                .HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
             Property(x => x.Key).HasColumnName("Key").IsRequired().HasMaxLength(128);
             Property(x => x.Value).HasColumnName("Value").IsRequired().HasMaxLength(128);
-            HasMany(t => t.Rules).WithMany(t => t.Parameters).Map(m => 
-            {
-                m.ToTable("RuleParameter", schema);
-                m.MapLeftKey("ParameterId");
-                m.MapRightKey("RuleId");
-            });
-            InitializePartial();
+            Property(x => x.Cloaked).HasColumnName("Cloaked").IsOptional();
+            Property(x => x.Archive).HasColumnName("Archive").IsOptional();
+            Property(x => x.CreatedDate).HasColumnName("CreatedDate").IsOptional();
+            Property(x => x.CreatedByUserId).HasColumnName("CreatedByUserId").IsOptional();
+            Property(x => x.ModifiedDate).HasColumnName("ModifiedDate").IsOptional();
+            Property(x => x.ModifiedByUserId).HasColumnName("ModifiedByUserId").IsOptional();
         }
-        partial void InitializePartial();
     }
-
 }
