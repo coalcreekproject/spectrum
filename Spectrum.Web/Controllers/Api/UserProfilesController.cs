@@ -66,6 +66,7 @@ namespace Spectrum.Web.Controllers.Api
 
             profile.ObjectState = ObjectState.Added;
             _userProfileRepository.InsertOrUpdate(profile);
+            _userProfileRepository.Save();
 
             return Request.CreateResponse(HttpStatusCode.Created, profile);
         }
@@ -97,6 +98,7 @@ namespace Spectrum.Web.Controllers.Api
 
             profile.ObjectState = ObjectState.Modified;
             _userProfileRepository.InsertOrUpdate(profile);
+            _userProfileRepository.Save();
 
             return Request.CreateResponse(HttpStatusCode.OK, profile);
         }
@@ -113,6 +115,7 @@ namespace Spectrum.Web.Controllers.Api
 
             userProfile.ObjectState = ObjectState.Deleted;
             _userProfileRepository.Delete(userProfile.Id);
+            _userProfileRepository.Save();
 
             return Request.CreateResponse(HttpStatusCode.OK, userProfile);
         }

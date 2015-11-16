@@ -26,6 +26,14 @@ function config($stateProvider, $urlRouterProvider, $compileProvider) {
             data: {
                 pageTitle: 'roles'
             }
+        })
+        .state('profiles', {
+            url: "/profiles/:organizationId",
+            templateUrl: "/Templates/Organization/OrganizationProfiles",
+            params: { organizationId: null },
+            data: {
+                pageTitle: 'profiles'
+            }
         });
 }
 
@@ -78,12 +86,11 @@ function organizationController($scope, $http, $modal, $state, organizationFacto
     };
 
     $scope.roles = function (organization) {
-        $state.go('roles', { 'Id': organization.Id })
-        //window.location = "#/roles/" + organization.Id;
+        $state.go('roles', { 'organizationId': organization.Id });
     };
 
     $scope.profiles = function (organization) {
-        window.location = "/OrganizationProfile/OrganizationProfileIndex/" + organization.Id;
+        $state.go('profiles', { 'organizationId': organization.Id });
     };
 };
 

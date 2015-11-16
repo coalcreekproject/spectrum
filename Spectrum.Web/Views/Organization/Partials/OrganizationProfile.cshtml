@@ -22,7 +22,7 @@
                             <a href="@Url.Action("Index", "Dashboard")">Dashboard</a>
                         </li>
                         <li>
-                            <a href="@Url.Action("OrganizationIndex", "Organization")">Organizations</a>
+                            <a href="@Url.Action("Index", "Organization")">Organizations</a>
                         </li>
                         <li>
                             <a>Organization Profiles</a>
@@ -70,12 +70,12 @@
                         <div class="hpanel">
                             <div class="panel-heading hbuilt">
                                 <div panel-tools></div>
-                                {{ p.Name }}
+                                {{ p.ProfileName }}
                             </div>
                             <div class="panel-body">
                                 <div class="row">
                                     <div class="col-sm-3">
-                                        <label class="control-label">Profile Name: </label> {{ p.Name }}
+                                        <label class="control-label">Profile Name: </label> {{ p.ProfileName }}
                                     </div>
                                     <div class="col-sm-3">
                                         <label class="control-label">Profile Description: </label> {{ p.Description }}
@@ -99,5 +99,5 @@
 </div>
 
 @section Scripts {
-    <script src="~/Scripts/spectrum-core/organizationprofiles-index.js"></script>
+    @*<script src="~/Scripts/spectrum-core/organizationprofiles-index.js"></script>*@
 }

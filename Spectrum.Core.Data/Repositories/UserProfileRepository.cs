@@ -2,6 +2,7 @@ using System;
 using System.Data.Entity;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Threading.Tasks;
 using Spectrum.Core.Data.Context;
 using Spectrum.Core.Data.Context.UnitOfWork;
 using Spectrum.Core.Data.Models;
@@ -44,16 +45,19 @@ namespace Spectrum.Core.Data.Repositories
             return _context.UserProfiles.Find(id);
         }
 
+        public Task<UserProfile> FindAsync(int id)
+        {
+            return _context.UserProfiles.FirstOrDefaultAsync(p => p.Id.Equals(id));
+        }
+
         public void InsertOrUpdate(UserProfile userprofile)
         {
             if (userprofile.ObjectState == ObjectState.Added) {
                 // New entity
                 _context.UserProfiles.Add(userprofile);
-                Save();
             } else {
                 // Existing entity
                 _context.Entry(userprofile).State = EntityState.Modified;
-                Save();
             }
         }
 
@@ -61,12 +65,16 @@ namespace Spectrum.Core.Data.Repositories
         {
             var userprofile = _context.UserProfiles.Find(id);
             _context.UserProfiles.Remove(userprofile);
-            Save();
         }
 
         public void Save()
         {
             _context.SaveChanges();
+        }
+
+        public Task SaveAsync()
+        {
+            return _context.SaveChangesAsync();
         }
 
         public void Dispose() 
