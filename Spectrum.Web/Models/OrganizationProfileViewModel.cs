@@ -1,4 +1,7 @@
-﻿namespace Spectrum.Web.Models
+﻿using System.Collections.Generic;
+using Spectrum.Core.Data.Models;
+
+namespace Spectrum.Web.Models
 {
     public class OrganizationProfileViewModel
     {

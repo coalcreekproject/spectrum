@@ -15,11 +15,16 @@ function config($stateProvider, $urlRouterProvider, $compileProvider) {
         .state('index', {
             url: "",
             templateUrl: "/Templates/User/UserPanelIndex",
-            data: {
-                pageTitle: 'index'
-            }
+            data: { pageTitle: 'index' }
         })
-        .state('profiles', {
+        .state('grid', {
+            //url: "/grid/:userId",
+            url: "/grid",
+            templateUrl: "/Templates/User/UserGridIndex",
+            params: { userId: null},
+            data: { pageTitle: 'profiles' }
+        })
+        .state('userprofiles', {
             url: "/profiles/:userId",
             templateUrl: "/Templates/User/UserProfileIndex",
             params: { userId: null},
@@ -74,8 +79,8 @@ function userPanelController($scope, $http, $modal, $state, userFactory) {
         });
     };
 
-    $scope.profiles = function (user) {
-        $state.go('profiles', { 'userId': user.Id });
+    $scope.userprofiles = function (user) {
+        $state.go('userprofiles', { 'userId': user.Id });
     };
 };
 

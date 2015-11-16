@@ -10,7 +10,7 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="pull-right">
-                            <a href="@Url.Action("UsersGridIndex", "UsersGrid")"><span class="label label-info">Switch to Grid View</span></a>
+                            <a ui-sref="grid"><span class="label label-info">Switch to Grid View</span></a>
                         </div>
                     </div>
                 </div>
@@ -82,7 +82,7 @@
                                 <div class="btn-toolbar">
                                     <div class="pull-right">
                                         <button class="btn btn-sm btn-default" ng-click="edit({{ u }})">Edit</button>
-                                        <button class="btn btn-sm btn-default" ng-click="profiles({{ u }})">Profiles</button>
+                                        <button class="btn btn-sm btn-default" ng-click="userprofiles({{ u }})">Profiles</button>
                                         <button class="btn btn-sm btn-default" ng-click="delete({{ u }})">Delete</button>
                                     </div>
                                 </div>

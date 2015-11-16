@@ -1,11 +1,8 @@
-﻿//var app = angular.module('app', ['ngRoute', 'ngAnimate', 'ngTouch', 'ui.grid', 'ui.grid.selection', 'ui.bootstrap', 'oitozero.ngSweetAlert']);
-
-angular
+﻿angular
     .module('app')
     .controller('UserGridController', userGridController);
 
-//app.controller('UserGridController', ['$scope', '$http', '$location', '$modal', 'uiGridConstants', 'userFactory', 'sweetAlert',
-function userGridController($scope, $http, $location, $modal, uiGridConstants, userFactory) {
+function userGridController($scope, $http, $location, $modal, $state, uiGridConstants, userFactory) {
 
     $scope.data = userFactory;
 
@@ -22,7 +19,7 @@ function userGridController($scope, $http, $location, $modal, uiGridConstants, u
             { field: 'Email' },
             { name: 'Commands', cellTemplate: '<button class="btn btn-sm btn-default" ng-click="grid.appScope.edit(row)">Edit</button>' +
                 '<button class="btn btn-sm btn-default" ng-click="grid.appScope.delete(row)">Delete</button>' +
-                '<button class="btn btn-sm btn-default" ng-click="grid.appScope.profiles(row)">Profiles</button>'
+                '<button class="btn btn-sm btn-default" ng-click="grid.appScope.userprofiles(row)">Profiles</button>'
             }
         ],
         onRegisterApi: function (gridApi) {
@@ -45,7 +42,7 @@ function userGridController($scope, $http, $location, $modal, uiGridConstants, u
 
     $scope.add = function () {
         var modalInstance = $modal.open({
-            templateUrl: '/Templates/User/addUserModal.html',
+            templateUrl: '/Templates/User/AddUserModal',
             controller: AddUserModalController
         });
     };
@@ -53,7 +50,7 @@ function userGridController($scope, $http, $location, $modal, uiGridConstants, u
 
     $scope.edit = function (row) {
         var modalInstance = $modal.open({
-            templateUrl: '/Templates/User/editUserModal.html',
+            templateUrl: '/Templates/User/editUserModal',
             controller: EditUserModalController,
             resolve: {
                 user: function() {
@@ -63,70 +60,21 @@ function userGridController($scope, $http, $location, $modal, uiGridConstants, u
         });
     };
 
-    $scope.profiles = function (row) {
-
-        var user = angular.copy(row.entity);
-        window.location = "/UserProfile/UserProfileIndex/" + user.Id;
-    };
-
-    //$scope.customNavigate = function (id) {
-    //    $location.path("/UserProfiles/Index/" + id);
-    //}
-
-
-    //$scope.delete = function(row) {
-        //resolve: {
-        //    user: function () {
-        //        return angular.copy(row.entity);
-        //    }
-        //}
-        //var user = function () {
-        //    return angular.copy(row.entity);
-        //}
-
-        //sweetAlert.swal({
-        //            title: "Are you sure?",
-        //            text: "Your will not be able to recover this user!",
-        //            type: "warning",
-        //            showCancelButton: true,
-        //            confirmButtonColor: "#DD6B55",
-        //            confirmButtonText: "Yes, delete user!",
-        //            cancelButtonText: "No, cancel!",
-        //            closeOnConfirm: false,
-        //            closeOnCancel: false
-        //        },
-        //        function (isConfirm) {
-        //            if (isConfirm) {
-        //                userFactory.deleteUser(row.entity) //Concerned about this.
-        //                    .then(function() {
-        //                            // success
-        //                            sweetAlert.swal("Deleted!", "User deleted.", "success");
-        //                        },
-        //                        function() {
-        //                            // error
-        //                            sweetAlert.swal("Error", "Unable to delete user!", "error");
-        //                        });
-
-
-        //            } else {
-        //                sweetAlert.swal("Cancelled", "User not deleted", "error");
-        //            }
-        //        });
-        //}
-
-
-$scope.delete = function (row) {
-        var modalInstance = $modal.open({
-            templateUrl: '/Templates/User/deleteUserModal.html',
-            controller: DeleteUserModalController,
-            resolve: {
-                user: function () {
-                    return angular.copy(row.entity);
+    $scope.delete = function (row) {
+            var modalInstance = $modal.open({
+                templateUrl: '/Templates/User/deleteUserModal',
+                controller: DeleteUserModalController,
+                resolve: {
+                    user: function () {
+                        return angular.copy(row.entity);
+                    }
                 }
-            }
-        });
-    };
+            });
+        };
 
+    $scope.userprofiles = function (row) {
+        $state.go('userprofiles', { 'userId': row.entity.Id });
+    };
 };
 
 function AddUserModalController($scope, $modalInstance, userFactory) {
@@ -197,6 +145,7 @@ function DeleteUserModalController($scope, $modalInstance, userFactory, user) {
         $modalInstance.dismiss('cancel');
     };
 };
+
 /**
  * Pass function into module
  */

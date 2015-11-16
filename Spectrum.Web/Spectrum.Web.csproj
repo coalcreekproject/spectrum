@@ -242,7 +242,6 @@
     <Compile Include="Controllers\Web\ManageController.cs" />
     <Compile Include="Controllers\Web\RoleController.cs" />
     <Compile Include="Controllers\Web\UserController.cs" />
-    <Compile Include="Controllers\Web\UsersGridController.cs" />
     <Compile Include="Controllers\Web\OrganizationController.cs" />
     <Compile Include="Controllers\Api\OrganizationProfilesController.cs" />
     <Compile Include="Controllers\Api\OrganizationsController.cs" />
@@ -3021,10 +3020,9 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Organization\Index.cshtml" />
     <Content Include="Views\Organization\Partials\OrganizationProfile.cshtml" />
-    <Content Include="Views\UsersGrid\UsersGridIndex.cshtml" />
+    <Content Include="Views\User\Partials\UserGridIndex.cshtml" />
     <Content Include="Views\Shared\_Layout_Blank.cshtml" />
     <Content Include="Views\Shared\_Layout_Landing.cshtml" />
-    <Content Include="Views\UserProfile\UserProfileIndex.cshtml" />
     <Content Include="Views\Dashboard\Index.cshtml" />
     <Content Include="Views\View.cshtml" />
     <Content Include="Views\User\Index.cshtml" />

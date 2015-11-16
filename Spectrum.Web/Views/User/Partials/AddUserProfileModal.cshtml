@@ -2,7 +2,7 @@
 
     <div class="modal-header">
         <h4 class="modal-title">Add a Profile</h4>
-        <small class="font-bold">Add a profile for this organization.</small>
+        <small class="font-bold">Add a profile for this user.</small>
     </div>
 
     <div class="modal-body">
@@ -11,7 +11,8 @@
             <div class="form-group">
                 <div class="row">
                     <div class="col-md-6">
-                        <div><label> <input icheck type="checkbox" name="checkboxDefault" ng-model="userProfile.Default"> Make this my default profile </label>
+                        <div>
+                            <label> <input icheck type="checkbox" name="checkboxDefault" ng-model="userProfile.Default"> Make this my default profile </label>
                         </div>
                     </div>
                 </div>
@@ -20,7 +21,7 @@
             <div class="form-group">
                 <div class="row">
                     <div class="col-md-6">
-                        <label for="organization">Organization</label>
+                        <label for="organization">User</label>
                         <input type="text" id="organization" placeholder="Organization" ng-model="userProfile.OrganizationId" class="form-control">
                     </div>
                 </div>

@@ -54,6 +54,8 @@ namespace Spectrum.Web.Controllers.Web
             {
                 case "userpanelindex":
                     return PartialView("~/Views/User/Partials/UserPanelIndex.cshtml");
+                case "usergridindex":
+                    return PartialView("~/Views/User/Partials/UserGridIndex.cshtml");
                 case "addusermodal":
                     return PartialView("~/Views/User/Partials/AddUserModal.cshtml");
                 case "editusermodal":

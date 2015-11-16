@@ -79,8 +79,8 @@ namespace Spectrum.Core.Data.Repositories
         public Task<User> FindByNameAsync(string userName)
         {
             var result = Users.FirstOrDefault(u => u.UserName.Equals(userName));
-            if (result == null)
-                return Task.FromResult(new User());
+            //if (result == null)
+            //    return Task.FromResult(new User());
 
             return Task.FromResult(result);
         }

@@ -198,6 +198,7 @@ function organizationProfileFactory($http, $q) {
                      _organizationProfiles[i].County = editedOrganizationProfile.County;
                      _organizationProfiles[i].TimeZone = editedOrganizationProfile.TimeZone;
                      _organizationProfiles[i].Language = editedOrganizationProfile.Language;
+                     _organizationProfiles[i].Notes = editedOrganizationProfile.Notes;
 
                      _organizationProfiles[i].val = editedOrganizationProfile.val;
 
