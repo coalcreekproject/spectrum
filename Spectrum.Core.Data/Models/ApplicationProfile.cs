@@ -1,17 +1,22 @@
+using System;
+
 namespace Spectrum.Core.Data.Models
 {
-    // ApplicationProfile
     public partial class ApplicationProfile
     {
-        public int Id { get; set; } // Id (Primary key)
-        public int ApplicationId { get; set; } // ApplicationId
-        public string Description { get; set; } // Description
-        public string Company { get; set; } // Company
-        public string Author { get; set; } // Author
-        public string License { get; set; } // License
+        public int Id { get; set; }
+        public int ApplicationId { get; set; }
+        public string Description { get; set; }
+        public string Company { get; set; }
+        public string Author { get; set; }
+        public string License { get; set; }
+        public bool? Cloaked { get; set; }
+        public bool? Archive { get; set; }
+        public DateTime? CreatedDate { get; set; }
+        public int? CreatedByUserId { get; set; }
+        public DateTime? ModifiedDate { get; set; }
+        public int? ModifiedByUserId { get; set; }
 
-        // Foreign keys
-        public virtual Application Application { get; set; } // FK_ApplicationDetail_Application
+        public virtual Application Application { get; set; }
     }
-
 }

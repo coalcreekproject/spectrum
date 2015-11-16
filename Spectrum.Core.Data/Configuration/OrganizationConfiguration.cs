@@ -4,20 +4,27 @@ using Spectrum.Core.Data.Models;
 
 namespace Spectrum.Core.Data.Configuration
 {
-    // Organization
-    internal partial class OrganizationConfiguration : EntityTypeConfiguration<Organization>
+    internal class OrganizationConfiguration : EntityTypeConfiguration<Organization>
     {
         public OrganizationConfiguration(string schema = "dbo")
         {
             ToTable(schema + ".Organization");
             HasKey(x => x.Id);
 
-            Property(x => x.Id).HasColumnName("Id").IsRequired().HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
+            Property(x => x.Id)
+                .HasColumnName("Id")
+                .IsRequired()
+                .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
             Property(x => x.Name).HasColumnName("Name").IsRequired().HasMaxLength(128);
             Property(x => x.OrganizationTypeId).HasColumnName("OrganizationTypeId").IsOptional();
+            Property(x => x.Cloaked).HasColumnName("Cloaked").IsOptional();
+            Property(x => x.Archive).HasColumnName("Archive").IsOptional();
+            Property(x => x.CreatedDate).HasColumnName("CreatedDate").IsOptional();
+            Property(x => x.CreatedByUserId).HasColumnName("CreatedByUserId").IsOptional();
+            Property(x => x.ModifiedDate).HasColumnName("ModifiedDate").IsOptional();
+            Property(x => x.ModifiedByUserId).HasColumnName("ModifiedByUserId").IsOptional();
 
-            // Foreign keys
-            HasOptional(a => a.OrganizationType).WithMany(b => b.Organizations).HasForeignKey(c => c.OrganizationTypeId); // FK_Organization_OrganizationType
+            HasOptional(a => a.OrganizationType).WithMany(b => b.Organizations).HasForeignKey(c => c.OrganizationTypeId);
             HasMany(t => t.Preferences).WithMany(t => t.Organizations).Map(m =>
             {
                 m.ToTable("OrganizationPreference", schema);
@@ -30,9 +37,6 @@ namespace Spectrum.Core.Data.Configuration
                 m.MapLeftKey("OrganizationId");
                 m.MapRightKey("UserId");
             });
-            InitializePartial();
         }
-        partial void InitializePartial();
     }
-
 }

@@ -240,9 +240,7 @@
     <Compile Include="Controllers\Web\DashboardController.cs" />
     <Compile Include="Controllers\Web\HomeController.cs" />
     <Compile Include="Controllers\Web\ManageController.cs" />
-    <Compile Include="Controllers\Web\OrganizationProfileController.cs" />
     <Compile Include="Controllers\Web\RoleController.cs" />
-    <Compile Include="Controllers\Web\UserProfileController.cs" />
     <Compile Include="Controllers\Web\UserController.cs" />
     <Compile Include="Controllers\Web\UsersGridController.cs" />
     <Compile Include="Controllers\Web\OrganizationController.cs" />
@@ -3022,7 +3020,7 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Organization\Index.cshtml" />
-    <Content Include="Views\OrganizationProfile\OrganizationProfileIndex.cshtml" />
+    <Content Include="Views\Organization\Partials\OrganizationProfile.cshtml" />
     <Content Include="Views\UsersGrid\UsersGridIndex.cshtml" />
     <Content Include="Views\Shared\_Layout_Blank.cshtml" />
     <Content Include="Views\Shared\_Layout_Landing.cshtml" />

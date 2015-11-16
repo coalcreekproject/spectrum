@@ -4,8 +4,7 @@ using Spectrum.Core.Data.Models;
 
 namespace Spectrum.Core.Data.Configuration
 {
-    // Application
-    internal partial class ApplicationConfiguration : EntityTypeConfiguration<Application>
+    internal class ApplicationConfiguration : EntityTypeConfiguration<Application>
     {
         public ApplicationConfiguration(string schema = "dbo")
         {
@@ -17,15 +16,12 @@ namespace Spectrum.Core.Data.Configuration
                 .IsRequired()
                 .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
             Property(x => x.Name).HasColumnName("Name").IsRequired().HasMaxLength(128);
-            HasMany(t => t.Parameters).WithMany(t => t.Applications).Map(m =>
-            {
-                m.ToTable("ApplicationParameter", schema);
-                m.MapLeftKey("ApplicationId");
-                m.MapRightKey("ParameterId");
-            });
-            InitializePartial();
+            Property(x => x.Cloaked).HasColumnName("Cloaked").IsOptional();
+            Property(x => x.Archive).HasColumnName("Archive").IsOptional();
+            Property(x => x.CreatedDate).HasColumnName("CreatedDate").IsOptional();
+            Property(x => x.CreatedByUserId).HasColumnName("CreatedByUserId").IsOptional();
+            Property(x => x.ModifiedDate).HasColumnName("ModifiedDate").IsOptional();
+            Property(x => x.ModifiedByUserId).HasColumnName("ModifiedByUserId").IsOptional();
         }
-
-        partial void InitializePartial();
     }
 }

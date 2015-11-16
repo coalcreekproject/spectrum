@@ -1,25 +1,31 @@
+using System;
+
 namespace Spectrum.Core.Data.Models
 {
-    // Contact
-    public partial class Contact
+    public class Contact
     {
-        public int Id { get; set; } // Id (Primary key)
-        public int UserId { get; set; } // UserId
-        public int? OrganizationId { get; set; } // OrganizationId
-        public string Title { get; set; } // Title
-        public string FirstName { get; set; } // FirstName
-        public string MiddleName { get; set; } // MiddleName
-        public string LastName { get; set; } // LastName
-        public string Nickname { get; set; } // Nickname
-        public string PrimaryEmail { get; set; } // PrimaryEmail
-        public string PrimaryPhoneNumber { get; set; } // PrimaryPhoneNumber
-        public string SecondaryEmail { get; set; } // SecondaryEmail
-        public string SecondaryPhoneNumber { get; set; } // SecondaryPhoneNumber
-        public string TimeZone { get; set; } // TimeZone
-        public string Language { get; set; } // Language
-        public string Note { get; set; } // Note
-        public byte[] Photo { get; set; } // Photo
-        public string Position { get; set; } // Position
+        public int Id { get; set; }
+        public int UserId { get; set; }
+        public int? OrganizationId { get; set; }
+        public string Title { get; set; }
+        public string FirstName { get; set; }
+        public string MiddleName { get; set; }
+        public string LastName { get; set; }
+        public string Nickname { get; set; }
+        public string PrimaryEmail { get; set; }
+        public string PrimaryPhoneNumber { get; set; }
+        public string SecondaryEmail { get; set; }
+        public string SecondaryPhoneNumber { get; set; }
+        public string TimeZone { get; set; }
+        public string Language { get; set; }
+        public string Note { get; set; }
+        public byte[] Photo { get; set; }
+        public string Position { get; set; }
+        public bool? Cloaked { get; set; }
+        public bool? Archive { get; set; }
+        public DateTime? CreatedDate { get; set; }
+        public int? CreatedByUserId { get; set; }
+        public DateTime? ModifiedDate { get; set; }
+        public int? ModifiedByUserId { get; set; }
     }
-
 }

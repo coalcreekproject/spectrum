@@ -1,29 +1,44 @@
+using System;
+using System.Collections.Generic;
+
 namespace Spectrum.Core.Data.Models
 {
-    // UserProfile
     public partial class UserProfile
     {
-        public int Id { get; set; } // Id (Primary key)
-        public int UserId { get; set; } // UserId
-        public int? OrganizationId { get; set; } // OrganizationId
-        public bool Default { get; set; } // Default
-        public string ProfileName { get; set; } // ProfileName
-        public string Title { get; set; } // Title
-        public string FirstName { get; set; } // FirstName
-        public string MiddleName { get; set; } // MiddleName
-        public string LastName { get; set; } // LastName
-        public string Nickname { get; set; } // Nickname
-        public string SecondaryEmail { get; set; } // SecondaryEmail
-        public string SecondaryPhoneNumber { get; set; } // SecondaryPhone
-        public string TimeZone { get; set; } // TimeZone
-        public bool? DstAdjust { get; set; } // DstAdjust
-        public string Language { get; set; } // Language
-        public byte[] Photo { get; set; } // Photo
-        public string Position { get; set; } // Position
+        public UserProfile()
+        {
+            Addresses = new List<Address>();
+            InitializePartial();
+        }
 
-        // Foreign keys
-        public virtual Organization Organization { get; set; } // FK_UserProfile_OrganizationId
-        public virtual User User { get; set; } // FK_UserProfile_User
+        public int Id { get; set; }
+        public int UserId { get; set; }
+        public int? OrganizationId { get; set; }
+        public bool? Default { get; set; }
+        public string ProfileName { get; set; }
+        public string Title { get; set; }
+        public string FirstName { get; set; }
+        public string MiddleName { get; set; }
+        public string LastName { get; set; }
+        public string Nickname { get; set; }
+        public string SecondaryEmail { get; set; }
+        public string SecondaryPhoneNumber { get; set; }
+        public string TimeZone { get; set; }
+        public bool? DstAdjust { get; set; }
+        public string Language { get; set; }
+        public byte[] Photo { get; set; }
+        public string Position { get; set; }
+        public bool? Cloaked { get; set; }
+        public bool? Archive { get; set; }
+        public DateTime? CreatedDate { get; set; }
+        public int? CreatedByUserId { get; set; }
+        public DateTime? ModifiedDate { get; set; }
+        public int? ModifiedByUserId { get; set; }
+
+        public virtual ICollection<Address> Addresses { get; set; }
+
+        public virtual User User { get; set; }
+
+        partial void InitializePartial();
     }
-
 }

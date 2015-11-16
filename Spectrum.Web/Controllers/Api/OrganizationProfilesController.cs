@@ -88,7 +88,22 @@ namespace Spectrum.Web.Controllers.Api
                 return Request.CreateResponse(HttpStatusCode.NotFound);
             }
 
-            organizationProfile = Mapper.Map<OrganizationProfile>(editOrganizationProfile);
+            //organizationProfile = Mapper.Map<OrganizationProfile>(editOrganizationProfile);
+
+            organizationProfile.Default = editOrganizationProfile.Default;
+            organizationProfile.ProfileName = editOrganizationProfile.ProfileName;
+            organizationProfile.Description = editOrganizationProfile.Description;
+            organizationProfile.PrimaryContact = editOrganizationProfile.PrimaryContact;
+            organizationProfile.Phone = editOrganizationProfile.Phone;
+            organizationProfile.Fax = editOrganizationProfile.Fax;
+            organizationProfile.Email = editOrganizationProfile.Email;
+            organizationProfile.Country = editOrganizationProfile.Country;
+            organizationProfile.County = editOrganizationProfile.County;
+            organizationProfile.TimeZone = editOrganizationProfile.TimeZone;
+            organizationProfile.Language = editOrganizationProfile.Language;
+            organizationProfile.Notes = editOrganizationProfile.Notes;
+
+
             organizationProfile.ObjectState = ObjectState.Modified;
             _organizationProfileRepository.InsertOrUpdate(organizationProfile);
             _organizationProfileRepository.Save();

@@ -6,9 +6,9 @@
     [Description] NVARCHAR(MAX) NULL,
     [Cloaked]			   BIT					  NULL, 
     [Archive]			   BIT					  NULL, 
-    [CreatedDate]		   DATETIME				  NULL DEFAULT (GETDATE()),
+    [CreatedDate]		   DATETIME				  NULL,
 	[CreatedByUserId]	   INT					  NULL,
-    [ModifiedDate]		   DATETIME				  NULL DEFAULT (GETDATE()), 
+    [ModifiedDate]		   DATETIME				  NULL, 
 	[ModifiedByUserId]	   INT					  NULL
 
 	CONSTRAINT [FK_AreaOfResponsibilityProfile_AreaOfResponsibility] FOREIGN KEY ([AreaOfResponsibilityId]) REFERENCES [AreaOfResponsibility]([Id]) ON DELETE CASCADE

@@ -7,6 +7,7 @@ using Spectrum.Core.Data.Context.UnitOfWork;
 using Spectrum.Core.Data.Models;
 using Spectrum.Core.Data.Repositories.Interfaces;
 using System.Threading.Tasks;
+using Spectrum.Core.Data.Models.Interfaces;
 
 namespace Spectrum.Core.Data.Repositories
 { 
@@ -27,7 +28,8 @@ namespace Spectrum.Core.Data.Repositories
         public IQueryable<OrganizationProfile> AllIncluding(params Expression<Func<OrganizationProfile, object>>[] includeProperties)
         {
             IQueryable<OrganizationProfile> query = _context.OrganizationProfiles;
-            foreach (var includeProperty in includeProperties) {
+            foreach (var includeProperty in includeProperties)
+            {
                 query = query.Include(includeProperty);
             }
             return query;
@@ -43,14 +45,17 @@ namespace Spectrum.Core.Data.Repositories
             return _context.OrganizationProfiles.FirstOrDefaultAsync(p => p.Id.Equals(id));
         }
 
-        public void InsertOrUpdate(OrganizationProfile organizationprofile)
+        public void InsertOrUpdate(OrganizationProfile organizationProfile)
         {
-            if (organizationprofile.Id == default(int)) {
+            if (organizationProfile.ObjectState == ObjectState.Added)
+            {
                 // New entity
-                _context.OrganizationProfiles.Add(organizationprofile);
-            } else {
+                _context.OrganizationProfiles.Add(organizationProfile);
+            }
+            else
+            {
                 // Existing entity
-                _context.Entry(organizationprofile).State = EntityState.Modified;
+                _context.Entry(organizationProfile).State = EntityState.Modified;
             }
         }
 

@@ -4,17 +4,18 @@ using Spectrum.Core.Data.Models;
 
 namespace Spectrum.Core.Data.Configuration
 {
-    // OrganizationProfile
-    internal partial class OrganizationProfileConfiguration : EntityTypeConfiguration<OrganizationProfile>
+    internal class OrganizationProfileConfiguration : EntityTypeConfiguration<OrganizationProfile>
     {
         public OrganizationProfileConfiguration(string schema = "dbo")
         {
             ToTable(schema + ".OrganizationProfile");
             HasKey(x => x.Id);
 
-            Property(x => x.Id).HasColumnName("Id").IsRequired().HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
+            Property(x => x.Id)
+                .HasColumnName("Id")
+                .IsRequired()
+                .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
             Property(x => x.OrganizationId).HasColumnName("OrganizationId").IsRequired();
-            Property(x => x.AddressNorthAmericaId).HasColumnName("AddressNorthAmericaId").IsOptional();
             Property(x => x.Default).HasColumnName("Default").IsRequired();
             Property(x => x.ProfileName).HasColumnName("ProfileName").IsRequired();
             Property(x => x.Description).HasColumnName("Description").IsOptional();
@@ -28,13 +29,14 @@ namespace Spectrum.Core.Data.Configuration
             Property(x => x.DstAdjust).HasColumnName("DstAdjust").IsOptional();
             Property(x => x.Language).HasColumnName("Language").IsOptional().HasMaxLength(100);
             Property(x => x.Notes).HasColumnName("Notes").IsOptional();
+            Property(x => x.Cloaked).HasColumnName("Cloaked").IsOptional();
+            Property(x => x.Archive).HasColumnName("Archive").IsOptional();
+            Property(x => x.CreatedDate).HasColumnName("CreatedDate").IsOptional();
+            Property(x => x.CreatedByUserId).HasColumnName("CreatedByUserId").IsOptional();
+            Property(x => x.ModifiedDate).HasColumnName("ModifiedDate").IsOptional();
+            Property(x => x.ModifiedByUserId).HasColumnName("ModifiedByUserId").IsOptional();
 
-            // Foreign keys
-            HasRequired(a => a.Organization).WithMany(b => b.OrganizationProfiles).HasForeignKey(c => c.OrganizationId); // FK_OrganizationProfile_Organization
-            HasOptional(a => a.AddressNorthAmerica).WithMany(b => b.OrganizationProfiles).HasForeignKey(c => c.AddressNorthAmericaId); // FK_OrganizationProfile_AddressNorthAmerica
-            InitializePartial();
+            HasRequired(a => a.Organization).WithMany(b => b.OrganizationProfiles).HasForeignKey(c => c.OrganizationId);
         }
-        partial void InitializePartial();
     }
-
 }

@@ -78,11 +78,12 @@
     <None Include="Reference Data\UserAssignedRole.sql" />
     <Build Include="Tables\User.sql" />
     <Build Include="Tables\UserClaim.sql" />
-    <Build Include="Tables\UserLogin.sql" />
+    <Build Include="Tables\UserExternalLogin.sql" />
     <Build Include="Tables\Role.sql" />
     <Build Include="Tables\UserRole.sql" />
     <Build Include="User Defined Types\Flag.sql" />
     <None Include="CreationScriptNotInBuild.sql" />
+    <None Include="Local.publish.xml" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Scripts\PostDeployment.sql" />
@@ -109,18 +110,18 @@
     <Build Include="Tables\RuleType.sql" />
     <Build Include="Tables\Rule.sql" />
     <Build Include="Tables\Preference.sql" />
-    <Build Include="Tables\AddressUnitedStates.sql" />
+    <Build Include="Tables\Address.sql" />
     <Build Include="Tables\UserPreference.sql" />
     <Build Include="Tables\Parameter.sql" />
     <Build Include="Tables\ApplicationParameter.sql" />
     <Build Include="Tables\OrganizationPreference.sql" />
-    <Build Include="Tables\JusrisdictionProfile.sql" />
+    <Build Include="Tables\JurisdictionProfile.sql" />
     <Build Include="Tables\RuleParameter.sql" />
     <Build Include="Tables\Position.sql" />
     <Build Include="Tables\UserPosition.sql" />
     <Build Include="Tables\Contact.sql" />
-    <Build Include="Tables\UserProfileAddressNorthAmerica.sql" />
-    <Build Include="Tables\OrganizationProfileAddressUnitedStates.sql" />
+    <Build Include="Tables\UserProfileAddress.sql" />
+    <Build Include="Tables\OrganizationProfileAddress.sql" />
     <Build Include="Tables\Message.sql" />
     <Build Include="Tables\AreaOfResponsibilityProfile.sql" />
     <Build Include="Tables\ApplicationNote.sql" />

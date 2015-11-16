@@ -9,39 +9,39 @@ using Spectrum.Core.Data.Repositories.Interfaces;
 
 namespace Spectrum.Core.Data.Repositories
 { 
-    public class AddressNorthAmericaRepository : IAddressNorthAmericaRepository
+    public class AddressRepository : IAddressNorthAmericaRepository
     {
         private CoreDbContext _context;
 
-        public AddressNorthAmericaRepository(ICoreUnitOfWork uow)
+        public AddressRepository(ICoreUnitOfWork uow)
         {
             _context = uow.Context;
         }
 
-        public IQueryable<AddressNorthAmerica> All
+        public IQueryable<Address> All
         {
-            get { return _context.AddressNorthAmericas; }
+            get { return _context.Addresses; }
         }
 
-        public IQueryable<AddressNorthAmerica> AllIncluding(params Expression<Func<AddressNorthAmerica, object>>[] includeProperties)
+        public IQueryable<Address> AllIncluding(params Expression<Func<Address, object>>[] includeProperties)
         {
-            IQueryable<AddressNorthAmerica> query = _context.AddressNorthAmericas;
+            IQueryable<Address> query = _context.Addresses;
             foreach (var includeProperty in includeProperties) {
                 query = query.Include(includeProperty);
             }
             return query;
         }
 
-        public AddressNorthAmerica Find(int id)
+        public Address Find(int id)
         {
-            return _context.AddressNorthAmericas.Find(id);
+            return _context.Addresses.Find(id);
         }
 
-        public void InsertOrUpdate(AddressNorthAmerica addressnorthamerica)
+        public void InsertOrUpdate(Address addressnorthamerica)
         {
             if (addressnorthamerica.Id == default(int)) {
                 // New entity
-                _context.AddressNorthAmericas.Add(addressnorthamerica);
+                _context.Addresses.Add(addressnorthamerica);
             } else {
                 // Existing entity
                 _context.Entry(addressnorthamerica).State = EntityState.Modified;
@@ -50,8 +50,8 @@ namespace Spectrum.Core.Data.Repositories
 
         public void Delete(int id)
         {
-            var addressnorthamerica = _context.AddressNorthAmericas.Find(id);
-            _context.AddressNorthAmericas.Remove(addressnorthamerica);
+            var addressnorthamerica = _context.Addresses.Find(id);
+            _context.Addresses.Remove(addressnorthamerica);
         }
 
         public void Save()

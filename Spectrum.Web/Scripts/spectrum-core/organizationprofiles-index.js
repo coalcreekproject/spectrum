@@ -3,19 +3,18 @@
     .controller('OrganizationProfileController', organizationProfileController);
 
 function organizationProfileParameters() {
-    this.OrganizationId = null;
+    this.organizationId = null;
 };
 
-function organizationProfileController($scope, $http, $window, $modal, organizationProfileFactory) {
+function organizationProfileController($scope, $http, $window, $modal, $stateParams, organizationProfileFactory) {
 
-    var splitUrl = $window.location.href.split("/");
-    $scope.OrganizationId = splitUrl[splitUrl.length - 1];
-    organizationProfileParameters.OrganizationId = $scope.OrganizationId;
+    $scope.organizationId = $stateParams.organizationId;
+    organizationProfileParameters.organizationId = $scope.organizationId;
 
     $modal.scope = $scope;
     $scope.data = organizationProfileFactory;
 
-    organizationProfileFactory.getOrganizationProfiles($scope.OrganizationId)
+    organizationProfileFactory.getOrganizationProfiles($scope.organizationId)
         .then(function (organizationProfiles) {
             // success
             //$scope.data = organization;
@@ -61,7 +60,7 @@ function AddOrganizationProfileModalController($scope, $modalInstance, organizat
 
     $scope.ok = function (organizationProfile) {
 
-        organizationProfile.OrganizationId = organizationProfileParameters.OrganizationId;
+        organizationProfile.OrganizationId = organizationProfileParameters.organizationId;
 
         organizationProfileFactory.addOrganizationProfiles(organizationProfile)
             .then(function () {
@@ -190,7 +189,15 @@ function organizationProfileFactory($http, $q) {
              for (var i = 0; i < _organizationProfiles.length; i++) {
                  if (_organizationProfiles[i].Id === editedOrganizationProfile.Id) {
                      _organizationProfiles[i].Name = editedOrganizationProfile.Name;
-
+                     _organizationProfiles[i].Description = editedOrganizationProfile.Description;
+                     _organizationProfiles[i].PrimaryContact = editedOrganizationProfile.PrimaryContact;
+                     _organizationProfiles[i].Phone = editedOrganizationProfile.Phone;
+                     _organizationProfiles[i].Fax = editedOrganizationProfile.Fax;
+                     _organizationProfiles[i].Email = editedOrganizationProfile.Email;
+                     _organizationProfiles[i].Country = editedOrganizationProfile.Country;
+                     _organizationProfiles[i].County = editedOrganizationProfile.County;
+                     _organizationProfiles[i].TimeZone = editedOrganizationProfile.TimeZone;
+                     _organizationProfiles[i].Language = editedOrganizationProfile.Language;
 
                      _organizationProfiles[i].val = editedOrganizationProfile.val;
 

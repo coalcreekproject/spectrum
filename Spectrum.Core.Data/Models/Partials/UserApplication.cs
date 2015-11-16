@@ -1,4 +1,3 @@
-using System;
 using System.ComponentModel.DataAnnotations.Schema;
 using Spectrum.Core.Data.Models.Interfaces;
 
