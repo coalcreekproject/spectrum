@@ -2938,9 +2938,9 @@
     <Content Include="Templates\Common\navigation.html" />
     <Content Include="Templates\Common\panel_tools.html" />
     <Content Include="Templates\Dashboard\dashboard.html" />
-    <Content Include="Templates\OrganizationProfile\addOrganizationProfileModal.html" />
-    <Content Include="Templates\OrganizationProfile\deleteOrganizationProfileModal.html" />
-    <Content Include="Templates\OrganizationProfile\editOrganizationProfileModal.html" />
+    <None Include="Views\Organization\Partials\AddOrganizationProfileModal.cshtml" />
+    <None Include="Views\Organization\Partials\DeleteOrganizationProfileModal.cshtml" />
+    <None Include="Views\Organization\Partials\EditOrganizationProfileModal.cshtml" />
     <None Include="Views\User\Partials\DeleteUserProfileModal.cshtml" />
     <None Include="Views\User\Partials\EditUserProfileModal.cshtml" />
     <None Include="Views\User\Partials\AddUserProfileModal.cshtml" />
@@ -3029,7 +3029,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\_Navigation.cshtml" />
     <Content Include="Views\Shared\ServerError.cshtml" />
-    <Content Include="Views\Contact\ContactIndex.cshtml" />
+    <Content Include="Views\Contact\Index.cshtml" />
     <Content Include="Views\User\Partials\UserProfileIndex.cshtml" />
     <Content Include="Views\User\Partials\UserPanelIndex.cshtml" />
   </ItemGroup>
@@ -3038,6 +3038,7 @@
     <Folder Include="Areas\Eoc\Models\" />
     <Folder Include="Areas\Eoc\Views\Eoc\" />
     <Folder Include="Areas\Eoc\Views\Shared\" />
+    <Folder Include="Views\Contact\Partials\" />
     <Folder Include="Views\Role\" />
   </ItemGroup>
   <ItemGroup>

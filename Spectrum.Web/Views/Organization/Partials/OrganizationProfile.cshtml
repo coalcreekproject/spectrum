@@ -32,23 +32,25 @@
                 <h2 class="font-light m-b-xs">
                     Organization Profiles
                 </h2>
-                <small>Manage your organization profiles</small>
+                <small>Manage profiles your organization</small>
             </div>
         </div>
     </div>
 
-    <div small-header child=" row " class="normalheader transition">
+    <div small-header child="row" class="normalheader transition">
         <div animate-panel effect="fadeInUp">
             <div class="hpanel">
                 <div class="panel-body">
                     <div class="form-inline">
-                        <div class="col-md-4">
-                            <input class=" form-control" type="text" placeholder="Search organizations...">
+                        <div class="col-lg-10">
+                            <div class="input-group m-b">
+                                <span class="input-group-btn">
+                                    <button type="button" class="btn btn-primary">Search</button>
+                                </span>
+                                <input type="text" class="form-control" placeholder="Search organization profiles...">
+                            </div>
                         </div>
-                        <div class="col-md-2">
-                            <button class="btn btn-default">Search</button>
-                        </div>
-                        <div>
+                        <div class="col-lg-2">
                             <div class=pull-right>
                                 <div style="padding-bottom: 15px">
                                     <button id="add" class="btn btn-primary" ng-click="add()">Add an Organization Profile</button>
@@ -60,7 +62,6 @@
             </div>
         </div>
     </div>
-
 
     <div class="content">
         <div ng-repeat="p in data.organizationProfiles track by p.Id">
@@ -74,11 +75,46 @@
                             </div>
                             <div class="panel-body">
                                 <div class="row">
-                                    <div class="col-sm-3">
+                                    <div class="col-sm-4">
                                         <label class="control-label">Profile Name: </label> {{ p.ProfileName }}
                                     </div>
-                                    <div class="col-sm-3">
+                                    <div class="col-sm-4">
                                         <label class="control-label">Profile Description: </label> {{ p.Description }}
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <label class="control-label">Primary Contact: </label> {{ p.PrimaryContact }}
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label class="control-label">Phone: </label> {{ p.Phone }}
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label class="control-label">Fax: </label> {{ p.Fax }}
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <label class="control-label">Email: </label> {{ p.Email }}
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label class="control-label">Country: </label> {{ p.Country}}
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label class="control-label">County: </label> {{ p.County }}
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <label class="control-label">Time Zone: </label> {{ p.TimeZone }}
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label class="control-label">Language: </label> {{ p.Language}}
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <label class="control-label">Notes: </label> {{ p.Notes }}
                                     </div>
                                 </div>
                             </div>
@@ -100,4 +136,4 @@
 
 @section Scripts {
     @*<script src="~/Scripts/spectrum-core/organizationprofiles-index.js"></script>*@
-}
+}</div>

@@ -26,14 +26,14 @@ function organizationProfileController($scope, $http, $window, $modal, $statePar
 
     $scope.add = function () {
         var modalInstance = $modal.open({
-            templateUrl: '/Templates/OrganizationProfile/addOrganizationProfileModal.html',
+            templateUrl: '/Templates/Organization/addOrganizationProfileModal',
             controller: AddOrganizationProfileModalController
         });
     };
 
     $scope.edit = function (organizationProfile) {
         var modalInstance = $modal.open({
-            templateUrl: '/Templates/OrganizationProfile/editOrganizationProfileModal.html',
+            templateUrl: '/Templates/Organization/EditOrganizationProfileModal',
             controller: EditOrganizationProfileModalController,
             resolve: {
                 organizationProfile: function () {
@@ -45,7 +45,7 @@ function organizationProfileController($scope, $http, $window, $modal, $statePar
 
     $scope.delete = function (organizationProfile) {
         var modalInstance = $modal.open({
-            templateUrl: '/Templates/OrganizationProfile/deleteOrganizationProfileModal.html',
+            templateUrl: '/Templates/Organization/deleteOrganizationProfileModal',
             controller: DeleteOrganizationProfileModalController,
             resolve: {
                 organizationProfile: function () {
@@ -188,6 +188,7 @@ function organizationProfileFactory($http, $q) {
 
              for (var i = 0; i < _organizationProfiles.length; i++) {
                  if (_organizationProfiles[i].Id === editedOrganizationProfile.Id) {
+                     _organizationProfiles[i].Default = editedOrganizationProfile.Default;
                      _organizationProfiles[i].Name = editedOrganizationProfile.Name;
                      _organizationProfiles[i].Description = editedOrganizationProfile.Description;
                      _organizationProfiles[i].PrimaryContact = editedOrganizationProfile.PrimaryContact;
@@ -200,13 +201,13 @@ function organizationProfileFactory($http, $q) {
                      _organizationProfiles[i].Language = editedOrganizationProfile.Language;
                      _organizationProfiles[i].Notes = editedOrganizationProfile.Notes;
 
-                     _organizationProfiles[i].val = editedOrganizationProfile.val;
+                     //_organizationProfiles[i].val = editedOrganizationProfile.val;
 
                      break;
                  }
              }
 
-             deferred.resolve(editedOrganization);
+             deferred.resolve(editedOrganizationProfile);
          },
          function () {
              // error

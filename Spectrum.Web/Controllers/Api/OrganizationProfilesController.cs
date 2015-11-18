@@ -88,7 +88,7 @@ namespace Spectrum.Web.Controllers.Api
                 return Request.CreateResponse(HttpStatusCode.NotFound);
             }
 
-            organizationProfile = Mapper.DynamicMap<OrganizationProfile>(editOrganizationProfile);
+            Mapper.Map(editOrganizationProfile, organizationProfile);
 
             //organizationProfile.Default = editOrganizationProfile.Default;
             //organizationProfile.ProfileName = editOrganizationProfile.ProfileName;

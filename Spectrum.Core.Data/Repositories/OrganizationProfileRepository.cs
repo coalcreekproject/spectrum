@@ -55,7 +55,6 @@ namespace Spectrum.Core.Data.Repositories
             else
             {
                 // Existing entity
-                //_context.Entry(organizationProfile.Organization).State = EntityState.Unchanged;
                 _context.Entry(organizationProfile).State = EntityState.Modified;
             }
         }

@@ -3,7 +3,6 @@
     .controller('OrganizationController', organizationController)
     .config(config);
 
-
 function config($stateProvider, $urlRouterProvider, $compileProvider) {
 
     // Optimize load start with remove binding information inside the DOM element

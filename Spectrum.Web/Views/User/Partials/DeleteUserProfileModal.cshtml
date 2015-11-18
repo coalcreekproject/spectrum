@@ -12,7 +12,7 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div>
-                            <label><input icheck type="checkbox" name="checkboxDefault" ng-model="userProfile.Default"> Make this my default profile </label>
+                            <label> <input type="checkbox" name="checkboxDefault" ng-model="userProfile.Default" disabled> Make this the default profile </label>
                         </div>
                     </div>
                 </div>
@@ -21,25 +21,8 @@
             <div class="form-group">
                 <div class="row">
                     <div class="col-md-6">
-                        <label for="organization">Organization</label>
-                        <input type="text" id="organization" placeholder="Organization" ng-model="userProfile.OrganizationId" class="form-control" disabled>
-                    </div>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <div class="row">
-                    <div class="col-md-4">
                         <label for="profileName">Profile Name</label>
                         <input type="text" Id="profileName" placeholder="Profile Name" ng-model="userProfile.ProfileName" class="form-control" disabled>
-                    </div>
-                    <div class="col-md-4">
-                        <label for="title">Title</label>
-                        <input type="text" Id="title" placeholder="Title" ng-model="userProfile.Title" class="form-control" disabled>
-                    </div>
-                    <div class="col-md-4">
-                        <label for="title">Position</label>
-                        <input type="text" Id="position" placeholder="Position" ng-model="userProfile.Position" class="form-control" disabled>
                     </div>
                 </div>
             </div>
@@ -67,6 +50,19 @@
                         <label for="nickName">Nickname</label>
                         <input type="text" id="nickName" placeholder="Nickname" ng-model="userProfile.Nickname" class="form-control" disabled>
                     </div>
+                    <div class="col-md-4">
+                        <label for="title">Title</label>
+                        <input type="text" Id="title" placeholder="Title" ng-model="userProfile.Title" class="form-control" disabled>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="title">Position</label>
+                        <input type="text" Id="position" placeholder="Position" ng-model="userProfile.Position" class="form-control" disabled>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="row">
                     <div class="col-md-4">
                         <label for="secondaryMail">Secondary Mail</label>
                         <input type="text" id="secondaryMail" placeholder="Secondary Email" ng-model="userProfile.SecondaryEmail" class="form-control" disabled>

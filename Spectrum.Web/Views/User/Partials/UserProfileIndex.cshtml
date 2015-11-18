@@ -22,21 +22,23 @@
         </div>
     </div>
 
-    <div small-header child=" row " class="normalheader transition">
+    <div small-header child="row" class="normalheader transition">
         <div animate-panel effect="fadeInUp">
             <div class="hpanel">
                 <div class="panel-body">
                     <div class="form-inline">
-                        <div class="col-md-4">
-                            <input class=" form-control" type="text" placeholder="Search profiles...">
+                        <div class="col-lg-10">
+                            <div class="input-group m-b">
+                                <span class="input-group-btn">
+                                    <button type="button" class="btn btn-primary">Search</button>
+                                </span>
+                                <input type="text" class="form-control" placeholder="Search user profiles...">
+                            </div>
                         </div>
-                        <div class="col-md-2">
-                            <button class="btn btn-default">Search</button>
-                        </div>
-                        <div>
+                        <div class="col-lg-2">
                             <div class=pull-right>
                                 <div style="padding-bottom: 15px">
-                                    <button id="add" class="btn btn-primary" ng-click="add()">Add a Profile</button>
+                                    <button id="add" class="btn btn-primary" ng-click="add()">Add a User Profile</button>
                                 </div>
                             </div>
                         </div>
@@ -58,48 +60,41 @@
                             </div>
                             <div class="panel-body">
                                 <div class="row">
-                                    <div class="col-sm-3">
-                                        <label class="control-label">Title: </label> {{ p.Title }}
-                                    </div>
-                                    <div class="col-sm-3">
+                                    <div class="col-sm-4">
                                         <label class="control-label">First Name: </label> {{ p.FirstName }}
                                     </div>
-                                    <div class="col-sm-3">
+                                    <div class="col-sm-4">
                                         <label class="control-label">Middle Name: </label> {{ p.MiddleName }}
                                     </div>
-                                    <div class="col-sm-3">
+                                    <div class="col-sm-4">
                                         <label class="control-label">Last Name: </label> {{ p.LastName }}
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-sm-3">
+                                    <div class="col-sm-4">
                                         <label class="control-label">Nickname: </label> {{ p.Nickname }}
                                     </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-6">
-                                        <label class="control-label">Secondary Email: </label> {{ p.SecondaryEmail }}
+                                    <div class="col-sm-4">
+                                        <label class="control-label">Title: </label> {{ p.Title }}
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-sm-3">
+                                    <div class="col-sm-4">
+                                        <label class="control-label">Secondary Email: </label> {{ p.SecondaryEmail }}
+                                    </div>
+                                    <div class="col-sm-4">
                                         <label class="control-label">Secondary Phone: </label> {{ p.SecondaryPhone }}
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-sm-3">
-                                        <label class=" control-label">Time Zone: </label> {{ p.TimeZone }}
-                                    </div>
-                                    <div class="col-sm-3">
+                                    <div class="col-sm-4">
                                         <label class="control-label">Language: </label> {{ p.Language }}
                                     </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-2">
-                                        <div>
-                                            <label> <input icheck type="checkbox" name="checkboxDefault" ng-model="userProfile.Default" disabled="true"> Adjust for DST </label>
-                                        </div>
-                                        {{ p.DstAdjust }}
+                                    <div class="col-sm-4">
+                                        <label class=" control-label">Time Zone: </label> {{ p.TimeZone }}
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <label>Adjust for DST: </label> {{ p.DstAdjust }}
                                     </div>
                                 </div>
                             </div>

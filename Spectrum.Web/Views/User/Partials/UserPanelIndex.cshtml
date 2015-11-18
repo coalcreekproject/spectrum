@@ -23,23 +23,25 @@
                 <h2 class="font-light m-b-xs">
                     Users
                 </h2>
-                <small>Manage your users</small>
+                <small>Manage users for your organization</small>
             </div>
         </div>
     </div>
 
-    <div small-header child=" row " class="normalheader transition">
+    <div small-header child="row" class="normalheader transition">
         <div animate-panel effect="fadeInUp">
             <div class="hpanel">
                 <div class="panel-body">
                     <div class="form-inline">
-                        <div class="col-md-4">
-                            <input class=" form-control" type="text" placeholder="Search users...">
+                        <div class="col-lg-10">
+                            <div class="input-group m-b">
+                                <span class="input-group-btn">
+                                    <button type="button" class="btn btn-primary">Search</button>
+                                </span>
+                                <input type="text" class="form-control" placeholder="Search users...">
+                            </div>
                         </div>
-                        <div class="col-md-2">
-                            <button class="btn btn-default">Search</button>
-                        </div>
-                        <div>
+                        <div class="col-lg-2">
                             <div class=pull-right>
                                 <div style="padding-bottom: 15px">
                                     <button id="add" class="btn btn-primary" ng-click="add()">Add a User</button>
