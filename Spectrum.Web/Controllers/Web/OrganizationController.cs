@@ -67,11 +67,11 @@ namespace Spectrum.Web.Controllers.Web
 
                 case "organizationroles":
                     return PartialView("~/Views/Organization/Partials/OrganizationRole.cshtml");
-                case "addorganizationroles":
+                case "addorganizationrolemodal":
                     return PartialView("~/Views/Organization/Partials/AddOrganizationRoleModal.cshtml");
-                case "editorganizationroles":
+                case "editorganizationrolemodal":
                     return PartialView("~/Views/Organization/Partials/EditOrganizationRoleModal.cshtml");
-                case "deleteorganizationroles":
+                case "deleteorganizationrolemodal":
                     return PartialView("~/Views/Organization/Partials/DeleteOrganizationRoleModal.cshtml");
 
                 default:

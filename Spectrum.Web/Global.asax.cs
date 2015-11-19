@@ -23,9 +23,14 @@ namespace Spectrum.Web
             {
                 cfg.CreateMap<User, UserModel>();
                 cfg.CreateMap<UserProfile, UserProfileModel>();
+
+                cfg.CreateMap<OrganizationProfile, OrganizationProfileViewModel>();
                 cfg.CreateMap<OrganizationProfileViewModel, OrganizationProfile>()
                     .ForMember(p => p.Organization, o => o.Ignore());
-                cfg.CreateMap<OrganizationProfile, OrganizationProfileViewModel>();
+
+                cfg.CreateMap<Role, RoleViewModel>();
+                cfg.CreateMap<RoleViewModel, Role>();
+
 
             });
 

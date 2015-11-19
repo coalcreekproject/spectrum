@@ -68,6 +68,30 @@ namespace Spectrum.Core.Data.Context.Initializers
                 new OrganizationType()
                 {
                     Id = 7,
+                    Name = "Agency - First Responder",
+                    Description = "First responder Agencies, Fire, EMS"
+                },
+                new OrganizationType()
+                {
+                    Id = 8,
+                    Name = "Agency - Law Enforcement",
+                    Description = "LE Organizations, typically police"
+                },
+                new OrganizationType()
+                {
+                    Id = 9,
+                    Name = "Agency - Investigative",
+                    Description = "Investigative Agencies"
+                },
+                new OrganizationType()
+                {
+                    Id = 10,
+                    Name = "Agency - Other",
+                    Description = "Investigative Agencies"
+                },
+                new OrganizationType()
+                {
+                    Id = 11,
                     Name = "Private",
                     Description = "Private companies and organizations"
                 },

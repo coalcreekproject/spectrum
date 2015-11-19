@@ -20,7 +20,7 @@ function config($stateProvider, $urlRouterProvider, $compileProvider) {
             }
         })
         .state('roles', {
-            url: "/roles",
+            url: "/roles/:organizationId",
             templateUrl: "/Templates/Organization/OrganizationRoles",
             data: {
                 pageTitle: 'roles'

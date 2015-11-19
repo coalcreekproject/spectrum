@@ -42,7 +42,7 @@ namespace Spectrum.Web.Controllers.Api
 
         [System.Web.Http.HttpGet]
         // GET: api/Users
-        public IEnumerable<UserViewModel> Get(bool includeProfiles = false)
+        public IEnumerable<UserViewModel> Get()
         {
             var userViewModels = new List<UserViewModel>();
 
@@ -64,8 +64,9 @@ namespace Spectrum.Web.Controllers.Api
         
         }
 
+        [System.Web.Http.HttpGet]
         // GET: api/Users/5
-        public HttpResponseMessage Get(int id, bool includeProfiles = false)
+        public HttpResponseMessage Get(int id)
         {
             var user = _manager.Users.FirstOrDefault(u => u.Id == id);
 
@@ -79,8 +80,6 @@ namespace Spectrum.Web.Controllers.Api
                 Id = user.Id,
                 UserName = user.UserName,
                 Email = user.Email
-                //Password = "********",
-                //ConfirmPassword = "********"
             };
 
             return Request.CreateResponse(HttpStatusCode.OK, userViewModel); 

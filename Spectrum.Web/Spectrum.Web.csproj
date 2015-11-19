@@ -2941,8 +2941,11 @@
     <Content Include="Templates\Common\panel_tools.html" />
     <Content Include="Templates\Dashboard\dashboard.html" />
     <None Include="Views\Organization\Partials\AddOrganizationProfileModal.cshtml" />
+    <Content Include="Views\Organization\Partials\AddOrganizationRoleModal.cshtml" />
     <None Include="Views\Organization\Partials\DeleteOrganizationProfileModal.cshtml" />
+    <Content Include="Views\Organization\Partials\DeleteOrganizationRoleModal.cshtml" />
     <None Include="Views\Organization\Partials\EditOrganizationProfileModal.cshtml" />
+    <Content Include="Views\Organization\Partials\EditOrganizationRoleModal.cshtml" />
     <None Include="Views\User\Partials\DeleteUserProfileModal.cshtml" />
     <None Include="Views\User\Partials\EditUserProfileModal.cshtml" />
     <None Include="Views\User\Partials\AddUserProfileModal.cshtml" />
