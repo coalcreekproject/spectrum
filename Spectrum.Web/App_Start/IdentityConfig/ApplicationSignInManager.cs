@@ -23,7 +23,7 @@ namespace Spectrum.Web.IdentityConfig
 
         public override Task<ClaimsIdentity> CreateUserIdentityAsync(User user)
         {
-            CacheLoggedInUser(user);
+            //CacheLoggedInUser(user);
             return user.GenerateUserIdentityAsync((ApplicationUserManager) UserManager);
         }
 

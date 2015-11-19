@@ -11,7 +11,9 @@ namespace Spectrum.Core.Data.Models
             InitializePartial();
         }
 
+        public int Id { get; set; }
         public int OrganizationId { get; set; }
+        public string Name { get; set; }
         public string Description { get; set; }
         public int? ApplicationId { get; set; }
         public bool? Cloaked { get; set; }
@@ -25,8 +27,6 @@ namespace Spectrum.Core.Data.Models
 
         public virtual Application Application { get; set; }
         public virtual Organization Organization { get; set; }
-        public int Id { get; set; }
-        public string Name { get; set; }
 
         partial void InitializePartial();
     }
