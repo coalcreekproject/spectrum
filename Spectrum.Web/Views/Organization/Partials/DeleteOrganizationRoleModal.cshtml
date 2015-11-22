@@ -1,0 +1,44 @@
+﻿<div class="modal-dialog">
+
+    <div class="modal-header">
+        <h4 class="modal-title">Delete Role</h4>
+        <small class="font-bold">Are you sure you want to delete this role?</small>
+    </div>
+
+    <div class="modal-body">
+        <form method="get" class="form-horizontal">
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="RoleName">Role Name</label>
+                        <input type="text" id="RoleName" placeholder="Role Name" ng-model="organizationRole.Name" class="form-control" disabled>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="Description">Role Description</label>
+                        <input type="text" id="Description" placeholder="Description" ng-model="organizationRole.Description" class="form-control" disabled>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="Application">Application</label>
+                        <input type="text" id="Application" placeholder="Enter the application id" ng-model="organizationRole.Application" class="form-control" disabled>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="modal-footer">
+    <button type="button" class="btn btn-default" ng-click="cancel()">Close</button>
+    <button type="button" class="btn btn-danger" ng-click="ok(role)">Delete</button>
+</div>
+

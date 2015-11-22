@@ -1,0 +1,44 @@
+﻿<div class="modal-dialog">
+
+    <div class="modal-header">
+        <h4 class="modal-title">Add Role</h4>
+        <small class="font-bold">Add a role used in your organization</small>
+    </div>
+
+    <div class="modal-body">
+        <form method="get" class="form-horizontal">
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="RoleName">Role Name</label>
+                        <input type="text" id="RoleName" placeholder="Role Name" ng-model="organizationRole.Name" class="form-control">
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="Description">Role Description</label>
+                        <input type="text" id="Description" placeholder="Description" ng-model="organizationRole.Description" class="form-control">
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="Application">Application</label>
+                        <input type="text" id="Application" placeholder="Enter the application id" ng-model="organizationRole.Application" class="form-control">
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="modal-footer">
+    <button type="button" class="btn btn-default" ng-click="cancel()">Close</button>
+    <button type="button" class="btn btn-success" ng-click="ok(role)">Save changes</button>
+</div>
+
