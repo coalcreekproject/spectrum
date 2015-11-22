@@ -21,22 +21,20 @@
 
     <ul side-navigation class="nav" id="side-menu">
         <li ui-sref-active="active">
-            <a href="@Url.Action("Index", "Dashboard")"><span class="nav-label">Dashboard</span><span class="label label-info pull-right">NEW</span></a>
+            <a href="@Url.Action("Index", "Dashboard")"><span class="nav-label">Launch Pad</span><span class="label label-info pull-right">NEW</span></a>
         </li>
         <li ui-sref-active="active">
-            <a ui-sref="analytics"><span class="nav-label">Analytics</span><span class="label label-warning pull-right">NEW</span> </a>
+            <a ui-sref="analytics"><span class="nav-label">Analytics</span><span class="label label-warning pull-right">COMING SOON!</span> </a>
         </li>
         <li ng-class="{active: $state.includes('EOC')}">
             <a href="#"><span class="nav-label">EOC</span><span class="fa arrow"></span> </a>
             <ul class="nav nav-second-level">
                 <li class="@Html.IsSelected(action: "Dashboard")"><a href="@Url.Action("", "")">Dashboard</a></li>
+                <li class="@Html.IsSelected(action: "Timeline")"><a href="@Url.Action("", "")">Event Timeline</a></li>
                 <li class="@Html.IsSelected(action: "Action Plans")"><a href="@Url.Action("", "")">Action Plans</a></li>
                 <li class="@Html.IsSelected(action: "Checklists")"><a href="@Url.Action("", "")">Checklists</a></li>
-                <li class="@Html.IsSelected(action: "Contacts")"><a href="@Url.Action("", "")">Contacts</a></li>
-                <li class="@Html.IsSelected(action: "Files")"><a href="@Url.Action("", "")">Files</a></li>
                 <li class="@Html.IsSelected(action: "Media")"><a href="@Url.Action("", "")">Press and Media</a></li>
                 <li class="@Html.IsSelected(action: "Shelters")"><a href="@Url.Action("", "")">Shelters</a></li>
-                <li class="@Html.IsSelected(action: "Timeline")"><a href="@Url.Action("", "")">Event Timeline</a></li>
             </ul>
         </li>
         <li ng-class="{active: $state.includes('excercises')}">

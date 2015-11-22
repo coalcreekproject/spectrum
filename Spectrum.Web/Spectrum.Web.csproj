@@ -299,6 +299,8 @@
     <Content Include="bower_components\angular-bootstrap\ui-bootstrap-tpls.min.js" />
     <Content Include="bower_components\angular-bootstrap\ui-bootstrap.js" />
     <Content Include="bower_components\angular-bootstrap\ui-bootstrap.min.js" />
+    <Content Include="bower_components\angular-drag-and-drop-lists\angular-drag-and-drop-lists.js" />
+    <Content Include="bower_components\angular-drag-and-drop-lists\angular-drag-and-drop-lists.min.js" />
     <Content Include="bower_components\angular-flot\.gitignore" />
     <Content Include="bower_components\angular-flot\angular-flot.js" />
     <Content Include="bower_components\angular-flot\example\app.js" />
@@ -2834,6 +2836,11 @@
     <Content Include="Content\fonts\pe-icon-7-stroke\fonts\Pe-icon-7-stroke.eot" />
     <Content Include="Content\fonts\pe-icon-7-stroke\fonts\Pe-icon-7-stroke.ttf" />
     <Content Include="Content\fonts\pe-icon-7-stroke\fonts\Pe-icon-7-stroke.woff" />
+    <Content Include="bower_components\angular-drag-and-drop-lists\.bower.json" />
+    <Content Include="bower_components\angular-drag-and-drop-lists\bower.json" />
+    <Content Include="bower_components\angular-drag-and-drop-lists\CHANGELOG.md" />
+    <Content Include="bower_components\angular-drag-and-drop-lists\LICENSE" />
+    <Content Include="bower_components\angular-drag-and-drop-lists\README.md" />
     <None Include="Content\images\landing\header.jpg.old" />
     <Content Include="Content\images\landing\s1.png" />
     <Content Include="Content\images\landing\s2.png" />
@@ -3037,6 +3044,7 @@
     <Content Include="Views\Contact\Index.cshtml" />
     <Content Include="Views\User\Partials\UserProfileIndex.cshtml" />
     <Content Include="Views\User\Partials\UserPanelIndex.cshtml" />
+    <Content Include="Views\User\Partials\UserRolesModal.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

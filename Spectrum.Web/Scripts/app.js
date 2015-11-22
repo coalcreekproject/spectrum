@@ -17,17 +17,18 @@
         'ui.map',                   // Ui Map for Google maps
         'ui.calendar',              // UI Calendar
         'summernote',               // Summernote plugin
-        //'ngGrid',                   // Angular ng Grid
+        //'ngGrid',                 // Angular ng Grid
         'ui.tree',                  // Angular ui Tree
         'bm.bsTour',                // Angular bootstrap tour
-        //'datatables',               // Angular datatables plugin
+        //'datatables',             // Angular datatables plugin
         'xeditable',                // Angular-xeditable
         'ui.select',                // AngularJS ui-select
-        'ui.sortable',               // AngularJS ui-sortable
+        'ui.sortable',              // AngularJS ui-sortable
         'ngTouch',
         //'oitozero.ngSweetAlert',
-        'ui.grid',
-        'ui.grid.selection'
+        'ui.grid',                  // Angular UI Grid
+        'ui.grid.selection',        // Selection tools for Ui Grid
+        'dndLists'                  //drag and drop lists
     ]);
 })();
 

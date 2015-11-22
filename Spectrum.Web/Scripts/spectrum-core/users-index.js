@@ -21,13 +21,13 @@ function config($stateProvider, $urlRouterProvider, $compileProvider) {
             //url: "/grid/:userId",
             url: "/grid",
             templateUrl: "/Templates/User/UserGridIndex",
-            params: { userId: null},
+            params: { userId: null },
             data: { pageTitle: 'profiles' }
         })
         .state('userprofiles', {
             url: "/profiles/:userId",
             templateUrl: "/Templates/User/UserProfileIndex",
-            params: { userId: null},
+            params: { userId: null },
             data: { pageTitle: 'profiles' }
         });
 }
@@ -79,8 +79,58 @@ function userPanelController($scope, $http, $modal, $state, userFactory) {
         });
     };
 
+    $scope.roles = function (user) {
+        var modalInstance = $modal.open({
+            templateUrl: '/Templates/User/AssignUserRolesModal',
+            controller: SimpleDemoController,
+            resolve: {
+                user: function () {
+                    return angular.copy(user);
+                }
+            }
+        });
+    };
+
     $scope.userprofiles = function (user) {
         $state.go('userprofiles', { 'userId': user.Id });
+    };
+};
+
+function SimpleDemoController($scope, $modalInstance) {
+
+    $scope.models = {
+        selected: null,
+        lists: { "A": [], "B": [] }
+    };
+
+    // Generate initial model
+    for (var i = 1; i <= 5; ++i) {
+        $scope.models.lists.A.push({ label: "Item A" + i });
+        $scope.models.lists.B.push({ label: "Item B" + i });
+    }
+
+    // Model to JSON for demo purpose
+    $scope.$watch('models', function (model) {
+        $scope.modelAsJson = angular.toJson(model, true);
+    }, true);
+
+    $scope.ok = function (user) {
+
+        //userFactory.addUser(user)
+        //    .then(function () {
+        //        // success
+        //        $modalInstance.close();
+        //    },
+        //        function () {
+        //            // error
+        //            alert("could not save roles");
+        //        });
+
+        $modalInstance.close();
+    };
+
+    $scope.cancel = function () {
+        $modalInstance.dismiss('cancel');
     };
 };
 
