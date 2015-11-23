@@ -242,7 +242,6 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Core.md" />
-    <None Include="Configuration\Configuration.md" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

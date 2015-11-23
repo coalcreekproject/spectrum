@@ -233,7 +233,7 @@
     <Compile Include="App_Start\UnityMvcActivator.cs" />
     <Compile Include="App_Start\UnityWebApiActivator.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Areas\Eoc\Controllers\EocController.cs" />
+    <Compile Include="Areas\Eoc\Controllers\DashboardController.cs" />
     <Compile Include="Areas\Eoc\EocAreaRegistration.cs" />
     <Compile Include="Controllers\Api\RolesController.cs" />
     <Compile Include="Controllers\Web\AccountController.cs" />
@@ -2367,7 +2367,9 @@
     <Content Include="Content\fonts\pe-icon-7-stroke\fonts\Pe-icon-7-stroke.svg" />
     <Content Include="Content\images\green%402x.png" />
     <Content Include="Content\images\green.png" />
+    <Content Include="Content\Site.css" />
     <Content Include="Content\style.css" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="gruntfile.js" />
     <Content Include="Content\icons\pe-icon-7-stroke\css\helper.css" />
@@ -2841,6 +2843,8 @@
     <Content Include="bower_components\angular-drag-and-drop-lists\CHANGELOG.md" />
     <Content Include="bower_components\angular-drag-and-drop-lists\LICENSE" />
     <Content Include="bower_components\angular-drag-and-drop-lists\README.md" />
+    <Content Include="Areas\Eoc\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Eoc\Views\Dashboard\Index.cshtml" />
     <None Include="Content\images\landing\header.jpg.old" />
     <Content Include="Content\images\landing\s1.png" />
     <Content Include="Content\images\landing\s2.png" />
@@ -2921,6 +2925,9 @@
     <Content Include="Less\tour.less" />
     <Content Include="Less\various.less" />
     <Content Include="Less\wizard.less" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <None Include="Properties\PublishProfiles\spectrumoperational.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -3049,7 +3056,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Eoc\Models\" />
-    <Folder Include="Areas\Eoc\Views\Eoc\" />
     <Folder Include="Areas\Eoc\Views\Shared\" />
     <Folder Include="Views\Contact\Partials\" />
     <Folder Include="Views\Role\" />

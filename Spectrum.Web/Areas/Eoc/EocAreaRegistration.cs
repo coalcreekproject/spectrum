@@ -15,9 +15,10 @@ namespace Spectrum.Web.Areas.Eoc
         public override void RegisterArea(AreaRegistrationContext context) 
         {
             context.MapRoute(
-                "Eoc_default",
+                "Eoc",
                 "Eoc/{controller}/{action}/{id}",
-                new { action = "Index", id = UrlParameter.Optional }
+                new { action = "Index", id = UrlParameter.Optional },
+                new[] { "Spectrum.Web.Areas.Eoc.Controllers" }
             );
         }
     }

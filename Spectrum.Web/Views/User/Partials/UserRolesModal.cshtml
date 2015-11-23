@@ -1,71 +1,4 @@
-﻿<style>
-    /**
- * For the correct positioning of the placeholder element, the dnd-list and
- * it's children must have position: relative
- */
-     .simpleDemo ul[dnd-list],
-     .simpleDemo ul[dnd-list] > li {
-         position: relative;
-     }
-
-    /**
- * The dnd-list should always have a min-height,
- * otherwise you can't drop to it once it's empty
- */
-    .simpleDemo ul[dnd-list] {
-        min-height: 42px;
-        padding-left: 0px;
-    }
-
-    /**
- * The dndDraggingSource class will be applied to
- * the source element of a drag operation. It makes
- * sense to hide it to give the user the feeling
- * that he's actually moving it.
- */
-    .simpleDemo ul[dnd-list] .dndDraggingSource {
-        display: none;
-    }
-
-    /**
- * An element with .dndPlaceholder class will be
- * added to the dnd-list while the user is dragging
- * over it.
- */
-    .simpleDemo ul[dnd-list] .dndPlaceholder {
-        display: block;
-        background-color: #ddd;
-        min-height: 42px;
-    }
-
-    /**
- * The dnd-lists's child elements currently MUST have
- * position: relative. Otherwise we can not determine
- * whether the mouse pointer is in the upper or lower
- * half of the element we are dragging over. In other
- * browsers we can use event.offsetY for this.
- */
-    .simpleDemo ul[dnd-list] li {
-        background-color: #fff;
-        border: 1px solid #ddd;
-        border-top-right-radius: 4px;
-        border-top-left-radius: 4px;
-        display: block;
-        padding: 10px 15px;
-        margin-bottom: -1px;
-    }
-
-    /**
- * Show selected elements in green
- */
-    .simpleDemo ul[dnd-list] li.selected {
-        background-color: #dff0d8;
-        color: #3c763d;
-    }
-</style>
-
-
-<div class="modal-dialog">
+﻿<div class="modal-dialog">
     <div class="modal-header">
         <h4 class="modal-title">User Roles</h4>
         <small class="font-bold">Assign Roles to this User</small>
@@ -77,50 +10,63 @@
 
             <div class="col-md-12">
                 <div class="row">
-                    <div ng-repeat="(listName, list) in models.lists" class="col-md-6">
-                        <div class="panel panel-info">
+                    <div class="col-md-6">
+                        <div class="panel panel-dragdroplist">
                             <div class="panel-heading">
-                                <h3 class="panel-title">List {{listName}}</h3>
+                                <h3 class="panel-title">Available</h3>
                             </div>
-                            <div class="panel-body">
-                                <!-- The dnd-list directive allows to drop elements into it.
-                                The dropped data will be added to the referenced list -->
-                                <ul dnd-list="list">
-                                    <!-- The dnd-draggable directive makes an element draggable and will
-                                    transfer the object that was assigned to it. If an element was
-                                    dragged away, you have to remove it from the original list
-                                    yourself using the dnd-moved attribute -->
-                                    <li ng-repeat="item in list"
+                            <div class="panel-dragdroplist-body">
+                                <ul dnd-list="models.lists.Available">
+                                    <li ng-repeat="item in models.lists.Available"
                                         dnd-draggable="item"
-                                        dnd-moved="list.splice($index, 1)"
+                                        dnd-moved="models.lists.Available.splice($index, 1)"
                                         dnd-effect-allowed="move"
                                         dnd-selected="models.selected = item"
                                         ng-class="{'selected': models.selected === item}">
                                         {{item.label}}
                                     </li>
                                 </ul>
-
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="panel panel-dragdroplist">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Assigned</h3>
+                            </div>
+                            <div class="panel-dragdroplist-body">
+                                <ul dnd-list="models.lists.Assigned">
+                                    <li ng-repeat="item in models.lists.Assigned"
+                                        dnd-draggable="item"
+                                        dnd-moved="models.lists.Assigned.splice($index, 1)"
+                                        dnd-effect-allowed="move"
+                                        dnd-selected="models.selected = item"
+                                        ng-class="{'selected': models.selected === item}">
+                                        {{item.label}}
+                                    </li>
+                                </ul>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-
-            @*<div class="col-md-4">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <h3 class="panel-title">Generated Model</h3>
-                        </div>
-                        <div class="panel-body">
-                            <pre class="code">{{modelAsJson}}</pre>
-                        </div>
-                    </div>
-                </div>*@
-
         </div>
+
+        @*<div class="col-md-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Generated Model</h3>
+                    </div>
+                    <div class="panel-body">
+                        <pre class="code">{{modelAsJson}}</pre>
+                    </div>
+                </div>
+            </div>*@
+
     </div>
-    <div class="modal-footer">
-        <button type="button" class="btn btn-default" ng-click="cancel()">Close</button>
-        <button type="button" class="btn btn-success" ng-click="ok(user)">Save changes</button>
-    </div>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-default" ng-click="cancel()">Close</button>
+    <button type="button" class="btn btn-success" ng-click="ok(user)">Save changes</button>
+</div>
 </div>

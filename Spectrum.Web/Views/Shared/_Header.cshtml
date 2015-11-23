@@ -39,70 +39,55 @@
                         <tbody>
                             <tr>
                                 <td>
-                                    <a href="">
-                                        <i class="pe pe-7s-config text-info"></i>
-                                        <h5>Settings</h5>
-                                    </a>
-                                </td>
-                                <td>
-                                    <a href="@Url.Action("ContactIndex", "Contact")">
-                                        <i class="pe pe-7s-user-female text-success"></i>
+                                    <a href="@Url.Action("Index", "Contact", new { Area = "" })">
+                                        <i class="pe pe-7s-user-female text-info"></i>
                                         <h5>Contacts</h5>
                                     </a>
                                 </td>
                                 <td>
-                                    <a href="@Url.Action("Index", "User")">
+                                    <a href="@Url.Action("Index", "User", new { Area = "" })">
                                         <i class="pe pe-7s-users text-info"></i>
                                         <h5>Users</h5>
                                     </a>
                                 </td>
-                            </tr>
-                            <tr>
                                 <td>
-                                    <a href="@Url.Action("Index", "Organization")">
+                                    <a href="@Url.Action("Index", "Organization", new { Area = "" })">
                                         <i class="pe pe-7s-global text-info"></i>
                                         <h5>Organizations</h5>
                                     </a>
                                 </td>
-                                <td>
-                                    <a href="">
-                                        <i class="pe pe-7s-folder text-success"></i>
-                                        <h5>Files</h5>
-                                    </a>
-                                </td>
-                                @*<td>
-                                    <a href="@Url.Action("OrganizationIndex", "Organization")">
-                                        <i class="pe pe-7s-id text-info"></i>
-                                        <h5>Identity Manager</h5>
-                                    </a>
-                                </td>*@
-                                <td>
-                                    <a href="@Url.Action("Index", "Organization")">
-                                        <i class="pe pe-7s-portfolio"></i>
-                                        <h5>Billing</h5>
-                                    </a>
-                                </td>
                             </tr>
                             <tr>
                                 <td>
                                     <a href="">
-                                        <i class="pe pe-7s-server text-success"></i>
-                                        <h5>Server Sync</h5>
+                                        <i class="pe pe-7s-folder text-info"></i>
+                                        <h5>Files</h5>
                                     </a>
                                 </td>
                                 <td>
-                                    <a href="">
-                                        <i class="pe pe-7s-cloud text-warning"></i>
-                                        <h5>Cloud Sync</h5>
-                                    </a>
-                                </td>
-                                <td>
-                                    <a href="">
-                                        <i class="pe pe-7s-help1 text-warning"></i>
-                                        <h5>Help</h5>
+                                    <a href="@Url.Action("Index", "Organization", new { Area = "" })">
+                                        <i class="pe pe-7s-credit text-info"></i>
+                                        <h5>Billing</h5>
                                     </a>
                                 </td>
                             </tr>
+                        <tr>
+                            <td>
+                                <a href="">
+                                    <i class="pe pe-7s-config text-info"></i>
+                                    <h5>Settings</h5>
+                                </a>
+                            </td>
+                            <td>
+                                <div id="spacer"></div>
+                            </td>
+                            <td>
+                                <a href="">
+                                    <i class="pe pe-7s-help1 text-warning"></i>
+                                    <h5>Help</h5>
+                                </a>
+                            </td>
+                        </tr>
                         </tbody>
                     </table>
                 </div>

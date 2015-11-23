@@ -1,1 +1,0 @@
-﻿This could in theory be separated out into it's own project in the solution.  This would enable sharing of the maps across the Bounded DB Context types.  At this time I have not run across a reason to do this, but I anticipate running into this with the User class at some point.

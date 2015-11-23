@@ -12,13 +12,15 @@ namespace Spectrum.Web
             routes.MapRoute(
                 name: "Templates",
                 url: "Templates/{controller}/{template}",
-                defaults: new { action = "Template" }
+                defaults: new { action = "Template" },
+                namespaces: new[] { "Spectrum.Web.Controllers.Web" }
             );
 
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Dashboard", action = "Index", id = UrlParameter.Optional }
+                defaults: new { controller = "Dashboard", action = "Index", id = UrlParameter.Optional },
+                namespaces: new [] { "Spectrum.Web.Controllers.Web" }
             );
         }
     }

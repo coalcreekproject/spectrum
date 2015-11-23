@@ -18,8 +18,10 @@ function userGridController($scope, $http, $location, $modal, $state, uiGridCons
             { field: 'UserName' },
             { field: 'Email' },
             { name: 'Commands', cellTemplate: '<button class="btn btn-sm btn-default" ng-click="grid.appScope.edit(row)">Edit</button>' +
-                '<button class="btn btn-sm btn-default" ng-click="grid.appScope.delete(row)">Delete</button>' +
-                '<button class="btn btn-sm btn-default" ng-click="grid.appScope.userprofiles(row)">Profiles</button>'
+                '<button class="btn btn-sm btn-default" ng-click="grid.appScope.userprofiles(row)">Profiles</button>' +
+                '<button class="btn btn-sm btn-default" ng-click="grid.appScope.roles(row)">Roles</button>' +
+                '<button class="btn btn-sm btn-default" ng-click="grid.appScope.delete(row)">Delete</button>'
+
             }
         ],
         onRegisterApi: function (gridApi) {
@@ -60,20 +62,70 @@ function userGridController($scope, $http, $location, $modal, $state, uiGridCons
         });
     };
 
-    $scope.delete = function (row) {
-            var modalInstance = $modal.open({
-                templateUrl: '/Templates/User/deleteUserModal',
-                controller: DeleteUserModalController,
-                resolve: {
-                    user: function () {
-                        return angular.copy(row.entity);
-                    }
+    $scope.delete = function(row) {
+        var modalInstance = $modal.open({
+            templateUrl: '/Templates/User/deleteUserModal',
+            controller: DeleteUserModalController,
+            resolve: {
+                user: function() {
+                    return angular.copy(row.entity);
                 }
-            });
-        };
+            }
+        });
+    };
+
+    $scope.roles = function (row) {
+        var modalInstance = $modal.open({
+            templateUrl: '/Templates/User/AssignUserRolesModal',
+            controller: SimpleDemoController,
+            resolve: {
+                user: function () {
+                    return angular.copy(row.entity);
+                }
+            }
+        });
+    };
 
     $scope.userprofiles = function (row) {
         $state.go('userprofiles', { 'userId': row.entity.Id });
+    };
+};
+
+function SimpleDemoController($scope, $modalInstance) {
+
+    $scope.models = {
+        selected: null,
+        lists: { "Available": [], "Assigned": [] }
+    };
+
+    // Generate initial model
+    for (var i = 1; i <= 5; ++i) {
+        $scope.models.lists.Assigned.push({ label: "Assigned Role" + i });
+        $scope.models.lists.Available.push({ label: "Available Role" + i });
+    }
+
+    // Model to JSON for demo purpose
+    $scope.$watch('models', function (model) {
+        $scope.modelAsJson = angular.toJson(model, true);
+    }, true);
+
+    $scope.ok = function (user) {
+
+        //userFactory.addUser(user)
+        //    .then(function () {
+        //        // success
+        //        $modalInstance.close();
+        //    },
+        //        function () {
+        //            // error
+        //            alert("could not save roles");
+        //        });
+
+        $modalInstance.close();
+    };
+
+    $scope.cancel = function () {
+        $modalInstance.dismiss('cancel');
     };
 };
 

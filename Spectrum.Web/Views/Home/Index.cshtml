@@ -1,8 +1,7 @@
 ﻿@{
     Layout = "~/Views/Shared/_Layout_Landing.cshtml";
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Spectrum Operational Home";
 }
-
 
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container">
@@ -13,17 +12,20 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a href="@Url.Action("Index", "Dashboard")" class="navbar-brand">Emergency Management Suite Dashboard</a>
+            <a ui-sref="dashboard" class="navbar-brand">HOMER</a>
+            <div class="brand-desc">
+                Landing page for Homer app
+            </div>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
                 <li class="active"><a class="page-scroll" href="#page-top">Home</a></li>
-                @*<li><a class="page-scroll" href="#components">UI</a></li>*@
-                <li><a class="page-scroll" href="#features">Features</a></li>
-                @*<li><a class="page-scroll" href="#team">Team</a></li>*@
-                <li><a class="page-scroll" href="#pricing">Pricing </a></li>
-                @*<li><a class="page-scroll" href="#clients">Clients </a></li>*@
-                <li><a class="page-scroll" href="#contact">Contact</a></li>
+                <li><a class="page-scroll" page-scroll href="#components">UI</a></li>
+                <li><a class="page-scroll" page-scroll href="#features">Features</a></li>
+                <li><a class="page-scroll" page-scroll href="#team">Team</a></li>
+                <li><a class="page-scroll" page-scroll href="#pricing">Pricing </a></li>
+                <li><a class="page-scroll" page-scroll href="#clients">Clients </a></li>
+                <li><a class="page-scroll" page-scroll href="#contact">Contact</a></li>
             </ul>
         </div>
     </div>
@@ -32,31 +34,26 @@
 <header id="page-top">
     <div class="container">
         <div class="heading">
-            <div>
-                <img src="~/Images/landing/footer-logo.png" />
-            </div>
-            <br />
             <h1>
-                SPECTRUM <br/>OPERATIONAL
+                Welcome to Homer landing page
             </h1>
+            <span>Contrary to popular belief, Lorem Ipsum is not<br /> simply random text for print.</span>
+            <p class="small">
+                Lorem Ipsum is simply dummy text of the printing and tLorem Ipsum is  Lorem Ipsum is simply dummy of the simply dummy text of the ypesetting.
+            </p>
+            <a href="#" class="btn btn-success btn-sm">Learn more</a>
+        </div>
+        <div class="heading-image" animate-panel child="img-animate" effect="fadeInRight">
+            <p class="small">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+            <img class="img-animate" src="~/Content/images/landing/c1.jpg">
+            <img class="img-animate" src="~/Content/images/landing/c2.jpg">
+            <img class="img-animate" src="~/Content/images/landing/c3.jpg">
+            <img class="img-animate" src="~/Content/images/landing/c4.jpg">
             <br />
-            <div>
-                <span>Welcome to the next generation of Emergency <br />Management software.</span>
-            </div>
-            <div style="padding-top: 10px">
-                <a href="#" class="btn btn-default btn-sm">Learn more</a>
-            </div>
-            <div class="heading-image animate-panel" data-child="img-animate" data-effect="fadeInRight">
-                <img class="img-animate" src="~/Images/landing/c1.jpg">
-                <img class="img-animate" src="~/Images/landing/c2.jpg">
-                <img class="img-animate" src="~/Images/landing/c3.jpg">
-                <img class="img-animate" src="~/Images/landing/c4.jpg">
-                <br />
-                <img class="img-animate" src="~/Images/landing/c5.jpg">
-                <img class="img-animate" src="~/Images/landing/c6.jpg">
-                <img class="img-animate" src="~/Images/landing/c7.jpg">
-                <img class="img-animate" src="~/Images/landing/c8.jpg">
-            </div>
+            <img class="img-animate" src="~/Content/images/landing/c5.jpg">
+            <img class="img-animate" src="~/Content/images/landing/c6.jpg">
+            <img class="img-animate" src="~/Content/images/landing/c7.jpg">
+            <img class="img-animate" src="~/Content/images/landing/c8.jpg">
         </div>
     </div>
 </header>
@@ -64,25 +61,25 @@
     <div class="container">
         <div class="row">
             <div class="col-md-4">
-                <h4>Modern Web Design influenced by the NRF</h4>
-                <p>Emergency management Suite is built on modern web practices.  Like the National Response Framework iteself, It scales with your emergency.  The web was built for redundancy, take advantage of it.</p>
+                <h4>HTML5 & CSS3</h4>
+                <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus.</p>
                 <p><a class="navy-link btn btn-sm" href="#" role="button">Learn more</a></p>
             </div>
             <div class="col-md-4">
-                <h4>Low Cost - High Performance</h4>
-                <p>By leveraging cloud computing platforms and automation, you can have an enterprise class system for a really low cost.</p>
+                <h4>Staggering Animations</h4>
+                <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of.</p>
                 <p><a class="navy-link btn btn-sm" href="#" role="button">Learn more</a></p>
             </div>
             <div class="col-md-4">
-                <h4>Easy to Use Dashboard</h4>
-                <p>A familiar dashboard driven interface that maximizes your efficiency and simplifies your workflows.</p>
+                <h4>Unique Dashboard</h4>
+                <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour.</p>
                 <p><a class="navy-link btn btn-sm" href="#" role="button">Learn more</a></p>
             </div>
         </div>
     </div>
 </section>
 
-@*<section id="components" class="bg-light">
+<section id="components" class="bg-light">
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
@@ -96,12 +93,12 @@
                 <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum.</p>
             </div>
             <div class="col-md-6">
-                <img src="~/Images/landing/s2.png" class="img-responsive">
+                <img src="~/Content/images/landing/s2.png" class="img-responsive">
             </div>
         </div>
         <div class="row m-t-xl">
             <div class="col-md-6">
-                <img src="~/Images/landing/s4.png" class="img-responsive">
+                <img src="~/Content/images/landing/s4.png" class="img-responsive">
             </div>
             <div class="col-md-6">
                 <h4 class="m-t-xxl">Additional analytical components</h4>
@@ -114,12 +111,12 @@
                 <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum.</p>
             </div>
             <div class="col-md-6">
-                <img src="~/Images/landing/s1.png" class="img-responsive">
+                <img src="~/Content/images/landing/s1.png" class="img-responsive">
             </div>
         </div>
         <div class="row m-t-xl">
             <div class="col-md-6">
-                <img src="~/Images/landing/s3.png" class="img-responsive">
+                <img src="~/Content/images/landing/s3.png" class="img-responsive">
             </div>
             <div class="col-md-6">
                 <h4 class="m-t-xxl">Many widets components</h4>
@@ -127,13 +124,13 @@
             </div>
         </div>
     </div>
-</section>*@
+</section>
 
 <section id="features">
     <div class="container">
         <div class="row">
             <div class="col-md-6 col-md-offset-3 text-center">
-                <h2><span class="text-success"></span>Discover the Spectrum Operational <b>Emergency Management Suite</b></h2>
+                <h2><span class="text-success">Many features to </span>discover with Homer</h2>
                 <p>
                     Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes.
                 </p>
@@ -166,7 +163,7 @@
     </div>
 </section>
 
-@*<section id="features2" class="bg-light">
+<section id="features2" class="bg-light">
     <div class="container">
         <div class="row text-center">
             <div class="col-lg-12">
@@ -220,9 +217,9 @@
         </div>
 
     </div>
-</section>*@
+</section>
 
-@*<section id="team">
+<section id="team">
     <div class="container">
         <div class="row text-center">
             <div class="col-md-6 col-md-offset-3">
@@ -236,7 +233,7 @@
         <div class="row m-t-lg text-center">
             <div class="col-sm-4">
                 <div class="team-member">
-                    <img src="~/Images/a2.jpg" class="img-circle img-small" alt="">
+                    <img src="~/Content/images/a2.jpg" class="img-circle img-small" alt="">
                     <h4><span>User</span> name</h4>
                     <p>Lorem ipsum dolor sit amet, illum fastidii dissentias quo ne. Sea ne sint animal iisque, nam an soluta sensibus. </p>
 
@@ -244,7 +241,7 @@
             </div>
             <div class="col-sm-4">
                 <div class="team-member">
-                    <img src="~/Images/a5.jpg" class="img-circle" alt="">
+                    <img src="~/Content/images/a5.jpg" class="img-circle" alt="">
                     <h4><span>User</span> name</h4>
                     <p>Lorem ipsum dolor sit amet, illum fastidii dissentias quo ne. Sea ne sint animal iisque, nam an soluta sensibus.</p>
 
@@ -252,7 +249,7 @@
             </div>
             <div class="col-sm-4">
                 <div class="team-member">
-                    <img src="~/Images/a3.jpg" class="img-circle img-small" alt="">
+                    <img src="~/Content/images/a3.jpg" class="img-circle img-small" alt="">
                     <h4><span>User</span> name</h4>
                     <p>Lorem ipsum dolor sit amet, illum fastidii dissentias quo ne. Sea ne sint animal iisque, nam an soluta sensibus.</p>
 
@@ -262,7 +259,7 @@
         <div class="row m-t-lg text-center">
             <div class="col-sm-4">
                 <div class="team-member">
-                    <img src="~/Images/a7.jpg" class="img-circle img-small" alt="">
+                    <img src="~/Content/images/a7.jpg" class="img-circle img-small" alt="">
                     <h4><span>User</span> name</h4>
                     <p>Lorem ipsum dolor sit amet, illum fastidii dissentias quo ne. Sea ne sint animal iisque, nam an soluta sensibus. </p>
 
@@ -270,7 +267,7 @@
             </div>
             <div class="col-sm-4">
                 <div class="team-member">
-                    <img src="~/Images/a8.jpg" class="img-circle" alt="">
+                    <img src="~/Content/images/a8.jpg" class="img-circle" alt="">
                     <h4><span>User</span> name</h4>
                     <p>Lorem ipsum dolor sit amet, illum fastidii dissentias quo ne. Sea ne sint animal iisque, nam an soluta sensibus.</p>
 
@@ -278,7 +275,7 @@
             </div>
             <div class="col-sm-4">
                 <div class="team-member">
-                    <img src="~/Images/a9.jpg" class="img-circle img-small" alt="">
+                    <img src="~/Content/images/a9.jpg" class="img-circle img-small" alt="">
                     <h4><span>User</span> name</h4>
                     <p>Lorem ipsum dolor sit amet, illum fastidii dissentias quo ne. Sea ne sint animal iisque, nam an soluta sensibus.</p>
 
@@ -287,72 +284,44 @@
         </div>
 
     </div>
-</section>*@
+</section>
 
 
 <section id="pricing" class="bg-light">
     <div class="container">
         <div class="row text-center">
             <div class="col-lg-12">
-                <h2><span class="text-success">The Best Pricing</span>
-                </h2>
-                <p>No other Emergency Management software gives you a better price, with the functionality you deamnd.</p>
+                <h2><span class="text-success">Best pricing </span>for your app</h2>
+                <p>Lorem Ipsum available, but the majority have suffered alteration euismod. </p>
             </div>
         </div>
 
         <div class="row m-t-lg">
-
             <div class="col-lg-3">
                 <ul class="pricing-plan list-unstyled">
                     <li class="pricing-title">
-                        Free for Exercises
-                    </li>
-                    <li class="pricing-desc">
-                        Sign up and try us for your next excercise and join the <em>EM Innovators Program.</em>  Set up your Organization, tell us a few details about your excecise and set your dates, we work with you to take care of the rest.
-                    </li>
-                    <li class="pricing-price">
-                        <span>Free for Excercise Use</span>
-                    </li>
-                    <li>
-                        Up to 25 Users
-                    </li>
-                    <li>
-                        Data is archived even if your EOC "Goes Cold."
-                    </li>
-                    <li>
-                        Emergency Activation available.
-                    </li>
-                    <li>
-                        <a class="btn btn-primary btn-sm" href="#">Signup today</a>
-                    </li>
-                </ul>
-            </div>
-
-            <div class="col-lg-3">
-                <ul class="pricing-plan list-unstyled">
-                    <li class="pricing-title">
-                        5 Users
+                        Basic
                     </li>
                     <li class="pricing-desc">
                         Lorem ipsum dolor sit amet, illum fastidii dissentias quo ne. Sea ne sint animal iisque, nam an soluta sensibus.
                     </li>
                     <li class="pricing-price">
-                        <span>$150</span>
+                        <span>$16</span>
                     </li>
                     <li>
-                        5 Users
+                        Dashboards
                     </li>
                     <li>
-                        Access to E.O.C.
+                        Projects view
                     </li>
                     <li>
-                        Discounted in-app services.
+                        Contacts
                     </li>
                     <li>
-                        Shared Cloud Hosting
+                        Calendar
                     </li>
                     <li>
-                        Standard High Availability
+                        AngularJs
                     </li>
                     <li>
                         <a class="btn btn-primary btn-sm" href="#">Signup today</a>
@@ -363,28 +332,28 @@
             <div class="col-lg-3">
                 <ul class="pricing-plan list-unstyled selected">
                     <li class="pricing-title">
-                        25 Users
+                        Standard
                     </li>
                     <li class="pricing-desc">
                         Lorem ipsum dolor sit amet, illum fastidii dissentias quo ne. Sea ne sint animal iisque, nam an soluta sensibus.
                     </li>
                     <li class="pricing-price">
-                        <span>$200</span>
+                        <span>$22</span>
                     </li>
                     <li>
-                        25 Users
+                        Dashboards
                     </li>
                     <li>
-                        Access to full Emergency Management Suite
+                        Projects view
                     </li>
                     <li>
-                        Discounted in-app services.
+                        Contacts
                     </li>
                     <li>
-                        Shared Cloud Hosting
+                        Calendar
                     </li>
                     <li>
-                        Standard High Availability
+                        AngularJs
                     </li>
                     <li class="plan-action">
                         <a class="btn btn-primary btn-sm" href="#">Signup today</a>
@@ -395,16 +364,60 @@
             <div class="col-lg-3">
                 <ul class="pricing-plan list-unstyled">
                     <li class="pricing-title">
-                        Per Deployment Licensing
+                        Premium
                     </li>
                     <li class="pricing-desc">
-                        Need a custom implementation, you got it.  The Emergency Management Suite can be deployed to your choice of cloud providers.  Amazon Web Services, Microsoft Azure, and Microsoft Azure for Government deployments are available on-demand.  Local installation available.
+                        Lorem ipsum dolor sit amet, illum fastidii dissentias quo ne. Sea ne sint animal iisque, nam an soluta sensibus.
                     </li>
                     <li class="pricing-price">
-                        <span>Starts as low as $1000</span>
+                        <span>$160</span>
                     </li>
                     <li>
                         Dashboards
+                    </li>
+                    <li>
+                        Projects view
+                    </li>
+                    <li>
+                        Contacts
+                    </li>
+                    <li>
+                        Calendar
+                    </li>
+                    <li>
+                        AngularJs
+                    </li>
+                    <li>
+                        <a class="btn btn-primary btn-sm" href="#">Signup today</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="col-lg-3">
+                <ul class="pricing-plan list-unstyled">
+                    <li class="pricing-title">
+                        Prestige
+                    </li>
+                    <li class="pricing-desc">
+                        Lorem ipsum dolor sit amet, illum fastidii dissentias quo ne. Sea ne sint animal iisque, nam an soluta sensibus.
+                    </li>
+                    <li class="pricing-price">
+                        <span>$260</span>
+                    </li>
+                    <li>
+                        Dashboards
+                    </li>
+                    <li>
+                        Projects view
+                    </li>
+                    <li>
+                        Contacts
+                    </li>
+                    <li>
+                        Calendar
+                    </li>
+                    <li>
+                        AngularJs
                     </li>
                     <li>
                         <a class="btn btn-primary btn-sm" href="#">Signup today</a>
@@ -415,7 +428,7 @@
 
     </div>
 </section>
-@*<section id="clients">
+<section id="clients">
     <div class="container">
         <div class="row text-center">
             <div class="col-md-6 col-md-offset-3">
@@ -459,16 +472,14 @@
 
 
     </div>
-</section>*@
+</section>
 <section id="contact" class="bg-light">
     <div class="container">
         <div class="row text-center">
             <div class="col-md-6 col-md-offset-3">
-                <h2>
-                    <span class="text-success">Contact us</span> anytime
-                </h2>
+                <h2><span class="text-success">Contact us</span> anytime</h2>
                 <p>
-                    Have a problem?  Have a question?  Want to talk about Emergency Management and Software?  We want to hear form you.
+                    Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes.
                 </p>
             </div>
         </div>
@@ -508,13 +519,13 @@
             </div>
             <div class="col-md-3 text-left">
                 <address>
-                    <strong><span class="navy">Spectrum Operational LLC.</span></strong><br />
-                    2770 Arapahoe Road, Suite 132-113<br />
-                    Lafayette, Colorado 80026<br />
+                    <strong><span class="navy">Spectrum Operational LLC</span></strong><br />
+                    2700 Arapahoe Road<br />
+                    Lafayette, CO 80026<br />
                     <abbr title="Phone">P:</abbr> (303) 704-2500
                 </address>
                 <p class="text-color">
-                    We look forward to hearing from you!
+                    Consectetur adipisicing elit. Aut eaque, totam corporis laboriosam veritatis quis ad perspiciatis, totam corporis laboriosam veritatis, consectetur adipisicing elit quos non quis ad perspiciatis, totam corporis ea,
                 </p>
             </div>
         </div>
@@ -525,21 +536,15 @@
 
 @section Scripts {
     <script type="text/javascript">
-
-        $(function () {
+        $(document).ready(function() {
 
             // Page scrolling feature
-            $('a.page-scroll').bind('click', function (event) {
+            $('a.page-scroll').bind('click', function(event) {
                 var link = $(this);
                 $('html, body').stop().animate({
                     scrollTop: $(link.attr('href')).offset().top - 50
                 }, 500);
                 event.preventDefault();
-            });
-
-            $('body').scrollspy({
-                target: '.navbar-fixed-top',
-                offset: 80
             });
 
         });

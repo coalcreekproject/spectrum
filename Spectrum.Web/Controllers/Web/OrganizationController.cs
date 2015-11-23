@@ -9,7 +9,6 @@ using Spectrum.Web.Models;
 
 namespace Spectrum.Web.Controllers.Web
 {
-    [Authorize]
     public class OrganizationController : Controller
     {
         private ICoreUnitOfWork _coreUnitOfWork;

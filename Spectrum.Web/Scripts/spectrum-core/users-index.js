@@ -100,13 +100,13 @@ function SimpleDemoController($scope, $modalInstance) {
 
     $scope.models = {
         selected: null,
-        lists: { "A": [], "B": [] }
-    };
+        lists: { "Available": [], "Assigned": [] }
+};
 
     // Generate initial model
     for (var i = 1; i <= 5; ++i) {
-        $scope.models.lists.A.push({ label: "Item A" + i });
-        $scope.models.lists.B.push({ label: "Item B" + i });
+        $scope.models.lists.Assigned.push({ label: "Assigned Role" + i });
+        $scope.models.lists.Available.push({ label: "Available Role" + i });
     }
 
     // Model to JSON for demo purpose
