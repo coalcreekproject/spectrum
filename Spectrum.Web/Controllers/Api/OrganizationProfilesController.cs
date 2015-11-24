@@ -4,6 +4,7 @@ using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
+using System.Web.Services.Description;
 using AutoMapper;
 using Spectrum.Core.Data.Context.Interfaces;
 using Spectrum.Core.Data.Context.UnitOfWork;
@@ -36,11 +37,10 @@ namespace Spectrum.Web.Controllers.Api
 
             foreach (OrganizationProfile p in _organizationProfileRepository.All)
             {
-                var organizationProfileViewModel = Mapper.Map<OrganizationProfileViewModel>(p);
-                organizationProfileViewModels.Add(organizationProfileViewModel);
+                organizationProfileViewModels.Add(Mapper.Map<OrganizationProfileViewModel>(p));
             }
 
-            //TODO: Get Paging working
+            //TODO: Get paging working
             return organizationProfileViewModels;
         }
 
@@ -48,16 +48,15 @@ namespace Spectrum.Web.Controllers.Api
         // GET: api/OrganizationProfiles/5
         public HttpResponseMessage Get(int id)
         {
-            var organizationProfile = _organizationProfileRepository.All.Where(p => p.OrganizationId == id);
+            var organizationProfiles = _organizationProfileRepository.All.Where(p => p.OrganizationId == id);
+            var organizationProfileViewModels = new List<OrganizationProfileViewModel>();
 
-            if (organizationProfile == null)
+            foreach (var p in organizationProfiles)
             {
-                return Request.CreateResponse(HttpStatusCode.NotFound);
+                organizationProfileViewModels.Add(Mapper.Map<OrganizationProfileViewModel>(p));
             }
 
-            //var organizationProfileViewModel = Mapper.Map<OrganizationProfileViewModel>(organizationProfile);
-
-            return Request.CreateResponse(HttpStatusCode.OK, organizationProfile);
+            return Request.CreateResponse(HttpStatusCode.OK, organizationProfileViewModels);
         }
 
         // POST: api/OrganizationProfiles
@@ -90,25 +89,12 @@ namespace Spectrum.Web.Controllers.Api
 
             Mapper.Map(editOrganizationProfile, organizationProfile);
 
-            //organizationProfile.Default = editOrganizationProfile.Default;
-            //organizationProfile.ProfileName = editOrganizationProfile.ProfileName;
-            //organizationProfile.Description = editOrganizationProfile.Description;
-            //organizationProfile.PrimaryContact = editOrganizationProfile.PrimaryContact;
-            //organizationProfile.Phone = editOrganizationProfile.Phone;
-            //organizationProfile.Fax = editOrganizationProfile.Fax;
-            //organizationProfile.Email = editOrganizationProfile.Email;
-            //organizationProfile.Country = editOrganizationProfile.Country;
-            //organizationProfile.County = editOrganizationProfile.County;
-            //organizationProfile.TimeZone = editOrganizationProfile.TimeZone;
-            //organizationProfile.Language = editOrganizationProfile.Language;
-            //organizationProfile.Notes = editOrganizationProfile.Notes;
-
-
+            //TODO: Examine this graph more closely, namely drill down into the xtension method that chanages the EntityState based on the ObjectState value.
             organizationProfile.ObjectState = ObjectState.Modified;
             //organizationProfile.Organization.ObjectState = ObjectState.Unchanged;
             
             _organizationProfileRepository.InsertOrUpdate(organizationProfile);
-            _organizationProfileRepository.Save();
+            _organizationProfileRepository.SaveAsync();
 
             return Request.CreateResponse(HttpStatusCode.OK, organizationProfile);
         }

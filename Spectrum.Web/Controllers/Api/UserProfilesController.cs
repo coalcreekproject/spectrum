@@ -1,13 +1,17 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Threading.Tasks;
 using System.Web.Http;
+using AutoMapper;
 using Spectrum.Core.Data.Context.Interfaces;
 using Spectrum.Core.Data.Context.UnitOfWork;
 using Spectrum.Core.Data.Models;
 using Spectrum.Core.Data.Models.Interfaces;
 using Spectrum.Core.Data.Repositories;
 using Spectrum.Core.Data.Repositories.Interfaces;
+using Spectrum.Web.Models;
 
 namespace Spectrum.Web.Controllers.Api
 {
@@ -26,81 +30,52 @@ namespace Spectrum.Web.Controllers.Api
         // GET: api/UserProfiles/5
         public HttpResponseMessage Get(int id)
         {
-            var result = _userProfileRepository.All.Where(p => p.UserId == id);
+            var userProfiles = _userProfileRepository.All.Where(p => p.UserId == id);
+            var userProfileViewModels = new List<UserProfileViewModel>();
 
-            //if (result == null)
-            //{
-            //    return Request.CreateResponse(HttpStatusCode.NotFound);
-            //}
+            foreach (var p in userProfiles)
+            {
+                userProfileViewModels.Add(Mapper.Map<UserProfileViewModel>(p));
+            }
 
-            return Request.CreateResponse(HttpStatusCode.OK, result); 
+            return Request.CreateResponse(HttpStatusCode.OK, userProfileViewModels);
         }
 
         // POST: api/UserProfiles
-        public HttpResponseMessage Post([FromBody]UserProfile userProfile)
+        public HttpResponseMessage Post([FromBody]UserProfileViewModel newUserProfile)
         {
-            var profile = new UserProfile
+            var userProfile = Mapper.Map<UserProfile>(newUserProfile);
+
+            userProfile.ObjectState = ObjectState.Added;
+            _userProfileRepository.InsertOrUpdate(userProfile);
+            var result = Task.FromResult(_userProfileRepository.SaveAsync());
+
+            if (result.IsCompleted)
             {
-                UserId = userProfile.UserId,
+                return Request.CreateResponse(HttpStatusCode.Created,
+                    userProfile);
+            }
 
-                Default = userProfile.Default,
-                DstAdjust = userProfile.DstAdjust,
-                Language = userProfile.Language,
-                ProfileName = userProfile.ProfileName,
-                OrganizationId = userProfile.OrganizationId,
-
-                Title = userProfile.Title,
-                FirstName = userProfile.FirstName,
-                MiddleName = userProfile.MiddleName,
-                LastName = userProfile.LastName,
-                Nickname = userProfile.Nickname,
-
-                //Organization = userProfile.Organization,
-                Position = userProfile.Position,
-
-                SecondaryEmail = userProfile.SecondaryEmail,
-                SecondaryPhoneNumber = userProfile.SecondaryPhoneNumber,
-
-                //Photo = userProfile.Photo;
-            };
-
-            profile.ObjectState = ObjectState.Added;
-            _userProfileRepository.InsertOrUpdate(profile);
-            _userProfileRepository.Save();
-
-            return Request.CreateResponse(HttpStatusCode.Created, profile);
+            return Request.CreateResponse(HttpStatusCode.BadRequest);
         }
 
         // PUT: api/UserProfiles/5
-        public HttpResponseMessage Put([FromBody]UserProfile userProfile)
+        public HttpResponseMessage Put([FromBody]UserProfileViewModel editedProfile)
         {
-            var profile = _userProfileRepository.Find(userProfile.Id);
+            var userProfile = _userProfileRepository.FindAsync(editedProfile.Id).Result;
 
-            profile.Default = userProfile.Default;
-            profile.DstAdjust = userProfile.DstAdjust;
-            profile.Language = userProfile.Language;
-            profile.ProfileName = userProfile.ProfileName;
-            profile.OrganizationId = userProfile.OrganizationId;
+            if (userProfile == null)
+            {
+                return Request.CreateResponse(HttpStatusCode.NotFound);
+            }
 
-            profile.Title = userProfile.Title;
-            profile.FirstName = userProfile.FirstName;
-            profile.MiddleName = userProfile.MiddleName;
-            profile.LastName = userProfile.LastName;
-            profile.Nickname = userProfile.Nickname;
+            Mapper.Map(editedProfile, userProfile);
 
-            //profile.Organization = userProfile.Organization;
-            profile.Position = userProfile.Position;
+            userProfile.ObjectState = ObjectState.Modified;
+            _userProfileRepository.InsertOrUpdate(userProfile);
+            _userProfileRepository.SaveAsync();
 
-            profile.SecondaryEmail = userProfile.SecondaryEmail;
-            profile.SecondaryPhoneNumber = userProfile.SecondaryPhoneNumber;
-
-            //profile.Photo = userProfile.Photo;
-
-            profile.ObjectState = ObjectState.Modified;
-            _userProfileRepository.InsertOrUpdate(profile);
-            _userProfileRepository.Save();
-
-            return Request.CreateResponse(HttpStatusCode.OK, profile);
+            return Request.CreateResponse(HttpStatusCode.OK, userProfile);
         }
 
         // DELETE: api/UserProfiles/5
