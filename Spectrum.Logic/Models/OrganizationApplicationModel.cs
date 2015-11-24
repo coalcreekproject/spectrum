@@ -2,16 +2,19 @@ using System;
 
 namespace Spectrum.Logic.Models
 {
-    [Serializable]
-    public class OrganizationApplicationModel
+    public partial class OrganizationApplicationModel
     {
-        public int OrganizationId { get; set; } // OrganizationId (Primary key)
-        public int ApplicationId { get; set; } // ApplicationId (Primary key)
-        public string Key { get; set; } // Key
+        public int OrganizationId { get; set; }
+        public int ApplicationId { get; set; }
+        public string Key { get; set; }
+        public bool? Cloaked { get; set; }
+        public bool? Archive { get; set; }
+        public DateTime? CreatedDate { get; set; }
+        public int? CreatedByUserId { get; set; }
+        public DateTime? ModifiedDate { get; set; }
+        public int? ModifiedByUserId { get; set; }
 
-        // Foreign keys
-        public virtual ApplicationModel Application { get; set; } // FK_OrganizationApplications_Application
-        public virtual OrganizationModel Organization { get; set; } // FK_OrganizationApplications_Organization
+        public virtual ApplicationModel Application { get; set; }
+        public virtual OrganizationModel Organization { get; set; }
     }
-
 }

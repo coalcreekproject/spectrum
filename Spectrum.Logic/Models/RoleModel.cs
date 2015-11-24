@@ -3,9 +3,14 @@ using System.Collections.Generic;
 
 namespace Spectrum.Logic.Models
 {
-    [Serializable]
-    public class RoleModel
+    public partial class RoleModel
     {
+        public RoleModel()
+        {
+            UserModels = new List<UserModel>();
+            InitializePartial();
+        }
+
         public int Id { get; set; }
         public int OrganizationId { get; set; }
         public string Name { get; set; }
@@ -18,14 +23,11 @@ namespace Spectrum.Logic.Models
         public DateTime? ModifiedDate { get; set; }
         public int? ModifiedByUserId { get; set; }
 
-        public virtual ICollection<UserModel> Users { get; set; }
+        public virtual ICollection<UserModel> UserModels { get; set; }
 
-        public virtual ApplicationModel Application { get; set; }
-        public virtual OrganizationModel Organization { get; set; }
+        public virtual ApplicationModel ApplicationModel { get; set; }
+        public virtual OrganizationModel OrganizationModel { get; set; }
 
-        public RoleModel()
-        {
-            Users = new List<UserModel>();
-        }
+        partial void InitializePartial();
     }
 }

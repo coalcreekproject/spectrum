@@ -1,13 +1,11 @@
-﻿using System;
+using System;
 
 namespace Spectrum.Logic.Models
 {
-    public class JurisdictionProfileModel
+    public class RuleParameterModel
     {
-        public int Id { get; set; }
-        public int JurisdictionId { get; set; }
-        public string Name { get; set; }
-        public string Description { get; set; }
+        public int RuleId { get; set; }
+        public int ParameterId { get; set; }
         public bool? Cloaked { get; set; }
         public bool? Archive { get; set; }
         public DateTime? CreatedDate { get; set; }
@@ -15,6 +13,7 @@ namespace Spectrum.Logic.Models
         public DateTime? ModifiedDate { get; set; }
         public int? ModifiedByUserId { get; set; }
 
-        public virtual JurisdictionModel JurisdictionModel { get; set; }
+        public virtual ParameterModel ParameterModel { get; set; }
+        public virtual RuleModel RuleModel { get; set; }
     }
 }

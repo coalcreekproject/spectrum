@@ -1,20 +1,22 @@
-﻿using System;
+using System;
 
 namespace Spectrum.Logic.Models
 {
-    public class JurisdictionProfileModel
+    public class MessageModel
     {
         public int Id { get; set; }
-        public int JurisdictionId { get; set; }
-        public string Name { get; set; }
-        public string Description { get; set; }
+        public string Subject { get; set; }
+        public bool? Urgent { get; set; }
+        public string To { get; set; }
+        public string From { get; set; }
+        public string Body { get; set; }
+        public string EncodingType { get; set; }
+        public string EmailRelay { get; set; }
         public bool? Cloaked { get; set; }
         public bool? Archive { get; set; }
         public DateTime? CreatedDate { get; set; }
         public int? CreatedByUserId { get; set; }
         public DateTime? ModifiedDate { get; set; }
         public int? ModifiedByUserId { get; set; }
-
-        public virtual JurisdictionModel JurisdictionModel { get; set; }
     }
 }

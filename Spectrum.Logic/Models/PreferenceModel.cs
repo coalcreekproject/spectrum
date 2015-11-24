@@ -3,26 +3,29 @@ using System.Collections.Generic;
 
 namespace Spectrum.Logic.Models
 {
-    [Serializable]
-    public class PreferenceModel
+    public partial class PreferenceModel
     {
-        public int Id { get; set; } // Id (Primary key)
-        public string Name { get; set; } // Name
-        public string Description { get; set; } // Description
-        public string Value { get; set; } // Value
-
-        // Reverse navigation
-        public virtual ICollection<OrganizationModel> Organizations { get; set; } // Many to many mapping
-        public virtual ICollection<UserModel> Users { get; set; } // Many to many mapping
-
         public PreferenceModel()
         {
-            Organizations = new List<OrganizationModel>();
-            Users = new List<UserModel>();
-            
+            OrganizationModels = new List<OrganizationModel>();
+            UserModels = new List<UserModel>();
+            InitializePartial();
         }
 
-        
-    }
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string Description { get; set; }
+        public string Value { get; set; }
+        public bool? Cloaked { get; set; }
+        public bool? Archive { get; set; }
+        public DateTime? CreatedDate { get; set; }
+        public int? CreatedByUserId { get; set; }
+        public DateTime? ModifiedDate { get; set; }
+        public int? ModifiedByUserId { get; set; }
 
+        public virtual ICollection<OrganizationModel> OrganizationModels { get; set; }
+        public virtual ICollection<UserModel> UserModels { get; set; }
+
+        partial void InitializePartial();
+    }
 }

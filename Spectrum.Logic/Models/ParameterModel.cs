@@ -3,25 +3,28 @@ using System.Collections.Generic;
 
 namespace Spectrum.Logic.Models
 {
-    [Serializable]
-    public class ParameterModel
+    public partial class ParameterModel
     {
-        public int Id { get; set; } // Id (Primary key)
-        public string Key { get; set; } // Key
-        public string Value { get; set; } // Value
-
-        // Reverse navigation
-        public virtual ICollection<ApplicationModel> Applications { get; set; } // Many to many mapping
-        public virtual ICollection<RuleModel> Rules { get; set; } // Many to many mapping
-
         public ParameterModel()
         {
-            Applications = new List<ApplicationModel>();
-            Rules = new List<RuleModel>();
-            
+            ApplicationParameterModels = new List<ApplicationParameterModel>();
+            RuleParameterModels = new List<RuleParameterModel>();
+            InitializePartial();
         }
 
-        
-    }
+        public int Id { get; set; }
+        public string Key { get; set; }
+        public string Value { get; set; }
+        public bool? Cloaked { get; set; }
+        public bool? Archive { get; set; }
+        public DateTime? CreatedDate { get; set; }
+        public int? CreatedByUserId { get; set; }
+        public DateTime? ModifiedDate { get; set; }
+        public int? ModifiedByUserId { get; set; }
 
+        public virtual ICollection<ApplicationParameterModel> ApplicationParameterModels { get; set; }
+        public virtual ICollection<RuleParameterModel> RuleParameterModels { get; set; }
+
+        partial void InitializePartial();
+    }
 }

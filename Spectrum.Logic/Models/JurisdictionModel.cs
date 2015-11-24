@@ -3,25 +3,32 @@ using System.Collections.Generic;
 
 namespace Spectrum.Logic.Models
 {
-    [Serializable]
-    public class JurisdictionModel
+    public partial class JurisdictionModel
     {
-        public int Id { get; set; } // Id (Primary key)
-        public string Name { get; set; } // Name
-        public int OrganizationId { get; set; } // OrganizationId
-
-        // Reverse navigation
-        public virtual ICollection<JusrisdictionProfile> JusrisdictionProfiles { get; set; }
-        // JusrisdictionProfile.FK_JurisdictionProfile_Jurisdiction
-        public virtual ICollection<UserModel> Users { get; set; } // Many to many mapping
-
-        // Foreign keys
-        public virtual OrganizationModel Organization { get; set; } // FK_Jurisdiction_Organization
-
         public JurisdictionModel()
         {
-            JusrisdictionProfiles = new List<JusrisdictionProfile>();
-            Users = new List<UserModel>();
+            JurisdictionNoteModels = new List<JurisdictionNoteModel>();
+            JurisdictionProfileModels = new List<JurisdictionProfileModel>();
+            UserModels = new List<UserModel>();
+            InitializePartial();
         }
+
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public int OrganizationId { get; set; }
+        public bool? Cloaked { get; set; }
+        public bool? Archive { get; set; }
+        public DateTime? CreatedDate { get; set; }
+        public int? CreatedByUserId { get; set; }
+        public DateTime? ModifiedDate { get; set; }
+        public int? ModifiedByUserId { get; set; }
+
+        public virtual ICollection<JurisdictionNoteModel> JurisdictionNoteModels { get; set; }
+        public virtual ICollection<JurisdictionProfileModel> JurisdictionProfileModels { get; set; }
+        public virtual ICollection<UserModel> UserModels { get; set; }
+
+        public virtual OrganizationModel OrganizationModel { get; set; }
+
+        partial void InitializePartial();
     }
 }

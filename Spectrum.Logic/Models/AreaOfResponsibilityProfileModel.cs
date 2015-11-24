@@ -2,10 +2,10 @@
 
 namespace Spectrum.Logic.Models
 {
-    public class JurisdictionProfileModel
+    public class AreaOfResponsibilityProfileModel
     {
         public int Id { get; set; }
-        public int JurisdictionId { get; set; }
+        public int AreaOfResponsibilityId { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public bool? Cloaked { get; set; }
@@ -15,6 +15,6 @@ namespace Spectrum.Logic.Models
         public DateTime? ModifiedDate { get; set; }
         public int? ModifiedByUserId { get; set; }
 
-        public virtual JurisdictionModel JurisdictionModel { get; set; }
+        public virtual AreaOfResponsibilityModel AreaOfResponsibility { get; set; }
     }
 }
