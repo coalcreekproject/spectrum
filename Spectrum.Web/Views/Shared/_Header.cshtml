@@ -1,4 +1,5 @@
 ﻿@using Microsoft.AspNet.Identity
+@using Spectrum.Logic.Identity
 <div class="color-line">
 </div>
 <div id="logo" class="light-version">
@@ -22,6 +23,7 @@
         <div class="pull-left" style="padding-top: 17px">
             @if (User.Identity.IsAuthenticated)
             {
+                @UserUtility.GetLoggedInUserId(User)
                 <span class="label label-info">
                     <a href="@Url.Action("Index", "Manage")" class="text-color text-white" style="font-size: 12px" >@User.Identity.GetUserName() as SuperUser</a>
                 </span>
