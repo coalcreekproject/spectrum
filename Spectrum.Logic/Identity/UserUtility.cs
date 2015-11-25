@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
+using Microsoft.Owin;
 using Spectrum.Core.Data.Caching;
 using Spectrum.Core.Data.Caching.Extensions;
 using Spectrum.Logic.Models;
@@ -21,8 +22,5 @@ namespace Spectrum.Logic.Identity
 
             return 1;
         }
-
-
-
     }
 }
