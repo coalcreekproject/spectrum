@@ -3,7 +3,8 @@ using System.Collections.Generic;
 
 namespace Spectrum.Logic.Models
 {
-    public partial class UserModel
+    [Serializable]
+    public class UserModel
     {
         public UserModel()
         {
@@ -19,7 +20,6 @@ namespace Spectrum.Logic.Models
             PositionModels = new List<PositionModel>();
             PreferenceModels = new List<PreferenceModel>();
             RoleModels = new List<RoleModel>();
-            InitializePartial();
         }
 
         public int Id { get; set; }
@@ -53,7 +53,5 @@ namespace Spectrum.Logic.Models
         public virtual ICollection<UserExternalLoginModel> UserExternalLoginModels { get; set; }
         public virtual ICollection<UserNoteModel> UserNoteModels { get; set; }
         public virtual ICollection<UserProfileModel> UserProfileModels { get; set; }
-
-        partial void InitializePartial();
     }
 }

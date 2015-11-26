@@ -2,6 +2,7 @@ using System;
 
 namespace Spectrum.Logic.Models
 {
+    [Serializable]
     public class RuleParameterModel
     {
         public int RuleId { get; set; }

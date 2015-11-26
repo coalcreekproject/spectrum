@@ -2,6 +2,7 @@
 
 namespace Spectrum.Web.Controllers.Web
 {
+    [AllowAnonymous]
     public class HomeController : Controller
     {
         public ActionResult Index()

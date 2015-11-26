@@ -23,7 +23,6 @@
         <div class="pull-left" style="padding-top: 17px">
             @if (User.Identity.IsAuthenticated)
             {
-                @UserUtility.GetLoggedInUserId(User)
                 <span class="label label-info">
                     <a href="@Url.Action("Index", "Manage")" class="text-color text-white" style="font-size: 12px" >@User.Identity.GetUserName() as SuperUser</a>
                 </span>
@@ -156,30 +155,6 @@
                 </ul>
             </li>
 
-                @*<li class="dropdown" dropdown>
-                    <a class="dropdown-toggle" href="#" dropdown-toggle>
-                        <i class="pe-7s-config"></i>
-                    </a>
-                    <ul class="dropdown-menu hdropdown notification animated flipInX">
-                        <li>
-                            <a>
-                                <span class="label label-success">NEW</span> It is a long established.
-                            </a>
-                        </li>
-                        <li>
-                            <a>
-                                <span class="label label-warning">WAR</span> There are many variations.
-                            </a>
-                        </li>
-                        <li>
-                            <a>
-                                <span class="label label-danger">ERR</span> Contrary to popular belief.
-                            </a>
-                        </li>
-                        <li class="summary"><a href="#">See all notifications</a></li>
-                    </ul>
-                </li>*@
-
             <li class="dropdown" dropdown>
                 <a class="dropdown-toggle label-menu-corner" href="#" dropdown-toggle>
                     <i class="pe-7s-user"></i>
@@ -195,10 +170,10 @@
                         @Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new {id = "registerLink"})
                     </li>
                     <li>
-                        @Html.ActionLink("Sign Out", "LogOff", "Account", routeValues: null, htmlAttributes: new {id = "signOutLink"})
+                        @Html.ActionLink("Sign Out", "SignOut", "Account", routeValues: null, htmlAttributes: new {id = "signOutLink"})
                     </li>
                 </ul>
             </li>
-        </ul>
+        </ul> 
     </div>
 </nav>

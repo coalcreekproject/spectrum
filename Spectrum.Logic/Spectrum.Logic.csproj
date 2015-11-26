@@ -120,7 +120,7 @@
     <Compile Include="Models\UserAreaOfResponsibilityModel.cs" />
     <Compile Include="Models\UserClaimModel.cs" />
     <Compile Include="Models\UserExternalLoginModel.cs" />
-    <Compile Include="Models\UserModelModel.cs" />
+    <Compile Include="Models\UserModel.cs" />
     <Compile Include="Models\UserNoteModel.cs" />
     <Compile Include="Models\UserProfileModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -3,12 +3,12 @@ using System.Collections.Generic;
 
 namespace Spectrum.Logic.Models
 {
-    public partial class RoleModel
+    [Serializable]
+    public class RoleModel
     {
         public RoleModel()
         {
             UserModels = new List<UserModel>();
-            InitializePartial();
         }
 
         public int Id { get; set; }
@@ -27,7 +27,5 @@ namespace Spectrum.Logic.Models
 
         public virtual ApplicationModel ApplicationModel { get; set; }
         public virtual OrganizationModel OrganizationModel { get; set; }
-
-        partial void InitializePartial();
     }
 }

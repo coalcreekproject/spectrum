@@ -2,6 +2,7 @@ using System;
 
 namespace Spectrum.Logic.Models
 {
+    [Serializable]
     public class UserAreaOfResponsibilityModel
     {
         public int UserId { get; set; }

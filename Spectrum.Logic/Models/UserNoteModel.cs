@@ -1,5 +1,8 @@
+using System;
+
 namespace Spectrum.Logic.Models
 {
+    [Serializable]
     public class UserNoteModel
     {
         public int Id { get; set; }

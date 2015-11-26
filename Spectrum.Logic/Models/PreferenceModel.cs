@@ -3,13 +3,13 @@ using System.Collections.Generic;
 
 namespace Spectrum.Logic.Models
 {
-    public partial class PreferenceModel
+    [Serializable]
+    public class PreferenceModel
     {
         public PreferenceModel()
         {
             OrganizationModels = new List<OrganizationModel>();
             UserModels = new List<UserModel>();
-            InitializePartial();
         }
 
         public int Id { get; set; }
@@ -25,7 +25,5 @@ namespace Spectrum.Logic.Models
 
         public virtual ICollection<OrganizationModel> OrganizationModels { get; set; }
         public virtual ICollection<UserModel> UserModels { get; set; }
-
-        partial void InitializePartial();
     }
 }

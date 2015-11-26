@@ -2,6 +2,7 @@ using System;
 
 namespace Spectrum.Logic.Models
 {
+    [Serializable]
     public class ContactModel
     {
         public int Id { get; set; }

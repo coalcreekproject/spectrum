@@ -3,14 +3,14 @@ using System.Collections.Generic;
 
 namespace Spectrum.Logic.Models
 {
-    public partial class AreaOfResponsibilityModel
+    [Serializable]
+    public class AreaOfResponsibilityModel
     {
         public AreaOfResponsibilityModel()
         {
             AreaOfResponsibilityNoteModels = new List<AreaOfResponsibilityNoteModel>();
             AreaOfResponsibilityProfileModels = new List<AreaOfResponsibilityProfileModel>();
             UserAreaOfResponsibilitieModels = new List<UserAreaOfResponsibilityModel>();
-            InitializePartial();
         }
 
         public int Id { get; set; }
@@ -29,7 +29,5 @@ namespace Spectrum.Logic.Models
         public virtual ICollection<UserAreaOfResponsibilityModel> UserAreaOfResponsibilitieModels { get; set; }
 
         public virtual OrganizationModel Organization { get; set; }
-
-        partial void InitializePartial();
     }
 }

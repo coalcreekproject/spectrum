@@ -2,7 +2,8 @@ using System;
 
 namespace Spectrum.Logic.Models
 {
-    public partial class UserExternalLoginModel
+    [Serializable]
+    public class UserExternalLoginModel
     {
         public int UserId { get; set; }
         public string LoginProvider { get; set; }

@@ -1,10 +1,10 @@
 using System;
 using System.Collections.Generic;
-using System.Text.RegularExpressions;
 
 namespace Spectrum.Logic.Models
 {
-    public partial class OrganizationModel
+    [Serializable]
+    public class OrganizationModel
     {
         public OrganizationModel()
         {
@@ -18,7 +18,6 @@ namespace Spectrum.Logic.Models
             RuleModels = new List<RuleModel>();
             PreferenceModels = new List<PreferenceModel>();
             UserModels = new List<UserModel>();
-            InitializePartial();
         }
 
         public int Id { get; set; }
@@ -43,7 +42,5 @@ namespace Spectrum.Logic.Models
         public virtual ICollection<UserModel> UserModels { get; set; }
 
         public virtual OrganizationTypeModel OrganizationTypeModel { get; set; }
-
-        partial void InitializePartial();
     }
 }

@@ -2,6 +2,7 @@
 
 namespace Spectrum.Logic.Models
 {
+    [Serializable]
     public class JurisdictionProfileModel
     {
         public int Id { get; set; }

@@ -1,13 +1,14 @@
+using System;
 using System.Collections.Generic;
 
 namespace Spectrum.Logic.Models
 {
-    public partial class OrganizationTypeModel
+    [Serializable]
+    public class OrganizationTypeModel
     {
         public OrganizationTypeModel()
         {
             OrganizationModels = new List<OrganizationModel>();
-            InitializePartial();
         }
 
         public int Id { get; set; }
@@ -15,7 +16,5 @@ namespace Spectrum.Logic.Models
         public string Description { get; set; }
 
         public virtual ICollection<OrganizationModel> OrganizationModels { get; set; }
-
-        partial void InitializePartial();
     }
 }

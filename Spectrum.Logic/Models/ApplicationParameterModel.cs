@@ -2,6 +2,7 @@
 
 namespace Spectrum.Logic.Models
 {
+    [Serializable]
     public class ApplicationParameterModel
     {
         public int ApplicationId { get; set; }

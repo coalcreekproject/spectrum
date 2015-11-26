@@ -3,12 +3,12 @@ using System.Collections.Generic;
 
 namespace Spectrum.Logic.Models
 {
-    public partial class RuleModel
+    [Serializable]
+    public class RuleModel
     {
         public RuleModel()
         {
             RuleParameterModels = new List<RuleParameterModel>();
-            InitializePartial();
         }
 
         public int Id { get; set; }
@@ -27,7 +27,5 @@ namespace Spectrum.Logic.Models
 
         public virtual OrganizationModel OrganizationModel { get; set; }
         public virtual RuleTypeModel RuleTypeModel { get; set; }
-
-        partial void InitializePartial();
     }
 }

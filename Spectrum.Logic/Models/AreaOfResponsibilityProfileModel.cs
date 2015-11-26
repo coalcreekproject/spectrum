@@ -2,6 +2,7 @@
 
 namespace Spectrum.Logic.Models
 {
+    [Serializable]
     public class AreaOfResponsibilityProfileModel
     {
         public int Id { get; set; }

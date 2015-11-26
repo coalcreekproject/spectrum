@@ -3,12 +3,12 @@ using System.Collections.Generic;
 
 namespace Spectrum.Logic.Models
 {
-    public partial class UserProfileModel
+    [Serializable]
+    public class UserProfileModel
     {
         public UserProfileModel()
         {
             AddressModels = new List<AddressModel>();
-            InitializePartial();
         }
 
         public int Id { get; set; }
@@ -38,7 +38,5 @@ namespace Spectrum.Logic.Models
         public virtual ICollection<AddressModel> AddressModels { get; set; }
 
         public virtual UserModel UserModel { get; set; }
-
-        partial void InitializePartial();
     }
 }

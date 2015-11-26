@@ -1,13 +1,14 @@
+using System;
 using System.Collections.Generic;
 
 namespace Spectrum.Logic.Models
 {
-    public partial class RuleTypeModel
+    [Serializable]
+    public class RuleTypeModel
     {
         public RuleTypeModel()
         {
             RuleModels = new List<RuleModel>();
-            InitializePartial();
         }
 
         public int Id { get; set; }
@@ -15,7 +16,5 @@ namespace Spectrum.Logic.Models
         public string Description { get; set; }
 
         public virtual ICollection<RuleModel> RuleModels { get; set; }
-
-        partial void InitializePartial();
     }
 }

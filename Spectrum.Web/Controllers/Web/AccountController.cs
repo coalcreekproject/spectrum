@@ -28,14 +28,14 @@ namespace Spectrum.Web.Controllers.Web
         {
         }
 
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager,
-            OrganizationRepository organizationStore, UserProfileRepository userProfileStore)
-        {
-            UserManager = userManager;
-            SignInManager = signInManager;
-            _userProfileRepository = userProfileStore;
-            _organizationRepository = organizationStore;
-        }
+        //public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager,
+        //    OrganizationRepository organizationRepository, UserProfileRepository userProfileRepository)
+        //{
+        //    UserManager = userManager;
+        //    SignInManager = signInManager;
+        //    _userProfileRepository = userProfileRepository;
+        //    _organizationRepository = organizationRepository;
+        //}
 
         public ApplicationSignInManager SignInManager
         {
@@ -61,28 +61,31 @@ namespace Spectrum.Web.Controllers.Web
             }
         }
 
-        public OrganizationRepository OrganizationStore
+        public OrganizationRepository OrganizationRepository
         {
             get
             {
-                return _organizationRepository ?? new OrganizationRepository(new CoreUnitOfWork(new CoreDbContext()));
-            }
-            private set
-            {
-                _organizationRepository = value;
+                if (_organizationRepository == null)
+                {
+                    _organizationRepository = new OrganizationRepository(new CoreUnitOfWork(new CoreDbContext()));
+                }
+
+                return _organizationRepository;
             }
         }
 
-        public UserProfileRepository UserProfileStore
+        public UserProfileRepository UserProfileRepository
         {
             get
             {
-                return _userProfileRepository ?? new UserProfileRepository(new CoreUnitOfWork(new CoreDbContext()));
+                if (_userProfileRepository == null)
+                {
+                    _userProfileRepository = new UserProfileRepository(new CoreUnitOfWork(new CoreDbContext()));
+                }
+
+                return _userProfileRepository;
             }
-            private set
-            {
-                _userProfileRepository = value;
-            }
+
         }
 
         //
@@ -108,7 +111,7 @@ namespace Spectrum.Web.Controllers.Web
 
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
-            var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
+            var result = await SignInManager.PasswordSignInAsync(model.UserName, model.Password, model.RememberMe, shouldLockout: false);
 
             switch (result)
             {
@@ -185,7 +188,7 @@ namespace Spectrum.Web.Controllers.Web
         {
             if (ModelState.IsValid)
             {
-                var user = new User {UserName = model.Email, Email = model.Email};
+                var user = new User {UserName = model.UserName, Email = model.Email};
                 var result = await UserManager.CreateAsync(user, model.Password);
                 int? orgId = null;
 
@@ -199,7 +202,10 @@ namespace Spectrum.Web.Controllers.Web
                     {
                         var organization = new Organization {Name = model.OrganizationName};
                         organization.ObjectState = ObjectState.Added;
-                        OrganizationStore.InsertOrUpdate(organization);
+
+                        OrganizationRepository.InsertOrUpdate(organization);
+                        OrganizationRepository.Save();
+
                         orgId = organization.Id;
                     }
 
@@ -209,7 +215,9 @@ namespace Spectrum.Web.Controllers.Web
                     userProfile.Default = true;
                     userProfile.ProfileName = "Default";
                     userProfile.ObjectState = ObjectState.Added;
-                    UserProfileStore.InsertOrUpdate(userProfile);
+
+                    UserProfileRepository.InsertOrUpdate(userProfile);
+                    UserProfileRepository.Save();
 
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
@@ -439,14 +447,9 @@ namespace Spectrum.Web.Controllers.Web
             return View(model);
         }
 
-        //
-        // POST: /Account/LogOff
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult LogOff()
+        public ActionResult SignOut()
         {
-            //AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
-            AuthenticationManager.SignOut();
+            AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
             return RedirectToAction("Index", "Home");
         }
 

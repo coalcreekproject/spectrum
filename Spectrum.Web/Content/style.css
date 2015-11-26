@@ -3525,12 +3525,12 @@ ul.h-list li:hover a {
   border-radius: 5px;
   color: #fff;
   display: block;
-  background-color: #62cb31;
+  background-color: #3498db;
   margin-left: 0;
 }
 .landing-page .navbar-default .navbar-toggle:hover,
 .landing-page .navbar-default .navbar-toggle:focus {
-  background: #62cb31;
+  background: #3498db;
 }
 .landing-page .navbar-default .navbar-toggle:hover .icon-bar,
 .landing-page .navbar-default .navbar-toggle:focus .icon-bar {
@@ -3540,7 +3540,7 @@ ul.h-list li:hover a {
 .landing-page .navbar-default .navbar-nav > .active > a:hover,
 .landing-page .navbar-default .navbar-nav > .active > a:focus {
   background-color: transparent;
-  color: #62cb31;
+  color: #3498db;
   border: none;
 }
 .landing-page .navbar-default li a:hover {
@@ -3665,7 +3665,7 @@ ul.h-list li:hover a {
 .landing-page .pricing-plan .pricing-price span {
   font-weight: 700;
   font-size: 30px;
-  color: #62cb31;
+  color: #3498db;
 }
 .landing-page .pricing-title .label {
   font-size: 12px;

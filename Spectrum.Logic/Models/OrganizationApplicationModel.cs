@@ -2,7 +2,8 @@ using System;
 
 namespace Spectrum.Logic.Models
 {
-    public partial class OrganizationApplicationModel
+    [Serializable]
+    public class OrganizationApplicationModel
     {
         public int OrganizationId { get; set; }
         public int ApplicationId { get; set; }

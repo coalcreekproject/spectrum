@@ -3,12 +3,12 @@ using System.Collections.Generic;
 
 namespace Spectrum.Logic.Models
 {
-    public partial class PositionModel
+    [Serializable]
+    public class PositionModel
     {
         public PositionModel()
         {
             UserModels = new List<UserModel>();
-            InitializePartial();
         }
 
         public int Id { get; set; }
@@ -24,7 +24,5 @@ namespace Spectrum.Logic.Models
         public int? ModifiedByUserId { get; set; }
 
         public virtual ICollection<UserModel> UserModels { get; set; }
-
-        partial void InitializePartial();
     }
 }

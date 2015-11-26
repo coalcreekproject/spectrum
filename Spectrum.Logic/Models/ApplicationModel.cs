@@ -3,7 +3,8 @@ using System.Collections.Generic;
 
 namespace Spectrum.Logic.Models
 {
-    public partial class ApplicationModel
+    [Serializable]
+    public class ApplicationModel
     {
         public ApplicationModel()
         {
@@ -13,7 +14,6 @@ namespace Spectrum.Logic.Models
             OrganizationApplicationModels = new List<OrganizationApplicationModel>();
             RoleModels = new List<RoleModel>();
             UserApplicationModels = new List<UserApplicationModel>();
-            InitializePartial();
         }
 
         public int Id { get; set; }
@@ -31,7 +31,5 @@ namespace Spectrum.Logic.Models
         public virtual ICollection<OrganizationApplicationModel> OrganizationApplicationModels { get; set; }
         public virtual ICollection<RoleModel> RoleModels { get; set; }
         public virtual ICollection<UserApplicationModel> UserApplicationModels { get; set; }
-
-        partial void InitializePartial();
     }
 }
