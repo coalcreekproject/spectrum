@@ -82,7 +82,7 @@ function userPanelController($scope, $http, $modal, $state, userFactory) {
     $scope.roles = function (user) {
         var modalInstance = $modal.open({
             templateUrl: '/Templates/User/AssignUserRolesModal',
-            controller: SimpleDemoController,
+            controller: UserRolesController,
             resolve: {
                 user: function () {
                     return angular.copy(user);
@@ -96,23 +96,32 @@ function userPanelController($scope, $http, $modal, $state, userFactory) {
     };
 };
 
-function SimpleDemoController($scope, $modalInstance) {
+function UserRolesController($scope, $modalInstance, userRoleFactory, user) {
 
     $scope.models = {
         selected: null,
         lists: { "Available": [], "Assigned": [] }
-};
+    };
 
-    // Generate initial model
-    for (var i = 1; i <= 5; ++i) {
-        $scope.models.lists.Assigned.push({ label: "Assigned Role" + i });
-        $scope.models.lists.Available.push({ label: "Available Role" + i });
+    var availableRoles = userRoleFactory.getAvailableUserRoles(user.organizationId);
+    var assignedUserRoles = userRoleFactory.getUserRoles(user.Id);
+
+    $scope.availableRoles = availableRoles;
+    $scope.assignedUserRoles = assignedUserRoles;
+
+    // Generate initial models
+    for (var i = 1; i <= availableRoles.length; ++i) {
+        $scope.models.lists.Available.push({ label: availableRoles[i].Name });
+    }
+
+    for (var i = 1; i <= assignedUserRoles.length; ++i) {
+        $scope.models.lists.Assigned.push({ label: assignedUserRoles[i].Name });
     }
 
     // Model to JSON for demo purpose
-    $scope.$watch('models', function (model) {
-        $scope.modelAsJson = angular.toJson(model, true);
-    }, true);
+    //$scope.$watch('models', function (model) {
+    //    $scope.modelAsJson = angular.toJson(model, true);
+    //}, true);
 
     $scope.ok = function (user) {
 

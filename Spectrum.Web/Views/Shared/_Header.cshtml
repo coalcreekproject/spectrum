@@ -1,5 +1,4 @@
 ﻿@using Microsoft.AspNet.Identity
-@using Spectrum.Logic.Identity
 <div class="color-line">
 </div>
 <div id="logo" class="light-version">
@@ -40,19 +39,19 @@
                         <tbody>
                             <tr>
                                 <td>
-                                    <a href="@Url.Action("Index", "Contact", new { Area = "" })">
+                                    <a href="@Url.Action("Index", "Contact", new { Area = string.Empty })">
                                         <i class="pe pe-7s-user-female text-info"></i>
                                         <h5>Contacts</h5>
                                     </a>
                                 </td>
                                 <td>
-                                    <a href="@Url.Action("Index", "User", new { Area = "" })">
+                                    <a href="@Url.Action("Index", "User", new { Area = string.Empty })">
                                         <i class="pe pe-7s-users text-info"></i>
                                         <h5>Users</h5>
                                     </a>
                                 </td>
                                 <td>
-                                    <a href="@Url.Action("Index", "Organization", new { Area = "" })">
+                                    <a href="@Url.Action("Index", "Organization", new { Area = string.Empty })">
                                         <i class="pe pe-7s-global text-info"></i>
                                         <h5>Organizations</h5>
                                     </a>
@@ -66,7 +65,7 @@
                                     </a>
                                 </td>
                                 <td>
-                                    <a href="@Url.Action("Index", "Organization", new { Area = "" })">
+                                    <a href="@Url.Action("Index", "Organization", new { Area = string.Empty })">
                                         <i class="pe pe-7s-credit text-info"></i>
                                         <h5>Billing</h5>
                                     </a>

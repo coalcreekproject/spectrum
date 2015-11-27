@@ -1,7 +1,7 @@
 ﻿@using Spectrum.Web.Helpers
 <div id="navigation">
     <div class="profile-picture">
-        <a href="@Url.Action("Index", "Dashboard", new {Area = ""})">
+        <a href="@Url.Action("Index", "Dashboard", new { Area = string.Empty })">
             <img src="~/Content/images/profile.png" class="img-circle m-b" alt="logo">
         </a>
 
@@ -21,7 +21,7 @@
 
     <ul side-navigation class="nav" id="side-menu">
         <li ui-sref-active="active">
-            <a href="@Url.Action("Index", "Dashboard", new {Area = ""})"><span class="nav-label">Dashboard</span><span class="label label-info pull-right">NEW</span></a>
+            <a href="@Url.Action("Index", "Dashboard", new { Area = string.Empty })"><span class="nav-label">Dashboard</span><span class="label label-info pull-right">NEW</span></a>
         </li>
         <li ui-sref-active="active">
             <a ui-sref="analytics"><span class="nav-label">Analytics</span><span class="label label-warning pull-right">COMING<br/>SOON!</span> </a>

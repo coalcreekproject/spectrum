@@ -59,14 +59,9 @@ namespace Spectrum.Web.Controllers.Api
         {
             var role = _roleRepository.All.Where(r => r.OrganizationId == id);
 
-            if (role == null)
-            {
-                return Request.CreateResponse(HttpStatusCode.NotFound);
-            }
+            var roleViewModel = Mapper.Map<RoleViewModel>(role);
 
-            //var roleViewModel = Mapper.Map<RoleViewModel>(role);
-
-            return Request.CreateResponse(HttpStatusCode.OK, role);
+            return Request.CreateResponse(HttpStatusCode.OK, roleViewModel);
         }
 
         // POST: api/Roles
