@@ -16,12 +16,21 @@ namespace Spectrum.Web
                 namespaces: new[] { "Spectrum.Web.Controllers.Web" }
             );
 
+#if DEBUG
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Dashboard", action = "Index", id = UrlParameter.Optional },
+                defaults: new {controller = "Dashboard", action = "Index", id = UrlParameter.Optional},
+                namespaces: new[] {"Spectrum.Web.Controllers.Web"}
+                );
+#else
+            routes.MapRoute(
+                name: "Default",
+                url: "{controller}/{action}/{id}",
+                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional },
                 namespaces: new [] { "Spectrum.Web.Controllers.Web" }
             );
+#endif
         }
     }
 }

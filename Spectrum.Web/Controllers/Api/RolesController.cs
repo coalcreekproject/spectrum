@@ -43,10 +43,9 @@ namespace Spectrum.Web.Controllers.Api
         {
             var roleViewModels = new List<RoleViewModel>();
 
-            foreach (Role p in _roleRepository.All)
+            foreach (var r in _roleRepository.All)
             {
-                var roleViewModel = Mapper.Map<RoleViewModel>(p);
-                roleViewModels.Add(roleViewModel);
+                roleViewModels.Add(Mapper.Map<RoleViewModel>(r));
             }
 
             //TODO: Get Paging working
@@ -57,11 +56,15 @@ namespace Spectrum.Web.Controllers.Api
         // GET: api/Roles/5
         public HttpResponseMessage Get(int id)
         {
-            var role = _roleRepository.All.Where(r => r.OrganizationId == id);
+            var roles = _roleRepository.All.Where(r => r.OrganizationId == id);
+            var roleViewModels = new List<RoleViewModel>();
 
-            var roleViewModel = Mapper.Map<RoleViewModel>(role);
+            foreach (var r in roles)
+            {
+                roleViewModels.Add(Mapper.Map<RoleViewModel>(r));
+            }
 
-            return Request.CreateResponse(HttpStatusCode.OK, roleViewModel);
+            return Request.CreateResponse(HttpStatusCode.OK, roleViewModels);
         }
 
         // POST: api/Roles

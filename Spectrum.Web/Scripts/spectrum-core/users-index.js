@@ -96,53 +96,6 @@ function userPanelController($scope, $http, $modal, $state, userFactory) {
     };
 };
 
-function UserRolesController($scope, $modalInstance, userRoleFactory, user) {
-
-    $scope.models = {
-        selected: null,
-        lists: { "Available": [], "Assigned": [] }
-    };
-
-    var availableRoles = userRoleFactory.getAvailableUserRoles(user.organizationId);
-    var assignedUserRoles = userRoleFactory.getUserRoles(user.Id);
-
-    $scope.availableRoles = availableRoles;
-    $scope.assignedUserRoles = assignedUserRoles;
-
-    // Generate initial models
-    for (var i = 1; i <= availableRoles.length; ++i) {
-        $scope.models.lists.Available.push({ label: availableRoles[i].Name });
-    }
-
-    for (var i = 1; i <= assignedUserRoles.length; ++i) {
-        $scope.models.lists.Assigned.push({ label: assignedUserRoles[i].Name });
-    }
-
-    // Model to JSON for demo purpose
-    //$scope.$watch('models', function (model) {
-    //    $scope.modelAsJson = angular.toJson(model, true);
-    //}, true);
-
-    $scope.ok = function (user) {
-
-        //userFactory.addUser(user)
-        //    .then(function () {
-        //        // success
-        //        $modalInstance.close();
-        //    },
-        //        function () {
-        //            // error
-        //            alert("could not save roles");
-        //        });
-
-        $modalInstance.close();
-    };
-
-    $scope.cancel = function () {
-        $modalInstance.dismiss('cancel');
-    };
-};
-
 function AddUserModalController($scope, $modalInstance, userFactory) {
 
     $scope.ok = function(user) {

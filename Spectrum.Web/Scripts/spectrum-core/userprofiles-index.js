@@ -65,6 +65,7 @@ function AddUserProfileModalController($scope, $modalInstance, userProfileFactor
         userProfileFactory.addUserProfile(userProfile)
             .then(function () {
                 // success
+                // TODO: Saved message
                 $modalInstance.close();
             },
                 function () {
