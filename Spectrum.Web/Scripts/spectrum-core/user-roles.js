@@ -19,22 +19,19 @@ function UserRolesController($scope, $modalInstance, userRoleFactory, userProfil
         lists: { "Available": [], "Assigned": [] }
     };
 
-    $scope.data = userProfileFactory;
-    var _userProfiles = [];
-    angular.copy($scope.data.userProfiles, _userProfiles);
-    
     // Find the user default profile organization id
-    for (var i = 1; i <= _userProfiles.length; ++i) {
-        if (userProfiles[i].Default === true) {
-            userRoleParameters.organizationId = userProfiles[i].OrganizationId;
+    for (var i = 0; i < user.UserProfiles.length; ++i) {
+        if (user.UserProfiles[i].Default === true) {
+            userRoleParameters.organizationId = user.UserProfiles[i].OrganizationId;
         }
     }
 
-    var availableRoles = userRoleFactory.getAvailableUserRoles(userRoleParameters.organizationId);
-    var assignedUserRoles = userRoleFactory.getUserRoles(user.Id);
-
-    $scope.availableRoles = availableRoles;
-    $scope.assignedUserRoles = assignedUserRoles;
+    $scope.data = userRoleFactory;
+    var availableRoles = [];
+    var assignedUserRoles = [];
+    
+    $scope.data.getAvailableUserRoles(userRoleParameters.organizationId).resolve;
+    $scope.data.getUserRoles(user.Id, assignedUserRoles);
 
     // Generate initial models
     for (var i = 1; i <= availableRoles.length; ++i) {

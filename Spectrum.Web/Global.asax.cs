@@ -24,6 +24,9 @@ namespace Spectrum.Web
                 cfg.CreateMap<User, UserModel>();
                 cfg.CreateMap<UserModel, User>();
 
+                cfg.CreateMap<User, UserViewModel>();
+                cfg.CreateMap<UserViewModel, User>();
+
                 cfg.CreateMap<UserProfile, UserProfileModel>();
                 cfg.CreateMap<UserProfileModel, UserProfile>();
 
@@ -36,8 +39,6 @@ namespace Spectrum.Web
 
                 cfg.CreateMap<Role, RoleViewModel>();
                 cfg.CreateMap<RoleViewModel, Role>();
-
-
             });
 
         }

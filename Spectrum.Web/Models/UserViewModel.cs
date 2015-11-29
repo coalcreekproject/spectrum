@@ -1,9 +1,16 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace Spectrum.Web.Models
 {
     public class UserViewModel
     {
+        public UserViewModel()
+        {
+            UserProfiles = new List<UserProfileViewModel>();
+            Roles = new List<RoleViewModel>();
+        }
+
         [Key]
         public int Id { get; set; }
 
@@ -25,5 +32,8 @@ namespace Spectrum.Web.Models
         [Display(Name = "Confirm new password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+        public ICollection<RoleViewModel> Roles { get; set; }
+        public ICollection<UserProfileViewModel> UserProfiles { get; set; }
     }
 }

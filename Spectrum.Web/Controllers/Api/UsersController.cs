@@ -10,6 +10,7 @@ using Spectrum.Core.Data.Models;
 using Spectrum.Core.Data.Models.Interfaces;
 using Spectrum.Core.Data.Repositories;
 using Spectrum.Web.Models;
+using AutoMapper;
 
 namespace Spectrum.Web.Controllers.Api
 {
@@ -48,14 +49,7 @@ namespace Spectrum.Web.Controllers.Api
 
             foreach (User u in _manager.Users)
             {
-                userViewModels.Add(new UserViewModel()
-                {
-                    Id = u.Id,
-                    Email = u.Email,
-                    UserName = u.UserName
-                    //Password = "********",
-                    //ConfirmPassword = "********"
-                });
+                userViewModels.Add(Mapper.Map<UserViewModel>(u));
             }
             
             //TODO: Get Paging working
@@ -89,12 +83,8 @@ namespace Spectrum.Web.Controllers.Api
         // POST: api/Users
         public HttpResponseMessage Post([FromBody]UserViewModel newUser)
         {
-            User user = new User
-            {
-                UserName = newUser.UserName,
-                Email = newUser.Email,
-                ObjectState = ObjectState.Added
-            };
+            User user = new User();
+            Mapper.Map(newUser, user);
 
             var result = _manager.Create(user, newUser.Password);
 
