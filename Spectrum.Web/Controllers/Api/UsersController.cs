@@ -53,7 +53,7 @@ namespace Spectrum.Web.Controllers.Api
             }
             
             //TODO: Get Paging working
-            return userViewModels.Take(10);
+            return userViewModels;  //.Take(10);
             //return userViewModels;
         
         }

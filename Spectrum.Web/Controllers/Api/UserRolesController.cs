@@ -6,6 +6,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
 using AutoMapper;
+using Microsoft.AspNet.Identity;
 using Spectrum.Core.Data.Context.Interfaces;
 using Spectrum.Core.Data.Context.UnitOfWork;
 using Spectrum.Core.Data.Models;
@@ -20,17 +21,18 @@ namespace Spectrum.Web.Controllers.Api
     {
         private ICoreDbContext _context;
         private UserRepository _userRepository;
+        private readonly UserManager<User, int> _manager;
 
         public UserRolesController(ICoreUnitOfWork uow)
         {
             _context = uow.Context;
 
-            //TODO: Newing this up is no good
             _userRepository = new UserRepository(uow);
+            _manager = new UserManager<User, int>(_userRepository);
         }
 
-        [System.Web.Http.HttpGet]
         // GET: api/Roles/5
+        [System.Web.Http.HttpGet]
         public HttpResponseMessage Get(int id)
         {
             var user = _userRepository.FindByIdAsync(id).Result;
@@ -45,61 +47,38 @@ namespace Spectrum.Web.Controllers.Api
             return Request.CreateResponse(HttpStatusCode.OK, userRoleViewModels);
         }
 
-        // POST: api/Roles
-        //public async Task<HttpResponseMessage> Post([FromBody] RoleViewModel newRoles)
-        //{
-        //    var role = Mapper.Map<Role>(newRole);
 
-        //    role.ObjectState = ObjectState.Added;
-        //    _roleRepository.InsertOrUpdate(role);
+        // PUT: api/Roles/5
+        [System.Web.Http.HttpPut]
+        public HttpResponseMessage Put([FromBody] UserViewModel editUser)
+        {
+            var user = _manager.FindById(editUser.Id);
 
-        //    var result = Task.FromResult(_roleRepository.SaveAsync());
+            if (user == null)
+            {
+                return Request.CreateResponse(HttpStatusCode.NotFound);
+            }
 
-        //    if (result.IsCompleted)
-        //    {
-        //        return Request.CreateResponse(HttpStatusCode.Created,
-        //            role);
-        //    }
+            user.Roles.Clear();
 
-        //    return Request.CreateResponse(HttpStatusCode.BadRequest);
-        //}
+            foreach (var r in editUser.Roles)
+            {
+                Role tempRole = new Role();
+                Mapper.Map(r, tempRole);
+                tempRole.ObjectState = ObjectState.Unchanged;
+                user.Roles.Add(tempRole);
+            }
+            
+            user.ObjectState = ObjectState.Modified;
 
-        //// PUT: api/Roles/5
-        //public HttpResponseMessage Put(int id, [FromBody] RoleViewModel editRole)
-        //{
-        //    var role = _roleRepository.FindAsync(editRole.Id).Result;
+            var result = _manager.Update(user);
 
-        //    if (role == null)
-        //    {
-        //        return Request.CreateResponse(HttpStatusCode.NotFound);
-        //    }
+            if (result.Succeeded)
+            {
+                return Request.CreateResponse(HttpStatusCode.Created, user);
+            }
 
-        //    Mapper.Map(editRole, role);
-
-        //    role.ObjectState = ObjectState.Modified;
-
-        //    _roleRepository.InsertOrUpdate(role);
-        //    _roleRepository.Save();
-
-        //    return Request.CreateResponse(HttpStatusCode.OK, role);
-        //}
-
-        //// DELETE: api/Roles/5
-        //public HttpResponseMessage Delete(int id)
-        //{
-        //    var role = _roleRepository.FindAsync(id).Result;
-
-        //    if (role == null)
-        //    {
-        //        return Request.CreateResponse(HttpStatusCode.NotFound);
-        //    }
-
-        //    role.ObjectState = ObjectState.Deleted;
-        //    _roleRepository.Delete(role.Id);
-        //    _roleRepository.SaveAsync();
-
-        //    return Request.CreateResponse(HttpStatusCode.OK, role);
-        //}
-
+            return Request.CreateResponse(HttpStatusCode.BadRequest);
+        }
     }
 }

@@ -82,7 +82,7 @@ function userPanelController($scope, $http, $modal, $state, userFactory) {
     $scope.roles = function (user) {
         var modalInstance = $modal.open({
             templateUrl: '/Templates/User/AssignUserRolesModal',
-            controller: UserRolesController,
+            controller: UserRolesModalController,
             resolve: {
                 user: function () {
                     return angular.copy(user);

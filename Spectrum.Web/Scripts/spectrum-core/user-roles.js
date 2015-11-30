@@ -1,19 +1,18 @@
 ﻿angular
     .module('app')
-    .controller('UserRolesController', UserRolesController);
-
+    .controller('UserRolesModalController', UserRolesModalController);
 
 function userRoleParameters() {
     this.userId = null;
     this.organizationId = null;
 };
 
-
-function UserRolesController($scope, $modalInstance, userRoleFactory, userProfileFactory, user) {
+function UserRolesModalController($scope, $modalInstance, userRoleFactory, user) {
 
     $scope.userId = user.Id;
     userRoleParameters.userId = $scope.userId;
-    
+    $scope.user = user;
+
     $scope.models = {
         selected: null,
         lists: { "Available": [], "Assigned": [] }
@@ -27,37 +26,56 @@ function UserRolesController($scope, $modalInstance, userRoleFactory, userProfil
     }
 
     $scope.data = userRoleFactory;
-    var availableRoles = [];
-    var assignedUserRoles = [];
-    
-    $scope.data.getAvailableUserRoles(userRoleParameters.organizationId).resolve;
-    $scope.data.getUserRoles(user.Id, assignedUserRoles);
 
-    // Generate initial models
-    for (var i = 1; i <= availableRoles.length; ++i) {
-        $scope.models.lists.Available.push({ label: availableRoles[i].Name });
-    }
+    userRoleFactory.getAvailableRoles(userRoleParameters.organizationId)
+        .then(function(availableRoles) {
+                // success
+                $scope.availableRoles = availableRoles;
+                for (var i = 0; i < $scope.availableRoles.length; ++i) {
+                    $scope.models.lists.Available.push({
+                        label: $scope.availableRoles[i].Name,
+                        object: $scope.availableRoles[i]
+                    });
+                }
+            },
+            function() {
+                // error
+                alert("could not get available roles");
+            });
 
-    for (var i = 1; i <= assignedUserRoles.length; ++i) {
-        $scope.models.lists.Assigned.push({ label: assignedUserRoles[i].Name });
-    }
+
+    userRoleFactory.getUserRoles(userRoleParameters.userId)
+        .then(function(userRoles) {
+                // success
+                $scope.userRoles = userRoles;
+                for (var i = 0; i < $scope.userRoles.length; ++i) {
+                    $scope.models.lists.Assigned.push({
+                        label: $scope.userRoles[i].Name,
+                        object: $scope.userRoles[i]
+                    });
+                }
+            },
+            function() {
+                // error
+                alert("could not get user roles");
+            });
 
     // Model to JSON for demo purpose
     //$scope.$watch('models', function (model) {
     //    $scope.modelAsJson = angular.toJson(model, true);
     //}, true);
 
-    $scope.ok = function (user) {
+    $scope.ok = function () {
 
-        //userFactory.addUser(user)
-        //    .then(function () {
-        //        // success
-        //        $modalInstance.close();
-        //    },
-        //        function () {
-        //            // error
-        //            alert("could not save roles");
-        //        });
+        userRoleFactory.editUserRoles($scope.models.lists.Assigned, $scope.user)
+            .then(function () {
+                // success
+                $modalInstance.close();
+            },
+                function () {
+                    // error
+                    alert("could not save roles");
+                });
 
         $modalInstance.close();
     };
@@ -72,21 +90,20 @@ angular
     .module('app')
     .factory('userRoleFactory', userRoleFactory);
 
-
 function userRoleFactory($http, $q) {
 
-    var _availableUserRoles = [];
+    var _availableRoles = [];
     var _userRoles = [];
 
-    var _getAvailableUserRoles = function (id) {
+    var _getAvailableRoles = function (id) {
 
         var deferred = $q.defer();
 
         $http.get('/api/Roles/' + id)
             .then(function (result) {
                 // Successful
-                angular.copy(result.data, _availableUserRoles);
-                deferred.resolve(_availableUserRoles);
+                angular.copy(result.data, _availableRoles);
+                deferred.resolve(_availableRoles);
             },
                 function () {
                     // Error
@@ -115,69 +132,20 @@ function userRoleFactory($http, $q) {
     };
 
 
-    var _addUserRoles = function (newlyAddedRole) {
+    var _editUserRoles = function(roleList, user) {
+
+        user.Roles = [];
+
+        for (var i = 0; i < roleList.length; i++) {
+            user.Roles.push(roleList[i].object);
+        }
 
         var deferred = $q.defer();
 
-        $http.post('/api/UserRoles/', newlyAddedRole)
+        $http.put('/api/UserRoles/', user)
             .then(function(result) {
                     // success
-                    var newlyCreatedUser = result.data;
-                    _userRoles.splice(0, 0, newlyAddedRole);
-                    deferred.resolve(newlyCreatedUser);
-                },
-                function() {
-                    // error
-                    deferred.reject();
-                });
-
-        return deferred.promise;
-    };
-
-    //var _editUser = function(user) {
-
-    //    var deferred = $q.defer();
-
-    //    $http.put('/api/Users/' + user.Id, user)
-    //     .then(function (result) {
-    //         // success
-    //         var editedUser = result.data;
-
-    //         for (var i = 0; i < _users.length; i++) {
-    //             if (_users[i].Id === editedUser.Id) {
-    //                 _users[i].UserName = editedUser.UserName;
-    //                 _users[i].Email = editedUser.Email;
-    //                 break;
-    //             }
-    //         }
-
-    //         deferred.resolve(editedUser);
-    //     },
-    //     function () {
-    //         // error
-    //         deferred.reject();
-    //     });
-
-    //    return deferred.promise;
-    //};
-
-    var _deleteUserRoles = function(user) {
-
-        var deferred = $q.defer();
-
-        $http.delete('/api/UserRoles/' + user.Id, role)
-            .then(function(result) {
-
-                    var deletedUserRoles = result.data;
-
-                    for (var i = 0; i < _userRoles.length; i++) {
-                        if (_userRoles[i].Id === deletedUserRoles.Id) {
-                            _userRoles.splice(i, 1);
-                            break;
-                        }
-                    }
-
-                    deferred.resolve();
+                    deferred.resolve(result);
                 },
                 function() {
                     // error
@@ -188,11 +156,10 @@ function userRoleFactory($http, $q) {
     };
 
     return {
-        getAvailableUserRoles: _getAvailableUserRoles,
+        availableRoles: _availableRoles,
+        getAvailableRoles: _getAvailableRoles,
         userRoles: _userRoles,
         getUserRoles: _getUserRoles,
-        addUserRoles: _addUserRoles,
-        //editUser: _editUser,
-        deleteUserRoles: _deleteUserRoles
+        editUserRoles: _editUserRoles
     };
 }
