@@ -1,5 +1,6 @@
 ﻿CREATE TABLE [dbo].[OrganizationPreference]
 (
+	[Id] INT NULL,
 	[OrganizationId] INT NOT NULL, 
     [PreferenceId] INT NOT NULL,
 

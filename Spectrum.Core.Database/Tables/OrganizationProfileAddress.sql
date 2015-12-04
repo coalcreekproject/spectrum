@@ -1,5 +1,6 @@
 ﻿CREATE TABLE [dbo].[OrganizationProfileAddress]
 (
+	[Id] INT NULL,
 	[OrganizationProfileId] INT NOT NULL, 
     [AddressId] INT NOT NULL
 	 

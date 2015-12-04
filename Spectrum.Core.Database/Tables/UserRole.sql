@@ -1,5 +1,6 @@
 ﻿CREATE TABLE [dbo].[UserRole]
 (
+	[Id] INT NULL,
     [UserId] INT NOT NULL,
     [RoleId] INT NOT NULL,
 

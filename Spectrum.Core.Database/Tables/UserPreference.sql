@@ -1,5 +1,6 @@
 ﻿CREATE TABLE [dbo].[UserPreference]
 (
+	[Id] INT NULL,
 	[UserId] INT NOT NULL, 
     [PreferenceId] INT NOT NULL,
 
@@ -10,11 +11,3 @@
 
 )
 GO
-
-CREATE NONCLUSTERED INDEX [IX_UserPreference_UserId] 
-	ON [dbo].[UserPreference] ([UserId])
-
-GO
-
-CREATE NONCLUSTERED INDEX [IX_UserPreference_PreferenceId] 
-	ON [dbo].[UserPreference] ([PreferenceId])
