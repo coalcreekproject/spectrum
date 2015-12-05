@@ -23,6 +23,6 @@
 	[CreatedByUserId]	   INT					  NULL,
     [ModifiedDate]		   DATETIME				  NULL, 
 	[ModifiedByUserId]	   INT					  NULL
-     
+  
 	CONSTRAINT [FK_UserProfile_User] FOREIGN KEY ([UserId]) REFERENCES [User]([Id]) ON DELETE CASCADE,
 )

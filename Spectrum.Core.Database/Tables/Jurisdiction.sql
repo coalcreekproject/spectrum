@@ -1,6 +1,6 @@
 ﻿CREATE TABLE [dbo].[Jurisdiction]
 (
-	[Id] INT NOT NULL PRIMARY KEY, 
+	[Id] INT NOT NULL PRIMARY KEY IDENTITY(1000, 1), 
     [Name] NVARCHAR(128) NOT NULL,
     [OrganizationId] INT NOT NULL,
     [Cloaked]			   BIT					  NULL, 

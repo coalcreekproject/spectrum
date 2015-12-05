@@ -5,12 +5,6 @@
     [OrganizationId] INT NOT NULL, 
     [Description] NVARCHAR(256) NULL, 
     [ApplicationId] INT NULL,
-    [Cloaked]			   BIT					  NULL, 
-    [Archive]			   BIT					  NULL, 
-    [CreatedDate]		   DATETIME				  NULL,
-	[CreatedByUserId]	   INT					  NULL,
-    [ModifiedDate]		   DATETIME				  NULL, 
-	[ModifiedByUserId]	   INT					  NULL
 
     CONSTRAINT [PK_Role_RoleID] PRIMARY KEY CLUSTERED ([Id] ASC),
     CONSTRAINT [UK_Role_Name] UNIQUE NONCLUSTERED ([Name] ASC), 

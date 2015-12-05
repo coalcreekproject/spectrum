@@ -9,6 +9,6 @@
 	[CreatedByUserId]	   INT					  NULL,
     [ModifiedDate]		   DATETIME				  NULL, 
 	[ModifiedByUserId]	   INT					  NULL
-
+	
     CONSTRAINT [FK_Organization_OrganizationType] FOREIGN KEY ([OrganizationTypeId]) REFERENCES [OrganizationType]([Id]) 
 )
