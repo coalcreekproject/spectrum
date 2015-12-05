@@ -129,6 +129,7 @@
     <Build Include="Tables\JurisdictionNote.sql" />
     <Build Include="Tables\OrganizationNote.sql" />
     <Build Include="Tables\UserNote.sql" />
+    <Build Include="Tables\UserLicense.sql" />
     <Build Include="Tables\OrganizationLicense.sql" />
   </ItemGroup>
   <ItemGroup>
