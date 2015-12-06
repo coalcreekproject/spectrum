@@ -14,12 +14,14 @@ namespace Spectrum.Core.Data.Repositories
 {
     public class RoleRepository : IQueryableRoleStore<Role, int>, IRoleRepository
     {
-        private CoreDbContext _context;
+        private readonly CoreDbContext _context;
 
         public RoleRepository(ICoreUnitOfWork uow)
         {
             _context = uow.Context;
         }
+
+        public IQueryable<Role> Roles { get; }
 
         public IQueryable<Role> All
         {
@@ -61,12 +63,6 @@ namespace Spectrum.Core.Data.Repositories
             }
         }
 
-        public Task CreateOrganization(Role role)
-        {
-            this._context.Roles.Add(role);
-            return this._context.SaveChangesAsync();
-        }
-
         public void Delete(int id)
         {
             var role = _context.Roles.Find(id);
@@ -83,6 +79,12 @@ namespace Spectrum.Core.Data.Repositories
             return _context.SaveChangesAsync();
         }
 
+        public Task CreateOrganization(Role role)
+        {
+            _context.Roles.Add(role);
+            return _context.SaveChangesAsync();
+        }
+
         #region IQueryableRoleStore Implementation for ASP.NET Identity 2.0
 
         public Task CreateAsync(Role role)
@@ -92,8 +94,8 @@ namespace Spectrum.Core.Data.Repositories
                 throw new ArgumentNullException("role");
             }
 
-            this._context.Roles.Add(role);
-            return this._context.SaveChangesAsync();
+            _context.Roles.Add(role);
+            return _context.SaveChangesAsync();
         }
 
         public Task UpdateAsync(Role role)
@@ -103,8 +105,8 @@ namespace Spectrum.Core.Data.Repositories
                 throw new ArgumentNullException("role");
             }
 
-            this._context.Entry(role).State = EntityState.Modified;
-            return this._context.SaveChangesAsync();
+            _context.Entry(role).State = EntityState.Modified;
+            return _context.SaveChangesAsync();
         }
 
         public Task DeleteAsync(Role role)
@@ -114,8 +116,8 @@ namespace Spectrum.Core.Data.Repositories
                 throw new ArgumentNullException("role");
             }
 
-            this._context.Roles.Remove(role);
-            return this._context.SaveChangesAsync();
+            _context.Roles.Remove(role);
+            return _context.SaveChangesAsync();
         }
 
         public Task<Role> FindByIdAsync(int roleId)
@@ -132,9 +134,16 @@ namespace Spectrum.Core.Data.Repositories
 
         public void Dispose()
         {
-            _context.Dispose();
+            Dispose(true);
+            GC.SuppressFinalize(this);
         }
 
-        public IQueryable<Role> Roles { get; }
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposing && _context != null)
+            {
+                _context.Dispose();
+            }
+        }
     }
 }

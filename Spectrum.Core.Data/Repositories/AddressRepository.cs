@@ -8,10 +8,10 @@ using Spectrum.Core.Data.Models;
 using Spectrum.Core.Data.Repositories.Interfaces;
 
 namespace Spectrum.Core.Data.Repositories
-{ 
-    public class AddressRepository : IAddressNorthAmericaRepository
+{
+    public class AddressRepository : IAddressRepository
     {
-        private CoreDbContext _context;
+        private readonly CoreDbContext _context;
 
         public AddressRepository(ICoreUnitOfWork uow)
         {
@@ -26,7 +26,8 @@ namespace Spectrum.Core.Data.Repositories
         public IQueryable<Address> AllIncluding(params Expression<Func<Address, object>>[] includeProperties)
         {
             IQueryable<Address> query = _context.Addresses;
-            foreach (var includeProperty in includeProperties) {
+            foreach (var includeProperty in includeProperties)
+            {
                 query = query.Include(includeProperty);
             }
             return query;
@@ -39,10 +40,13 @@ namespace Spectrum.Core.Data.Repositories
 
         public void InsertOrUpdate(Address addressnorthamerica)
         {
-            if (addressnorthamerica.Id == default(int)) {
+            if (addressnorthamerica.Id == default(int))
+            {
                 // New entity
                 _context.Addresses.Add(addressnorthamerica);
-            } else {
+            }
+            else
+            {
                 // Existing entity
                 _context.Entry(addressnorthamerica).State = EntityState.Modified;
             }
@@ -53,15 +57,23 @@ namespace Spectrum.Core.Data.Repositories
             var addressnorthamerica = _context.Addresses.Find(id);
             _context.Addresses.Remove(addressnorthamerica);
         }
-
         public void Save()
         {
             _context.SaveChanges();
         }
 
-        public void Dispose() 
+        public void Dispose()
         {
-            _context.Dispose();
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposing && _context != null)
+            {
+                _context.Dispose();
+            }
         }
     }
 }

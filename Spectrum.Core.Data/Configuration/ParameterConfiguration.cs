@@ -14,7 +14,7 @@ namespace Spectrum.Core.Data.Configuration
             Property(x => x.Id)
                 .HasColumnName("Id")
                 .IsRequired()
-                .HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
+                .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
             Property(x => x.Key).HasColumnName("Key").IsRequired().HasMaxLength(128);
             Property(x => x.Value).HasColumnName("Value").IsRequired().HasMaxLength(128);
             Property(x => x.Cloaked).HasColumnName("Cloaked").IsOptional();

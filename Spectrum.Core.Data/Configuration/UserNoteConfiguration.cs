@@ -14,7 +14,7 @@ namespace Spectrum.Core.Data.Configuration
             Property(x => x.Id)
                 .HasColumnName("Id")
                 .IsRequired()
-                .HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
+                .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
             Property(x => x.UserId).HasColumnName("UserId").IsRequired();
             Property(x => x.Note).HasColumnName("Note").IsRequired();
 

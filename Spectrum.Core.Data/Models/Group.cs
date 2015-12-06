@@ -7,7 +7,7 @@ namespace Spectrum.Core.Data.Models
     {
         public Group()
         {
-            Users = new List<User>();
+            UserGroups = new List<UserGroup>();
             InitializePartial();
         }
 
@@ -22,7 +22,7 @@ namespace Spectrum.Core.Data.Models
         public DateTime? ModifiedDate { get; set; }
         public int? ModifiedByUserId { get; set; }
 
-        public virtual ICollection<User> Users { get; set; }
+        public virtual ICollection<UserGroup> UserGroups { get; set; }
 
         public virtual Organization Organization { get; set; }
 

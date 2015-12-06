@@ -10,14 +10,19 @@ using Spectrum.Core.Data.Models.Interfaces;
 using Spectrum.Core.Data.Repositories.Interfaces;
 
 namespace Spectrum.Core.Data.Repositories
-{ 
+{
     public class OrganizationRepository : IOrganizationRepository
     {
-        private CoreDbContext _context;
+        private readonly CoreDbContext _context;
 
         public OrganizationRepository(ICoreUnitOfWork uow)
         {
             _context = uow.Context;
+        }
+
+        public IQueryable<Organization> Organizations
+        {
+            get { return _context.Organizations; }
         }
 
         public IQueryable<Organization> All
@@ -28,7 +33,8 @@ namespace Spectrum.Core.Data.Repositories
         public IQueryable<Organization> AllIncluding(params Expression<Func<Organization, object>>[] includeProperties)
         {
             IQueryable<Organization> query = _context.Organizations;
-            foreach (var includeProperty in includeProperties) {
+            foreach (var includeProperty in includeProperties)
+            {
                 query = query.Include(includeProperty);
             }
             return query;
@@ -58,24 +64,6 @@ namespace Spectrum.Core.Data.Repositories
             }
         }
 
-        public IQueryable<Organization> Organizations
-        {
-            get { return _context.Organizations; }
-        }
-
-
-        public Task CreateOrganization(Organization organization)
-        {
-            this._context.Organizations.Add(organization);
-            return this._context.SaveChangesAsync();
-        }
-
-        public Task UpdateAsync(Organization organization)
-        {
-            this._context.Entry<Organization>(organization).State = EntityState.Modified;
-            return this._context.SaveChangesAsync();
-        }
-
         public void Delete(int id)
         {
             var organization = _context.Organizations.Find(id);
@@ -92,9 +80,24 @@ namespace Spectrum.Core.Data.Repositories
             return _context.SaveChangesAsync();
         }
 
+        public Task UpdateAsync(Organization organization)
+        {
+            _context.Entry(organization).State = EntityState.Modified;
+            return _context.SaveChangesAsync();
+        }
+
         public void Dispose()
         {
-            _context.Dispose();
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposing && _context != null)
+            {
+                _context.Dispose();
+            }
         }
     }
 }

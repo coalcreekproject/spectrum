@@ -8,10 +8,10 @@ using Spectrum.Core.Data.Models;
 using Spectrum.Core.Data.Repositories.Interfaces;
 
 namespace Spectrum.Core.Data.Repositories
-{ 
+{
     public class ApplicationProfileRepository : IApplicationProfileRepository
     {
-        private CoreDbContext _context;
+        private readonly CoreDbContext _context;
 
         public ApplicationProfileRepository(ICoreUnitOfWork uow)
         {
@@ -23,10 +23,12 @@ namespace Spectrum.Core.Data.Repositories
             get { return _context.ApplicationProfiles; }
         }
 
-        public IQueryable<ApplicationProfile> AllIncluding(params Expression<Func<ApplicationProfile, object>>[] includeProperties)
+        public IQueryable<ApplicationProfile> AllIncluding(
+            params Expression<Func<ApplicationProfile, object>>[] includeProperties)
         {
             IQueryable<ApplicationProfile> query = _context.ApplicationProfiles;
-            foreach (var includeProperty in includeProperties) {
+            foreach (var includeProperty in includeProperties)
+            {
                 query = query.Include(includeProperty);
             }
             return query;
@@ -39,10 +41,13 @@ namespace Spectrum.Core.Data.Repositories
 
         public void InsertOrUpdate(ApplicationProfile applicationprofile)
         {
-            if (applicationprofile.Id == default(int)) {
+            if (applicationprofile.Id == default(int))
+            {
                 // New entity
                 _context.ApplicationProfiles.Add(applicationprofile);
-            } else {
+            }
+            else
+            {
                 // Existing entity
                 _context.Entry(applicationprofile).State = EntityState.Modified;
             }
@@ -53,15 +58,23 @@ namespace Spectrum.Core.Data.Repositories
             var applicationprofile = _context.ApplicationProfiles.Find(id);
             _context.ApplicationProfiles.Remove(applicationprofile);
         }
-
         public void Save()
         {
             _context.SaveChanges();
         }
 
-        public void Dispose() 
+        public void Dispose()
         {
-            _context.Dispose();
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposing && _context != null)
+            {
+                _context.Dispose();
+            }
         }
     }
 }

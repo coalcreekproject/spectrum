@@ -14,10 +14,10 @@ namespace Spectrum.Core.Data.Configuration
             Property(x => x.Id)
                 .HasColumnName("Id")
                 .IsRequired()
-                .HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
+                .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
             Property(x => x.AreaOfResponsibilityId).HasColumnName("AreaOfResponsibilityId").IsRequired();
             Property(x => x.Name).HasColumnName("Name").IsRequired().HasMaxLength(128);
-            Property(x => x.Description).HasColumnName("Description").IsOptional();
+            Property(x => x.Description).HasColumnName("Description").IsOptional().HasMaxLength(256);
             Property(x => x.Cloaked).HasColumnName("Cloaked").IsOptional();
             Property(x => x.Archive).HasColumnName("Archive").IsOptional();
             Property(x => x.CreatedDate).HasColumnName("CreatedDate").IsOptional();

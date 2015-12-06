@@ -12,11 +12,11 @@ namespace Spectrum.Core.Data.Models
             Jurisdictions = new List<Jurisdiction>();
             OrganizationApplications = new List<OrganizationApplication>();
             OrganizationNotes = new List<OrganizationNote>();
+            OrganizationPreferences = new List<OrganizationPreference>();
             OrganizationProfiles = new List<OrganizationProfile>();
             Roles = new List<Role>();
             Rules = new List<Rule>();
-            Preferences = new List<Preference>();
-            Users = new List<User>();
+            UserOrganizations = new List<UserOrganization>();
             InitializePartial();
         }
 
@@ -35,11 +35,11 @@ namespace Spectrum.Core.Data.Models
         public virtual ICollection<Jurisdiction> Jurisdictions { get; set; }
         public virtual ICollection<OrganizationApplication> OrganizationApplications { get; set; }
         public virtual ICollection<OrganizationNote> OrganizationNotes { get; set; }
+        public virtual ICollection<OrganizationPreference> OrganizationPreferences { get; set; }
         public virtual ICollection<OrganizationProfile> OrganizationProfiles { get; set; }
-        public virtual ICollection<Preference> Preferences { get; set; }
         public virtual ICollection<Role> Roles { get; set; }
         public virtual ICollection<Rule> Rules { get; set; }
-        public virtual ICollection<User> Users { get; set; }
+        public virtual ICollection<UserOrganization> UserOrganizations { get; set; }
 
         public virtual OrganizationType OrganizationType { get; set; }
 

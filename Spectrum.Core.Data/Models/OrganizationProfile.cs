@@ -7,7 +7,7 @@ namespace Spectrum.Core.Data.Models
     {
         public OrganizationProfile()
         {
-            Addresses = new List<Address>();
+            OrganizationProfileAddresses = new List<OrganizationProfileAddress>();
             InitializePartial();
         }
 
@@ -33,7 +33,7 @@ namespace Spectrum.Core.Data.Models
         public DateTime? ModifiedDate { get; set; }
         public int? ModifiedByUserId { get; set; }
 
-        public virtual ICollection<Address> Addresses { get; set; }
+        public virtual ICollection<OrganizationProfileAddress> OrganizationProfileAddresses { get; set; }
 
         public virtual Organization Organization { get; set; }
 

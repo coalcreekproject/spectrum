@@ -11,7 +11,7 @@ namespace Spectrum.Core.Data.Repositories
 {
     public class ApplicationRepository : IEntityRepository<Application>
     {
-        private CoreDbContext _context;
+        private readonly CoreDbContext _context;
 
         public ApplicationRepository(ICoreUnitOfWork uow)
         {
@@ -38,15 +38,6 @@ namespace Spectrum.Core.Data.Repositories
             return _context.Applications.Find(id);
         }
 
-        /// <summary>
-        /// This is to add a graph, or cascading objects associated
-        /// </summary>
-        /// <param name="application"></param>
-        public void AddGraph(Application application)
-        {
-            _context.Applications.Add(application);
-        }
-
         public void InsertOrUpdate(Application application)
         {
             if (application.Id == default(int))
@@ -67,14 +58,23 @@ namespace Spectrum.Core.Data.Repositories
             _context.Applications.Remove(application);
         }
 
-        //public void Save()
-        //{
-        //    context.SaveChanges();
-        //}
+        public void Save()
+        {
+            _context.SaveChanges();
+        }
 
         public void Dispose()
         {
-            _context.Dispose();
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposing && _context != null)
+            {
+                _context.Dispose();
+            }
         }
     }
 }

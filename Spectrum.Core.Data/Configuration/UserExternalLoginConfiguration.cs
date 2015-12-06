@@ -9,7 +9,7 @@ namespace Spectrum.Core.Data.Configuration
         public UserExternalLoginConfiguration(string schema = "dbo")
         {
             ToTable(schema + ".UserExternalLogin");
-            HasKey(x => new { x.UserId, x.LoginProvider, x.ProviderKey });
+            HasKey(x => new {x.UserId, x.LoginProvider, x.ProviderKey});
 
             Property(x => x.UserId)
                 .HasColumnName("UserId")
@@ -25,12 +25,6 @@ namespace Spectrum.Core.Data.Configuration
                 .IsRequired()
                 .HasMaxLength(128)
                 .HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
-            Property(x => x.Cloaked).HasColumnName("Cloaked").IsOptional();
-            Property(x => x.Archive).HasColumnName("Archive").IsOptional();
-            Property(x => x.CreatedDate).HasColumnName("CreatedDate").IsOptional();
-            Property(x => x.CreatedByUserId).HasColumnName("CreatedByUserId").IsOptional();
-            Property(x => x.ModifiedDate).HasColumnName("ModifiedDate").IsOptional();
-            Property(x => x.ModifiedByUserId).HasColumnName("ModifiedByUserId").IsOptional();
 
             HasRequired(a => a.User).WithMany(b => b.UserExternalLogins).HasForeignKey(c => c.UserId);
         }

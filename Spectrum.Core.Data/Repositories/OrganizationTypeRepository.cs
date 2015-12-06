@@ -8,10 +8,10 @@ using Spectrum.Core.Data.Models;
 using Spectrum.Core.Data.Repositories.Interfaces;
 
 namespace Spectrum.Core.Data.Repositories
-{ 
+{
     public class OrganizationTypeRepository : IOrganizationTypeRepository
     {
-        private CoreDbContext _context;
+        private readonly CoreDbContext _context;
 
         public OrganizationTypeRepository(ICoreUnitOfWork uow)
         {
@@ -23,10 +23,12 @@ namespace Spectrum.Core.Data.Repositories
             get { return _context.OrganizationTypes; }
         }
 
-        public IQueryable<OrganizationType> AllIncluding(params Expression<Func<OrganizationType, object>>[] includeProperties)
+        public IQueryable<OrganizationType> AllIncluding(
+            params Expression<Func<OrganizationType, object>>[] includeProperties)
         {
             IQueryable<OrganizationType> query = _context.OrganizationTypes;
-            foreach (var includeProperty in includeProperties) {
+            foreach (var includeProperty in includeProperties)
+            {
                 query = query.Include(includeProperty);
             }
             return query;
@@ -39,10 +41,13 @@ namespace Spectrum.Core.Data.Repositories
 
         public void InsertOrUpdate(OrganizationType organizationtype)
         {
-            if (organizationtype.Id == default(int)) {
+            if (organizationtype.Id == default(int))
+            {
                 // New entity
                 _context.OrganizationTypes.Add(organizationtype);
-            } else {
+            }
+            else
+            {
                 // Existing entity
                 _context.Entry(organizationtype).State = EntityState.Modified;
             }
@@ -53,15 +58,23 @@ namespace Spectrum.Core.Data.Repositories
             var organizationtype = _context.OrganizationTypes.Find(id);
             _context.OrganizationTypes.Remove(organizationtype);
         }
-
         public void Save()
         {
             _context.SaveChanges();
         }
 
-        public void Dispose() 
+        public void Dispose()
         {
-            _context.Dispose();
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposing && _context != null)
+            {
+                _context.Dispose();
+            }
         }
     }
 }

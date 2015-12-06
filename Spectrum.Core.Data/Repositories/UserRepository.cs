@@ -22,7 +22,6 @@ namespace Spectrum.Core.Data.Repositories
         IUserTwoFactorStore<User, int>,
         IUserPhoneNumberStore<User, int>
     {
-
         private readonly CoreDbContext _context;
         private readonly ICoreUnitOfWork _coreUnitOfWork;
 
@@ -93,12 +92,12 @@ namespace Spectrum.Core.Data.Repositories
         {
             //var result = Users.FirstOrDefault(u => u.Id == user.Id);
             //if (result == null)
-            
+
             return Task.FromResult(user.PasswordHash = password);
 
             //user.PasswordHash = password;
             //_context.Entry(user).State = EntityState.Modified;
-            
+
             //return _coreUnitOfWork.SaveAsync();
         }
 
@@ -207,14 +206,13 @@ namespace Spectrum.Core.Data.Repositories
         {
             IList<Claim> result = user.UserClaims.Select(c => new Claim(c.ClaimType, c.ClaimValue)).ToList();
             return Task.FromResult(result);
-
         }
 
         public Task AddClaimAsync(User user, Claim claim)
         {
             if (!user.UserClaims.Any(x => x.ClaimType == claim.Type && x.ClaimValue == claim.Value))
             {
-                user.UserClaims.Add(new UserClaim()
+                user.UserClaims.Add(new UserClaim
                 {
                     ClaimType = claim.Type,
                     ClaimValue = claim.Value
@@ -222,7 +220,6 @@ namespace Spectrum.Core.Data.Repositories
             }
 
             return Task.FromResult(0);
-
         }
 
         public Task RemoveClaimAsync(User user, Claim claim)
@@ -239,11 +236,13 @@ namespace Spectrum.Core.Data.Repositories
         //Problem, how do we persist a role for a given organization?
         public Task AddToRoleAsync(User user, string roleName)
         {
-            var role = new Role {Name = roleName};
+            //var userRole = new UserRole {Name = roleName};
 
-            if (!user.Roles.Contains(role))
+            var userRole = new UserRole();
+
+            if (!user.UserRoles.Contains(userRole))
             {
-                user.Roles.Add(role);
+                user.UserRoles.Add(userRole);
             }
 
             return Task.FromResult(true);
@@ -251,29 +250,27 @@ namespace Spectrum.Core.Data.Repositories
 
         public Task RemoveFromRoleAsync(User user, string roleName)
         {
-            var roles = user.Roles;
+            var userRoles = user.UserRoles;
 
-            Role role = roles.Select(r => new Role()
-            {
-                Name = roleName
-            }).FirstOrDefault();
+            var role = userRoles.Select(r => new UserRole()).FirstOrDefault();
 
-            roles.Remove(role);
+            userRoles.Remove(role);
             return _coreUnitOfWork.SaveAsync();
         }
 
         public Task<IList<string>> GetRolesAsync(User user)
         {
-            var roles = user.Roles;
-            IList<string> results = roles.Select(role => role.Name).ToList();
+            var userRoles = user.UserRoles;
+
+            IList<string> results = userRoles.Select(userRole => userRole.RoleId.ToString()).ToList();
 
             return Task.FromResult(results);
         }
 
         public Task<bool> IsInRoleAsync(User user, string roleName)
         {
-            var roles = user.Roles;
-            IList<string> results = roles.Select(role => role.Name).ToList();
+            var userRoles = user.UserRoles;
+            IList<string> results = userRoles.Select(userRole => userRole.RoleId.ToString()).ToList();
 
             return Task.FromResult(results.Count > 0);
         }
@@ -288,8 +285,8 @@ namespace Spectrum.Core.Data.Repositories
 
             if (result.LockoutEndDateUtc == null)
                 return Task.FromResult(DateTimeOffset.UtcNow.AddHours(-1));
-            
-            DateTimeOffset offset = new DateTimeOffset((DateTime) result.LockoutEndDateUtc);
+
+            var offset = new DateTimeOffset((DateTime) result.LockoutEndDateUtc);
 
             return Task.FromResult(offset);
         }
@@ -337,13 +334,10 @@ namespace Spectrum.Core.Data.Repositories
             {
                 return Task.FromResult(user.LockoutEnabled = enabled);
             }
-            else
-            {
-                result.LockoutEnabled = enabled;
-                return Task.FromResult(_coreUnitOfWork.SaveAsync());
-            }
+            result.LockoutEnabled = enabled;
+            return Task.FromResult(_coreUnitOfWork.SaveAsync());
         }
-        
+
         #endregion
 
         #region IUserTwoFactorStore Implementation
@@ -361,7 +355,7 @@ namespace Spectrum.Core.Data.Repositories
         #endregion
 
         #region IUserPhoneNumberStore
-        
+
         public Task SetPhoneNumberAsync(User user, string phoneNumber)
         {
             throw new NotImplementedException();
@@ -405,7 +399,5 @@ namespace Spectrum.Core.Data.Repositories
         }
 
         #endregion
-
-
     }
 }

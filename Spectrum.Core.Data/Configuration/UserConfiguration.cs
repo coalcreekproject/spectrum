@@ -26,12 +26,6 @@ namespace Spectrum.Core.Data.Configuration
             Property(x => x.LockoutEndDateUtc).HasColumnName("LockoutEndDateUtc").IsOptional();
             Property(x => x.LockoutEnabled).HasColumnName("LockoutEnabled").IsRequired();
             Property(x => x.AccessFailedCount).HasColumnName("AccessFailedCount").IsRequired();
-            Property(x => x.Cloaked).HasColumnName("Cloaked").IsOptional();
-            Property(x => x.Archive).HasColumnName("Archive").IsOptional();
-            Property(x => x.CreatedDate).HasColumnName("CreatedDate").IsOptional();
-            Property(x => x.CreatedByUserId).HasColumnName("CreatedByUserId").IsOptional();
-            Property(x => x.ModifiedDate).HasColumnName("ModifiedDate").IsOptional();
-            Property(x => x.ModifiedByUserId).HasColumnName("ModifiedByUserId").IsOptional();
         }
     }
 }

@@ -19,12 +19,15 @@ namespace Spectrum.Core.Data.Context
         public IDbSet<Group> Groups { get; set; }
         public IDbSet<Jurisdiction> Jurisdictions { get; set; }
         public IDbSet<JurisdictionNote> JurisdictionNotes { get; set; }
-        public IDbSet<JurisdictionProfile> JusrisdictionProfiles { get; set; }
+        public IDbSet<JurisdictionProfile> JurisdictionProfiles { get; set; }
         public IDbSet<Message> Messages { get; set; }
         public IDbSet<Organization> Organizations { get; set; }
         public IDbSet<OrganizationApplication> OrganizationApplications { get; set; }
+        public IDbSet<OrganizationLicense> OrganizationLicenses { get; set; }
         public IDbSet<OrganizationNote> OrganizationNotes { get; set; }
+        public IDbSet<OrganizationPreference> OrganizationPreferences { get; set; }
         public IDbSet<OrganizationProfile> OrganizationProfiles { get; set; }
+        public IDbSet<OrganizationProfileAddress> OrganizationProfileAddresses { get; set; }
         public IDbSet<OrganizationType> OrganizationTypes { get; set; }
         public IDbSet<Parameter> Parameters { get; set; }
         public IDbSet<Position> Positions { get; set; }
@@ -34,12 +37,20 @@ namespace Spectrum.Core.Data.Context
         public IDbSet<RuleParameter> RuleParameters { get; set; }
         public IDbSet<RuleType> RuleTypes { get; set; }
         public IDbSet<User> Users { get; set; }
-        public IDbSet<UserApplication> UserApplications { get; set; }
+        public IDbSet<UserExternalLogin> UserApplications { get; set; }
         public IDbSet<UserAreaOfResponsibility> UserAreaOfResponsibilities { get; set; }
         public IDbSet<UserClaim> UserClaims { get; set; }
-        public IDbSet<UserExternalLogin> UserLogins { get; set; }
+        public IDbSet<UserExternalLogin> UserExternalLogins { get; set; }
+        public IDbSet<UserGroup> UserGroups { get; set; }
+        public IDbSet<UserJurisdiction> UserJurisdictions { get; set; }
+        public IDbSet<UserLicense> UserLicenses { get; set; }
         public IDbSet<UserNote> UserNotes { get; set; }
+        public IDbSet<UserOrganization> UserOrganizations { get; set; }
+        public IDbSet<UserPosition> UserPositions { get; set; }
+        public IDbSet<UserPreference> UserPreferences { get; set; }
         public IDbSet<UserProfile> UserProfiles { get; set; }
+        public IDbSet<UserProfileAddress> UserProfileAddresses { get; set; }
+        public IDbSet<UserRole> UserRoles { get; set; }
 
         public static CoreDbContext Create()
         {
@@ -66,8 +77,11 @@ namespace Spectrum.Core.Data.Context
             modelBuilder.Configurations.Add(new MessageConfiguration());
             modelBuilder.Configurations.Add(new OrganizationConfiguration());
             modelBuilder.Configurations.Add(new OrganizationApplicationConfiguration());
+            modelBuilder.Configurations.Add(new OrganizationLicenseConfiguration());
             modelBuilder.Configurations.Add(new OrganizationNoteConfiguration());
+            modelBuilder.Configurations.Add(new OrganizationPreferenceConfiguration());
             modelBuilder.Configurations.Add(new OrganizationProfileConfiguration());
+            modelBuilder.Configurations.Add(new OrganizationProfileAddressConfiguration());
             modelBuilder.Configurations.Add(new OrganizationTypeConfiguration());
             modelBuilder.Configurations.Add(new ParameterConfiguration());
             modelBuilder.Configurations.Add(new PositionConfiguration());
@@ -81,8 +95,16 @@ namespace Spectrum.Core.Data.Context
             modelBuilder.Configurations.Add(new UserAreaOfResponsibilityConfiguration());
             modelBuilder.Configurations.Add(new UserClaimConfiguration());
             modelBuilder.Configurations.Add(new UserExternalLoginConfiguration());
+            modelBuilder.Configurations.Add(new UserGroupConfiguration());
+            modelBuilder.Configurations.Add(new UserJurisdictionConfiguration());
+            modelBuilder.Configurations.Add(new UserLicenseConfiguration());
             modelBuilder.Configurations.Add(new UserNoteConfiguration());
+            modelBuilder.Configurations.Add(new UserOrganizationConfiguration());
+            modelBuilder.Configurations.Add(new UserPositionConfiguration());
+            modelBuilder.Configurations.Add(new UserPreferenceConfiguration());
             modelBuilder.Configurations.Add(new UserProfileConfiguration());
+            modelBuilder.Configurations.Add(new UserProfileAddressConfiguration());
+            modelBuilder.Configurations.Add(new UserRoleConfiguration());
 
             OnModelCreatingPartial(modelBuilder);
         }
@@ -105,8 +127,11 @@ namespace Spectrum.Core.Data.Context
             modelBuilder.Configurations.Add(new MessageConfiguration(schema));
             modelBuilder.Configurations.Add(new OrganizationConfiguration(schema));
             modelBuilder.Configurations.Add(new OrganizationApplicationConfiguration(schema));
+            modelBuilder.Configurations.Add(new OrganizationLicenseConfiguration(schema));
             modelBuilder.Configurations.Add(new OrganizationNoteConfiguration(schema));
+            modelBuilder.Configurations.Add(new OrganizationPreferenceConfiguration(schema));
             modelBuilder.Configurations.Add(new OrganizationProfileConfiguration(schema));
+            modelBuilder.Configurations.Add(new OrganizationProfileAddressConfiguration(schema));
             modelBuilder.Configurations.Add(new OrganizationTypeConfiguration(schema));
             modelBuilder.Configurations.Add(new ParameterConfiguration(schema));
             modelBuilder.Configurations.Add(new PositionConfiguration(schema));
@@ -120,8 +145,16 @@ namespace Spectrum.Core.Data.Context
             modelBuilder.Configurations.Add(new UserAreaOfResponsibilityConfiguration(schema));
             modelBuilder.Configurations.Add(new UserClaimConfiguration(schema));
             modelBuilder.Configurations.Add(new UserExternalLoginConfiguration(schema));
+            modelBuilder.Configurations.Add(new UserGroupConfiguration(schema));
+            modelBuilder.Configurations.Add(new UserJurisdictionConfiguration(schema));
+            modelBuilder.Configurations.Add(new UserLicenseConfiguration(schema));
             modelBuilder.Configurations.Add(new UserNoteConfiguration(schema));
+            modelBuilder.Configurations.Add(new UserOrganizationConfiguration(schema));
+            modelBuilder.Configurations.Add(new UserPositionConfiguration(schema));
+            modelBuilder.Configurations.Add(new UserPreferenceConfiguration(schema));
             modelBuilder.Configurations.Add(new UserProfileConfiguration(schema));
+            modelBuilder.Configurations.Add(new UserProfileAddressConfiguration(schema));
+            modelBuilder.Configurations.Add(new UserRoleConfiguration(schema));
             return modelBuilder;
         }
 
