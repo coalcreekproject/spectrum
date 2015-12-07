@@ -31,17 +31,18 @@ namespace Spectrum.Web.Controllers.Api
             _manager = new UserManager<User, int>(_userRepository);
         }
 
-        // GET: api/Roles/5
+        // GET: api/UserRoles/5
         [System.Web.Http.HttpGet]
         public HttpResponseMessage Get(int id)
         {
             var user = _userRepository.FindByIdAsync(id).Result;
-            var roles = user.Roles;
-            var userRoleViewModels = new List<RoleViewModel>();
+            var userRoles = user.UserRoles;
 
-            foreach (var r in roles)
+            var userRoleViewModels = new List<UserRoleViewModel>();
+
+            foreach (var r in userRoles)
             {
-                userRoleViewModels.Add(Mapper.Map<RoleViewModel>(r));
+                userRoleViewModels.Add(Mapper.Map<UserRoleViewModel>(r));
             }
 
             return Request.CreateResponse(HttpStatusCode.OK, userRoleViewModels);
@@ -59,14 +60,13 @@ namespace Spectrum.Web.Controllers.Api
                 return Request.CreateResponse(HttpStatusCode.NotFound);
             }
 
-            user.Roles.Clear();
+            user.UserRoles.Clear();
 
-            foreach (var r in editUser.Roles)
+            foreach (var r in editUser.UserRoles)
             {
-                Role tempRole = new Role();
-                Mapper.Map(r, tempRole);
-                tempRole.ObjectState = ObjectState.Unchanged;
-                user.Roles.Add(tempRole);
+                var tempUserRole = new UserRole();
+                Mapper.Map(r, tempUserRole);
+                user.UserRoles.Add(tempUserRole);
             }
             
             user.ObjectState = ObjectState.Modified;

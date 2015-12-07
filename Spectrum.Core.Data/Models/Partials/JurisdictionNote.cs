@@ -3,12 +3,9 @@ using Spectrum.Core.Data.Models.Interfaces;
 
 namespace Spectrum.Core.Data.Models
 {
-    // AddressNorthAmerica
-
-    public partial class Address : IObjectState
+    public partial class JurisdictionNote : IObjectState
     {
         [NotMapped]
         public ObjectState ObjectState { get; set; }
     }
-
 }

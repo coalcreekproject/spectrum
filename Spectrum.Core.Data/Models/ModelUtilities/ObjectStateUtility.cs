@@ -3,7 +3,7 @@ using Spectrum.Core.Data.Models.Interfaces;
 
 namespace Spectrum.Core.Data.Models.ModelUtilities
 {
-    class ObjectStateUtility
+    internal class ObjectStateUtility
     {
         public static EntityState ConvertState(ObjectState objectState)
         {

@@ -21,7 +21,8 @@ namespace Spectrum.Core.Data.Configuration
             Property(x => x.FirstName).HasColumnName("FirstName").IsOptional().HasMaxLength(100);
             Property(x => x.MiddleName).HasColumnName("MiddleName").IsOptional().HasMaxLength(100);
             Property(x => x.LastName).HasColumnName("LastName").IsOptional().HasMaxLength(100);
-            Property(x => x.Nickname).HasColumnName("Nickname").IsOptional().HasMaxLength(100);
+            Property(x => x.NickName).HasColumnName("NickName").IsOptional().HasMaxLength(100);
+            Property(x => x.PreferredName).HasColumnName("PreferredName").IsOptional().HasMaxLength(100);
             Property(x => x.PrimaryEmail).HasColumnName("PrimaryEmail").IsOptional().HasMaxLength(100);
             Property(x => x.PrimaryPhoneNumber).HasColumnName("PrimaryPhoneNumber").IsOptional().HasMaxLength(25);
             Property(x => x.SecondaryEmail).HasColumnName("SecondaryEmail").IsOptional().HasMaxLength(100);

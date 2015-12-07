@@ -19,21 +19,9 @@ namespace Spectrum.Core.Data.Configuration
             Property(x => x.OrganizationId).HasColumnName("OrganizationId").IsRequired();
             Property(x => x.Description).HasColumnName("Description").IsOptional().HasMaxLength(256);
             Property(x => x.ApplicationId).HasColumnName("ApplicationId").IsOptional();
-            Property(x => x.Cloaked).HasColumnName("Cloaked").IsOptional();
-            Property(x => x.Archive).HasColumnName("Archive").IsOptional();
-            Property(x => x.CreatedDate).HasColumnName("CreatedDate").IsOptional();
-            Property(x => x.CreatedByUserId).HasColumnName("CreatedByUserId").IsOptional();
-            Property(x => x.ModifiedDate).HasColumnName("ModifiedDate").IsOptional();
-            Property(x => x.ModifiedByUserId).HasColumnName("ModifiedByUserId").IsOptional();
 
             HasRequired(a => a.Organization).WithMany(b => b.Roles).HasForeignKey(c => c.OrganizationId);
             HasOptional(a => a.Application).WithMany(b => b.Roles).HasForeignKey(c => c.ApplicationId);
-            HasMany(t => t.Users).WithMany(t => t.Roles).Map(m =>
-            {
-                m.ToTable("UserRole", schema);
-                m.MapLeftKey("RoleId");
-                m.MapRightKey("UserId");
-            });
         }
     }
 }

@@ -10,23 +10,23 @@ using Spectrum.Core.Data.Models.Interfaces;
 using Spectrum.Core.Data.Repositories.Interfaces;
 
 namespace Spectrum.Core.Data.Repositories
-{ 
+{
     public class UserProfileRepository : IUserProfileRepository
     {
-        private CoreDbContext _context;
+        private readonly CoreDbContext _context;
 
         public UserProfileRepository(ICoreUnitOfWork uow)
         {
             _context = uow.Context;
         }
-        
+
         public IQueryable<UserProfile> All
         {
             get { return _context.UserProfiles; }
         }
 
         /// <summary>
-        /// Example Usage: instanceRepository.AllIncluding(x => x.FirstName, x => x.LastName, x => x.DateOfBirth);
+        ///     Example Usage: instanceRepository.AllIncluding(x => x.FirstName, x => x.LastName, x => x.DateOfBirth);
         /// </summary>
         /// <param name="includeProperties"></param>
         /// <returns></returns>
@@ -52,10 +52,13 @@ namespace Spectrum.Core.Data.Repositories
 
         public void InsertOrUpdate(UserProfile userprofile)
         {
-            if (userprofile.ObjectState == ObjectState.Added) {
+            if (userprofile.ObjectState == ObjectState.Added)
+            {
                 // New entity
                 _context.UserProfiles.Add(userprofile);
-            } else {
+            }
+            else
+            {
                 // Existing entity
                 _context.Entry(userprofile).State = EntityState.Modified;
             }
@@ -77,9 +80,18 @@ namespace Spectrum.Core.Data.Repositories
             return _context.SaveChangesAsync();
         }
 
-        public void Dispose() 
+        public void Dispose()
         {
-            _context.Dispose();
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposing && _context != null)
+            {
+                _context.Dispose();
+            }
         }
     }
 }

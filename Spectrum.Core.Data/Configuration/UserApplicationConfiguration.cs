@@ -19,13 +19,7 @@ namespace Spectrum.Core.Data.Configuration
                 .HasColumnName("ApplicationId")
                 .IsRequired()
                 .HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
-            Property(x => x.Key).HasColumnName("Key").IsOptional().HasMaxLength(128);
-            Property(x => x.Cloaked).HasColumnName("Cloaked").IsOptional();
-            Property(x => x.Archive).HasColumnName("Archive").IsOptional();
-            Property(x => x.CreatedDate).HasColumnName("CreatedDate").IsOptional();
-            Property(x => x.CreatedByUserId).HasColumnName("CreatedByUserId").IsOptional();
-            Property(x => x.ModifiedDate).HasColumnName("ModifiedDate").IsOptional();
-            Property(x => x.ModifiedByUserId).HasColumnName("ModifiedByUserId").IsOptional();
+            Property(x => x.Key).HasColumnName("Key").IsRequired().HasMaxLength(128);
 
             HasRequired(a => a.User).WithMany(b => b.UserApplications).HasForeignKey(c => c.UserId);
             HasRequired(a => a.Application).WithMany(b => b.UserApplications).HasForeignKey(c => c.ApplicationId);

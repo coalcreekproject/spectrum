@@ -1,5 +1,6 @@
 ﻿CREATE TABLE [dbo].[UserProfileAddress]
 (
+	[Id] INT NULL,
 	[UserProfileId] INT NOT NULL, 
     [AddressId] INT NOT NULL,
 	 
@@ -9,9 +10,3 @@
 
 )
 GO
-CREATE NONCLUSTERED INDEX [IX_UserAddress_UserProfileId] 
-	ON [dbo].[UserProfileAddress] ([UserProfileId])
-
-GO
-CREATE NONCLUSTERED INDEX [IX_UserAddress_AddressId] 
-	ON [dbo].[UserProfileAddress] ([AddressId])

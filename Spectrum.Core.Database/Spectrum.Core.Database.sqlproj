@@ -84,6 +84,7 @@
     <Build Include="User Defined Types\Flag.sql" />
     <None Include="CreationScriptNotInBuild.sql" />
     <None Include="Local.publish.xml" />
+    <None Include="Spectrum.Core.Database.Local.publish.xml" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Scripts\PostDeployment.sql" />
@@ -129,6 +130,8 @@
     <Build Include="Tables\JurisdictionNote.sql" />
     <Build Include="Tables\OrganizationNote.sql" />
     <Build Include="Tables\UserNote.sql" />
+    <Build Include="Tables\UserLicense.sql" />
+    <Build Include="Tables\OrganizationLicense.sql" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />

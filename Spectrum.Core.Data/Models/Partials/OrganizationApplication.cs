@@ -3,11 +3,9 @@ using Spectrum.Core.Data.Models.Interfaces;
 
 namespace Spectrum.Core.Data.Models
 {
-
     public partial class OrganizationApplication : IObjectState
     {
         [NotMapped]
         public ObjectState ObjectState { get; set; }
     }
-
 }

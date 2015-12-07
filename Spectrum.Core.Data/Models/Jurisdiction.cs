@@ -9,7 +9,7 @@ namespace Spectrum.Core.Data.Models
         {
             JurisdictionNotes = new List<JurisdictionNote>();
             JurisdictionProfiles = new List<JurisdictionProfile>();
-            Users = new List<User>();
+            UserJurisdictions = new List<UserJurisdiction>();
             InitializePartial();
         }
 
@@ -25,7 +25,7 @@ namespace Spectrum.Core.Data.Models
 
         public virtual ICollection<JurisdictionNote> JurisdictionNotes { get; set; }
         public virtual ICollection<JurisdictionProfile> JurisdictionProfiles { get; set; }
-        public virtual ICollection<User> Users { get; set; }
+        public virtual ICollection<UserJurisdiction> UserJurisdictions { get; set; }
 
         public virtual Organization Organization { get; set; }
 

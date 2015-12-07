@@ -8,10 +8,10 @@ using Spectrum.Core.Data.Models;
 using Spectrum.Core.Data.Repositories.Interfaces;
 
 namespace Spectrum.Core.Data.Repositories
-{ 
+{
     public class RuleTypeRepository : IRuleTypeRepository
     {
-        private CoreDbContext _context;
+        private readonly CoreDbContext _context;
 
         public RuleTypeRepository(ICoreUnitOfWork uow)
         {
@@ -26,7 +26,8 @@ namespace Spectrum.Core.Data.Repositories
         public IQueryable<RuleType> AllIncluding(params Expression<Func<RuleType, object>>[] includeProperties)
         {
             IQueryable<RuleType> query = _context.RuleTypes;
-            foreach (var includeProperty in includeProperties) {
+            foreach (var includeProperty in includeProperties)
+            {
                 query = query.Include(includeProperty);
             }
             return query;
@@ -39,10 +40,13 @@ namespace Spectrum.Core.Data.Repositories
 
         public void InsertOrUpdate(RuleType ruletype)
         {
-            if (ruletype.Id == default(int)) {
+            if (ruletype.Id == default(int))
+            {
                 // New entity
                 _context.RuleTypes.Add(ruletype);
-            } else {
+            }
+            else
+            {
                 // Existing entity
                 _context.Entry(ruletype).State = EntityState.Modified;
             }
@@ -59,9 +63,18 @@ namespace Spectrum.Core.Data.Repositories
             _context.SaveChanges();
         }
 
-        public void Dispose() 
+        public void Dispose()
         {
-            _context.Dispose();
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposing && _context != null)
+            {
+                _context.Dispose();
+            }
         }
     }
 }

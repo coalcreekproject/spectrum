@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 
 namespace Spectrum.Core.Data.Models
@@ -7,8 +6,8 @@ namespace Spectrum.Core.Data.Models
     {
         public Preference()
         {
-            Organizations = new List<Organization>();
-            Users = new List<User>();
+            OrganizationPreferences = new List<OrganizationPreference>();
+            UserPreferences = new List<UserPreference>();
             InitializePartial();
         }
 
@@ -16,15 +15,9 @@ namespace Spectrum.Core.Data.Models
         public string Name { get; set; }
         public string Description { get; set; }
         public string Value { get; set; }
-        public bool? Cloaked { get; set; }
-        public bool? Archive { get; set; }
-        public DateTime? CreatedDate { get; set; }
-        public int? CreatedByUserId { get; set; }
-        public DateTime? ModifiedDate { get; set; }
-        public int? ModifiedByUserId { get; set; }
 
-        public virtual ICollection<Organization> Organizations { get; set; }
-        public virtual ICollection<User> Users { get; set; }
+        public virtual ICollection<OrganizationPreference> OrganizationPreferences { get; set; }
+        public virtual ICollection<UserPreference> UserPreferences { get; set; }
 
         partial void InitializePartial();
     }

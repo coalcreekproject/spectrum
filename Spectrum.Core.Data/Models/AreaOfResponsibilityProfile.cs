@@ -1,8 +1,8 @@
-﻿using System;
+using System;
 
 namespace Spectrum.Core.Data.Models
 {
-    public class AreaOfResponsibilityProfile
+    public partial class AreaOfResponsibilityProfile
     {
         public int Id { get; set; }
         public int AreaOfResponsibilityId { get; set; }

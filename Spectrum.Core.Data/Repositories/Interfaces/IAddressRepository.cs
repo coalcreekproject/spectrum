@@ -2,7 +2,7 @@
 
 namespace Spectrum.Core.Data.Repositories.Interfaces
 {
-    public interface IAddressNorthAmericaRepository : IEntityRepository<Address>
+    public interface IAddressRepository : IEntityRepository<Address>
     {
     }
 }

@@ -25,18 +25,6 @@ namespace Spectrum.Core.Data.Configuration
             Property(x => x.ModifiedByUserId).HasColumnName("ModifiedByUserId").IsOptional();
 
             HasOptional(a => a.OrganizationType).WithMany(b => b.Organizations).HasForeignKey(c => c.OrganizationTypeId);
-            HasMany(t => t.Preferences).WithMany(t => t.Organizations).Map(m =>
-            {
-                m.ToTable("OrganizationPreference", schema);
-                m.MapLeftKey("OrganizationId");
-                m.MapRightKey("PreferenceId");
-            });
-            HasMany(t => t.Users).WithMany(t => t.Organizations).Map(m =>
-            {
-                m.ToTable("UserOrganization", schema);
-                m.MapLeftKey("OrganizationId");
-                m.MapRightKey("UserId");
-            });
         }
     }
 }

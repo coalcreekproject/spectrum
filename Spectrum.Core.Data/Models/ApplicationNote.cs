@@ -1,6 +1,6 @@
-﻿namespace Spectrum.Core.Data.Models
+namespace Spectrum.Core.Data.Models
 {
-    public class ApplicationNote
+    public partial class ApplicationNote
     {
         public int Id { get; set; }
         public int ApplicationId { get; set; }

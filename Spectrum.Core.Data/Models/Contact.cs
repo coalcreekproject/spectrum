@@ -2,7 +2,7 @@ using System;
 
 namespace Spectrum.Core.Data.Models
 {
-    public class Contact
+    public partial class Contact
     {
         public int Id { get; set; }
         public int UserId { get; set; }
@@ -11,7 +11,8 @@ namespace Spectrum.Core.Data.Models
         public string FirstName { get; set; }
         public string MiddleName { get; set; }
         public string LastName { get; set; }
-        public string Nickname { get; set; }
+        public string NickName { get; set; }
+        public string PreferredName { get; set; }
         public string PrimaryEmail { get; set; }
         public string PrimaryPhoneNumber { get; set; }
         public string SecondaryEmail { get; set; }

@@ -1,6 +1,6 @@
 ﻿CREATE TABLE [dbo].[OrganizationNote]
 (
-	[Id] INT NOT NULL PRIMARY KEY,
+	[Id] INT NOT NULL PRIMARY KEY IDENTITY(1000, 1),
 	[OrganizationId] INT NOT NULL,
 	[Note] NVARCHAR(MAX) NOT NULL
 

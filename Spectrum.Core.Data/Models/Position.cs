@@ -7,7 +7,7 @@ namespace Spectrum.Core.Data.Models
     {
         public Position()
         {
-            Users = new List<User>();
+            UserPositions = new List<UserPosition>();
             InitializePartial();
         }
 
@@ -23,7 +23,7 @@ namespace Spectrum.Core.Data.Models
         public DateTime? ModifiedDate { get; set; }
         public int? ModifiedByUserId { get; set; }
 
-        public virtual ICollection<User> Users { get; set; }
+        public virtual ICollection<UserPosition> UserPositions { get; set; }
 
         partial void InitializePartial();
     }

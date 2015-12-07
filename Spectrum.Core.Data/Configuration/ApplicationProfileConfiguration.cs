@@ -16,7 +16,7 @@ namespace Spectrum.Core.Data.Configuration
                 .IsRequired()
                 .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
             Property(x => x.ApplicationId).HasColumnName("ApplicationId").IsRequired();
-            Property(x => x.Description).HasColumnName("Description").IsOptional();
+            Property(x => x.Description).HasColumnName("Description").IsOptional().HasMaxLength(256);
             Property(x => x.Company).HasColumnName("Company").IsRequired().HasMaxLength(128);
             Property(x => x.Author).HasColumnName("Author").IsRequired().HasMaxLength(128);
             Property(x => x.License).HasColumnName("License").IsOptional().HasMaxLength(256);

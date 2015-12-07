@@ -1,6 +1,6 @@
 namespace Spectrum.Core.Data.Models
 {
-    public class JurisdictionNote
+    public partial class JurisdictionNote
     {
         public int Id { get; set; }
         public int JurisdictionId { get; set; }

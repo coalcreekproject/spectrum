@@ -1,4 +1,5 @@
 using System;
+using System.CodeDom.Compiler;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -6,8 +7,9 @@ using System.Data.Entity;
 using System.Linq;
 using System.Linq.Expressions;
 
-namespace Spectrum.Core.Data.Context.Fakes
+namespace Spectrum.Data.Core.Context.Generated
 {
+    [GeneratedCode("EF.Reverse.POCO.Generator", "2.13.0.0")]
     public class FakeDbSet<T> : IDbSet<T> where T : class
     {
         private readonly HashSet<T> _data;
@@ -38,11 +40,6 @@ namespace Spectrum.Core.Data.Context.Fakes
         {
             _data.Add(item);
             return item;
-        }
-
-        public void Detach(T item)
-        {
-            _data.Remove(item);
         }
 
         Type IQueryable.ElementType
@@ -77,15 +74,17 @@ namespace Spectrum.Core.Data.Context.Fakes
 
         public ObservableCollection<T> Local
         {
-            get
-            {
-                return new ObservableCollection<T>(_data);
-            }
+            get { return new ObservableCollection<T>(_data); }
         }
 
         public TDerivedEntity Create<TDerivedEntity>() where TDerivedEntity : class, T
         {
             return Activator.CreateInstance<TDerivedEntity>();
+        }
+
+        public void Detach(T item)
+        {
+            _data.Remove(item);
         }
     }
 }

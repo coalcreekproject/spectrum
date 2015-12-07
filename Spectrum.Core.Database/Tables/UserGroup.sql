@@ -1,5 +1,6 @@
 ﻿CREATE TABLE [dbo].[UserGroup]
 (
+	[Id] INT NULL,
     [UserId] INT NOT NULL,
 	[GroupId] INT NOT NULL
 
@@ -9,11 +10,3 @@
 )
 
 GO
-
-CREATE NONCLUSTERED INDEX [IX_UserGroup_UserId] 
-ON [dbo].[UserGroup] ([UserId])
-
-GO
-CREATE NONCLUSTERED INDEX [IX_UserGroup_GroupId] 
-ON [dbo].[UserGroup] ([GroupId])
-

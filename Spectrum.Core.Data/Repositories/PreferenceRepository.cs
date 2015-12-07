@@ -8,10 +8,10 @@ using Spectrum.Core.Data.Models;
 using Spectrum.Core.Data.Repositories.Interfaces;
 
 namespace Spectrum.Core.Data.Repositories
-{ 
+{
     public class PreferenceRepository : IPreferenceRepository
     {
-        private CoreDbContext _context;
+        private readonly CoreDbContext _context;
 
         public PreferenceRepository(ICoreUnitOfWork uow)
         {
@@ -26,7 +26,8 @@ namespace Spectrum.Core.Data.Repositories
         public IQueryable<Preference> AllIncluding(params Expression<Func<Preference, object>>[] includeProperties)
         {
             IQueryable<Preference> query = _context.Preferences;
-            foreach (var includeProperty in includeProperties) {
+            foreach (var includeProperty in includeProperties)
+            {
                 query = query.Include(includeProperty);
             }
             return query;
@@ -39,10 +40,13 @@ namespace Spectrum.Core.Data.Repositories
 
         public void InsertOrUpdate(Preference preference)
         {
-            if (preference.Id == default(int)) {
+            if (preference.Id == default(int))
+            {
                 // New entity
                 _context.Preferences.Add(preference);
-            } else {
+            }
+            else
+            {
                 // Existing entity
                 _context.Entry(preference).State = EntityState.Modified;
             }
@@ -59,9 +63,18 @@ namespace Spectrum.Core.Data.Repositories
             _context.SaveChanges();
         }
 
-        public void Dispose() 
+        public void Dispose()
         {
-            _context.Dispose();
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposing && _context != null)
+            {
+                _context.Dispose();
+            }
         }
     }
 }

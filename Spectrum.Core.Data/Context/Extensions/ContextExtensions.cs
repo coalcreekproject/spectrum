@@ -10,7 +10,7 @@ namespace Spectrum.Core.Data.Context.Extensions
         {
             foreach (var entry in context.ChangeTracker.Entries<IObjectState>())
             {
-                IObjectState objectStateInfo = entry.Entity;
+                var objectStateInfo = entry.Entity;
                 entry.State = ObjectStateUtility.ConvertState(objectStateInfo.ObjectState);
             }
         }

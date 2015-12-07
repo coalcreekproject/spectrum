@@ -8,10 +8,10 @@ using Spectrum.Core.Data.Models;
 using Spectrum.Core.Data.Repositories.Interfaces;
 
 namespace Spectrum.Core.Data.Repositories
-{ 
+{
     public class ParameterRepository : IParameterRepository
     {
-        private CoreDbContext _context;
+        private readonly CoreDbContext _context;
 
         public ParameterRepository(ICoreUnitOfWork uow)
         {
@@ -26,7 +26,8 @@ namespace Spectrum.Core.Data.Repositories
         public IQueryable<Parameter> AllIncluding(params Expression<Func<Parameter, object>>[] includeProperties)
         {
             IQueryable<Parameter> query = _context.Parameters;
-            foreach (var includeProperty in includeProperties) {
+            foreach (var includeProperty in includeProperties)
+            {
                 query = query.Include(includeProperty);
             }
             return query;
@@ -39,10 +40,13 @@ namespace Spectrum.Core.Data.Repositories
 
         public void InsertOrUpdate(Parameter parameter)
         {
-            if (parameter.Id == default(int)) {
+            if (parameter.Id == default(int))
+            {
                 // New entity
                 _context.Parameters.Add(parameter);
-            } else {
+            }
+            else
+            {
                 // Existing entity
                 _context.Entry(parameter).State = EntityState.Modified;
             }
@@ -59,9 +63,18 @@ namespace Spectrum.Core.Data.Repositories
             _context.SaveChanges();
         }
 
-        public void Dispose() 
+        public void Dispose()
         {
-            _context.Dispose();
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposing && _context != null)
+            {
+                _context.Dispose();
+            }
         }
     }
 }

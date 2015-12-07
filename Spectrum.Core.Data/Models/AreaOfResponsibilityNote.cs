@@ -1,6 +1,6 @@
-﻿namespace Spectrum.Core.Data.Models
+namespace Spectrum.Core.Data.Models
 {
-    public class AreaOfResponsibilityNote
+    public partial class AreaOfResponsibilityNote
     {
         public int Id { get; set; }
         public int AreaOfResponsibilityId { get; set; }

@@ -5,12 +5,8 @@ namespace Spectrum.Core.Data.Context.BaseClasses
 {
     public partial class ContextBase<TContext> : DbContext where TContext : DbContext
     {
-        static ContextBase()
-        {
-        }
-
         /// <summary>
-        /// All of our context connections will use this database
+        ///     All of our context connections will use this database
         /// </summary>
         protected ContextBase() : base("name=SpectrumCore")
         {

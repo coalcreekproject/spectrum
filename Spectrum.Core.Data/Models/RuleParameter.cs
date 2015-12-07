@@ -1,17 +1,10 @@
-using System;
-
 namespace Spectrum.Core.Data.Models
 {
-    public class RuleParameter
+    public partial class RuleParameter
     {
+        public int? Id { get; set; }
         public int RuleId { get; set; }
         public int ParameterId { get; set; }
-        public bool? Cloaked { get; set; }
-        public bool? Archive { get; set; }
-        public DateTime? CreatedDate { get; set; }
-        public int? CreatedByUserId { get; set; }
-        public DateTime? ModifiedDate { get; set; }
-        public int? ModifiedByUserId { get; set; }
 
         public virtual Parameter Parameter { get; set; }
         public virtual Rule Rule { get; set; }

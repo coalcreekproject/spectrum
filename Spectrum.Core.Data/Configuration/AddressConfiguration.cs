@@ -14,7 +14,7 @@ namespace Spectrum.Core.Data.Configuration
             Property(x => x.Id)
                 .HasColumnName("Id")
                 .IsRequired()
-                .HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
+                .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
             Property(x => x.Name).HasColumnName("Name").IsRequired().HasMaxLength(128);
             Property(x => x.Default).HasColumnName("Default").IsRequired();
             Property(x => x.Description).HasColumnName("Description").IsOptional().HasMaxLength(256);
@@ -29,18 +29,6 @@ namespace Spectrum.Core.Data.Configuration
             Property(x => x.CreatedByUserId).HasColumnName("CreatedByUserId").IsOptional();
             Property(x => x.ModifiedDate).HasColumnName("ModifiedDate").IsOptional();
             Property(x => x.ModifiedByUserId).HasColumnName("ModifiedByUserId").IsOptional();
-            HasMany(t => t.OrganizationProfiles).WithMany(t => t.Addresses).Map(m =>
-            {
-                m.ToTable("OrganizationProfileAddress", schema);
-                m.MapLeftKey("AddressId");
-                m.MapRightKey("OrganizationProfileId");
-            });
-            HasMany(t => t.UserProfiles).WithMany(t => t.Addresses).Map(m =>
-            {
-                m.ToTable("UserProfileAddress", schema);
-                m.MapLeftKey("AddressId");
-                m.MapRightKey("UserProfileId");
-            });
         }
     }
 }

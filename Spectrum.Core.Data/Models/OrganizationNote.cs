@@ -1,6 +1,6 @@
 namespace Spectrum.Core.Data.Models
 {
-    public class OrganizationNote
+    public partial class OrganizationNote
     {
         public int Id { get; set; }
         public int OrganizationId { get; set; }

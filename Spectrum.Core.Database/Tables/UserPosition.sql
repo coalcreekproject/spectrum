@@ -1,5 +1,6 @@
 ﻿CREATE TABLE [dbo].[UserPosition]
 (
+	[Id] INT NULL,
 	[UserId] INT NOT NULL, 
     [PositionId] INT NOT NULL,
 
@@ -8,11 +9,3 @@
     CONSTRAINT [FK_UserPosition_Position] FOREIGN KEY ([PositionId]) REFERENCES [Position]([Id]) ON DELETE CASCADE
 )
 GO
-
-CREATE NONCLUSTERED INDEX [IX_UserPosition_UserId] 
-	ON [dbo].[UserPosition] ([UserId])
-
-GO
-
-CREATE NONCLUSTERED INDEX [IX_UserPosition_PositionId] 
-	ON [dbo].[UserPosition] ([PositionId])

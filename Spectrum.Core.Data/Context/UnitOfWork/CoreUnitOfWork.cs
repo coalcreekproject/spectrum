@@ -5,38 +5,33 @@ namespace Spectrum.Core.Data.Context.UnitOfWork
 {
     public class CoreUnitOfWork : ICoreUnitOfWork
     {
-        private readonly CoreDbContext _context;
-
         public CoreUnitOfWork()
         {
-            _context = new CoreDbContext();
+            Context = new CoreDbContext();
         }
 
         public CoreUnitOfWork(CoreDbContext context)
         {
-            _context = context;
+            Context = context;
         }
 
-        public CoreDbContext Context
-        {
-            get { return _context; }
-        }
+        public CoreDbContext Context { get; }
 
         public int Save()
         {
-            _context.ApplyObjectStateChanges();
-            return _context.SaveChanges();
+            Context.ApplyObjectStateChanges();
+            return Context.SaveChanges();
         }
 
         public Task<int> SaveAsync()
         {
-            _context.ApplyObjectStateChanges();
-            return _context.SaveChangesAsync();
+            Context.ApplyObjectStateChanges();
+            return Context.SaveChangesAsync();
         }
 
         public void Dispose()
         {
-            _context.Dispose();
+            Context.Dispose();
         }
     }
 }

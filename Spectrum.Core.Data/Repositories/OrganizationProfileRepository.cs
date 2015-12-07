@@ -2,18 +2,18 @@ using System;
 using System.Data.Entity;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Threading.Tasks;
 using Spectrum.Core.Data.Context;
 using Spectrum.Core.Data.Context.UnitOfWork;
 using Spectrum.Core.Data.Models;
-using Spectrum.Core.Data.Repositories.Interfaces;
-using System.Threading.Tasks;
 using Spectrum.Core.Data.Models.Interfaces;
+using Spectrum.Core.Data.Repositories.Interfaces;
 
 namespace Spectrum.Core.Data.Repositories
-{ 
+{
     public class OrganizationProfileRepository : IOrganizationProfileRepository
     {
-        private CoreDbContext _context;
+        private readonly CoreDbContext _context;
 
         public OrganizationProfileRepository(ICoreUnitOfWork uow)
         {
@@ -25,7 +25,8 @@ namespace Spectrum.Core.Data.Repositories
             get { return _context.OrganizationProfiles; }
         }
 
-        public IQueryable<OrganizationProfile> AllIncluding(params Expression<Func<OrganizationProfile, object>>[] includeProperties)
+        public IQueryable<OrganizationProfile> AllIncluding(
+            params Expression<Func<OrganizationProfile, object>>[] includeProperties)
         {
             IQueryable<OrganizationProfile> query = _context.OrganizationProfiles;
             foreach (var includeProperty in includeProperties)
@@ -59,12 +60,6 @@ namespace Spectrum.Core.Data.Repositories
             }
         }
 
-        public Task CreateOrganization(OrganizationProfile organizationProfile)
-        {
-            this._context.OrganizationProfiles.Add(organizationProfile);
-            return this._context.SaveChangesAsync();
-        }
-
         public void Delete(int id)
         {
             var organizationprofile = _context.OrganizationProfiles.Find(id);
@@ -81,9 +76,18 @@ namespace Spectrum.Core.Data.Repositories
             return _context.SaveChangesAsync();
         }
 
-        public void Dispose() 
+        public void Dispose()
         {
-            _context.Dispose();
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposing && _context != null)
+            {
+                _context.Dispose();
+            }
         }
     }
 }
