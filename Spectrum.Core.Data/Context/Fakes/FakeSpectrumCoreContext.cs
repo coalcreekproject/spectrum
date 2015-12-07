@@ -43,7 +43,7 @@ namespace Spectrum.Core.Data.Context.Fakes
             RuleParameters = new FakeDbSet<RuleParameter>();
             RuleTypes = new FakeDbSet<RuleType>();
             Users = new FakeDbSet<User>();
-            UserApplications = new FakeDbSet<UserExternalLogin>();
+            UserApplications = new FakeDbSet<UserApplication>();
             UserAreaOfResponsibilities = new FakeDbSet<UserAreaOfResponsibility>();
             UserClaims = new FakeDbSet<UserClaim>();
             UserExternalLogins = new FakeDbSet<UserExternalLogin>();
@@ -89,7 +89,7 @@ namespace Spectrum.Core.Data.Context.Fakes
         public IDbSet<RuleParameter> RuleParameters { get; set; }
         public IDbSet<RuleType> RuleTypes { get; set; }
         public IDbSet<User> Users { get; set; }
-        public IDbSet<UserExternalLogin> UserApplications { get; set; }
+        public IDbSet<UserApplication> UserApplications { get; set; }
         public IDbSet<UserAreaOfResponsibility> UserAreaOfResponsibilities { get; set; }
         public IDbSet<UserClaim> UserClaims { get; set; }
         public IDbSet<UserExternalLogin> UserExternalLogins { get; set; }

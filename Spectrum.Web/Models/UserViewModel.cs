@@ -8,7 +8,7 @@ namespace Spectrum.Web.Models
         public UserViewModel()
         {
             UserProfiles = new List<UserProfileViewModel>();
-            Roles = new List<RoleViewModel>();
+            UserRoles = new List<UserRoleViewModel>();
         }
 
         [Key]
@@ -33,7 +33,7 @@ namespace Spectrum.Web.Models
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
 
-        public ICollection<RoleViewModel> Roles { get; set; }
+        public ICollection<UserRoleViewModel> UserRoles { get; set; }
         public ICollection<UserProfileViewModel> UserProfiles { get; set; }
     }
 }

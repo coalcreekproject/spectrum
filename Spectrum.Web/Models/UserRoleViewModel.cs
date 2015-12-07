@@ -1,6 +1,12 @@
-namespace Spectrum.Core.Data.Models
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using Spectrum.Core.Data.Models;
+
+namespace Spectrum.Web.Models
 {
-    public partial class UserRole
+    public class UserRoleViewModel
     {
         public int UserId { get; set; }
         public int RoleId { get; set; }

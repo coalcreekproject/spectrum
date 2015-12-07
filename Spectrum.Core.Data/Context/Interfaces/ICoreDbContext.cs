@@ -38,7 +38,7 @@ namespace Spectrum.Core.Data.Context.Interfaces
         IDbSet<RuleParameter> RuleParameters { get; set; }
         IDbSet<RuleType> RuleTypes { get; set; }
         IDbSet<User> Users { get; set; }
-        IDbSet<UserExternalLogin> UserApplications { get; set; }
+        IDbSet<UserApplication> UserApplications { get; set; }
         IDbSet<UserAreaOfResponsibility> UserAreaOfResponsibilities { get; set; }
         IDbSet<UserClaim> UserClaims { get; set; }
         IDbSet<UserExternalLogin> UserExternalLogins { get; set; }

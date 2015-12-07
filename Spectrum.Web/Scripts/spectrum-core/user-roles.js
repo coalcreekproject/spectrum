@@ -50,10 +50,17 @@ function UserRolesModalController($scope, $modalInstance, userRoleFactory, user)
                 $scope.userRoles = userRoles;
                 for (var i = 0; i < $scope.userRoles.length; ++i) {
                     $scope.models.lists.Assigned.push({
-                        label: $scope.userRoles[i].Name,
+                        label: $scope.userRoles[i].Role.Name,
                         object: $scope.userRoles[i]
                     });
-                }
+
+                    //Reconcile the lists
+                    for (var j = 0; j < $scope.availableRoles.length; ++j) {
+                        if ($scope.userRoles[i].RoleId === $scope.availableRoles[j].Id) {
+                            $scope.models.lists.Available.pop($scope.availableRoles[j]);
+                        }
+                    }
+                };
             },
             function() {
                 // error
@@ -134,10 +141,15 @@ function userRoleFactory($http, $q) {
 
     var _editUserRoles = function(roleList, user) {
 
-        user.Roles = [];
+        user.UserRoles = [];
 
         for (var i = 0; i < roleList.length; i++) {
-            user.Roles.push(roleList[i].object);
+            var userRole = {
+                UserId: user.Id,
+                RoleId: roleList[i].object.Id,
+                OrganizationId: userRoleParameters.organizationId
+            };
+            user.UserRoles.push(userRole);
         }
 
         var deferred = $q.defer();
