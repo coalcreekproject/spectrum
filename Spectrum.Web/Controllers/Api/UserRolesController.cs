@@ -38,11 +38,11 @@ namespace Spectrum.Web.Controllers.Api
             var user = _userRepository.FindByIdAsync(id).Result;
             var userRoles = user.UserRoles;
 
-            var userRoleViewModels = new List<UserRoleViewModel>();
+            var userRoleViewModels = new List<RoleViewModel>();
 
             foreach (var r in userRoles)
             {
-                userRoleViewModels.Add(Mapper.Map<UserRoleViewModel>(r));
+                userRoleViewModels.Add(Mapper.Map<RoleViewModel>(r.Role));
             }
 
             return Request.CreateResponse(HttpStatusCode.OK, userRoleViewModels);
@@ -60,15 +60,37 @@ namespace Spectrum.Web.Controllers.Api
                 return Request.CreateResponse(HttpStatusCode.NotFound);
             }
 
-            user.UserRoles.Clear();
-
-            foreach (var r in editUser.UserRoles)
+            if (editUser.UserRoles.Count > 0)
             {
-                var tempUserRole = new UserRole();
-                Mapper.Map(r, tempUserRole);
-                user.UserRoles.Add(tempUserRole);
+                foreach (var r in editUser.UserRoles)
+                {
+                    if (!user.UserRoles.Any(x => x.RoleId == r.RoleId
+                            && x.OrganizationId == r.OrganizationId
+                            && x.UserId == r.UserId))
+                    {
+                        var tempUserRole = new UserRole();
+                        Mapper.Map(r, tempUserRole);
+                        user.UserRoles.Add(tempUserRole);
+                    }
+                    else
+                    {
+                        var userRole = user.UserRoles.First(x => x.RoleId == r.RoleId
+                                                                 && x.OrganizationId == r.OrganizationId
+                                                                 && x.UserId == r.UserId);
+
+                        userRole.ObjectState = ObjectState.Unchanged;
+                    }
+                }
             }
-            
+            else
+            {
+                foreach (var r in user.UserRoles.ToList())
+                {
+                    user.UserRoles.Remove(r);
+                    r.ObjectState = ObjectState.Deleted;
+                }
+            }
+
             user.ObjectState = ObjectState.Modified;
 
             var result = _manager.Update(user);

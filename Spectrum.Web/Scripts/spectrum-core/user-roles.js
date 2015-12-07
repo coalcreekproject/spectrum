@@ -50,14 +50,14 @@ function UserRolesModalController($scope, $modalInstance, userRoleFactory, user)
                 $scope.userRoles = userRoles;
                 for (var i = 0; i < $scope.userRoles.length; ++i) {
                     $scope.models.lists.Assigned.push({
-                        label: $scope.userRoles[i].Role.Name,
+                        label: $scope.userRoles[i].Name,
                         object: $scope.userRoles[i]
                     });
 
                     //Reconcile the lists
                     for (var j = 0; j < $scope.availableRoles.length; ++j) {
-                        if ($scope.userRoles[i].RoleId === $scope.availableRoles[j].Id) {
-                            $scope.models.lists.Available.pop($scope.availableRoles[j]);
+                        if ($scope.userRoles[i].Id === $scope.availableRoles[j].Id) {
+                            $scope.models.lists.Available.splice(j, 1); //pop($scope.availableRoles[j]);
                         }
                     }
                 };

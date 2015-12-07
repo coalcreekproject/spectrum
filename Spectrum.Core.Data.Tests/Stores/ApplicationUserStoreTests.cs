@@ -55,7 +55,7 @@ namespace SpectrumEm.Data.Core.Tests.Stores
                 LockoutEndDateUtc = null,
                 PhoneNumber = "000-000-0000",
                 UserName = "pwelch23",
-                Organizations = new Collection<Organization>() { CreateOrganization() }
+                //UserOrganizations = new Collection<UserOrganization>() { CreateOrganization() }
             };
 
             await applicationUserStore.CreateAsync(testUser);
@@ -75,7 +75,7 @@ namespace SpectrumEm.Data.Core.Tests.Stores
                 LockoutEndDateUtc = null,
                 PhoneNumber = "000-000-0000",
                 UserName = "pwelch22",
-                Organizations = new Collection<Organization>() { CreateOrganization() }
+                //Organizations = new Collection<Organization>() { CreateOrganization() }
             };
 
             await applicationUserStore.CreateAsync(testUser);
