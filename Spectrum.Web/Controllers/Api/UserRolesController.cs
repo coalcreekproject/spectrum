@@ -91,7 +91,7 @@ namespace Spectrum.Web.Controllers.Api
                 }
             }
 
-            user.ObjectState = ObjectState.Modified;
+            //user.ObjectState = ObjectState.Modified;
 
             var result = _manager.Update(user);
 

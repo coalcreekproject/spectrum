@@ -54,6 +54,11 @@ function UserRolesModalController($scope, $modalInstance, userRoleFactory, user)
                         object: $scope.userRoles[i]
                     });
 
+                    var j = 0;
+                    while (j < $scope.availableRoles.length) {
+                        
+                    }
+
                     //Reconcile the lists
                     for (var j = 0; j < $scope.availableRoles.length; ++j) {
                         if ($scope.userRoles[i].Id === $scope.availableRoles[j].Id) {
