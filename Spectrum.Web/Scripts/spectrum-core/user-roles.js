@@ -55,17 +55,19 @@ function UserRolesModalController($scope, $modalInstance, userRoleFactory, user)
                     });
 
                     var j = 0;
-                    while (j < $scope.availableRoles.length) {
-                        
-                    }
-
-                    //Reconcile the lists
-                    for (var j = 0; j < $scope.availableRoles.length; ++j) {
-                        if ($scope.userRoles[i].Id === $scope.availableRoles[j].Id) {
-                            $scope.models.lists.Available.splice(j, 1); //pop($scope.availableRoles[j]);
+                    while (j < $scope.models.lists.Available.length) {
+                        if ($scope.userRoles[i].Id === $scope.models.lists.Available[j].object.Id) {
+                            $scope.models.lists.Available.splice(j, 1);
                         }
-                    }
-                };
+                        j++;
+                    //Reconcile the lists
+                    //for (var j = 0; j < $scope.availableRoles.length; ++j) {
+                    //    if ($scope.userRoles[i].Id === $scope.availableRoles[j].Id) {
+                    //        $scope.models.lists.Available.splice(j, 1); //pop($scope.availableRoles[j]);
+                    //    }
+                    //}
+                    };
+                }
             },
             function() {
                 // error

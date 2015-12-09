@@ -60,38 +60,18 @@ namespace Spectrum.Web.Controllers.Api
                 return Request.CreateResponse(HttpStatusCode.NotFound);
             }
 
-            if (editUser.UserRoles.Count > 0)
+            foreach (var r in user.UserRoles.ToList())
             {
-                foreach (var r in editUser.UserRoles)
-                {
-                    if (!user.UserRoles.Any(x => x.RoleId == r.RoleId
-                            && x.OrganizationId == r.OrganizationId
-                            && x.UserId == r.UserId))
-                    {
-                        var tempUserRole = new UserRole();
-                        Mapper.Map(r, tempUserRole);
-                        user.UserRoles.Add(tempUserRole);
-                    }
-                    else
-                    {
-                        var userRole = user.UserRoles.First(x => x.RoleId == r.RoleId
-                                                                 && x.OrganizationId == r.OrganizationId
-                                                                 && x.UserId == r.UserId);
-
-                        userRole.ObjectState = ObjectState.Unchanged;
-                    }
-                }
-            }
-            else
-            {
-                foreach (var r in user.UserRoles.ToList())
-                {
-                    user.UserRoles.Remove(r);
-                    r.ObjectState = ObjectState.Deleted;
-                }
+                user.UserRoles.Remove(r);
+                r.ObjectState = ObjectState.Deleted;
             }
 
-            //user.ObjectState = ObjectState.Modified;
+            foreach (var r in editUser.UserRoles)
+            {
+                var tempUserRole = new UserRole();
+                Mapper.Map(r, tempUserRole);
+                user.UserRoles.Add(tempUserRole);
+            }
 
             var result = _manager.Update(user);
 
