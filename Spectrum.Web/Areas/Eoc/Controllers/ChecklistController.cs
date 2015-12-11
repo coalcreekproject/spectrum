@@ -19,7 +19,7 @@ namespace Spectrum.Web.Areas.Eoc.Controllers
             switch (template.ToLower())
             {
                 case "checklistindex":
-                    return PartialView("~/Areas/Eoc/Views/Checklist/Partials/ChecklistIndex.cshtml");
+                    return PartialView("~/Areas/Eoc/Views/Checklist/Partials/CheckListIndex.cshtml");
                 default:
                     throw new ApplicationException("Unknown Template");
             }

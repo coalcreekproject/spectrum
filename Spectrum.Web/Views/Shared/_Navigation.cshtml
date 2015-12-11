@@ -32,7 +32,7 @@
                 <li class="@Html.IsSelected(action: "Dashboard")"><a href="@Url.Action("Index", "Dashboard", new {Area = "Eoc"})">Dashboard</a></li>
                 <li class="@Html.IsSelected(action: "Timeline")"><a href="@Url.Action("", "")">Event Timeline</a></li>
                 <li class="@Html.IsSelected(action: "Action Plans")"><a href="@Url.Action("", "")">Action Plans</a></li>
-                <li class="@Html.IsSelected(action: "Checklists")"><a href="@Url.Action("", "")">Checklists</a></li>
+                <li class="@Html.IsSelected(action: "Checklists")"><a href="@Url.Action("Index", "Checklist", new {Area = "Eoc"})">Checklists</a></li>
                 <li class="@Html.IsSelected(action: "Media")"><a href="@Url.Action("", "")">Press and Media</a></li>
                 <li class="@Html.IsSelected(action: "Shelters")"><a href="@Url.Action("", "")">Shelters</a></li>
             </ul>
