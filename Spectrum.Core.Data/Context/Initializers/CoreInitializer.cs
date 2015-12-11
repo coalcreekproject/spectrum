@@ -61,7 +61,7 @@ namespace Spectrum.Core.Data.Context.Initializers
                 {
                     Id = 8,
                     Name = "Agency - Law Enforcement",
-                    Description = "LE Organizations, typically police"
+                    Description = "LE Organizations, (example: City and State Police)"
                 },
                 new OrganizationType
                 {
@@ -73,7 +73,7 @@ namespace Spectrum.Core.Data.Context.Initializers
                 {
                     Id = 10,
                     Name = "Agency - Other",
-                    Description = "Investigative Agencies"
+                    Description = "Other Agencies"
                 },
                 new OrganizationType
                 {
@@ -81,7 +81,7 @@ namespace Spectrum.Core.Data.Context.Initializers
                     Name = "Private",
                     Description = "Private companies and organizations"
                 },
-                                new OrganizationType
+                new OrganizationType
                 {
                     Id = 12,
                     Name = "Individual",
@@ -155,7 +155,7 @@ namespace Spectrum.Core.Data.Context.Initializers
 
             var pwelchProfile = new UserProfile()
             {
-                OrganizationId = 1,
+                OrganizationId = 1,  //Wanna bet?
                 Default = true,
                 ProfileName = "Default for Patrick Welch, Spectrum Operational LLC",
                 FirstName = "Lawrence",
