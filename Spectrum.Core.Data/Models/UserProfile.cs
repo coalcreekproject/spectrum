@@ -28,12 +28,6 @@ namespace Spectrum.Core.Data.Models
         public string Language { get; set; }
         public byte[] Photo { get; set; }
         public string Position { get; set; }
-        public bool? Cloaked { get; set; }
-        public bool? Archive { get; set; }
-        public DateTime? CreatedDate { get; set; }
-        public int? CreatedByUserId { get; set; }
-        public DateTime? ModifiedDate { get; set; }
-        public int? ModifiedByUserId { get; set; }
 
         public virtual ICollection<UserProfileAddress> UserProfileAddresses { get; set; }
 

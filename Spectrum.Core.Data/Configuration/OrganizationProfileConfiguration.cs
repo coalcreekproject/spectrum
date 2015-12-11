@@ -29,12 +29,6 @@ namespace Spectrum.Core.Data.Configuration
             Property(x => x.DstAdjust).HasColumnName("DstAdjust").IsOptional();
             Property(x => x.Language).HasColumnName("Language").IsOptional().HasMaxLength(100);
             Property(x => x.Notes).HasColumnName("Notes").IsOptional();
-            Property(x => x.Cloaked).HasColumnName("Cloaked").IsOptional();
-            Property(x => x.Archive).HasColumnName("Archive").IsOptional();
-            Property(x => x.CreatedDate).HasColumnName("CreatedDate").IsOptional();
-            Property(x => x.CreatedByUserId).HasColumnName("CreatedByUserId").IsOptional();
-            Property(x => x.ModifiedDate).HasColumnName("ModifiedDate").IsOptional();
-            Property(x => x.ModifiedByUserId).HasColumnName("ModifiedByUserId").IsOptional();
 
             HasRequired(a => a.Organization).WithMany(b => b.OrganizationProfiles).HasForeignKey(c => c.OrganizationId);
         }
