@@ -15,17 +15,17 @@ namespace Spectrum.Web.Areas.Eoc
         public override void RegisterArea(AreaRegistrationContext context)
         {
             context.MapRoute(
-                "Eoc Templates",
-                "Eoc/Templates/{controller}/{action}/{id}",
-                new {action = "Index", id = UrlParameter.Optional},
-                new[] {"Spectrum.Web.Areas.Eoc.Controllers"}
+                name: "Eoc Templates",
+                url: "Eoc/Templates/{controller}/{template}",
+                defaults: new {action = "Template"},
+                namespaces: new[] {"Spectrum.Web.Areas.Eoc.Controllers"}
                 );
 
             context.MapRoute(
-                "Eoc",
-                "Eoc/{controller}/{action}/{id}",
-                new { action = "Index", id = UrlParameter.Optional },
-                new[] { "Spectrum.Web.Areas.Eoc.Controllers" }
+                name: "Eoc",
+                url: "Eoc/{controller}/{action}/{id}",
+                defaults: new { action = "Index", id = UrlParameter.Optional },
+                namespaces: new[] { "Spectrum.Web.Areas.Eoc.Controllers" }
             );
         }
     }

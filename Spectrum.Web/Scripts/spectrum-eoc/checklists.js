@@ -24,7 +24,7 @@ function userRoleParameters() {
     this.organizationId = null;
 };
 
-function CheckListsController($scope, $modalInstance, userRoleFactory, user) {
+function CheckListsController($scope) {
     // Handle actions
     $scope.remove = function (scope) {
         scope.remove();
