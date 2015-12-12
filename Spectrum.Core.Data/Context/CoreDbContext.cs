@@ -1,9 +1,9 @@
 using System.Data.Entity;
-using Spectrum.Core.Data.Configuration;
-using Spectrum.Core.Data.Context.Interfaces;
-using Spectrum.Core.Data.Models;
+using Spectrum.Data.Core.Configuration;
+using Spectrum.Data.Core.Context.Interfaces;
+using Spectrum.Data.Core.Models;
 
-namespace Spectrum.Core.Data.Context
+namespace Spectrum.Data.Core.Context
 {
     public partial class CoreDbContext : DbContext, ICoreDbContext
     {

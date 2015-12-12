@@ -1,6 +1,6 @@
 using System;
 
-namespace Spectrum.Core.Data.Models
+namespace Spectrum.Data.Core.Models
 {
     public partial class Contact
     {

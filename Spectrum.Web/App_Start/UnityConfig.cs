@@ -1,10 +1,10 @@
 using System;
 using Microsoft.AspNet.Identity;
 using Microsoft.Practices.Unity;
-using Spectrum.Core.Data.Context;
-using Spectrum.Core.Data.Context.UnitOfWork;
-using Spectrum.Core.Data.Models;
-using Spectrum.Core.Data.Repositories;
+using Spectrum.Data.Core.Context;
+using Spectrum.Data.Core.Context.UnitOfWork;
+using Spectrum.Data.Core.Models;
+using Spectrum.Data.Core.Repositories;
 using Spectrum.Web.Controllers;
 using Spectrum.Web.Controllers.Web;
 

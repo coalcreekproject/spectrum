@@ -2,9 +2,9 @@
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
-using Spectrum.Core.Data.Models.Interfaces;
+using Spectrum.Data.Core.Models.Interfaces;
 
-namespace Spectrum.Core.Data.Models
+namespace Spectrum.Data.Core.Models
 {
     public partial class User : IUser<int>, IObjectState //<---- TODO: look into this
     {

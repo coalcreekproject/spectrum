@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Net;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
-using Spectrum.Core.Data.Context;
-using Spectrum.Core.Data.Context.UnitOfWork;
-using Spectrum.Core.Data.Models;
-using Spectrum.Core.Data.Repositories;
+using Spectrum.Data.Core.Context;
+using Spectrum.Data.Core.Context.UnitOfWork;
+using Spectrum.Data.Core.Models;
+using Spectrum.Data.Core.Repositories;
 using Spectrum.Web.Models;
 
 namespace Spectrum.Web.Controllers.Web

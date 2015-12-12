@@ -1,13 +1,11 @@
 using System;
-using System.CodeDom.Compiler;
 using System.Data.Entity;
 using System.Threading;
 using System.Threading.Tasks;
-using Spectrum.Core.Data.Context.Interfaces;
-using Spectrum.Core.Data.Models;
-using Spectrum.Data.Core.Context.Generated;
+using Spectrum.Data.Core.Context.Interfaces;
+using Spectrum.Data.Core.Models;
 
-namespace Spectrum.Core.Data.Context.Fakes
+namespace Spectrum.Data.Core.Context.Fakes
 {
     public class FakeSpectrumCoreContext : ICoreDbContext
     {

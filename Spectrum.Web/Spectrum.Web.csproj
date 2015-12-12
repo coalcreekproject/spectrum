@@ -152,6 +152,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Drawing" />
@@ -3168,9 +3169,9 @@
     <TypeScriptCompile Include="bower_components\angular-ui-router\api\angular-ui-router.d.ts" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Spectrum.Core.Data\Spectrum.Core.Data.csproj">
+    <ProjectReference Include="..\Spectrum.Core.Data\Spectrum.Data.Core.csproj">
       <Project>{f3b0b351-0bca-485d-864a-6f299c2e4fa2}</Project>
-      <Name>Spectrum.Core.Data</Name>
+      <Name>Spectrum.Data.Core</Name>
     </ProjectReference>
     <ProjectReference Include="..\Spectrum.Logic\Spectrum.Logic.csproj">
       <Project>{3417f4ad-c93a-45e0-9f40-7a1710410c1e}</Project>

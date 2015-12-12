@@ -1,7 +1,7 @@
 ﻿using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 
-namespace Spectrum.Core.Data.Context.BaseClasses
+namespace Spectrum.Data.Core.Context.BaseClasses
 {
     public partial class ContextBase<TContext> : DbContext where TContext : DbContext
     {

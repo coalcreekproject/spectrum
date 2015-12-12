@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.AspNet.Identity;
-using Spectrum.Core.Data.Models.Interfaces;
+using Spectrum.Data.Core.Models.Interfaces;
 
-namespace Spectrum.Core.Data.Models
+namespace Spectrum.Data.Core.Models
 {
     public partial class Role : IRole<int>, IObjectState
     {

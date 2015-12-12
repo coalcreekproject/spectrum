@@ -7,9 +7,8 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin;
-using Spectrum.Core.Data.Caching;
-using Spectrum.Core.Data.Caching.Extensions;
-using Spectrum.Core.Data.Models;
+using Spectrum.Data.Core.Caching;
+using Spectrum.Data.Core.Caching.Extensions;
 using Spectrum.Logic.Models;
 using StackExchange.Redis;
 

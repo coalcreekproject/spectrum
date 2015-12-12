@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data.Entity;
 using Microsoft.AspNet.Identity;
-using Spectrum.Core.Data.Models;
+using Spectrum.Data.Core.Models;
 
-namespace Spectrum.Core.Data.Context.Initializers
+namespace Spectrum.Data.Core.Context.Initializers
 {
     internal class CoreInitializer : CreateDatabaseIfNotExists<CoreDbContext>
     {

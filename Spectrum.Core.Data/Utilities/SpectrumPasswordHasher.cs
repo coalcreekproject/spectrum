@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNet.Identity;
 
-namespace Spectrum.Core.Data.Utilities
+namespace Spectrum.Data.Core.Utilities
 {
     public class SpectrumPasswordHasher : IPasswordHasher
     {

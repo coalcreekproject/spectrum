@@ -1,8 +1,8 @@
 ﻿using System.Data.Entity;
-using Spectrum.Core.Data.Models.Interfaces;
-using Spectrum.Core.Data.Models.ModelUtilities;
+using Spectrum.Data.Core.Models.Interfaces;
+using Spectrum.Data.Core.Models.ModelUtilities;
 
-namespace Spectrum.Core.Data.Context.Extensions
+namespace Spectrum.Data.Core.Context.Extensions
 {
     public static class ContextExtensions
     {

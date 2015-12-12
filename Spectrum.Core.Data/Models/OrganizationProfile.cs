@@ -1,7 +1,6 @@
-using System;
 using System.Collections.Generic;
 
-namespace Spectrum.Core.Data.Models
+namespace Spectrum.Data.Core.Models
 {
     public partial class OrganizationProfile
     {

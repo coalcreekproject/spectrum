@@ -1,4 +1,4 @@
-﻿namespace Spectrum.Core.Data.Models.Interfaces
+﻿namespace Spectrum.Data.Core.Models.Interfaces
 {
     public interface IObjectState
     {

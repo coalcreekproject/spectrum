@@ -1,7 +1,7 @@
 using System.Data.Entity;
-using Spectrum.Core.Data.Context.Initializers;
+using Spectrum.Data.Core.Context.Initializers;
 
-namespace Spectrum.Core.Data.Context
+namespace Spectrum.Data.Core.Context
 {
     public partial class CoreDbContext
     {

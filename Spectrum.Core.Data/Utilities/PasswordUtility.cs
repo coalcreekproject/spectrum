@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Security.Cryptography;
 
-namespace Spectrum.Core.Data.Utilities
+namespace Spectrum.Data.Core.Utilities
 {
     /// <summary>
     /// Stolen from: http://stackoverflow.com/a/10402129
