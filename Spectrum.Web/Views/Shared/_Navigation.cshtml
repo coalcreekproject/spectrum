@@ -1,7 +1,7 @@
 ﻿@using Spectrum.Web.Helpers
 <div id="navigation">
     <div class="profile-picture">
-        <a href="@Url.Action("Index", "Dashboard", new { Area = string.Empty })">
+        <a href="@Url.Action("Index", "Portal", new { Area = string.Empty })">
             <img src="~/Content/images/profile.png" class="img-circle m-b" alt="logo">
         </a>
 
@@ -21,12 +21,12 @@
 
     <ul side-navigation class="nav" id="side-menu">
         <li ui-sref-active="active">
-            <a href="@Url.Action("Index", "Dashboard", new { Area = string.Empty })"><span class="nav-label">Dashboard</span><span class="label label-info pull-right">NEW</span></a>
+            <a href="@Url.Action("Index", "Portal", new { Area = string.Empty })"><span class="nav-label">Portal</span><span class="label label-info pull-right">NEW</span></a>
         </li>
         <li ui-sref-active="active">
             <a ui-sref="analytics"><span class="nav-label">Analytics</span><span class="label label-warning pull-right">COMING<br/>SOON!</span> </a>
         </li>
-        <li ng-class="{active: $state.includes('EOC')}">
+        <li ng-class="{active: $state.includes('eoc')}">
             <a href="#"><span class="nav-label">EOC</span><span class="fa arrow"></span> </a>
             <ul class="nav nav-second-level">
                 <li class="@Html.IsSelected(action: "Dashboard")"><a href="@Url.Action("Index", "Dashboard", new {Area = "Eoc"})">Dashboard</a></li>
@@ -59,8 +59,9 @@
         <li ng-class="{active: $state.includes('planning')}">
             <a href="#"><span class="nav-label">Planning</span><span class="fa arrow"></span> </a>
             <ul class="nav nav-second-level">
-                <li class="@Html.IsSelected(action: "EOP")"><a href="@Url.Action("Action", "Controller")">Emergency Opearions Plan</a></li>
-                <li class="@Html.IsSelected(action: "Contacts")"><a href="@Url.Action("Action", "Controller")">Annexes</a></li>
+                <li class="@Html.IsSelected(action: "")"><a href="@Url.Action("Action", "Controller")">Emergency Opearions Plan</a></li>
+                <li class="@Html.IsSelected(action: "")"><a href="@Url.Action("Action", "Controller")">Annexes</a></li>
+                <li class="@Html.IsSelected(action: "")"><a href="@Url.Action("Action", "Controller")">Mutual Aid Agreements</a></li>
             </ul>
         </li>
         <li ng-class="{active: $state.includes('response')}">
@@ -74,6 +75,13 @@
             <a href="#"><span class="nav-label">Recovery</span><span class="fa arrow"></span> </a>
             <ul class="nav nav-second-level" ng-class="{in: $state.includes('forms')}">
                 <li class="@Html.IsSelected(action: "Login")"><a href="@Url.Action("Action", "Controller")">Right of Entry Manger</a></li>
+                <li class="@Html.IsSelected(action: "Login")"><a href="@Url.Action("Action", "Controller")">Track Resources</a></li>
+            </ul>
+        </li>
+        <li ng-class="{active: $state.includes('accounting')}">
+            <a href="#"><span class="nav-label">Accounting</span><span class="fa arrow"></span> </a>
+            <ul class="nav nav-second-level" ng-class="{in: $state.includes('forms')}">
+                <li class="@Html.IsSelected(action: "Login")"><a href="@Url.Action("Action", "Controller")">Event Ledger</a></li>
                 <li class="@Html.IsSelected(action: "Login")"><a href="@Url.Action("Action", "Controller")">Track Resources</a></li>
             </ul>
         </li>

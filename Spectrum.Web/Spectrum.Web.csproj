@@ -235,14 +235,15 @@
     <Compile Include="App_Start\UnityMvcActivator.cs" />
     <Compile Include="App_Start\UnityWebApiActivator.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Areas\Eoc\Controllers\ChecklistController.cs" />
-    <Compile Include="Areas\Eoc\Controllers\DashboardController.cs" />
+    <Compile Include="Areas\Eoc\Controllers\Api\ChecklistsController.cs" />
+    <Compile Include="Areas\Eoc\Controllers\Web\ChecklistController.cs" />
+    <Compile Include="Areas\Eoc\Controllers\Web\DashboardController.cs" />
     <Compile Include="Areas\Eoc\EocAreaRegistration.cs" />
     <Compile Include="Controllers\Api\RolesController.cs" />
     <Compile Include="Controllers\Api\UserRolesController.cs" />
     <Compile Include="Controllers\Web\AccountController.cs" />
     <Compile Include="Controllers\Web\ContactController.cs" />
-    <Compile Include="Controllers\Web\DashboardController.cs" />
+    <Compile Include="Controllers\Web\PortalController.cs" />
     <Compile Include="Controllers\Web\HomeController.cs" />
     <Compile Include="Controllers\Web\ManageController.cs" />
     <Compile Include="Controllers\Web\UserController.cs" />
@@ -3064,7 +3065,7 @@
     <Content Include="Views\User\Partials\UserGridIndex.cshtml" />
     <Content Include="Views\Shared\_Layout_Blank.cshtml" />
     <Content Include="Views\Shared\_Layout_Landing.cshtml" />
-    <Content Include="Views\Dashboard\Index.cshtml" />
+    <Content Include="Views\Portal\Index.cshtml" />
     <Content Include="Views\User\Index.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\_Navigation.cshtml" />

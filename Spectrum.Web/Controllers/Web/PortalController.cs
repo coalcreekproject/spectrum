@@ -2,7 +2,7 @@
 
 namespace Spectrum.Web.Controllers.Web
 {
-    public class DashboardController : Controller
+    public class PortalController : Controller
     {
         // GET: Dashboard
         public ActionResult Index()
