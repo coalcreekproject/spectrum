@@ -1,6 +1,6 @@
 ﻿using System.Web.Mvc;
 
-namespace Spectrum.Web.Areas.Eoc.Controllers
+namespace Spectrum.Web.Areas.Eoc.Controllers.Web
 {
     public class DashboardController : Controller
     {
