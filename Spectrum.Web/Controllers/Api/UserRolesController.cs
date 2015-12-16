@@ -7,12 +7,11 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using AutoMapper;
 using Microsoft.AspNet.Identity;
-using Spectrum.Core.Data.Context.Interfaces;
-using Spectrum.Core.Data.Context.UnitOfWork;
-using Spectrum.Core.Data.Models;
-using Spectrum.Core.Data.Models.Interfaces;
-using Spectrum.Core.Data.Repositories;
-using Spectrum.Core.Data.Repositories.Interfaces;
+using Spectrum.Data.Core.Context.Interfaces;
+using Spectrum.Data.Core.Context.UnitOfWork;
+using Spectrum.Data.Core.Models;
+using Spectrum.Data.Core.Models.Interfaces;
+using Spectrum.Data.Core.Repositories;
 using Spectrum.Web.Models;
 
 namespace Spectrum.Web.Controllers.Api

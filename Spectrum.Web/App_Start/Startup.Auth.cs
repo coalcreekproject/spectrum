@@ -4,8 +4,8 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
 using Owin;
-using Spectrum.Core.Data.Context;
-using Spectrum.Core.Data.Models;
+using Spectrum.Data.Core.Context;
+using Spectrum.Data.Core.Models;
 using Spectrum.Web.IdentityConfig;
 
 namespace Spectrum.Web

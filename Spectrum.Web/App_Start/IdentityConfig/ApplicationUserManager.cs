@@ -2,9 +2,9 @@ using System;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
-using Spectrum.Core.Data.Context;
-using Spectrum.Core.Data.Models;
-using Spectrum.Core.Data.Repositories;
+using Spectrum.Data.Core.Context;
+using Spectrum.Data.Core.Models;
+using Spectrum.Data.Core.Repositories;
 
 namespace Spectrum.Web.IdentityConfig
 {

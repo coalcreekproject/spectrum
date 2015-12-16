@@ -7,7 +7,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Linq.Expressions;
 
-namespace Spectrum.Data.Core.Context.Generated
+namespace Spectrum.Data.Core.Context.Fakes
 {
     [GeneratedCode("EF.Reverse.POCO.Generator", "2.13.0.0")]
     public class FakeDbSet<T> : IDbSet<T> where T : class

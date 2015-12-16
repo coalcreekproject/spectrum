@@ -4,13 +4,13 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using Microsoft.AspNet.Identity;
-using Spectrum.Core.Data.Context.Interfaces;
-using Spectrum.Core.Data.Context.UnitOfWork;
-using Spectrum.Core.Data.Models;
-using Spectrum.Core.Data.Models.Interfaces;
-using Spectrum.Core.Data.Repositories;
 using Spectrum.Web.Models;
 using AutoMapper;
+using Spectrum.Data.Core.Context.Interfaces;
+using Spectrum.Data.Core.Context.UnitOfWork;
+using Spectrum.Data.Core.Models;
+using Spectrum.Data.Core.Models.Interfaces;
+using Spectrum.Data.Core.Repositories;
 
 namespace Spectrum.Web.Controllers.Api
 {

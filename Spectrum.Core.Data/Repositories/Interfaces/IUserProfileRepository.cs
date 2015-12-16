@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
-using Spectrum.Core.Data.Models;
+using Spectrum.Data.Core.Models;
 
-namespace Spectrum.Core.Data.Repositories.Interfaces
+namespace Spectrum.Data.Core.Repositories.Interfaces
 {
     public interface IUserProfileRepository : IEntityRepository<UserProfile>
     {

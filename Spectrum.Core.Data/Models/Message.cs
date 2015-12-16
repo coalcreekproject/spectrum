@@ -1,4 +1,4 @@
-namespace Spectrum.Core.Data.Models
+namespace Spectrum.Data.Core.Models
 {
     public class Message
     {

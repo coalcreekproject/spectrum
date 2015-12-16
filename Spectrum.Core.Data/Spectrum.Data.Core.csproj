@@ -7,8 +7,8 @@
     <ProjectGuid>{F3B0B351-0BCA-485D-864A-6F299C2E4FA2}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Spectrum.Core.Data</RootNamespace>
-    <AssemblyName>Spectrum.Core.Data</AssemblyName>
+    <RootNamespace>Spectrum.Data.Core</RootNamespace>
+    <AssemblyName>Spectrum.Data.Core</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>

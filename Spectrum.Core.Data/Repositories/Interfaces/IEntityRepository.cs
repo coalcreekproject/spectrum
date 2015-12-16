@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Linq.Expressions;
 
-namespace Spectrum.Core.Data.Repositories.Interfaces
+namespace Spectrum.Data.Core.Repositories.Interfaces
 {
     public interface IEntityRepository<T> : IDisposable
     {

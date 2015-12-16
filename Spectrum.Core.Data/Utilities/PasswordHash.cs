@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Security.Cryptography;
 
-namespace Spectrum.Core.Data.Utilities
+namespace Spectrum.Data.Core.Utilities
 {
     public sealed class PasswordHash
     {

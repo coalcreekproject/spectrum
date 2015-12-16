@@ -3,10 +3,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Spectrum.Core.Data.Context;
-using Spectrum.Core.Data.Context.UnitOfWork;
-using Spectrum.Core.Data.Models;
-using Spectrum.Core.Data.Repositories;
+using Spectrum.Data.Core.Context;
+using Spectrum.Data.Core.Context.UnitOfWork;
+using Spectrum.Data.Core.Models;
+using Spectrum.Data.Core.Repositories;
 
 namespace SpectrumEm.Data.Core.Tests.Stores
 {

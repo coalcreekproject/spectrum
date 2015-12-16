@@ -3,23 +3,25 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spectrum.Core.Data", "Spectrum.Core.Data\Spectrum.Core.Data.csproj", "{F3B0B351-0BCA-485D-864A-6F299C2E4FA2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spectrum.Data.Core", "Spectrum.Core.Data\Spectrum.Data.Core.csproj", "{F3B0B351-0BCA-485D-864A-6F299C2E4FA2}"
 EndProject
-Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Spectrum.Core.Database", "Spectrum.Core.Database\Spectrum.Core.Database.sqlproj", "{C77AFCBD-25B7-4500-92DC-1248EDD6A89E}"
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Spectrum.Data.Core.Database", "Spectrum.Core.Database\Spectrum.Data.Core.Database.sqlproj", "{C77AFCBD-25B7-4500-92DC-1248EDD6A89E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spectrum.Logic", "Spectrum.Logic\Spectrum.Logic.csproj", "{3417F4AD-C93A-45E0-9F40-7A1710410C1E}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spectrum.Web", "Spectrum.Web\Spectrum.Web.csproj", "{337BB1BB-723C-465D-8BFE-F89C6E1C74A7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spectrum.Web.Tests", "Spectrum.Web.Tests\Spectrum.Web.Tests.csproj", "{3F785864-075A-4B2F-BA56-5697E9837054}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spectrum.Common", "Spectrum.Utility\Spectrum.Common.csproj", "{27C5DC55-CD84-41A9-93AD-D51D3CE8D4B3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spectrum.Core.Data.Generated", "Spectrum.Core.Data.Generated\Spectrum.Core.Data.Generated.csproj", "{3A53D80E-456E-491C-A9B9-50467E57A7BF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spectrum.Data.Core.Generated", "Spectrum.Core.Data.Generated\Spectrum.Data.Core.Generated.csproj", "{3A53D80E-456E-491C-A9B9-50467E57A7BF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spectrum.Core.Data.Tests", "Spectrum.Core.Data.Tests\Spectrum.Core.Data.Tests.csproj", "{0DD36F2C-2928-4C32-9D14-438E817202EC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spectrum.Data.Core.Tests", "Spectrum.Core.Data.Tests\Spectrum.Data.Core.Tests.csproj", "{0DD36F2C-2928-4C32-9D14-438E817202EC}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spectrum.Common.Tests", "Spectrum.Common.Tests\Spectrum.Common.Tests.csproj", "{E24A159E-0116-41F7-AD94-64EE52091B50}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spectrum.Data.Eoc", "Spectrum.Data.Eoc\Spectrum.Data.Eoc.csproj", "{655ECE5D-4728-47E2-8CD2-2A66C061FD8B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spectrum.Web", "Spectrum.Web\Spectrum.Web.csproj", "{337BB1BB-723C-465D-8BFE-F89C6E1C74A7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,10 +43,6 @@ Global
 		{3417F4AD-C93A-45E0-9F40-7A1710410C1E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3417F4AD-C93A-45E0-9F40-7A1710410C1E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3417F4AD-C93A-45E0-9F40-7A1710410C1E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{337BB1BB-723C-465D-8BFE-F89C6E1C74A7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{337BB1BB-723C-465D-8BFE-F89C6E1C74A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{337BB1BB-723C-465D-8BFE-F89C6E1C74A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{337BB1BB-723C-465D-8BFE-F89C6E1C74A7}.Release|Any CPU.Build.0 = Release|Any CPU
 		{3F785864-075A-4B2F-BA56-5697E9837054}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{3F785864-075A-4B2F-BA56-5697E9837054}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3F785864-075A-4B2F-BA56-5697E9837054}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -64,6 +62,14 @@ Global
 		{E24A159E-0116-41F7-AD94-64EE52091B50}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E24A159E-0116-41F7-AD94-64EE52091B50}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E24A159E-0116-41F7-AD94-64EE52091B50}.Release|Any CPU.Build.0 = Release|Any CPU
+		{655ECE5D-4728-47E2-8CD2-2A66C061FD8B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{655ECE5D-4728-47E2-8CD2-2A66C061FD8B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{655ECE5D-4728-47E2-8CD2-2A66C061FD8B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{655ECE5D-4728-47E2-8CD2-2A66C061FD8B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{337BB1BB-723C-465D-8BFE-F89C6E1C74A7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{337BB1BB-723C-465D-8BFE-F89C6E1C74A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{337BB1BB-723C-465D-8BFE-F89C6E1C74A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{337BB1BB-723C-465D-8BFE-F89C6E1C74A7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

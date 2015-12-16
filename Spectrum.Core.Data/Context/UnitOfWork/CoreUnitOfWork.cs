@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
-using Spectrum.Core.Data.Context.Extensions;
+using Spectrum.Data.Core.Context.Extensions;
 
-namespace Spectrum.Core.Data.Context.UnitOfWork
+namespace Spectrum.Data.Core.Context.UnitOfWork
 {
     public class CoreUnitOfWork : ICoreUnitOfWork
     {

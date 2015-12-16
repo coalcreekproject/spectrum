@@ -1,11 +1,9 @@
 ﻿using System;
-using System.IO;
-using System.Runtime.Serialization.Formatters.Binary;
 using System.Threading.Tasks;
-using Spectrum.Core.Data.Caching.Extensions;
+using Spectrum.Data.Core.Caching.Extensions;
 using StackExchange.Redis;
 
-namespace Spectrum.Core.Data.Caching
+namespace Spectrum.Data.Core.Caching
 {
     public class RedisCache
     {

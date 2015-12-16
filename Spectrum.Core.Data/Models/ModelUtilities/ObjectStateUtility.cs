@@ -1,7 +1,7 @@
 ﻿using System.Data.Entity;
-using Spectrum.Core.Data.Models.Interfaces;
+using Spectrum.Data.Core.Models.Interfaces;
 
-namespace Spectrum.Core.Data.Models.ModelUtilities
+namespace Spectrum.Data.Core.Models.ModelUtilities
 {
     internal class ObjectStateUtility
     {

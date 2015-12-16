@@ -2,9 +2,9 @@ using System;
 using System.Data.Entity;
 using System.Threading;
 using System.Threading.Tasks;
-using Spectrum.Core.Data.Models;
+using Spectrum.Data.Core.Models;
 
-namespace Spectrum.Core.Data.Context.Interfaces
+namespace Spectrum.Data.Core.Context.Interfaces
 {
     public interface ICoreDbContext : IDisposable
     {

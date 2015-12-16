@@ -127,9 +127,9 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <ProjectReference Include="..\Spectrum.Core.Data\Spectrum.Core.Data.csproj">
+    <ProjectReference Include="..\Spectrum.Core.Data\Spectrum.Data.Core.csproj">
       <Project>{F3B0B351-0BCA-485D-864A-6F299C2E4FA2}</Project>
-      <Name>Spectrum.Core.Data</Name>
+      <Name>Spectrum.Data.Core</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

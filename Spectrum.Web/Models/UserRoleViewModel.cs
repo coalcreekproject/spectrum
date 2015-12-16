@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using Spectrum.Core.Data.Models;
+using Spectrum.Data.Core.Models;
 
 namespace Spectrum.Web.Models
 {

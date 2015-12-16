@@ -7,8 +7,8 @@
     <ProjectGuid>{3A53D80E-456E-491C-A9B9-50467E57A7BF}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Spectrum.Core.Data.Generated</RootNamespace>
-    <AssemblyName>Spectrum.Core.Data.Generated</AssemblyName>
+    <RootNamespace>Spectrum.Data.Core.Generated</RootNamespace>
+    <AssemblyName>Spectrum.Data.Core.Generated</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SccProjectName>SAK</SccProjectName>

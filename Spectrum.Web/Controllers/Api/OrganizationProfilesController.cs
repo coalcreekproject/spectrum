@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Services.Description;
 using AutoMapper;
-using Spectrum.Core.Data.Context.Interfaces;
-using Spectrum.Core.Data.Context.UnitOfWork;
-using Spectrum.Core.Data.Models;
-using Spectrum.Core.Data.Models.Interfaces;
-using Spectrum.Core.Data.Repositories;
-using Spectrum.Core.Data.Repositories.Interfaces;
+using Spectrum.Data.Core.Context.Interfaces;
+using Spectrum.Data.Core.Context.UnitOfWork;
+using Spectrum.Data.Core.Models;
+using Spectrum.Data.Core.Models.Interfaces;
+using Spectrum.Data.Core.Repositories;
+using Spectrum.Data.Core.Repositories.Interfaces;
 using Spectrum.Web.Models;
 
 namespace Spectrum.Web.Controllers.Api

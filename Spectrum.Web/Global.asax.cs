@@ -3,7 +3,7 @@ using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 using AutoMapper;
-using Spectrum.Core.Data.Models;
+using Spectrum.Data.Core.Models;
 using Spectrum.Logic.Models;
 using Spectrum.Web.Models;
 

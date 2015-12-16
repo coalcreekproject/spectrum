@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Spectrum.Data.Core.Repositories.InterfaceUtilities;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Spectrum.Core.Data.Utilities;
+using Spectrum.Data.Core.Utilities;
 
 namespace Spectrum.Data.Core.Repositories.InterfaceUtilities.Tests
 {

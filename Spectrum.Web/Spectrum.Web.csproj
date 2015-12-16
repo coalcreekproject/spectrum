@@ -152,6 +152,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Drawing" />
@@ -234,16 +235,17 @@
     <Compile Include="App_Start\UnityMvcActivator.cs" />
     <Compile Include="App_Start\UnityWebApiActivator.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Areas\Eoc\Controllers\DashboardController.cs" />
+    <Compile Include="Areas\Eoc\Controllers\Api\ChecklistsController.cs" />
+    <Compile Include="Areas\Eoc\Controllers\Web\ChecklistController.cs" />
+    <Compile Include="Areas\Eoc\Controllers\Web\DashboardController.cs" />
     <Compile Include="Areas\Eoc\EocAreaRegistration.cs" />
     <Compile Include="Controllers\Api\RolesController.cs" />
     <Compile Include="Controllers\Api\UserRolesController.cs" />
     <Compile Include="Controllers\Web\AccountController.cs" />
     <Compile Include="Controllers\Web\ContactController.cs" />
-    <Compile Include="Controllers\Web\DashboardController.cs" />
+    <Compile Include="Controllers\Web\PortalController.cs" />
     <Compile Include="Controllers\Web\HomeController.cs" />
     <Compile Include="Controllers\Web\ManageController.cs" />
-    <Compile Include="Controllers\Web\RoleController.cs" />
     <Compile Include="Controllers\Web\UserController.cs" />
     <Compile Include="Controllers\Web\OrganizationController.cs" />
     <Compile Include="Controllers\Api\OrganizationProfilesController.cs" />
@@ -288,6 +290,10 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Areas\Eoc\Views\Checklist\Index.cshtml" />
+    <Content Include="Areas\Eoc\Views\Checklist\Partials\CheckListIndex.cshtml" />
+    <Content Include="Areas\Eoc\Views\web.config" />
+    <Content Include="bower_components\.gitignore" />
     <Content Include="bower_components\angles\angles.js" />
     <Content Include="bower_components\angular-animate\angular-animate.js" />
     <Content Include="bower_components\angular-animate\angular-animate.min.js" />
@@ -2431,7 +2437,6 @@
     <Content Include="Content\images\landing\c6.jpg" />
     <Content Include="Content\images\landing\c7.jpg" />
     <Content Include="Content\images\landing\c8.jpg" />
-    <Content Include="Areas\Eoc\Views\web.config" />
     <Content Include="bower_components\angular-notify\.bower.json" />
     <Content Include="bower_components\angular-notify\bower.json" />
     <Content Include="bower_components\angular-notify\LICENSE" />
@@ -2964,6 +2969,7 @@
     <Content Include="Scripts\spectrum-core\userprofiles-index.js" />
     <Content Include="Scripts\spectrum-core\usersgrid-index.js" />
     <Content Include="Scripts\spectrum-core\users-index.js" />
+    <Content Include="Scripts\spectrum-eoc\checklists.js" />
     <Content Include="Templates\Common\content.html" />
     <Content Include="Templates\Common\content_blank.html" />
     <Content Include="Templates\Common\content_empty.html" />
@@ -3060,8 +3066,7 @@
     <Content Include="Views\User\Partials\UserGridIndex.cshtml" />
     <Content Include="Views\Shared\_Layout_Blank.cshtml" />
     <Content Include="Views\Shared\_Layout_Landing.cshtml" />
-    <Content Include="Views\Dashboard\Index.cshtml" />
-    <Content Include="Views\View.cshtml" />
+    <Content Include="Views\Portal\Index.cshtml" />
     <Content Include="Views\User\Index.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\_Navigation.cshtml" />
@@ -3076,7 +3081,6 @@
     <Folder Include="Areas\Eoc\Models\" />
     <Folder Include="Areas\Eoc\Views\Shared\" />
     <Folder Include="Views\Contact\Partials\" />
-    <Folder Include="Views\Role\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\icons\pe-icon-7-stroke\fonts\Pe-icon-7-stroke.eot" />
@@ -3167,9 +3171,9 @@
     <TypeScriptCompile Include="bower_components\angular-ui-router\api\angular-ui-router.d.ts" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Spectrum.Core.Data\Spectrum.Core.Data.csproj">
+    <ProjectReference Include="..\Spectrum.Core.Data\Spectrum.Data.Core.csproj">
       <Project>{f3b0b351-0bca-485d-864a-6f299c2e4fa2}</Project>
-      <Name>Spectrum.Core.Data</Name>
+      <Name>Spectrum.Data.Core</Name>
     </ProjectReference>
     <ProjectReference Include="..\Spectrum.Logic\Spectrum.Logic.csproj">
       <Project>{3417f4ad-c93a-45e0-9f40-7a1710410c1e}</Project>

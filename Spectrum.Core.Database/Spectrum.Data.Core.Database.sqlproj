@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <Name>Spectrum.Core.Database</Name>
+    <Name>Spectrum.Data.Core.Database</Name>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectVersion>4.1</ProjectVersion>
     <ProjectGuid>{c77afcbd-25b7-4500-92dc-1248edd6a89e}</ProjectGuid>
@@ -12,8 +12,8 @@
     <OutputType>Database</OutputType>
     <RootPath>
     </RootPath>
-    <RootNamespace>Spectrum.Core.Database</RootNamespace>
-    <AssemblyName>Spectrum.Core.Database</AssemblyName>
+    <RootNamespace>Spectrum.Database.Core</RootNamespace>
+    <AssemblyName>Spectrum.Database.Core</AssemblyName>
     <ModelCollation>1033, CI</ModelCollation>
     <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
     <DeployToDatabase>True</DeployToDatabase>
@@ -132,6 +132,8 @@
     <Build Include="Tables\UserNote.sql" />
     <Build Include="Tables\UserLicense.sql" />
     <Build Include="Tables\OrganizationLicense.sql" />
+    <Build Include="Tables\States.sql" />
+    <Build Include="Tables\TimeZones.sql" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />

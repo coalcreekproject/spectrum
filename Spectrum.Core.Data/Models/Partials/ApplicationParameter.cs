@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Spectrum.Core.Data.Models.Interfaces;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using Spectrum.Data.Core.Models.Interfaces;
 
-namespace Spectrum.Core.Data.Models
+namespace Spectrum.Data.Core.Models
 {
     public partial class ApplicationParameter : IObjectState
     {

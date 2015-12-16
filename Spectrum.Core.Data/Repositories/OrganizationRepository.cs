@@ -3,13 +3,13 @@ using System.Data.Entity;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
-using Spectrum.Core.Data.Context;
-using Spectrum.Core.Data.Context.UnitOfWork;
-using Spectrum.Core.Data.Models;
-using Spectrum.Core.Data.Models.Interfaces;
-using Spectrum.Core.Data.Repositories.Interfaces;
+using Spectrum.Data.Core.Context;
+using Spectrum.Data.Core.Context.UnitOfWork;
+using Spectrum.Data.Core.Models;
+using Spectrum.Data.Core.Models.Interfaces;
+using Spectrum.Data.Core.Repositories.Interfaces;
 
-namespace Spectrum.Core.Data.Repositories
+namespace Spectrum.Data.Core.Repositories
 {
     public class OrganizationRepository : IOrganizationRepository
     {

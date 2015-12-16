@@ -6,8 +6,8 @@
     <ProjectGuid>{0DD36F2C-2928-4C32-9D14-438E817202EC}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Spectrum.Core.Data.Tests</RootNamespace>
-    <AssemblyName>Spectrum.Core.Data.Tests</AssemblyName>
+    <RootNamespace>Spectrum.Data.Core.Tests</RootNamespace>
+    <AssemblyName>Spectrum.Data.Core.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -82,9 +82,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Spectrum.Core.Data\Spectrum.Core.Data.csproj">
+    <ProjectReference Include="..\Spectrum.Core.Data\Spectrum.Data.Core.csproj">
       <Project>{f3b0b351-0bca-485d-864a-6f299c2e4fa2}</Project>
-      <Name>Spectrum.Core.Data</Name>
+      <Name>Spectrum.Data.Core</Name>
     </ProjectReference>
   </ItemGroup>
   <Choose>

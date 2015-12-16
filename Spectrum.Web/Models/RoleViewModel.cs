@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using Spectrum.Core.Data.Models;
 
 namespace Spectrum.Web.Models
 {

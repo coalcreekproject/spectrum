@@ -1,8 +1,8 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity.ModelConfiguration;
-using Spectrum.Core.Data.Models;
+using Spectrum.Data.Core.Models;
 
-namespace Spectrum.Core.Data.Configuration
+namespace Spectrum.Data.Core.Configuration
 {
     internal class UserGroupConfiguration : EntityTypeConfiguration<UserGroup>
     {

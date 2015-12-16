@@ -1,7 +1,7 @@
-﻿using Spectrum.Core.Data.Models;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
+using Spectrum.Data.Core.Models;
 
-namespace Spectrum.Core.Data.Repositories.Interfaces
+namespace Spectrum.Data.Core.Repositories.Interfaces
 {
     public interface IOrganizationProfileRepository : IEntityRepository<OrganizationProfile>
     {
