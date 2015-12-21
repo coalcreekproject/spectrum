@@ -507,7 +507,7 @@ namespace Spectrum.Web.Controllers.Web
             {
                 return Redirect(returnUrl);
             }
-            return RedirectToAction("Index", "Dashboard");
+            return RedirectToAction("Index", "Portal");
         }
 
         internal class ChallengeResult : HttpUnauthorizedResult
