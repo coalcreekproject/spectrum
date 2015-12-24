@@ -32,11 +32,12 @@
         <li class="dropdown" dropdown>
             @if (User.Identity.IsAuthenticated)
             {
-                <a class="dropdown-toggle" href="#" dropdown-toggle>
-                    <span class="label label-info">
-                        @User.Identity.GetUserName()
-                        as SuperUser
-                        for Spectrum Operational
+                <a class="dropdown-toggle" href="#" dropdown-toggle  style="padding-top: 3px">
+                    <span class="label label-info text" style="font-size: 50%">
+                        @User.Identity.GetUserName() as SuperUser
+                    </span><br/>
+                    <span class="label label-info text" style="font-size: 50%">
+                        Spectrum Operational
                     </span>
                 </a>
                 <div class="dropdown-menu hdropdown bigmenu animated flipInX">
