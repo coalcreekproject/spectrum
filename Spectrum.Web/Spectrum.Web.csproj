@@ -22,7 +22,7 @@
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
     <TargetFrameworkProfile />
-    <TypeScriptToolsVersion>1.6</TypeScriptToolsVersion>
+    <TypeScriptToolsVersion>1.7</TypeScriptToolsVersion>
     <UseGlobalApplicationHostFile />
     <WebGreaseLibPath>..\packages\WebGrease.1.5.2\lib</WebGreaseLibPath>
   </PropertyGroup>
@@ -2985,6 +2985,7 @@
     <None Include="Views\Organization\Partials\EditOrganizationProfileModal.cshtml" />
     <Content Include="Views\Organization\Partials\EditOrganizationRoleModal.cshtml" />
     <Content Include="Views\Portal\Partials\ChangeUserFocusModal.cshtml" />
+    <Content Include="Views\Portal\Partials\PortalIndex.cshtml" />
     <None Include="Views\User\Partials\DeleteUserProfileModal.cshtml" />
     <None Include="Views\User\Partials\EditUserProfileModal.cshtml" />
     <None Include="Views\User\Partials\AddUserProfileModal.cshtml" />

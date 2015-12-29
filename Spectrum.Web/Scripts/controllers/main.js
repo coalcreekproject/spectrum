@@ -6,9 +6,28 @@
 
 angular
     .module('app')
-    .controller('appCtrl', appCtrl);
+    .controller('appCtrl', appCtrl)
+    .config(config);
 
-function appCtrl($http, $scope, $timeout) {
+function config($stateProvider, $urlRouterProvider, $compileProvider) {
+
+    // Optimize load start with remove binding information inside the DOM element
+    $compileProvider.debugInfoEnabled(true);
+
+    // Set default state
+    //$urlRouterProvider.otherwise("/dashboard");
+
+    $stateProvider
+        .state('index', {
+            url: "",
+            templateUrl: "/Templates/Portal/PortalIndex",
+            data: {
+                pageTitle: 'index'
+            }
+        });
+}
+
+function appCtrl($http, $scope, $timeout, $state) {
 
     // For iCheck purpose only
     $scope.checkOne = true;

@@ -32,11 +32,11 @@
         <li class="dropdown" dropdown>
             @if (User.Identity.IsAuthenticated)
             {
-                <a class="dropdown-toggle" href="#" dropdown-toggle  style="padding-top: 3px">
-                    <span class="label label-info text" style="font-size: 50%">
+                <a class="dropdown-toggle" href="#" dropdown-toggle  style="padding-top: 0">
+                    <span class="label label-info text-center" style="font-size: 43%">
                         @User.Identity.GetUserName() as SuperUser
                     </span><br/>
-                    <span class="label label-info text" style="font-size: 50%">
+                    <span class="label label-info text-center" style="font-size: 43%">
                         Spectrum Operational
                     </span>
                 </a>
@@ -45,13 +45,13 @@
                         <tbody>
                             <tr>
                                 <td>
-                                    <a>
+                                    <a href="@Url.Action("", "", new { Area = string.Empty })">
                                         <i class="pe pe-7s-id text-info"></i>
                                         <h5>Change Identity Focus</h5>
                                     </a>
                                 </td>
                                 <td>
-                                    <a href="@Url.Action("Index", "Organization", new {Area = string.Empty})">
+                                    <a href="@Url.Action("Index", "Manage", new {Area = string.Empty})">
                                         <i class="pe pe-7s-info text-info"></i>
                                         <h5>Manage Your Account</h5>
                                     </a>

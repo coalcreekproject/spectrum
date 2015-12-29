@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using System;
+using System.Web.Mvc;
 
 namespace Spectrum.Web.Controllers.Web
 {
@@ -8,6 +9,19 @@ namespace Spectrum.Web.Controllers.Web
         public ActionResult Index()
         {
             return View();
+        }
+
+        public ActionResult Template(string template)
+        {
+            switch (template.ToLower())
+            {
+                case "portalindex":
+                    return PartialView("~/Views/Portal/Partials/PortalIndex.cshtml");
+                case "changeuserfocusmodal":
+                    return PartialView("~/Views/Portal/Partials/ChangeUserFocusModal.cshtml");
+                default:
+                    throw new ApplicationException("Unknown Template");
+            }
         }
     }
 }
