@@ -40,15 +40,19 @@
                         Spectrum Operational
                     </span>
                 </a>
-                <div class="dropdown-menu hdropdown bigmenu animated flipInX">
+                <div class="dropdown-menu hdropdown bigmenu animated flipInX" ng-controller="userFocusController">
                     <table>
                         <tbody>
                             <tr>
                                 <td>
-                                    <a href="@Url.Action("", "", new { Area = string.Empty })">
+                                    <a ng-click="changeFocus()">
                                         <i class="pe pe-7s-id text-info"></i>
                                         <h5>Change Identity Focus</h5>
                                     </a>
+                                    @*NOTE: Cool trick:
+                                    <a href="#" ng-click="$event.preventDefault();logout()"/>
+                                    This allows for right click open in new tab but left click
+                                    performs the ng-click*@
                                 </td>
                                 <td>
                                     <a href="@Url.Action("Index", "Manage", new {Area = string.Empty})">

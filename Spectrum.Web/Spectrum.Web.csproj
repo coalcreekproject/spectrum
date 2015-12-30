@@ -2965,6 +2965,7 @@
     <Content Include="Scripts\spectrum-core\organization-roles.js" />
     <Content Include="Scripts\spectrum-core\organization-profiles.js" />
     <Content Include="Scripts\spectrum-core\organizations-index.js" />
+    <Content Include="Scripts\spectrum-core\portal-userfocus.js" />
     <Content Include="Scripts\spectrum-core\user-roles.js" />
     <Content Include="Scripts\spectrum-core\userprofiles-index.js" />
     <Content Include="Scripts\spectrum-core\usersgrid-index.js" />
