@@ -132,8 +132,6 @@
     <Build Include="Tables\UserNote.sql" />
     <Build Include="Tables\UserLicense.sql" />
     <Build Include="Tables\OrganizationLicense.sql" />
-    <Build Include="Tables\States.sql" />
-    <Build Include="Tables\TimeZones.sql" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
