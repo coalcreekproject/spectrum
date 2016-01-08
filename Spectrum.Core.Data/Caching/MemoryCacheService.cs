@@ -5,6 +5,7 @@ using System.Runtime.Caching;
 using System.Text;
 using System.Threading.Tasks;
 using Spectrum.Data.Core.Caching.Interfaces;
+using Spectrum.Data.Core.Caching.Extensions;
 
 namespace Spectrum.Data.Core.Caching
 {
@@ -12,11 +13,16 @@ namespace Spectrum.Data.Core.Caching
     {
         //TODO: dependency injection
 
-        private static MemoryCache _cache = new MemoryCache("SpectrumCache");
+        //Create a custom Timeout of 10 seconds
+        //CacheItemPolicy policy = new CacheItemPolicy();
+        //policy.AbsoluteExpiration = DateTimeOffset.Now.AddSeconds(10.0);
+
+
+        private static MemoryCache _cache = MemoryCache.Default;
 
         public T GetFromCache<T>(string key, Func<T> missedCacheCall, TimeSpan timeToLive)
         {
-            var obj = _cache.Get(key);
+            var obj = _cache.Get<T>(key);
 
             if (obj == null)
             {
@@ -24,7 +30,7 @@ namespace Spectrum.Data.Core.Caching
 
                 if (obj != null)
                 {
-                    obj = _cache.Get(key);
+                    _cache.Set(key, obj, DateTimeOffset.Now.AddMinutes(5));
                 }
             }
             return obj;
@@ -37,22 +43,12 @@ namespace Spectrum.Data.Core.Caching
 
         public Task<T> GetFromCacheAsync<T>(string key, Func<Task<T>> missedCacheCall, TimeSpan timeToLive)
         {
-            //IDatabase cache = Connection.GetDatabase();
-            //var obj = await cache.GetAsync<T>(key);
-            //if (obj == null)
-            //{
-            //    obj = await missedCacheCall();
-            //    if (obj != null)
-            //    {
-            //        cache.Set(key, obj);
-            //    }
-            //}
-            //return obj;
+            throw new NotImplementedException();
         }
 
         public Task<T> GetFromCacheAsync<T>(string key, Func<Task<T>> missedCacheCall)
         {
-            //return await GetFromCacheAsync<T>(key, missedCacheCall, TimeSpan.FromMinutes(5));
+            throw new NotImplementedException();
         }
 
         public void InvalidateCache(string key)

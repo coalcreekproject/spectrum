@@ -97,6 +97,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Caching\Extensions\MemoryCacheExtensions.cs" />
     <Compile Include="Caching\Interfaces\ICacheService.cs" />
     <Compile Include="Caching\MemoryCacheService.cs" />
     <Compile Include="Caching\RedisCache.cs" />
