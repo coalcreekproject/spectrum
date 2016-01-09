@@ -34,12 +34,6 @@ namespace Spectrum.Logic.Models
         public DateTime? LockoutEndDateUtc { get; set; }
         public bool LockoutEnabled { get; set; }
         public int AccessFailedCount { get; set; }
-        public bool? Cloaked { get; set; }
-        public bool? Archive { get; set; }
-        public DateTime? CreatedDate { get; set; }
-        public int? CreatedByUserId { get; set; }
-        public DateTime? ModifiedDate { get; set; }
-        public int? ModifiedByUserId { get; set; }
 
         public virtual ICollection<GroupModel> GroupModels { get; set; }
         public virtual ICollection<JurisdictionModel> JurisdictionModels { get; set; }

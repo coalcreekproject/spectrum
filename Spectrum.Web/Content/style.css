@@ -1559,7 +1559,8 @@ h3,
 @media (-o-min-device-pixel-ratio: 5/4), (-webkit-min-device-pixel-ratio: 1.25), (min-resolution: 120dpi) {
   .icheckbox_square-green,
   .iradio_square-green {
-    background-image: url(img/green@2x.png);
+    background-image: url(images/green@2x.png);
+    /*background-color: #c7e0ec;*/
     -webkit-background-size: 240px 24px;
     background-size: 240px 24px;
   }
@@ -3525,7 +3526,7 @@ ul.h-list li:hover a {
   border-radius: 5px;
   color: #fff;
   display: block;
-  background-color: #3498db;
+  background-color: #cb8424;
   margin-left: 0;
 }
 .landing-page .navbar-default .navbar-toggle:hover,
