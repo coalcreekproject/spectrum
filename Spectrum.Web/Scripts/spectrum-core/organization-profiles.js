@@ -54,7 +54,7 @@ function organizationProfileController($scope, $http, $window, $modal, $statePar
             }
         });
     };
-}};
+};
 
 function AddOrganizationProfileModalController($scope, $modalInstance, organizationProfileFactory) {
 

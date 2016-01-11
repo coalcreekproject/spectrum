@@ -1,16 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Caching;
 using System.Security.Principal;
-using System.Text;
-using System.Threading.Tasks;
-using AutoMapper;
 using Microsoft.AspNet.Identity;
-using Microsoft.Owin;
 using Spectrum.Data.Core.Caching;
 using Spectrum.Data.Core.Caching.Extensions;
 using Spectrum.Logic.Models;
-using StackExchange.Redis;
 
 namespace Spectrum.Logic.Identity
 {
@@ -22,11 +17,20 @@ namespace Spectrum.Logic.Identity
             return Convert.ToInt32(id);
         }
 
+        public static OrganizationModel GetLoggedInUserDefaultOrganization(IPrincipal user)
+        {
+            var userModel = GetUserFromCache(user);
+            var defaultProfile = userModel.UserProfileModels.FirstOrDefault(p => p.Default == true);
+            var organizationModel = userModel.OrganizationModels.FirstOrDefault(
+                o => o.Id == defaultProfile.OrganizationId);
+            return organizationModel;
+        }
+
         public static UserModel GetUserFromCache(IPrincipal user)
         {
             var id = user.Identity.GetUserId();
 
-            var cache = RedisCache.Connection.GetDatabase();
+            var cache = MemoryCache.Default;
             var userModel = cache.Get<UserModel>("user:" + id);
 
             return userModel;

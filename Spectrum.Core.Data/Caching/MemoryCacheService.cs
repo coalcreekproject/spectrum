@@ -9,7 +9,7 @@ using Spectrum.Data.Core.Caching.Extensions;
 
 namespace Spectrum.Data.Core.Caching
 {
-    class MemoryCacheService : ICacheService
+    public class MemoryCacheService : ICacheService
     {
         //TODO: dependency injection
 
