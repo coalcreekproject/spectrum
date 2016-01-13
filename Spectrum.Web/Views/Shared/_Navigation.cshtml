@@ -30,7 +30,8 @@
             <a href="#"><span class="nav-label">EOC</span><span class="fa arrow"></span> </a>
             <ul class="nav nav-second-level">
                 <li class="@Html.IsSelected(action: "Dashboard")"><a href="@Url.Action("Index", "Dashboard", new {Area = "Eoc"})">Dashboard</a></li>
-                <li class="@Html.IsSelected(action: "Timeline")"><a href="@Url.Action("", "")">Event Timeline</a></li>
+                <li class="@Html.IsSelected(action: "Timeline")"><a href="@Url.Action("", "")">Events Timeline</a></li>
+                <li class="@Html.IsSelected(action: "Timeline")"><a href="@Url.Action("", "")">Activity Log</a></li>
                 <li class="@Html.IsSelected(action: "Action Plans")"><a href="@Url.Action("", "")">Action Plans</a></li>
                 <li class="@Html.IsSelected(action: "Checklists")"><a href="@Url.Action("Index", "Checklist", new {Area = "Eoc"})">Checklists</a></li>
                 <li class="@Html.IsSelected(action: "Media")"><a href="@Url.Action("", "")">Press and Media</a></li>

@@ -1,4 +1,4 @@
-﻿<div ng-controller="OrganizationController as organizationController">
+﻿<div ng-controller="OrganizationPositionController as organizationPositionController">
     <div small-header class="normalheader transition">
         <div class="hpanel" title="Page header" content="Place your page title and breadcrumb." placement="bottom">
             <div class="panel-body">
@@ -13,14 +13,17 @@
                             <a href="@Url.Action("Index", "Dashboard")">Dashboard</a>
                         </li>
                         <li>
-                            <a href="@Url.Action("Index", "Organization")">Organizations</a>
+                            <a href="@Url.Action("Index", "Organization")">Oragnization</a>
+                        </li>
+                        <li>
+                            <a>Organization Position</a>
                         </li>
                     </ol>
                 </div>
                 <h2 class="font-light m-b-xs">
-                    Organization
+                    Roles
                 </h2>
-                <small>Manage your organization(s)</small>
+                <small>Manage the psoitions used in your organization</small>
             </div>
         </div>
     </div>
@@ -35,13 +38,13 @@
                                 <span class="input-group-btn">
                                     <button type="button" class="btn btn-primary">Search</button>
                                 </span>
-                                <input type="text" class="form-control" placeholder="Search organizations...">
+                                <input type="text" class="form-control" placeholder="Search positions...">
                             </div>
                         </div>
                         <div class="col-sm-2">
                             <div class=pull-right>
                                 <div style="padding-bottom: 15px">
-                                    <button id="add" class="btn btn-primary" ng-click="add()">Add an Organization</button>
+                                    <button id="add" class="btn btn-primary" ng-click="add()">Add an Organizational Position</button>
                                 </div>
                             </div>
                         </div>
@@ -51,36 +54,31 @@
         </div>
     </div>
 
-
     <div class="content">
-        <div ng-repeat="o in data.organizations track by o.Id">
+        <div ng-repeat="p in data.organizationPositions track by p.Id">
             <div animate-panel child="row" effect="fadeInRight">
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="hpanel">
                             <div class="panel-heading hbuilt">
                                 <div panel-tools></div>
-                                {{ o.Name }}
+                                {{ p.Name }}
                             </div>
                             <div class="panel-body">
                                 <div class="row">
-                                    <div class="col-sm-4">
-                                        <label class="control-label">Organization Name: </label> {{ o.Name }}
+                                    <div class="col-sm-3">
+                                        <label class="control-label">Position Name: </label> {{ p.Name }}
                                     </div>
-                                    <div class="col-sm-4">
-                                        <label class="control-label">Organization Type: </label> {{ o.OrganizationTypeId }}
+                                    <div class="col-sm-3">
+                                        <label class="control-label">Position Description: </label> {{ p.Description }}
                                     </div>
                                 </div>
                             </div>
                             <div class="panel-footer">
                                 <div class="btn-toolbar">
                                     <div class="pull-right">
-                                        <button class="btn btn-sm btn-default" ng-click="edit({{ o }})">Edit</button>
-                                        <button class="btn btn-sm btn-default" ng-click="profiles({{ o }})">Profiles</button>
-                                        <button class="btn btn-sm btn-default" ng-click="roles({{ o }})">Roles</button>
-                                        <button class="btn btn-sm btn-default" ng-click="positions({{ o }})">Positions</button>
-                                        <button class="btn btn-sm btn-default" ng-click="jurisdictions({{ o }})">Jurisdictions</button>
-                                        <button class="btn btn-sm btn-default" ng-click="delete({{ o }})">Delete</button>
+                                        <button class="btn btn-sm btn-default" ng-click="edit({{ p }})">Edit</button>
+                                        <button class="btn btn-sm btn-default" ng-click="delete({{ p }})">Delete</button>
                                     </div>
                                 </div>
                             </div>
@@ -91,3 +89,4 @@
         </div>
     </div>
 </div>
+

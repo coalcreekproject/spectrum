@@ -240,6 +240,7 @@
     <Compile Include="Areas\Eoc\Controllers\Web\ChecklistController.cs" />
     <Compile Include="Areas\Eoc\Controllers\Web\DashboardController.cs" />
     <Compile Include="Areas\Eoc\EocAreaRegistration.cs" />
+    <Compile Include="Controllers\Api\PositionsController.cs" />
     <Compile Include="Controllers\Api\RolesController.cs" />
     <Compile Include="Controllers\Api\UserRolesController.cs" />
     <Compile Include="Controllers\Web\AccountController.cs" />
@@ -277,6 +278,7 @@
     <Compile Include="Models\ConfigureTwoFactorViewModel.cs" />
     <Compile Include="Models\OrganizationProfileViewModel.cs" />
     <Compile Include="Models\OrganizationViewModel.cs" />
+    <Compile Include="Models\PositionViewModel.cs" />
     <Compile Include="Models\RegisterViewModel.cs" />
     <Compile Include="Models\ResetPasswordViewModel.cs" />
     <Compile Include="Models\RoleViewModel.cs" />
@@ -2973,6 +2975,7 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\spectrum-core\organization-positions.js" />
     <Content Include="Scripts\spectrum-core\organization-roles.js" />
     <Content Include="Scripts\spectrum-core\organization-profiles.js" />
     <Content Include="Scripts\spectrum-core\organizations-index.js" />
@@ -2998,6 +3001,7 @@
     <Content Include="Views\Organization\Partials\EditOrganizationRoleModal.cshtml" />
     <Content Include="Views\Portal\Partials\ChangeUserFocusModal.cshtml" />
     <Content Include="Views\Portal\Partials\PortalIndex.cshtml" />
+    <Content Include="Views\Organization\Partials\OrganizationPositionIndex.cshtml" />
     <None Include="Views\User\Partials\DeleteUserProfileModal.cshtml" />
     <None Include="Views\User\Partials\EditUserProfileModal.cshtml" />
     <None Include="Views\User\Partials\AddUserProfileModal.cshtml" />

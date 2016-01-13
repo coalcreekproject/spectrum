@@ -42,6 +42,9 @@ namespace Spectrum.Web
 
                 cfg.CreateMap<UserRole, UserRoleViewModel>();
                 cfg.CreateMap<UserRoleViewModel, UserRole>();
+
+                cfg.CreateMap<Position, PositionViewModel>();
+                cfg.CreateMap<PositionViewModel, Position>();
             });
 
         }
