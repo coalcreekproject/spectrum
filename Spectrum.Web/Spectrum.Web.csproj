@@ -2993,10 +2993,13 @@
     <Content Include="Templates\Common\navigation.html" />
     <Content Include="Templates\Common\panel_tools.html" />
     <Content Include="Templates\Dashboard\dashboard.html" />
+    <Content Include="Views\Organization\Partials\AddOrganizationPositionModal.cshtml" />
     <None Include="Views\Organization\Partials\AddOrganizationProfileModal.cshtml" />
     <Content Include="Views\Organization\Partials\AddOrganizationRoleModal.cshtml" />
+    <Content Include="Views\Organization\Partials\DeleteOrganizationPositionModal.cshtml" />
     <None Include="Views\Organization\Partials\DeleteOrganizationProfileModal.cshtml" />
     <Content Include="Views\Organization\Partials\DeleteOrganizationRoleModal.cshtml" />
+    <Content Include="Views\Organization\Partials\EditOrganizationPositionModal.cshtml" />
     <None Include="Views\Organization\Partials\EditOrganizationProfileModal.cshtml" />
     <Content Include="Views\Organization\Partials\EditOrganizationRoleModal.cshtml" />
     <Content Include="Views\Portal\Partials\ChangeUserFocusModal.cshtml" />
