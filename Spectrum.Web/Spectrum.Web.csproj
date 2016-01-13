@@ -3001,7 +3001,7 @@
     <Content Include="Views\Organization\Partials\EditOrganizationRoleModal.cshtml" />
     <Content Include="Views\Portal\Partials\ChangeUserFocusModal.cshtml" />
     <Content Include="Views\Portal\Partials\PortalIndex.cshtml" />
-    <Content Include="Views\Organization\Partials\OrganizationPositionIndex.cshtml" />
+    <Content Include="Views\Organization\Partials\OrganizationPosition.cshtml" />
     <None Include="Views\User\Partials\DeleteUserProfileModal.cshtml" />
     <None Include="Views\User\Partials\EditUserProfileModal.cshtml" />
     <None Include="Views\User\Partials\AddUserProfileModal.cshtml" />
