@@ -75,6 +75,12 @@ namespace Spectrum.Web.Controllers.Web
 
                 case "organizationpositions":
                     return PartialView("~/Views/Organization/Partials/OrganizationPosition.cshtml");
+                case "addorganizationpositionmodal":
+                    return PartialView("~/Views/Organization/Partials/AddOrganizationPositionModal.cshtml");
+                case "editorganizationpositionmodal":
+                    return PartialView("~/Views/Organization/Partials/EditOrganizationPositionModal.cshtml");
+                case "deleteorganizationpositionmodal":
+                    return PartialView("~/Views/Organization/Partials/DeleteOrganizationPositionModal.cshtml");
 
                 default:
                     throw new ApplicationException("Unknown Template");
