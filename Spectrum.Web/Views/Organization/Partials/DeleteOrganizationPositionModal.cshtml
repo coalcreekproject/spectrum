@@ -11,7 +11,7 @@
                 <div class="row">
                     <div class="col-md-6">
                         <label for="PositionName">Position Name</label>
-                        <input type="text" id="PositionName" placeholder="Position Name" ng-model="Position.Name" class="form-control" disabled>
+                        <input type="text" id="PositionName" placeholder="Position Name" ng-model="organizationPosition.Name" class="form-control" disabled>
                     </div>
                 </div>
             </div>
@@ -20,7 +20,7 @@
                 <div class="row">
                     <div class="col-md-6">
                         <label for="Description">Position Description</label>
-                        <input type="text" id="Description" placeholder="Description" ng-model="Position.Description" class="form-control" disabled>
+                        <input type="text" id="Description" placeholder="Description" ng-model="organizationPosition.Description" class="form-control" disabled>
                     </div>
                 </div>
             </div>
@@ -30,5 +30,5 @@
 
 <div class="modal-footer">
     <button type="button" class="btn btn-default" ng-click="cancel()">Close</button>
-    <button type="button" class="btn btn-danger" ng-click="ok(Position)">Delete</button>
+    <button type="button" class="btn btn-danger" ng-click="ok(organizationPosition)">Delete</button>
 </div>

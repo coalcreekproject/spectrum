@@ -30,7 +30,7 @@ namespace Spectrum.Web.Controllers.Api
         }
 
         //[Dependency]
-        //public IRoleRepository RoleRepository
+        //public IPositionRepository RoleRepository
         //{
         //    get { return _positionRepository; }
         //    set { _positionRepository = value; }
@@ -67,6 +67,7 @@ namespace Spectrum.Web.Controllers.Api
             return Request.CreateResponse(HttpStatusCode.OK, positionViewModels);
         }
 
+        [System.Web.Http.HttpPost]
         // POST: api/Positions
         public async Task<HttpResponseMessage> Post([FromBody] PositionViewModel newPosition)
         {
@@ -86,6 +87,7 @@ namespace Spectrum.Web.Controllers.Api
             return Request.CreateResponse(HttpStatusCode.BadRequest);
         }
 
+        [System.Web.Http.HttpPut]
         // PUT: api/Positions/5
         public HttpResponseMessage Put(int id, [FromBody] PositionViewModel editPosition)
         {
@@ -106,6 +108,7 @@ namespace Spectrum.Web.Controllers.Api
             return Request.CreateResponse(HttpStatusCode.OK, position);
         }
 
+        [System.Web.Http.HttpDelete]
         // DELETE: api/Positions/5
         public HttpResponseMessage Delete(int id)
         {

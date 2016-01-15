@@ -20,8 +20,8 @@ namespace Spectrum.Data.Core.Configuration
             Property(x => x.Description).HasColumnName("Description").IsOptional().HasMaxLength(256);
             Property(x => x.ApplicationId).HasColumnName("ApplicationId").IsOptional();
 
-            HasRequired(a => a.Organization).WithMany(b => b.Roles).HasForeignKey(c => c.OrganizationId);
-            HasOptional(a => a.Application).WithMany(b => b.Roles).HasForeignKey(c => c.ApplicationId);
+            //HasRequired(a => a.Organization).WithMany(b => b.Roles).HasForeignKey(c => c.OrganizationId);
+            //HasOptional(a => a.Application).WithMany(b => b.Roles).HasForeignKey(c => c.ApplicationId);
         }
     }
 }
