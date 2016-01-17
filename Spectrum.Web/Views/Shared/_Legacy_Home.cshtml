@@ -1,0 +1,56 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>SpectrumEM | @ViewBag.Title</title>
+
+    <!-- Primary vendor style -->
+    <link href="~/Content/old/style.css" rel="stylesheet"/>
+    <link href="~/Content/old/css/jquery.bxslider.css" rel="stylesheet"/>
+    @*<link href="~/Content/old/css/bootstrap.css" rel="stylesheet"/>*@
+    <link href="~/Content/old/css/bootstrap.min.css" rel="stylesheet"/>
+
+    <!-- Add local styles, mostly for plugins css file -->
+    @if (IsSectionDefined("Styles"))
+    {@RenderSection("Styles", required: false)
+    }
+
+</head>
+
+<body class="blank">
+    <!-- Main view  -->
+    @RenderBody()
+
+<!-- Section for main scripts render -->
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script src="~/Content/old/js/bootstrap.min.js"></script>
+    <script src="~/Content/old/js/jquery.bxslider.min.js"></script>
+    <script src="~/Content/old/js/parsley.js"></script>
+
+    <!-- Local script -->
+    <script>
+        $(document).ready(function() {
+            $('.bxslider').bxSlider({
+                pager: false,
+            });
+        });
+        $(function() {
+            $('a[href*=#]:not([href=#])').click(function() {
+                if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
+                    var target = $(this.hash);
+                    target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+                    if (target.length) {
+                        $('html,body').animate({
+                            scrollTop: target.offset().top
+                        }, 1000);
+                        return false;
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
