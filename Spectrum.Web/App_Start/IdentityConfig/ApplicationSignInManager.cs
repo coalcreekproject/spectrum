@@ -53,9 +53,9 @@ namespace Spectrum.Web.IdentityConfig
 
             var profile = user.UserProfiles.FirstOrDefault(p => p.Default == true);
             var userOrganization = user.UserOrganizations.FirstOrDefault(o => o.OrganizationId == profile.OrganizationId);
-            var organization = userOrganization.Organization;
+            //var organization = userOrganization.Organization;
 
-            userModel.SelectedOrganizationId = organization.Id;
+            //userModel.SelectedOrganizationId = organization.Id;
 
             //Set the default role for the user
             // do I need to?

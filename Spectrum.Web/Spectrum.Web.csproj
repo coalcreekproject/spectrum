@@ -2394,6 +2394,7 @@
     <Content Include="Content\images\green%402x.png" />
     <Content Include="Content\images\green.png" />
     <Content Include="Content\images\landing\banner.png" />
+    <Content Include="Content\images\profile-new.png" />
     <Content Include="Content\images\logo\SO-Full-Color-Text-Right-One-Row-100pct.png" />
     <Content Include="Content\images\logo\SO-Full-Color-Text-Right-One-Row-10pct.png" />
     <Content Include="Content\images\logo\SO-Full-Color-Text-Right-One-Row-15pct.png" />
