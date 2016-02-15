@@ -9,5 +9,10 @@ namespace Spectrum.Web.Controllers.Web
         {
             return View();
         }
+
+        public ActionResult Old()
+        {
+            return new RedirectResult("~/Content/old/index.html");
+        }
     }
 }

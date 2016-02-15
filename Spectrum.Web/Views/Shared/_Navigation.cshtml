@@ -2,11 +2,11 @@
 <div id="navigation">
     <div class="profile-picture">
         <a href="@Url.Action("Index", "Portal", new { Area = string.Empty })">
-            <img src="~/Content/images/profile.png" class="img-circle m-b" alt="logo">
+            <img src="~/Content/images/profile-new.png" class="m-b" alt="logo">
         </a>
 
         <div class="stats-label text-color">
-            <span class="font-extra-bold">Spectrum Operational<br/></span>
+            @*<span class="font-extra-bold">Spectrum Operational<br/></span>*@
             <div class="dropdown" dropdown>
                 <ul class="dropdown-menu animated fadeInRight m-t-xs">
                     <li><a ui-sref="app_views.contacts">Contacts</a></li>
@@ -30,7 +30,8 @@
             <a href="#"><span class="nav-label">EOC</span><span class="fa arrow"></span> </a>
             <ul class="nav nav-second-level">
                 <li class="@Html.IsSelected(action: "Dashboard")"><a href="@Url.Action("Index", "Dashboard", new {Area = "Eoc"})">Dashboard</a></li>
-                <li class="@Html.IsSelected(action: "Timeline")"><a href="@Url.Action("", "")">Event Timeline</a></li>
+                <li class="@Html.IsSelected(action: "Timeline")"><a href="@Url.Action("", "")">Events Timeline</a></li>
+                <li class="@Html.IsSelected(action: "Timeline")"><a href="@Url.Action("", "")">Activity Log</a></li>
                 <li class="@Html.IsSelected(action: "Action Plans")"><a href="@Url.Action("", "")">Action Plans</a></li>
                 <li class="@Html.IsSelected(action: "Checklists")"><a href="@Url.Action("Index", "Checklist", new {Area = "Eoc"})">Checklists</a></li>
                 <li class="@Html.IsSelected(action: "Media")"><a href="@Url.Action("", "")">Press and Media</a></li>

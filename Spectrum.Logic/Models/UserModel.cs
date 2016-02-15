@@ -35,6 +35,14 @@ namespace Spectrum.Logic.Models
         public bool LockoutEnabled { get; set; }
         public int AccessFailedCount { get; set; }
 
+        //Application state specific properties
+        public int SelectedOrganizationId { get; set; }
+        public string SelectedOrganizationName { get; set; }
+        public int SelectedRoleId { get; set; }
+        public string SelectedRoleName { get; set; }
+        public int SelectedPositionId { get; set; }
+        public string SelectedPositionName { get; set; }
+
         public virtual ICollection<GroupModel> GroupModels { get; set; }
         public virtual ICollection<JurisdictionModel> JurisdictionModels { get; set; }
         public virtual ICollection<OrganizationModel> OrganizationModels { get; set; }

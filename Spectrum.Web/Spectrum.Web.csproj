@@ -160,6 +160,7 @@
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.Runtime.Caching" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -239,7 +240,9 @@
     <Compile Include="Areas\Eoc\Controllers\Web\ChecklistController.cs" />
     <Compile Include="Areas\Eoc\Controllers\Web\DashboardController.cs" />
     <Compile Include="Areas\Eoc\EocAreaRegistration.cs" />
+    <Compile Include="Controllers\Api\PositionsController.cs" />
     <Compile Include="Controllers\Api\RolesController.cs" />
+    <Compile Include="Controllers\Api\UserPositionsController.cs" />
     <Compile Include="Controllers\Api\UserRolesController.cs" />
     <Compile Include="Controllers\Web\AccountController.cs" />
     <Compile Include="Controllers\Web\ContactController.cs" />
@@ -276,11 +279,13 @@
     <Compile Include="Models\ConfigureTwoFactorViewModel.cs" />
     <Compile Include="Models\OrganizationProfileViewModel.cs" />
     <Compile Include="Models\OrganizationViewModel.cs" />
+    <Compile Include="Models\PositionViewModel.cs" />
     <Compile Include="Models\RegisterViewModel.cs" />
     <Compile Include="Models\ResetPasswordViewModel.cs" />
     <Compile Include="Models\RoleViewModel.cs" />
     <Compile Include="Models\SendCodeViewModel.cs" />
     <Compile Include="Models\SetPasswordViewModel.cs" />
+    <Compile Include="Models\UserPositionViewModel.cs" />
     <Compile Include="Models\UserProfileViewModel.cs" />
     <Compile Include="Models\UserRoleViewModel.cs" />
     <Compile Include="Models\UserViewModel.cs" />
@@ -306,6 +311,7 @@
     <Content Include="Content\images\green%402x.png" />
     <Content Include="Content\images\green.png" />
     <Content Include="Content\images\landing\banner.png" />
+    <Content Include="Content\images\profile-new.png" />
     <Content Include="Content\images\logo\SO-Full-Color-Text-Right-One-Row-100pct.png" />
     <Content Include="Content\images\logo\SO-Full-Color-Text-Right-One-Row-10pct.png" />
     <Content Include="Content\images\logo\SO-Full-Color-Text-Right-One-Row-15pct.png" />
@@ -326,6 +332,77 @@
     <Content Include="Content\images\logo\SO-Full-Color-Text-Right-One-Row-85pct.png" />
     <Content Include="Content\images\logo\SO-Full-Color-Text-Right-One-Row-90pct.png" />
     <Content Include="Content\images\logo\SO-Full-Color-Text-Right-One-Row-95pct.png" />
+    <Content Include="Content\old\about.html" />
+    <Content Include="Content\old\contact-form.php" />
+    <Content Include="Content\old\contact.html" />
+    <Content Include="Content\old\css\bootstrap.css" />
+    <Content Include="Content\old\css\bootstrap.min.css" />
+    <Content Include="Content\old\css\jquery.bxslider.css" />
+    <Content Include="Content\old\fonts\akkurat-bold.svg" />
+    <Content Include="Content\old\fonts\akkurat.svg" />
+    <Content Include="Content\old\fonts\myriadpro-bold_1.svg" />
+    <Content Include="Content\old\fonts\myriadpro-regular-1.svg" />
+    <Content Include="Content\old\fonts\myriadpro-semibold_1.svg" />
+    <Content Include="Content\old\images\about-banner.jpg" />
+    <Content Include="Content\old\images\about1.jpg" />
+    <Content Include="Content\old\images\about2.jpg" />
+    <Content Include="Content\old\images\address-icon.png" />
+    <Content Include="Content\old\images\banner.jpg" />
+    <Content Include="Content\old\images\banner.png" />
+    <Content Include="Content\old\images\bg.png" />
+    <Content Include="Content\old\images\blue.png" />
+    <Content Include="Content\old\images\bread.jpg" />
+    <Content Include="Content\old\images\cloud-1.png" />
+    <Content Include="Content\old\images\contact-banner.jpg" />
+    <Content Include="Content\old\images\email-icon.png" />
+    <Content Include="Content\old\images\emx.jpg" />
+    <Content Include="Content\old\images\fax-icon.png" />
+    <Content Include="Content\old\images\footer-logo.png" />
+    <Content Include="Content\old\images\green.png" />
+    <Content Include="Content\old\images\header-bg.png" />
+    <Content Include="Content\old\images\icon1.png" />
+    <Content Include="Content\old\images\icon2.png" />
+    <Content Include="Content\old\images\icon3.png" />
+    <Content Include="Content\old\images\icon4.png" />
+    <Content Include="Content\old\images\icon5.png" />
+    <Content Include="Content\old\images\idea.png" />
+    <Content Include="Content\old\images\innovators-banner.jpg" />
+    <Content Include="Content\old\images\input-company.png" />
+    <Content Include="Content\old\images\input-email.png" />
+    <Content Include="Content\old\images\input-message.png" />
+    <Content Include="Content\old\images\input-name.png" />
+    <Content Include="Content\old\images\input-phone.png" />
+    <Content Include="Content\old\images\lightblue.png" />
+    <Content Include="Content\old\images\logo.png" />
+    <Content Include="Content\old\images\manage1.png" />
+    <Content Include="Content\old\images\manage2.png" />
+    <Content Include="Content\old\images\manage3.png" />
+    <Content Include="Content\old\images\manage4.png" />
+    <Content Include="Content\old\images\next.png" />
+    <Content Include="Content\old\images\orange.png" />
+    <Content Include="Content\old\images\phone-icon.png" />
+    <Content Include="Content\old\images\prev.png" />
+    <Content Include="Content\old\images\service1.jpg" />
+    <Content Include="Content\old\images\service2.jpg" />
+    <Content Include="Content\old\images\spec-api.jpg" />
+    <Content Include="Content\old\images\system-integration.jpg" />
+    <Content Include="Content\old\images\texture-1.png" />
+    <Content Include="Content\old\images\trans-1.png" />
+    <Content Include="Content\old\images\view %281%29.jpg" />
+    <Content Include="Content\old\images\view %282%29.jpg" />
+    <Content Include="Content\old\images\view-1.jpg" />
+    <Content Include="Content\old\images\view-2.jpg" />
+    <Content Include="Content\old\images\view.jpg" />
+    <Content Include="Content\old\index-v1.html" />
+    <Content Include="Content\old\index.html" />
+    <Content Include="Content\old\join-em-innovators.html" />
+    <Content Include="Content\old\js\bootstrap.js" />
+    <Content Include="Content\old\js\bootstrap.min.js" />
+    <Content Include="Content\old\js\jquery.bxslider.js" />
+    <Content Include="Content\old\js\jquery.bxslider.min.js" />
+    <Content Include="Content\old\js\parsley.js" />
+    <Content Include="Content\old\style.css" />
+    <Content Include="Content\old\thank-you.html" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\style.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -461,6 +538,21 @@
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\old\fonts\akkurat-bold.eot" />
+    <Content Include="Content\old\fonts\akkurat-bold.ttf" />
+    <Content Include="Content\old\fonts\akkurat-bold.woff" />
+    <Content Include="Content\old\fonts\akkurat.eot" />
+    <Content Include="Content\old\fonts\akkurat.ttf" />
+    <Content Include="Content\old\fonts\akkurat.woff" />
+    <Content Include="Content\old\fonts\myriadpro-bold_1.eot" />
+    <Content Include="Content\old\fonts\myriadpro-bold_1.ttf" />
+    <Content Include="Content\old\fonts\myriadpro-bold_1.woff" />
+    <Content Include="Content\old\fonts\myriadpro-regular-1.eot" />
+    <Content Include="Content\old\fonts\myriadpro-regular-1.ttf" />
+    <Content Include="Content\old\fonts\myriadpro-regular-1.woff" />
+    <Content Include="Content\old\fonts\myriadpro-semibold_1.eot" />
+    <Content Include="Content\old\fonts\myriadpro-semibold_1.ttf" />
+    <Content Include="Content\old\fonts\myriadpro-semibold_1.woff" />
     <None Include="Properties\PublishProfiles\spectrumoperational.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -473,6 +565,7 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\spectrum-core\organization-positions.js" />
     <Content Include="Scripts\spectrum-core\organization-roles.js" />
     <Content Include="Scripts\spectrum-core\organization-profiles.js" />
     <Content Include="Scripts\spectrum-core\organizations-index.js" />
@@ -490,14 +583,20 @@
     <Content Include="Templates\Common\navigation.html" />
     <Content Include="Templates\Common\panel_tools.html" />
     <Content Include="Templates\Dashboard\dashboard.html" />
+    <Content Include="Views\Organization\Partials\AddOrganizationPositionModal.cshtml" />
+    <Content Include="Views\Home\Old.cshtml" />
     <None Include="Views\Organization\Partials\AddOrganizationProfileModal.cshtml" />
     <Content Include="Views\Organization\Partials\AddOrganizationRoleModal.cshtml" />
+    <Content Include="Views\Organization\Partials\DeleteOrganizationPositionModal.cshtml" />
     <None Include="Views\Organization\Partials\DeleteOrganizationProfileModal.cshtml" />
     <Content Include="Views\Organization\Partials\DeleteOrganizationRoleModal.cshtml" />
+    <Content Include="Views\Organization\Partials\EditOrganizationPositionModal.cshtml" />
     <None Include="Views\Organization\Partials\EditOrganizationProfileModal.cshtml" />
     <Content Include="Views\Organization\Partials\EditOrganizationRoleModal.cshtml" />
     <Content Include="Views\Portal\Partials\ChangeUserFocusModal.cshtml" />
     <Content Include="Views\Portal\Partials\PortalIndex.cshtml" />
+    <Content Include="Views\Organization\Partials\OrganizationPosition.cshtml" />
+    <Content Include="Views\Shared\_Legacy_Home.cshtml" />
     <None Include="Views\User\Partials\DeleteUserProfileModal.cshtml" />
     <None Include="Views\User\Partials\EditUserProfileModal.cshtml" />
     <None Include="Views\User\Partials\AddUserProfileModal.cshtml" />
@@ -591,6 +690,9 @@
       <Project>{3417f4ad-c93a-45e0-9f40-7a1710410c1e}</Project>
       <Name>Spectrum.Logic</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="bower_components\angular-ui-router\api\angular-ui-router.d.ts" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

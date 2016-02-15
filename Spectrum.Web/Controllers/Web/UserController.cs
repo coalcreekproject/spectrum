@@ -28,23 +28,7 @@ namespace Spectrum.Web.Controllers.Web
         // GET: User
         public ActionResult Index()
         {
-            //UserViewModel
-
-            var userViewModels = new List<UserViewModel>();
-
-            foreach (User u in _manager.Users)
-            {
-                userViewModels.Add(new UserViewModel()
-                {
-                    Id = u.Id,
-                    Email = u.Email,
-                    UserName = u.UserName,
-                    Password = "********",
-                    ConfirmPassword = "********",
-                });
-            }
-
-            return View(userViewModels);
+            return View();
         }
 
         //TODO: 

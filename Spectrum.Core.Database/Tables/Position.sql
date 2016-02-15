@@ -1,7 +1,7 @@
 ﻿CREATE TABLE [dbo].[Position]
 (
 	[Id] INT NOT NULL PRIMARY KEY IDENTITY(1000, 1), 
-    [OrganizationId] NVARCHAR(100) NOT NULL, 
+    [OrganizationId] INT NOT NULL, 
     [Name] NVARCHAR(100) NOT NULL, 
     [Description] NVARCHAR(100) NULL, 
     [Value] NVARCHAR(100) NULL,

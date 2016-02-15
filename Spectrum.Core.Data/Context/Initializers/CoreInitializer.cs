@@ -88,6 +88,15 @@ namespace Spectrum.Data.Core.Context.Initializers
                 }
             }.ForEach(t => context.OrganizationTypes.Add(t));
 
+            new List<UserOrganization>
+            {
+                new UserOrganization
+                {
+                    UserId = 1,
+                    OrganizationId = 1,
+                }
+            }.ForEach(uo => context.UserOrganizations.Add(uo));
+            
             //new List<Organization>
             //{
             //    new Organization
@@ -129,7 +138,7 @@ namespace Spectrum.Data.Core.Context.Initializers
             var superuser = new User
             {
                 UserName = "superuser",
-                Email = "superusers@spectrumoperational.com",
+                Email = "superuser@spectrumoperational.com",
                 PasswordHash = hasher.HashPassword("p@ssw0rd")
             };
 

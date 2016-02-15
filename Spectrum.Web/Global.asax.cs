@@ -33,6 +33,9 @@ namespace Spectrum.Web
                 cfg.CreateMap<UserProfile, UserProfileViewModel>();
                 cfg.CreateMap<UserProfileViewModel, UserProfile>();
 
+                cfg.CreateMap<Organization, OrganizationViewModel>();
+                cfg.CreateMap<OrganizationViewModel, Organization>();
+
                 cfg.CreateMap<OrganizationProfile, OrganizationProfileViewModel>();
                 cfg.CreateMap<OrganizationProfileViewModel, OrganizationProfile>()
                     .ForMember(p => p.Organization, o => o.Ignore());
@@ -42,6 +45,9 @@ namespace Spectrum.Web
 
                 cfg.CreateMap<UserRole, UserRoleViewModel>();
                 cfg.CreateMap<UserRoleViewModel, UserRole>();
+
+                cfg.CreateMap<Position, PositionViewModel>();
+                cfg.CreateMap<PositionViewModel, Position>();
             });
 
         }
