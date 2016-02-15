@@ -38,7 +38,6 @@ namespace Spectrum.Web.Controllers.Api
                     Id = o.Id,
                     Name = o.Name,
                     OrganizationTypeId = o.OrganizationTypeId
-
                 });
             }
 

@@ -305,6 +305,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\fonts\fontawesome-webfont.svg" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\fonts\open-sans\css\OpenSans.css" />
     <Content Include="Content\fonts\pe-icon-7-stroke\css\helper.css" />
     <Content Include="Content\fonts\pe-icon-7-stroke\css\pe-icon-7-stroke.css" />
     <Content Include="Content\fonts\pe-icon-7-stroke\fonts\Pe-icon-7-stroke.svg" />
@@ -465,6 +466,10 @@
     <Content Include="Content\fonts\pe-icon-7-stroke\fonts\Pe-icon-7-stroke.woff" />
     <Content Include="Areas\Eoc\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Eoc\Views\Dashboard\Index.cshtml" />
+    <Content Include="Content\fonts\open-sans\font\OpenSans-Semibold.woff" />
+    <Content Include="Content\fonts\open-sans\font\OpenSans-Bold.woff" />
+    <Content Include="Content\fonts\open-sans\font\OpenSans-Light.woff" />
+    <Content Include="Content\fonts\open-sans\font\OpenSans.woff" />
     <None Include="Content\images\landing\header.jpg.old" />
     <Content Include="Content\images\landing\s1.png" />
     <Content Include="Content\images\landing\s2.png" />
