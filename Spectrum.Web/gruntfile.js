@@ -1,8 +1,25 @@
-﻿/*
-This file in the main entry point for defining grunt tasks and using grunt plugins.
-Click here to learn more. http://go.microsoft.com/fwlink/?LinkID=513275&clcid=0x409
-*/
-module.exports = function (grunt) {
+﻿module.exports = function (grunt) {
+
+    // Project configuration.
     grunt.initConfig({
+        pkg: grunt.file.readJSON('package.json'),
+        uglify: {
+            options: {
+                banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n'
+            },
+            build: {
+                src: [
+                    'bower_components/angular-ui-router/release/angular-ui-router.js'
+                ],
+
+                dest: 'Scripts/vendor/spectrumoperational.min.js'
+            }
+        }
     });
+
+    // Load the plugin that provides the "uglify" task.
+    grunt.loadNpmTasks('grunt-contrib-uglify');
+
+    // Default task(s).
+    grunt.registerTask('default', ['uglify']);
 };
