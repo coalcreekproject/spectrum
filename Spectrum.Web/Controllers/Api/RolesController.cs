@@ -18,24 +18,25 @@ namespace Spectrum.Web.Controllers.Api
 {
     public class RolesController : ApiController
     {
+        private ICoreUnitOfWork _uow;
         private ICoreDbContext _context;
         private IRoleRepository _roleRepository;
 
-        public RolesController(ICoreUnitOfWork uow)
-        {
-            _context = uow.Context;
-
-            //TODO: Newing this up is no good
-            _roleRepository = new RoleRepository(uow);
-        }
-
-        //[Dependency]
-        //public IRoleRepository RoleRepository
+        //old
+        //public RolesController(ICoreUnitOfWork uow)
         //{
-        //    get { return _roleRepository; }
-        //    set { _roleRepository = value; }
+        //    _context = uow.Context;
+
+        //    //TODO: Newing this up is no good
+        //    _roleRepository = new RoleRepository(uow);
         //}
 
+            //new
+        public RolesController(IRoleRepository roleRepository)
+        {
+            _roleRepository = roleRepository;
+            _context = roleRepository.Context;
+        }
 
         // GET: api/Roles
         [System.Web.Http.HttpGet]

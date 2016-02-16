@@ -91,6 +91,18 @@ function userPanelController($scope, $http, $modal, $state, userFactory) {
         });
     };
 
+    $scope.positions = function (user) {
+        var modalInstance = $modal.open({
+            templateUrl: '/Templates/User/AssignUserPositionsModal',
+            controller: UserPositionsModalController,
+            resolve: {
+                user: function () {
+                    return angular.copy(user);
+                }
+            }
+        });
+    };
+
     $scope.userprofiles = function (user) {
         $state.go('userprofiles', { 'userId': user.Id });
     };

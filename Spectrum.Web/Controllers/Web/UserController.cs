@@ -56,6 +56,8 @@ namespace Spectrum.Web.Controllers.Web
                     return PartialView("~/Views/User/Partials/DeleteUserProfileModal.cshtml");
                 case "assignuserrolesmodal":
                     return PartialView("~/Views/User/Partials/UserRolesModal.cshtml");
+                case "assignuserpositionsmodal":
+                    return PartialView("~/Views/User/Partials/UserPositionsModal.cshtml");
                 default:
                     throw new ApplicationException("Unknown Template");
             }

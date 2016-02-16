@@ -575,6 +575,7 @@
     <Content Include="Scripts\spectrum-core\organization-profiles.js" />
     <Content Include="Scripts\spectrum-core\organizations-index.js" />
     <Content Include="Scripts\spectrum-core\portal-userfocus.js" />
+    <Content Include="Scripts\spectrum-core\user-positions.js" />
     <Content Include="Scripts\spectrum-core\user-roles.js" />
     <Content Include="Scripts\spectrum-core\userprofiles-index.js" />
     <Content Include="Scripts\spectrum-core\usersgrid-index.js" />
@@ -669,6 +670,7 @@
     <Content Include="Views\User\Partials\UserProfileIndex.cshtml" />
     <Content Include="Views\User\Partials\UserPanelIndex.cshtml" />
     <Content Include="Views\User\Partials\UserRolesModal.cshtml" />
+    <Content Include="Views\User\Partials\UserPositionsModal.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

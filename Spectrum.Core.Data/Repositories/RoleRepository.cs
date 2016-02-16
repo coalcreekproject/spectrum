@@ -5,6 +5,7 @@ using System.Linq.Expressions;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Spectrum.Data.Core.Context;
+using Spectrum.Data.Core.Context.Interfaces;
 using Spectrum.Data.Core.Context.UnitOfWork;
 using Spectrum.Data.Core.Models;
 using Spectrum.Data.Core.Models.Interfaces;
@@ -14,23 +15,26 @@ namespace Spectrum.Data.Core.Repositories
 {
     public class RoleRepository : IQueryableRoleStore<Role, int>, IRoleRepository
     {
-        private readonly CoreDbContext _context;
-
         public RoleRepository(ICoreUnitOfWork uow)
         {
-            _context = uow.Context;
+            UnitOfWork = uow;
+            Context = uow.Context;
         }
+
+        public CoreDbContext Context { get; }
+
+        public ICoreUnitOfWork UnitOfWork { get; }
 
         public IQueryable<Role> Roles { get; }
 
         public IQueryable<Role> All
         {
-            get { return _context.Roles; }
+            get { return Context.Roles; }
         }
 
         public IQueryable<Role> AllIncluding(params Expression<Func<Role, object>>[] includeProperties)
         {
-            IQueryable<Role> query = _context.Roles;
+            IQueryable<Role> query = Context.Roles;
 
             foreach (var includeProperty in includeProperties)
             {
@@ -41,12 +45,12 @@ namespace Spectrum.Data.Core.Repositories
 
         public Role Find(int id)
         {
-            return _context.Roles.Find(id);
+            return Context.Roles.Find(id);
         }
 
         public Task<Role> FindAsync(int id)
         {
-            return _context.Roles.FirstOrDefaultAsync(p => p.Id.Equals(id));
+            return Context.Roles.FirstOrDefaultAsync(p => p.Id.Equals(id));
         }
 
         public void InsertOrUpdate(Role role)
@@ -54,35 +58,35 @@ namespace Spectrum.Data.Core.Repositories
             if (role.ObjectState == ObjectState.Added)
             {
                 // New entity
-                _context.Roles.Add(role);
+                Context.Roles.Add(role);
             }
             else
             {
                 // Existing entity
-                _context.Entry(role).State = EntityState.Modified;
+                Context.Entry(role).State = EntityState.Modified;
             }
         }
 
         public void Delete(int id)
         {
-            var role = _context.Roles.Find(id);
-            _context.Roles.Remove(role);
+            var role = Context.Roles.Find(id);
+            Context.Roles.Remove(role);
         }
 
         public void Save()
         {
-            _context.SaveChanges();
+            Context.SaveChanges();
         }
 
         public Task SaveAsync()
         {
-            return _context.SaveChangesAsync();
+            return Context.SaveChangesAsync();
         }
 
         public Task CreateOrganization(Role role)
         {
-            _context.Roles.Add(role);
-            return _context.SaveChangesAsync();
+            Context.Roles.Add(role);
+            return Context.SaveChangesAsync();
         }
 
         #region IQueryableRoleStore Implementation for ASP.NET Identity 2.0
@@ -94,8 +98,8 @@ namespace Spectrum.Data.Core.Repositories
                 throw new ArgumentNullException("role");
             }
 
-            _context.Roles.Add(role);
-            return _context.SaveChangesAsync();
+            Context.Roles.Add(role);
+            return Context.SaveChangesAsync();
         }
 
         public Task UpdateAsync(Role role)
@@ -105,8 +109,8 @@ namespace Spectrum.Data.Core.Repositories
                 throw new ArgumentNullException("role");
             }
 
-            _context.Entry(role).State = EntityState.Modified;
-            return _context.SaveChangesAsync();
+            Context.Entry(role).State = EntityState.Modified;
+            return Context.SaveChangesAsync();
         }
 
         public Task DeleteAsync(Role role)
@@ -116,8 +120,8 @@ namespace Spectrum.Data.Core.Repositories
                 throw new ArgumentNullException("role");
             }
 
-            _context.Roles.Remove(role);
-            return _context.SaveChangesAsync();
+            Context.Roles.Remove(role);
+            return Context.SaveChangesAsync();
         }
 
         public Task<Role> FindByIdAsync(int roleId)
@@ -140,9 +144,9 @@ namespace Spectrum.Data.Core.Repositories
 
         protected virtual void Dispose(bool disposing)
         {
-            if (disposing && _context != null)
+            if (disposing && Context != null)
             {
-                _context.Dispose();
+                Context.Dispose();
             }
         }
     }

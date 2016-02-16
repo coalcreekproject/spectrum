@@ -52,6 +52,11 @@ namespace Spectrum.Web.Controllers.Api
             return positionViewModels;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id">This is the organization id</param>
+        /// <returns></returns>
         [System.Web.Http.HttpGet]
         // GET: api/Positions/5
         public HttpResponseMessage Get(int id)
