@@ -9,6 +9,7 @@ namespace Spectrum.Web.Models
         {
             UserProfiles = new List<UserProfileViewModel>();
             UserRoles = new List<UserRoleViewModel>();
+            UserPositions = new List<UserPositionViewModel>();
         }
 
         [Key]

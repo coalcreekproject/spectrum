@@ -24,7 +24,10 @@ namespace Spectrum.Web.Controllers.Api
         public UserPositionsController(ICoreUnitOfWork uow)
         {
             _context = uow.Context;
+
+            //Ugh still newing stuff up...
             _userRepository = new UserRepository(uow);
+            _manager = new UserManager<User, int>(_userRepository);
         }
 
         // GET: api/UserPositions/5
@@ -51,16 +54,16 @@ namespace Spectrum.Web.Controllers.Api
                 return Request.CreateResponse(HttpStatusCode.NotFound);
             }
 
-            foreach (var r in user.UserPositions.ToList())
+            foreach (var p in user.UserPositions.ToList())
             {
-                user.UserPositions.Remove(r);
-                r.ObjectState = ObjectState.Deleted;
+                user.UserPositions.Remove(p);
+                p.ObjectState = ObjectState.Deleted;
             }
 
-            foreach (var r in editUser.UserPositions)
+            foreach (var p in editUser.UserPositions)
             {
                 var tempUserPosition = new UserPosition();
-                Mapper.Map(r, tempUserPosition);
+                Mapper.Map(p, tempUserPosition);
                 user.UserPositions.Add(tempUserPosition);
             }
 
