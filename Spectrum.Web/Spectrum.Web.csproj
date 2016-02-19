@@ -303,8 +303,10 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\font-awesome.css" />
     <Content Include="Content\fonts\fontawesome-webfont.svg" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\fonts\Pe-icon-7-stroke.svg" />
     <Content Include="Content\fonts\pe-icon-7-stroke\css\helper.css" />
     <Content Include="Content\fonts\pe-icon-7-stroke\css\pe-icon-7-stroke.css" />
     <Content Include="Content\fonts\pe-icon-7-stroke\fonts\Pe-icon-7-stroke.svg" />
@@ -465,6 +467,9 @@
     <Content Include="Content\fonts\pe-icon-7-stroke\fonts\Pe-icon-7-stroke.woff" />
     <Content Include="Areas\Eoc\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Eoc\Views\Dashboard\Index.cshtml" />
+    <Content Include="Content\fonts\Pe-icon-7-stroke.woff" />
+    <Content Include="Content\fonts\Pe-icon-7-stroke.eot" />
+    <Content Include="Content\fonts\Pe-icon-7-stroke.ttf" />
     <None Include="Content\images\landing\header.jpg.old" />
     <Content Include="Content\images\landing\s1.png" />
     <Content Include="Content\images\landing\s2.png" />
@@ -499,6 +504,8 @@
     <Content Include="Scripts\controllers\tour.js" />
     <Content Include="Scripts\controllers\wizard.js" />
     <Content Include="Scripts\directives\directives.js" />
+    <Content Include="Scripts\directives\minimalizaMenu.js" />
+    <Content Include="Scripts\directives\pageTitle.js" />
     <Content Include="Scripts\directives\touchSpin.js" />
     <Content Include="Scripts\factories\sweet-alert.js" />
     <Content Include="Scripts\filters\props.js" />

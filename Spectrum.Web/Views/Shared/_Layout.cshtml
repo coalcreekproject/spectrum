@@ -2,147 +2,56 @@
 <!DOCTYPE html>
 <html ng-app="app">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
 
     <title>Spectrum Operational | @ViewBag.Title</title>
 
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
-
-    <!-- Primary vendor style -->
-    <link rel="stylesheet" href="~/bower_components/angular-notify/dist/angular-notify.min.css" />
-    <link rel="stylesheet" href="~/bower_components/font-awesome/css/font-awesome.css" />
-    <link rel="stylesheet" href="~/bower_components/metisMenu/dist/metisMenu.css" />
-    <link rel="stylesheet" href="~/bower_components/animate.css/animate.css" />
-    @*<link rel="stylesheet" href="~/bower_components/sweetalert/dist/sweetalert.css" />*@
-    <link rel="stylesheet" href="~/bower_components/fullcalendar/dist/fullcalendar.min.css" />
-    <link rel="stylesheet" href="~/bower_components/bootstrap/dist/css/bootstrap.css" />
-    <link rel="stylesheet" href="~/bower_components/summernote/dist/summernote.css" />
-    <link rel="stylesheet" href="~/bower_components/angular-ui-tree/dist/angular-ui-tree.min.css" />
-    <link rel="stylesheet" href="~/bower_components/bootstrap-tour/build/css/bootstrap-tour.min.css" />
-    <link rel="stylesheet" href="~/bower_components/angular-xeditable/dist/css/xeditable.css"/>
-    <link rel="stylesheet" href="~/bower_components/ui-select/dist/select.min.css" />
-    <link rel="stylesheet" href="~/bower_components/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.css" />
-    <link rel="stylesheet" href="~/bower_components/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css" />
-    <link rel="stylesheet" href="~/bower_components/blueimp-gallery/css/blueimp-gallery.min.css" />
-    <link rel="stylesheet" href="~/bower_components/angular-ui-grid/ui-grid.css"/>
-
-    <link rel="stylesheet" href="/Content/fonts/pe-icon-7-stroke/css/pe-icon-7-stroke.css" />
-    <link rel="stylesheet" href="/Content/fonts/pe-icon-7-stroke/css/helper.css" />
-    <link rel="stylesheet" href="/Content/style.css">
+    @Styles.Render("~/bundles/main/vendor")
+    @Styles.Render("~/Content/css")
 
     <!-- Add local styles, mostly for plugins css file -->
     @if (IsSectionDefined("Styles"))
-    {@RenderSection("Styles", required: false)}
-     
-    <!-- Primary HOMER style -->
-    <link href="~/Content/style.css" rel="stylesheet" />
+    {
+        @RenderSection("Styles", required: false)
+    }
+
 </head>
 <body class="@Html.PageClass()">
-    <!-- Simple splash screen-->
-    <div class="splash">
-        <div class="color-line"></div>
-        <div class="splash-title">
-            <h1>Spectrum Operational - Emergency Management Suite</h1>
-            <p>
-                The ultimate collaborative suite for emergency management teams and organizations.
-            </p><img src="~/Content/images/loading-bars.svg" width="64" height="64" />
-        </div>
+
+<!-- Simple splash screen-->
+<div class="splash">
+    <div class="color-line"></div>
+    <div class="splash-title">
+        <h1>Spectrum Operational - Emergency Management Suite</h1>
+        <p>
+            The ultimate collaborative suite for emergency management teams and organizations.
+        </p><img height="64" src="~/Content/images/loading-bars.svg" width="64" />
     </div>
-    <div id="header">
-        @Html.Partial("_Header")
-    </div>
+</div>
+<div id="header">
+    @Html.Partial("_Header")
+</div>
 
-    <!-- Navigation -->
-    <aside id="menu">
-        @Html.Partial("_Navigation")
-    </aside>
+<!-- Navigation -->
+<aside id="menu">
+    @Html.Partial("_Navigation")
+</aside>
 
-    <!-- Main view  -->
-    <div id="wrapper">
-        @RenderBody()
-    </div>
+<!-- Main view -->
+<div id="wrapper">
+    @RenderBody()
+</div>
 
-<!-- Section for main scripts render -->
-    <script src="~/bower_components/jquery/dist/jquery.min.js"></script>
-    <script src="~/bower_components/jquery-ui/jquery-ui.min.js"></script>
-    <script src="~/bower_components/slimScroll/jquery.slimscroll.min.js"></script>
-    <script src="~/bower_components/angular/angular.js"></script>
-    <script src="~/bower_components/angular-sanitize/angular-sanitize.min.js"></script>
-    <script src="~/bower_components/angular-animate/angular-animate.min.js"></script>
-    <script src="~/bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
-    <script src="~/bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
-    <script src="~/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="~/bower_components/jquery-flot/jquery.flot.js"></script>
-    <script src="~/bower_components/jquery-flot/jquery.flot.resize.js"></script>
-    <script src="~/bower_components/jquery-flot/jquery.flot.pie.js"></script>
-    <script src="~/bower_components/flot.curvedlines/curvedLines.js"></script>
-    <script src="~/bower_components/jquery.flot.spline/index.js"></script>
-    <script src="~/bower_components/angular-flot/angular-flot.js"></script>
-    <script src="~/bower_components/metisMenu/dist/metisMenu.min.js"></script>
-    @*<script src="~/bower_components/sweetalert/dist/sweetalert-dev.js"></script>*@
-    <script src="~/bower_components/iCheck/icheck.min.js"></script>
-    <script src="~/bower_components/sparkline/index.js"></script>
-    <script src="~/bower_components/Chart.js/Chart.min.js"></script>
-    <script src="~/bower_components/angles/angles.js"></script>
-    @*<script src="~/bower_components/peity/jquery.peity.min.js"></script>*@
-    <script src="~/bower_components/peity/jquery.peity.js"></script>
-    <script src="~/bower_components/angular-peity/angular-peity.js"></script>
-    <script src="~/bower_components/angular-notify/dist/angular-notify.min.js"></script>
-    <script src="~/bower_components/Chart.js/Chart.min.js"></script>
-    <script src="~/bower_components/angles/angles.js"></script>
-    <script src="~/bower_components/angular-ui-utils/modules/utils.js"></script>
-    <script src="~/bower_components/angular-ui-map/ui-map.js"></script>
-    <script src="~/bower_components/moment/min/moment.min.js"></script>
-    <script src="~/bower_components/fullcalendar/dist/fullcalendar.min.js"></script>
-    <script src="~/bower_components/angular-ui-calendar/src/calendar.js"></script>
-    <script src="~/bower_components/summernote/dist/summernote.min.js"></script>
-    <script src="~/bower_components/angular-summernote/dist/angular-summernote.min.js"></script>
-    <script src="~/bower_components/angular-ui-tree/dist/angular-ui-tree.min.js"></script>
-    <script src="~/bower_components/bootstrap-tour/build/js/bootstrap-tour.min.js"></script>
-    <script src="~/bower_components/angular-bootstrap-tour/dist/angular-bootstrap-tour.min.js"></script>
-    <script src="~/bower_components/angular-xeditable/dist/js/xeditable.min.js"></script>
-    <script src="~/bower_components/ui-select/dist/select.js"></script>
-    <script src="~/bower_components/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.js"></script>
-    <script src="~/bower_components/blueimp-gallery/js/jquery.blueimp-gallery.min.js"></script>
-    <script src="~/bower_components/angular-ui-sortable/sortable.min.js"></script>
-    <script src="~/bower_components/angular-touch/angular-touch.js"></script>
-    @*<script src="~/bower_components/angular-sweetalert/SweetAlert.js"></script>*@
-    <script src="~/bower_components/angular-ui-grid/ui-grid.js"></script>
-    <script src="~/bower_components/angular-drag-and-drop-lists/angular-drag-and-drop-lists.min.js"></script>
-    <script src="~/bower_components/angular-ui-event/dist/event.min.js"></script>
-
-    <!-- Local controllers -->
-    <script src="~/Scripts/homer.js"></script>
-    <script src="~/Scripts/app.js"></script>
-    <script src="~/Scripts/config.js"></script>
-    <script src="~/Scripts/filters/props.js"></script>
-    <script src="~/Scripts/directives/directives.js"></script>
-    @*<script src="~/Scripts/controllers/main.js"></script>*@
-    @*<script src="~/Scripts/factories/sweet-alert.js"></script>*@
-    <script src="~/Scripts/controllers/alerts.js"></script>
-    <script src="~/Scripts/controllers/modal.js"></script>
-    <script src="~/Scripts/controllers/charts_flot.js"></script>
-    <script src="~/Scripts/controllers/chartjs.js"></script>
-    <script src="~/Scripts/controllers/inline.js"></script>
-    <script src="~/Scripts/controllers/clock.js"></script>
-    <script src="~/Scripts/controllers/timeline.js"></script>
-    <script src="~/Scripts/controllers/googleMap.js"></script>
-    <script src="~/Scripts/controllers/calendar.js"></script>
-    <script src="~/Scripts/controllers/editor.js"></script>
-    <script src="~/Scripts/controllers/grid.js"></script>
-    <script src="~/Scripts/controllers/list.js"></script>
-    <script src="~/Scripts/controllers/tour.js"></script>
-    <script src="~/Scripts/controllers/datatables.js"></script>
-    <script src="~/Scripts/controllers/wizard.js"></script>
-    <script src="~/Scripts/controllers/forms.js"></script>
-    <script src="~/Scripts/controllers/draggable.js"></script>
-    <script src="~/Scripts/directives/touchSpin.js"></script>
-
-    <script src="~/Scripts/spectrum-core/portal-userfocus.js"></script>
+<!-- Order does matter -->
+@Scripts.Render("~/bundles/vendor/jquery")
+@Scripts.Render("~/bundles/vendor/bootstrap")
+@Scripts.Render("~/bundles/vendor/angular")
+@Scripts.Render("~/bundles/vendor/misc")
+@Scripts.Render("~/bundles/app/main")
 
 <!-- Handler for local scripts -->
-    @RenderSection("scripts", required: false)
+@RenderSection("scripts", required: false)
 </body>
 </html>

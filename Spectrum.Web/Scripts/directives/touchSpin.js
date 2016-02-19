@@ -1,30 +1,26 @@
-/**
- * HOMER - Responsive Admin Theme
- * Copyright 2015 Webapplayers.com
- *
- */
+(function (app) {
 
-angular
-    .module('app')
-    .directive('touchSpin', touchSpin)
+    app.directive("touchSpin", touchSpin);
 
+    function touchSpin()
+    {
+        return {
+            restrict: "A",
+            scope: {
+                spinOptions: "="
+            },
+            link: function (scope, element, attrs)
+            {
+                scope.$watch(scope.spinOptions, function ()
+                {
+                    render();
+                });
+                var render = function ()
+                {
+                    $(element).TouchSpin(scope.spinOptions);
+                };
+            }
+        };
+    };
 
-/**
- * touchSpin - Directive for Bootstrap TouchSpin
- */
-function touchSpin() {
-    return {
-        restrict: 'A',
-        scope: {
-            spinOptions: '=',
-        },
-        link: function (scope, element, attrs) {
-            scope.$watch(scope.spinOptions, function(){
-                render();
-            });
-            var render = function () {
-                $(element).TouchSpin(scope.spinOptions);
-            };
-        }
-    }
-};
+})(angular.module("app"));
