@@ -265,6 +265,7 @@
     <Compile Include="Models\ForgotPasswordViewModel.cs" />
     <Compile Include="Models\ExternalLoginConfirmationViewModel.cs" />
     <Compile Include="Models\ExternalLoginListViewModel.cs" />
+    <Compile Include="Models\IdentityFocusViewModel.cs" />
     <Compile Include="Models\Identity\ApplicationDbContext.cs" />
     <Compile Include="Models\Identity\ApplicationUser.cs" />
     <Compile Include="Models\Identity\CustomRole.cs" />
