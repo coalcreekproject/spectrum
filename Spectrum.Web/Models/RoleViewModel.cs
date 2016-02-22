@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace Spectrum.Web.Models
+﻿namespace Spectrum.Web.Models
 {
     public class RoleViewModel
     {

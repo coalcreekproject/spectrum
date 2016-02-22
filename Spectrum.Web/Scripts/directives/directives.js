@@ -14,9 +14,7 @@ angular
     .directive('panelTools', panelTools)
     .directive('smallHeader', smallHeader)
     .directive('animatePanel', animatePanel)
-    .directive('landingScrollspy', landingScrollspy)
-
-/**
+    .directive('landingScrollspy', landingScrollspy); /**
  * pageTitle - Directive for set Page title - mata title
  */
 function pageTitle($rootScope, $timeout) {
@@ -33,7 +31,7 @@ function pageTitle($rootScope, $timeout) {
             };
             $rootScope.$on('$stateChangeStart', listener);
         }
-    }
+    };
 };
 
 /**
@@ -75,7 +73,7 @@ function minimalizaMenu($rootScope) {
                 } else {
                     $("body").toggleClass("hide-sidebar");
                 }
-            }
+            };
         }
     };
 };
@@ -102,7 +100,7 @@ function sparkline() {
                 $(element).sparkline(scope.sparkData, scope.sparkOptions);
             };
         }
-    }
+    };
 };
 
 /**
@@ -119,8 +117,7 @@ function icheck($timeout) {
 
                 $scope.$watch($attrs['ngModel'], function(newValue){
                     $(element).iCheck('update');
-                })
-
+                });
                 return $(element).iCheck({
                     checkboxClass: 'icheckbox_square-green',
                     radioClass: 'iradio_square-green'
@@ -173,8 +170,7 @@ function panelTools($timeout) {
             $scope.closebox = function () {
                 var hpanel = $element.closest('div.hpanel');
                 hpanel.remove();
-            }
-
+            };
         }
     };
 };
@@ -194,9 +190,9 @@ function smallHeader() {
                 $element.toggleClass('small-header');
                 breadcrumb.toggleClass('m-t-lg');
                 icon.toggleClass('fa-arrow-up').toggleClass('fa-arrow-down');
-            }
+            };
         }
-    }
+    };
 }
 
 function animatePanel($timeout,$state) {
@@ -235,8 +231,7 @@ function animatePanel($timeout,$state) {
                 panel.each(function (i, elm) {
                     start += delay;
                     var rounded = Math.round(start * 10) / 10;
-                    $(elm).css('animation-delay', rounded + 's')
-                    // Remove opacity 0 after finish
+                    $(elm).css('animation-delay', rounded + 's'); // Remove opacity 0 after finish
                     $(elm).removeClass('opacity-0');
                 });
 
@@ -248,12 +243,11 @@ function animatePanel($timeout,$state) {
                         // Remove effect class - fix for any backdrop plgins (e.g. Tour)
                         $('.animated-panel:not([ng-repeat]').removeClass(attrs.effect);
                     }
-                }, renderTime)
-
+                }, renderTime);
             });
 
         }
-    }
+    };
 }
 
 function landingScrollspy(){
@@ -265,7 +259,7 @@ function landingScrollspy(){
                 offset: 80
             });
         }
-    }
+    };
 }
 
 

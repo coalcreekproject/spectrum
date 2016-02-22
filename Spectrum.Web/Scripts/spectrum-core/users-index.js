@@ -22,7 +22,7 @@ function config($stateProvider, $urlRouterProvider, $compileProvider) {
             url: "/grid",
             templateUrl: "/Templates/User/UserGridIndex",
             params: { userId: null },
-            data: { pageTitle: 'profiles' }
+            data: { pageTitle: 'grid' }
         })
         .state('userprofiles', {
             url: "/profiles/:userId",

@@ -17,11 +17,5 @@
     [Language] NVARCHAR(100) NULL,
 	[Note] NVARCHAR(MAX) NULL,
 	[Photo] VARBINARY(MAX) NULL, 
-    [Position] NVARCHAR(100) NULL,
-    [Cloaked]			   BIT					  NULL, 
-    [Archive]			   BIT					  NULL, 
-    [CreatedDate]		   DATETIME				  NULL,
-	[CreatedByUserId]	   INT					  NULL,
-    [ModifiedDate]		   DATETIME				  NULL, 
-	[ModifiedByUserId]	   INT					  NULL
+    [Position] NVARCHAR(100) NULL
 )

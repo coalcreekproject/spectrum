@@ -1,11 +1,12 @@
 using System.Data.Entity;
 using Spectrum.Data.Core.Configuration;
+using Spectrum.Data.Core.Context.BaseClasses;
 using Spectrum.Data.Core.Context.Interfaces;
 using Spectrum.Data.Core.Models;
 
 namespace Spectrum.Data.Core.Context
 {
-    public partial class CoreDbContext : DbContext, ICoreDbContext
+    public partial class CoreDbContext : ContextBase<CoreDbContext>, ICoreDbContext
     {
         public IDbSet<Address> Addresses { get; set; }
         public IDbSet<Application> Applications { get; set; }

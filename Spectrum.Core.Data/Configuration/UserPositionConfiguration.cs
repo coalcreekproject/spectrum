@@ -19,9 +19,14 @@ namespace Spectrum.Data.Core.Configuration
                 .HasColumnName("PositionId")
                 .IsRequired()
                 .HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
+            Property(x => x.OrganizationId)
+                .HasColumnName("OrganizationId")
+                .IsRequired();
+            Property(x => x.Default).HasColumnName("Default").IsOptional();
 
             HasRequired(a => a.User).WithMany(b => b.UserPositions).HasForeignKey(c => c.UserId);
             HasRequired(a => a.Position).WithMany(b => b.UserPositions).HasForeignKey(c => c.PositionId);
+            HasRequired(a => a.Organization).WithMany().WillCascadeOnDelete(false);
         }
     }
 }

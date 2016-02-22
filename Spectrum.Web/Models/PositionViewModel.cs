@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using Spectrum.Data.Core.Models;
-
-namespace Spectrum.Web.Models
+﻿namespace Spectrum.Web.Models
 {
     public class PositionViewModel
     {

@@ -8,4 +8,3 @@
     CONSTRAINT [FK_UserJurisdiction_User] FOREIGN KEY ([UserId]) REFERENCES [User]([Id]) ON DELETE CASCADE,  
     CONSTRAINT [FK_UserJurisdiction_Jurisdiction] FOREIGN KEY ([JurisdictionId]) REFERENCES [Jurisdiction]([Id]) ON DELETE CASCADE
 )
-GO

@@ -8,5 +8,3 @@
     CONSTRAINT [FK_UserGroup_Users] FOREIGN KEY ([UserId]) REFERENCES [User]([Id]) ON DELETE CASCADE, 
     CONSTRAINT [FK_UserGroup_Group] FOREIGN KEY ([GroupId]) REFERENCES [Group]([Id]) ON DELETE CASCADE
 )
-
-GO

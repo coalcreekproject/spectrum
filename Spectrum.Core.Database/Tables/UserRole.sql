@@ -6,7 +6,8 @@
 	[OrganizationId] INT NOT NULL
 
     CONSTRAINT [PK_UserRole_UserID_RoleId] PRIMARY KEY CLUSTERED ([UserId] ASC, [RoleId] ASC),
+    [Default] BIT NULL, 
     CONSTRAINT [FK_UserRole_User] FOREIGN KEY ([UserId]) REFERENCES [dbo].[User] ([Id]) ON DELETE CASCADE,
     CONSTRAINT [FK_UserRole_Role] FOREIGN KEY ([RoleId]) REFERENCES [dbo].[Role] ([Id]) ON DELETE CASCADE,
-    CONSTRAINT [FK_UserRole_OrganizationId] FOREIGN KEY ([OrganizationId]) REFERENCES [dbo].[Organization] ([Id]), 	 
-);
+    CONSTRAINT [FK_UserRole_OrganizationId] FOREIGN KEY ([OrganizationId]) REFERENCES [dbo].[Organization] ([Id])
+)

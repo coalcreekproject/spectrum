@@ -30,8 +30,7 @@ namespace Spectrum.Data.Core.Repositories
             _context = new CoreDbContext();
             _coreUnitOfWork = new CoreUnitOfWork(_context);
         }
-
-
+        
         public UserRepository(CoreDbContext context)
         {
             _context = context;

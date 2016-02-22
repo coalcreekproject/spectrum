@@ -1,23 +1,23 @@
 ﻿angular
     .module('app')
-    .controller('userFocusController', userFocusController);
+    .controller('identityFocusController', identityFocusController);
 
 function userFocusParameters() {
     this.userId = null;
     this.organizationId = null;
 };
 
-function userFocusController($scope, $http, $modal, $state) {
+function identityFocusController($scope, $http, $modal, $state) {
 
     $scope.changeFocus = function() {
         var modalInstance = $modal.open({
             templateUrl: '/Templates/Portal/ChangeUserFocusModal',
-            controller: changeUserFocusModalController
+            controller: changeIdentityFocusModalController
         });
     }
 }
 
-function changeUserFocusModalController($scope, $modalInstance) {
+function changeIdentityFocusModalController($scope, $modalInstance) {
 
     $scope.ok = function(user) {
 
