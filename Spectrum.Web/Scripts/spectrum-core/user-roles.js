@@ -19,7 +19,7 @@ function UserRolesModalController($scope, $modalInstance, userRoleFactory, user)
     };
 
     // Find the user default profile organization id
-    for (let i = 0; i < user.UserProfiles.length; ++i) {
+    for (var i = 0; i < user.UserProfiles.length; ++i) {
         if (user.UserProfiles[i].Default === true) {
             userRoleParameters.organizationId = user.UserProfiles[i].OrganizationId;
         }
@@ -31,7 +31,7 @@ function UserRolesModalController($scope, $modalInstance, userRoleFactory, user)
         .then(function(availableRoles) {
                 // success
                 $scope.availableRoles = availableRoles;
-                for (let i = 0; i < $scope.availableRoles.length; ++i) {
+                for (var i = 0; i < $scope.availableRoles.length; ++i) {
                     $scope.models.lists.Available.push({
                         label: $scope.availableRoles[i].Name,
                         object: $scope.availableRoles[i]
@@ -48,13 +48,13 @@ function UserRolesModalController($scope, $modalInstance, userRoleFactory, user)
         .then(function(userRoles) {
                 // success
                 $scope.userRoles = userRoles;
-                for (let i = 0; i < $scope.userRoles.length; ++i) {
+                for (var i = 0; i < $scope.userRoles.length; ++i) {
                     $scope.models.lists.Assigned.push({
                         label: $scope.userRoles[i].Name,
                         Default: $scope.userRoles[i].Default,
                         object: $scope.userRoles[i]
                     });
-                    let j = 0;
+                    var j = 0;
                     while (j < $scope.models.lists.Available.length) {
                         if ($scope.userRoles[i].RoleId === $scope.models.lists.Available[j].object.RoleId) {
                             $scope.models.lists.Available.splice(j, 1);
@@ -102,7 +102,7 @@ function userRoleFactory($http, $q) {
 
     var _availableRoles = [];
     var _userRoles = [];
-    const _getAvailableRoles = function (id) {
+    var _getAvailableRoles = function (id) {
 
         var deferred = $q.defer();
 
@@ -120,7 +120,7 @@ function userRoleFactory($http, $q) {
         return deferred.promise;
     };
 
-    const _getUserRoles = function(id) {
+    var _getUserRoles = function(id) {
 
         var deferred = $q.defer();
 
@@ -138,12 +138,12 @@ function userRoleFactory($http, $q) {
         return deferred.promise;
     };
 
-    const _editUserRoles = function(roleList, user) {
+    var _editUserRoles = function(roleList, user) {
 
         user.UserRoles = [];
 
-        for (let i = 0; i < roleList.length; i++) {
-            const userRole = {
+        for (var i = 0; i < roleList.length; i++) {
+            var userRole = {
                 UserId: user.Id,
                 RoleId: roleList[i].object.RoleId,
                 OrganizationId: userRoleParameters.organizationId,

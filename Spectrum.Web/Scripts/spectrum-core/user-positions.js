@@ -19,7 +19,7 @@ function UserPositionsModalController($scope, $modalInstance, userPositionFactor
     };
 
     // Find the user default profile organization id
-    for (let i = 0; i < user.UserProfiles.length; ++i) {
+    for (var i = 0; i < user.UserProfiles.length; ++i) {
         if (user.UserProfiles[i].Default === true) {
             userPositionParameters.organizationId = user.UserProfiles[i].OrganizationId;
         }
@@ -31,7 +31,7 @@ function UserPositionsModalController($scope, $modalInstance, userPositionFactor
         .then(function(availablePositions) {
                 // success
                 $scope.availablePositions = availablePositions;
-                for (let i = 0; i < $scope.availablePositions.length; ++i) {
+                for (var i = 0; i < $scope.availablePositions.length; ++i) {
                     $scope.models.lists.Available.push({
                         label: $scope.availablePositions[i].Name,
                         object: $scope.availablePositions[i]
@@ -48,12 +48,12 @@ function UserPositionsModalController($scope, $modalInstance, userPositionFactor
         .then(function(userPositions) {
                 // success
                 $scope.userPositions = userPositions;
-                for (let i = 0; i < $scope.userPositions.length; ++i) {
+                for (var i = 0; i < $scope.userPositions.length; ++i) {
                     $scope.models.lists.Assigned.push({
                         label: $scope.userPositions[i].Name,
                         object: $scope.userPositions[i]
                     });
-                    let j = 0;
+                    var j = 0;
                     while (j < $scope.models.lists.Available.length) {
                         if ($scope.userPositions[i].PositionId === $scope.models.lists.Available[j].object.PositionId) {
                             $scope.models.lists.Available.splice(j, 1);
@@ -101,7 +101,7 @@ function userPositionFactory($http, $q) {
 
     var _availablePositions = [];
     var _userPositions = [];
-    const _getAvailablePositions = function (id) {
+    var _getAvailablePositions = function (id) {
 
         var deferred = $q.defer();
 
@@ -119,7 +119,7 @@ function userPositionFactory($http, $q) {
         return deferred.promise;
     };
 
-    const _getUserPositions = function(id) {
+    var _getUserPositions = function(id) {
 
         var deferred = $q.defer();
 
@@ -137,12 +137,12 @@ function userPositionFactory($http, $q) {
         return deferred.promise;
     };
 
-    const _editUserPositions = function(positionList, user) {
+    var _editUserPositions = function(positionList, user) {
 
         user.UserPositions = [];
 
-        for (let i = 0; i < positionList.length; i++) {
-            const userPosition = {
+        for (var i = 0; i < positionList.length; i++) {
+            var userPosition = {
                 UserId: user.Id,
                 PositionId: positionList[i].object.PositionId,
                 OrganizationId: userPositionParameters.organizationId,
