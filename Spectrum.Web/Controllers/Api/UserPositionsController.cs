@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
@@ -31,20 +29,29 @@ namespace Spectrum.Web.Controllers.Api
         }
 
         // GET: api/UserPositions/5
-        [System.Web.Http.HttpGet]
+        [HttpGet]
         public HttpResponseMessage Get(int id)
         {
             var user = _userRepository.FindByIdAsync(id).Result;
             var userPositions = user.UserPositions;
 
-            var userPositionViewModels = userPositions.Select(r => Mapper.Map<PositionViewModel>(r.Position)).ToList();
+            var userPositionViewModels = userPositions.Select(u => new UserPositionViewModel
+            {
+                Default = u.Default,
+                Description = u.Position.Description,
+                Name = u.Position.Name,
+                OrganizationId = u.OrganizationId,
+                PositionId = u.PositionId,
+                UserId = u.UserId,
+                Value = u.Position.Value
+            }).ToList();
 
             return Request.CreateResponse(HttpStatusCode.OK, userPositionViewModels);
         }
 
 
         // PUT: api/Positions/5
-        [System.Web.Http.HttpPut]
+        [HttpPut]
         public HttpResponseMessage Put([FromBody] UserViewModel editUser)
         {
             var user = _manager.FindById(editUser.Id);

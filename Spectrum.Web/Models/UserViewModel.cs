@@ -36,6 +36,6 @@ namespace Spectrum.Web.Models
 
         public ICollection<UserRoleViewModel> UserRoles { get; set; }
         public ICollection<UserProfileViewModel> UserProfiles { get; set; }
-        public ICollection<UserPositionViewModel> UserPositions { get; internal set; }
+        public ICollection<UserPositionViewModel> UserPositions { get; set; }
     }
 }

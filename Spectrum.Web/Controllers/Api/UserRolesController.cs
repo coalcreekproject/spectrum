@@ -30,19 +30,23 @@ namespace Spectrum.Web.Controllers.Api
             _manager = new UserManager<User, int>(_userRepository);
         }
 
-        // GET: api/UserRoles/5
+        // TODO: Get a mapper working for this.
         [System.Web.Http.HttpGet]
         public HttpResponseMessage Get(int id)
         {
             var user = _userRepository.FindByIdAsync(id).Result;
             var userRoles = user.UserRoles;
 
-            var userRoleViewModels = new List<RoleViewModel>();
-
-            foreach (var r in userRoles)
+            var userRoleViewModels = userRoles.Select(r => new UserRoleViewModel()
             {
-                userRoleViewModels.Add(Mapper.Map<RoleViewModel>(r.Role));
-            }
+                ApplicationId = r.Role.ApplicationId,
+                Default = r.Default,
+                Description = r.Role.Description,
+                Name = r.Role.Name,
+                OrganizationId = r.OrganizationId,
+                RoleId = r.RoleId,
+                UserId = r.UserId
+            }).ToList();
 
             return Request.CreateResponse(HttpStatusCode.OK, userRoleViewModels);
         }

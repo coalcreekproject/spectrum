@@ -90,7 +90,7 @@ namespace Spectrum.Web.Controllers.Api
         // PUT: api/Roles/5
         public HttpResponseMessage Put(int id, [FromBody] RoleViewModel editRole)
         {
-            var role = _roleRepository.FindAsync(editRole.Id).Result;
+            var role = _roleRepository.FindAsync(editRole.RoleId).Result;
 
             if (role == null)
             {

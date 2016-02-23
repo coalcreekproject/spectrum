@@ -96,7 +96,7 @@ namespace Spectrum.Web.Controllers.Api
         // PUT: api/Positions/5
         public HttpResponseMessage Put(int id, [FromBody] PositionViewModel editPosition)
         {
-            var position = _positionRepository.FindAsync(editPosition.Id).Result;
+            var position = _positionRepository.FindAsync(editPosition.PositionId).Result;
 
             if (position == null)
             {

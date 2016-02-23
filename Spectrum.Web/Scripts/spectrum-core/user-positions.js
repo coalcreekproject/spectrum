@@ -56,7 +56,7 @@ function UserPositionsModalController($scope, $modalInstance, userPositionFactor
 
                     var j = 0;
                     while (j < $scope.models.lists.Available.length) {
-                        if ($scope.userPositions[i].Id === $scope.models.lists.Available[j].object.Id) {
+                        if ($scope.userPositions[i].PositionId === $scope.models.lists.Available[j].object.PositionId) {
                             $scope.models.lists.Available.splice(j, 1);
                         }
                         j++;
@@ -147,7 +147,7 @@ function userPositionFactory($http, $q) {
         for (var i = 0; i < positionList.length; i++) {
             var userPosition = {
                 UserId: user.Id,
-                PositionId: positionList[i].object.Id,
+                PositionId: positionList[i].object.PositionId,
                 OrganizationId: userPositionParameters.organizationId
             };
             user.UserPositions.push(userPosition);
