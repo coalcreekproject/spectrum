@@ -51,6 +51,7 @@ function UserRolesModalController($scope, $modalInstance, userRoleFactory, user)
                 for (let i = 0; i < $scope.userRoles.length; ++i) {
                     $scope.models.lists.Assigned.push({
                         label: $scope.userRoles[i].Name,
+                        Default: $scope.userRoles[i].Default,
                         object: $scope.userRoles[i]
                     });
                     let j = 0;
@@ -118,6 +119,7 @@ function userRoleFactory($http, $q) {
 
         return deferred.promise;
     };
+
     const _getUserRoles = function(id) {
 
         var deferred = $q.defer();
@@ -135,6 +137,7 @@ function userRoleFactory($http, $q) {
 
         return deferred.promise;
     };
+
     const _editUserRoles = function(roleList, user) {
 
         user.UserRoles = [];
@@ -144,7 +147,7 @@ function userRoleFactory($http, $q) {
                 UserId: user.Id,
                 RoleId: roleList[i].object.RoleId,
                 OrganizationId: userRoleParameters.organizationId,
-                Default: roleList[i].object.Default
+                Default: roleList[i].Default
             };
             user.UserRoles.push(userRole);
         }
@@ -163,6 +166,7 @@ function userRoleFactory($http, $q) {
 
         return deferred.promise;
     };
+
     return {
         availableRoles: _availableRoles,
         getAvailableRoles: _getAvailableRoles,
