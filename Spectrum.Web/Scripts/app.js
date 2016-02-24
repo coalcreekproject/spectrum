@@ -42,7 +42,7 @@
                 url: "",
                 templateUrl: "/Templates/Portal/PortalIndex",
                 data: {
-                    pageTitle: "index"
+                    pageTitle: "Main"
                 }
             });
     }

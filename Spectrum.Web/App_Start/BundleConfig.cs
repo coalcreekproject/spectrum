@@ -105,8 +105,21 @@ namespace Spectrum.Web
                     "~/Scripts/directives/pageTitle.js",
                     "~/Scripts/directives/minimalizaMenu.js",
                     "~/Scripts/directives/touchSpin.js",
-                    "~/Scripts/spectrum-core/portal-userfocus.js"
+                    "~/Scripts/spectrum-core/portal-userfocus.js",
+                    "~/Scripts/spectrum-core/userService.js",
+                    "~/Scripts/spectrum-core/users-index.js",
+                    "~/Scripts/spectrum-core/usersgrid-index.js",
+                    "~/Scripts/spectrum-core/userprofiles-index.js",
+                    "~/Scripts/spectrum-core/user-roles.js"
                 ));
+
+            //bundles.Add(new ScriptBundle("~/bundles/app/users")
+            //    .Include(
+            //        "~/Scripts/spectrum-core/users-index.js",
+            //        "~/Scripts/spectrum-core/usersgrid-index.js",
+            //        "~/Scripts/spectrum-core/userprofiles-index.js",
+            //        "~/Scripts/spectrum-core/user-roles.js"
+            //    ));
         }
     }
 }

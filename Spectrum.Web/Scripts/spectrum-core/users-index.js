@@ -1,277 +1,152 @@
-﻿angular
-    .module('app')
-    .controller('UserPanelController', userPanelController)
-    .config(config);
+﻿(function(app) {
 
-function config($stateProvider, $urlRouterProvider, $compileProvider) {
+    "use strict";
 
-    // Optimize load start with remove binding information inside the DOM element
-    $compileProvider.debugInfoEnabled(true);
+    app.controller("UserPanelController", UserPanelController);
 
-    // Set default state
-    //$urlRouterProvider.otherwise("/dashboard");
+    UserPanelController.$inject = ["$scope", "$http", "$uibModal", "$state", "UserService"];
 
-    $stateProvider
-        .state('index', {
-            url: "",
-            templateUrl: "/Templates/User/UserPanelIndex",
-            data: { pageTitle: 'index' }
-        })
-        .state('grid', {
-            //url: "/grid/:userId",
-            url: "/grid",
-            templateUrl: "/Templates/User/UserGridIndex",
-            params: { userId: null },
-            data: { pageTitle: 'profiles' }
-        })
-        .state('userprofiles', {
-            url: "/profiles/:userId",
-            templateUrl: "/Templates/User/UserProfileIndex",
-            params: { userId: null },
-            data: { pageTitle: 'profiles' }
-        });
-}
+    function UserPanelController($scope, $http, $uibModal, $state, UserService) {
 
-function userPanelController($scope, $http, $modal, $state, userFactory) {
+        $uibModal.scope = $scope;
 
-    $modal.scope = $scope;
+        $scope.data = UserService;
 
-    $scope.data = userFactory;
-
-    userFactory.getUsers()
-        .then(function(users) {
-                // success
-                //$scope.data = users;
-            },
-            function() {
-                // error
-                alert("Sorry!", "There was a problem loading users.  Please try again later.", "error");
-            });
-
-    $scope.add = function () {
-        var modalInstance = $modal.open({
-            templateUrl: '/Templates/User/AddUserModal',
-            controller: AddUserModalController
-        });
-    };
-
-    $scope.edit = function (user) {
-        var modalInstance = $modal.open({
-            templateUrl: '/Templates/User/EditUserModal',
-            controller: EditUserModalController,
-            resolve: {
-                user: function() {
-                    return angular.copy(user);
-                }
-            }
-        });
-    };
-
-    $scope.delete = function (user) {
-        var modalInstance = $modal.open({
-            templateUrl: '/Templates/User/DeleteUserModal',
-            controller: DeleteUserModalController,
-            resolve: {
-                user: function () {
-                    return angular.copy(user);
-                }
-            }
-        });
-    };
-
-    $scope.roles = function (user) {
-        var modalInstance = $modal.open({
-            templateUrl: '/Templates/User/AssignUserRolesModal',
-            controller: UserRolesModalController,
-            resolve: {
-                user: function () {
-                    return angular.copy(user);
-                }
-            }
-        });
-    };
-
-    $scope.userprofiles = function (user) {
-        $state.go('userprofiles', { 'userId': user.Id });
-    };
-};
-
-function AddUserModalController($scope, $modalInstance, userFactory) {
-
-    $scope.ok = function(user) {
-
-        userFactory.addUser(user)
-            .then(function() {
+        UserService.getUsers()
+            .then(function(users) {
                     // success
-                $modalInstance.close();
-            },
+                    //$scope.data = users;
+                },
                 function() {
                     // error
-                    alert("could not save user");
+                    alert("Sorry!", "There was a problem loading users.  Please try again later.", "error");
                 });
 
-        $modalInstance.close();
+        $scope.add = function() {
+            $uibModal.open({
+                animation: $scope.animationsEnabled,
+                templateUrl: "/Templates/User/AddUserModal",
+                controller: addUserModalController,
+                size: "lg"
+            });
+        };
+
+        $scope.edit = function(user) {
+            $uibModal.open({
+                templateUrl: "/Templates/User/EditUserModal",
+                controller: editUserModalController,
+                resolve: {
+                    user: function() {
+                        return angular.copy(user);
+                    }
+                }
+            });
+        };
+
+        $scope.delete = function(user) {
+            $uibModal.open({
+                templateUrl: "/Templates/User/DeleteUserModal",
+                controller: deleteUserModalController,
+                resolve: {
+                    user: function() {
+                        return angular.copy(user);
+                    }
+                }
+            });
+        };
+
+        $scope.roles = function(user) {
+            $uibModal.open({
+                templateUrl: "/Templates/User/AssignUserRolesModal",
+                controller: UserRolesModalController,
+                resolve: {
+                    user: function() {
+                        return angular.copy(user);
+                    }
+                }
+            });
+        };
+
+        $scope.userprofiles = function(user) {
+            $state.go("user-userprofiles", { 'userId': user.Id });
+        };
+
+        addUserModalController.$inject = ["$scope", "$uibModalInstance", "UserService"];
+
+        function addUserModalController($scope, $uibModalInstance, UserService)
+        {
+            $scope.user = {};
+
+            $scope.ok = function(user) {
+
+                UserService.addUser(user)
+                    .then(function() {
+                            // success
+                            $uibModalInstance.close();
+                        },
+                        function() {
+                            // error
+                            alert("Could not save user");
+                        });
+
+                $uibModalInstance.close();
+            };
+
+            $scope.cancel = function() {
+                $uibModalInstance.dismiss("cancel");
+            };
+        };
+
+        addUserModalController.$inject = ["$scope", "$uibModalInstance", "UserService"];
+
+        function editUserModalController($scope, $uibModalInstance, UserService) {
+
+            $scope.user = user;
+
+            $scope.ok = function() {
+
+                UserService.editUser(user)
+                    .then(function() {
+                            // success
+                        },
+                        function() {
+                            // error
+                            alert("could not edit or update user");
+                        });
+
+                $uibModalInstance.close();
+
+            };
+
+            $scope.cancel = function() {
+                $uibModalInstance.dismiss("cancel");
+            };
+        };
+
+        addUserModalController.$inject = ["$scope", "$uibModalInstance", "UserService"];
+
+        function deleteUserModalController($scope, $uibModalInstance, UserService) {
+
+            $scope.user = user;
+
+            $scope.ok = function() {
+
+                UserService.deleteUser(user)
+                    .then(function() {
+                            // success
+                        },
+                        function() {
+                            // error
+                            alert("Could not delete user.");
+                        });
+
+                $uibModalInstance.close();
+            };
+
+            $scope.cancel = function() {
+                $uibModalInstance.dismiss("cancel");
+            };
+        };
     };
 
-    $scope.cancel = function() {
-        $modalInstance.dismiss('cancel');
-    };
-};
-
-function EditUserModalController($scope, $modalInstance, userFactory, user) {
-
-    $scope.user = user;
-
-    $scope.ok = function () {
-
-        userFactory.editUser(user)
-            .then(function () {
-                // success
-            },
-                function () {
-                    // error
-                    alert("could not edit or update user");
-                });
-
-        $modalInstance.close();
-
-    };
-
-    $scope.cancel = function () {
-        $modalInstance.dismiss('cancel');
-    };
-};
-
-function DeleteUserModalController($scope, $modalInstance, userFactory, user) {
-
-    $scope.user = user;
-
-    $scope.ok = function () {
-
-        userFactory.deleteUser(user)
-            .then(function () {
-                // success
-            },
-                function () {
-                    // error
-                    alert("could not delete user");
-                });
-
-        $modalInstance.close();
-    };
-
-    $scope.cancel = function () {
-        $modalInstance.dismiss('cancel');
-    };
-};
-
-/**
- * Pass function into module
- */
-angular
-    .module('app')
-    .factory('userFactory', userFactory);
-
-function userFactory($http, $q) {
-
-    var _users = [];
-
-    var _getUsers = function () {
-
-        var deferred = $q.defer();
-
-        $http.get('/api/Users')
-          .then(function (result) {
-              // Successful
-              angular.copy(result.data, _users);
-              deferred.resolve(_users);
-          },
-          function () {
-              // Error
-              deferred.reject();
-          });
-
-        return deferred.promise;
-    };
-
-
-    var _addUser = function (newUser) {
-
-        var deferred = $q.defer();
-
-        $http.post('/api/Users', newUser)
-         .then(function (result) {
-             // success
-             var newlyCreatedUser = result.data;
-             _users.splice(0, 0, newlyCreatedUser);
-             deferred.resolve(newlyCreatedUser);
-         },
-         function () {
-             // error
-             deferred.reject();
-         });
-
-        return deferred.promise;
-    };
-
-    var _editUser = function(user) {
-
-        var deferred = $q.defer();
-
-        $http.put('/api/Users/' + user.Id, user)
-         .then(function (result) {
-             // success
-             var editedUser = result.data;
-
-             for (var i = 0; i < _users.length; i++) {
-                 if (_users[i].Id === editedUser.Id) {
-                     _users[i].UserName = editedUser.UserName;
-                     _users[i].Email = editedUser.Email;
-                     break;
-                 }
-             }
-
-             deferred.resolve(editedUser);
-         },
-         function () {
-             // error
-             deferred.reject();
-         });
-
-        return deferred.promise;
-    };
-
-    var _deleteUser = function(user) {
-
-        var deferred = $q.defer();
-
-        $http.delete('/api/Users/' + user.Id, user)
-         .then(function (result) {
-
-             var deletedUser = result.data;
-
-             for (var i = 0; i < _users.length; i++) {
-                 if (_users[i].Id === deletedUser.Id) {
-                     _users.splice(i, 1);
-                     break;
-                 }
-             }
-
-             deferred.resolve();
-         },
-         function () {
-             // error
-             deferred.reject();
-         });
-
-        return deferred.promise;
-    };
-
-    return {
-        users: _users,
-        getUsers: _getUsers,
-        addUser: _addUser,
-        editUser: _editUser,
-        deleteUser: _deleteUser
-    };
-};
+})(angular.module("app"));
