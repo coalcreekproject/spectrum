@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Runtime.Caching;
+using System.Runtime.CompilerServices;
 using System.Security.Principal;
 using AutoMapper;
 using Microsoft.AspNet.Identity;
@@ -39,18 +40,33 @@ namespace Spectrum.Logic.Identity
             var profile = user.UserProfiles.FirstOrDefault(p => p.Default == true);
 
             //Set the default organization for the user
-            userModel.SelectedOrganizationId =
-                user.UserOrganizations.FirstOrDefault(o => o.OrganizationId == profile?.OrganizationId).OrganizationId;
+            var defaultOrganization = user.UserOrganizations.FirstOrDefault(o => o.OrganizationId == profile?.OrganizationId);
+
+            //TODO: Should I just cache the organization object as well?
+            //TODO: Should always have some value, business rule is, every user has a default profile and an organization.
+            if (defaultOrganization != null)
+            {
+                userModel.SelectedOrganizationId = defaultOrganization.OrganizationId;
+            }
 
             //Set the default role for the user
-            userModel.SelectedRoleId =
-                user.UserRoles.FirstOrDefault(
-                    r => r.OrganizationId == userModel.SelectedOrganizationId && r.Default == true).RoleId;
+            var defaultRole = user.UserRoles.FirstOrDefault(r => r.OrganizationId == userModel.SelectedOrganizationId && r.Default == true);
+
+            if (defaultRole != null)
+            {
+                userModel.SelectedRoleId = defaultRole.RoleId;
+            }
+            else
+            {
+                var firstOrDefault = user.UserRoles.FirstOrDefault(r => r.OrganizationId == userModel.SelectedOrganizationId);
+
+                if (firstOrDefault != null)
+                    userModel.SelectedRoleId = firstOrDefault.RoleId;
+            }
 
             //Set the default position for the user.
             userModel.SelectedPositionId =
-                user.UserPositions.FirstOrDefault(
-                    p => p.OrganizationId == userModel.SelectedOrganizationId && p.Default == true).PositionId;
+                user.UserPositions.FirstOrDefault(p => p.OrganizationId == userModel.SelectedOrganizationId && p.Default == true).PositionId;
         }
 
         public static UserModel GetUserModelFromCache(IPrincipal user)
