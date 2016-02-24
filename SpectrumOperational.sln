@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.23107.0
+VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spectrum.Data.Core", "Spectrum.Core.Data\Spectrum.Data.Core.csproj", "{F3B0B351-0BCA-485D-864A-6F299C2E4FA2}"
 EndProject
@@ -34,8 +34,6 @@ Global
 		{F3B0B351-0BCA-485D-864A-6F299C2E4FA2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F3B0B351-0BCA-485D-864A-6F299C2E4FA2}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C77AFCBD-25B7-4500-92DC-1248EDD6A89E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C77AFCBD-25B7-4500-92DC-1248EDD6A89E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C77AFCBD-25B7-4500-92DC-1248EDD6A89E}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
 		{C77AFCBD-25B7-4500-92DC-1248EDD6A89E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C77AFCBD-25B7-4500-92DC-1248EDD6A89E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C77AFCBD-25B7-4500-92DC-1248EDD6A89E}.Release|Any CPU.Deploy.0 = Release|Any CPU

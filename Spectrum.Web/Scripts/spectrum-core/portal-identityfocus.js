@@ -1,32 +1,34 @@
-﻿angular
-    .module('app')
-    .controller('identityFocusController', identityFocusController);
+﻿(function(app) {
 
-function userFocusParameters() {
-    this.userId = null;
-    this.organizationId = null;
-};
+    "use strict";
 
-function identityFocusController($scope, $http, $modal, $state) {
+    app.controller("userFocusController", userFocusController);
+
+    userFocusController.$inject = ["$scope", "$http", "$uibModal"];
+
+    function userFocusController($scope, $http, $uibModal) {
 
     $scope.changeFocus = function() {
-        var modalInstance = $modal.open({
-            templateUrl: '/Templates/Portal/ChangeUserFocusModal',
-            controller: changeIdentityFocusModalController
+            $uibModal.open({
+                templateUrl: "/Templates/Portal/ChangeUserFocusModal",
+                controller: changeUserFocusModalController
         });
-    }
-}
+        };
 
-function changeIdentityFocusModalController($scope, $modalInstance) {
+        // Change User Focus Modal
+        changeUserFocusModalController.$inject = ["$scope", "$uibModalInstance"];
+
+        function changeUserFocusModalController($scope, $uibModalInstance) {
 
     $scope.ok = function(user) {
-
-        // Do some work
-
-        $modalInstance.close();
+                //TODO: Call the UserFocus service and change the user
+                $uibModalInstance.close();
     };
 
     $scope.cancel = function() {
-        $modalInstance.dismiss('cancel');
+                $uibModalInstance.dismiss("cancel");
     };
 }
+    }
+
+})(angular.module("app"));
