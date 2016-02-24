@@ -40,7 +40,23 @@ namespace Spectrum.Logic.Identity
             var profile = user.UserProfiles.FirstOrDefault(p => p.Default == true);
 
             //Set the default organization for the user
-            var defaultOrganization = user.UserOrganizations.FirstOrDefault(o => o.OrganizationId == profile?.OrganizationId);
+            var defaultOrganization = user.UserOrganizations.FirstOrDefault(o => o.OrganizationId == profile?.OrganizationId && o.Default == true);
+
+            if (defaultOrganization != null)
+            {
+                userModel.SelectedOrganizationId = defaultOrganization.OrganizationId;
+                userModel.SelectedOrganizationName = defaultOrganization.Organization.Name;
+            }
+            else
+            {
+                var firstOrganization = user.UserOrganizations.FirstOrDefault(o => o.OrganizationId == profile?.OrganizationId);
+
+                if (firstOrganization != null)
+                {
+                    userModel.SelectedOrganizationId = firstOrganization.OrganizationId;
+                    userModel.SelectedOrganizationName = firstOrganization.Organization.Name;
+                }
+            }
 
             //TODO: Should I just cache the organization object as well?
             //TODO: Should always have some value, business rule is, every user has a default profile and an organization.
@@ -55,18 +71,38 @@ namespace Spectrum.Logic.Identity
             if (defaultRole != null)
             {
                 userModel.SelectedRoleId = defaultRole.RoleId;
+                userModel.SelectedRoleName = defaultRole.Role.Name;
             }
             else
             {
-                var firstOrDefault = user.UserRoles.FirstOrDefault(r => r.OrganizationId == userModel.SelectedOrganizationId);
+                var firstRole = user.UserRoles.FirstOrDefault(r => r.OrganizationId == userModel.SelectedOrganizationId);
 
-                if (firstOrDefault != null)
-                    userModel.SelectedRoleId = firstOrDefault.RoleId;
+                if (firstRole != null)
+                {
+                    userModel.SelectedRoleId = firstRole.RoleId;
+                    userModel.SelectedRoleName = firstRole.Role.Name;
+                }
+                    
             }
 
             //Set the default position for the user.
-            userModel.SelectedPositionId =
-                user.UserPositions.FirstOrDefault(p => p.OrganizationId == userModel.SelectedOrganizationId && p.Default == true).PositionId;
+            var defaultPosition = user.UserPositions.FirstOrDefault(p => p.OrganizationId == userModel.SelectedOrganizationId && p.Default == true);
+
+            if (defaultPosition != null)
+            {
+                userModel.SelectedPositionId = defaultPosition.PositionId;
+                userModel.SelectedPositionName = defaultPosition.Position.Name;
+            }
+            else
+            {
+                var firstPosition = user.UserPositions.FirstOrDefault(p => p.OrganizationId == userModel.SelectedOrganizationId);
+
+                if (firstPosition != null)
+                {
+                    userModel.SelectedPositionId = firstPosition.PositionId;
+                    userModel.SelectedPositionName = firstPosition.Position.Name;
+                }
+            }
         }
 
         public static UserModel GetUserModelFromCache(IPrincipal user)

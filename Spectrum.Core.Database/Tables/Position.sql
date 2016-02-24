@@ -6,7 +6,6 @@
     [Description] NVARCHAR(1024) NULL, 
     [Value] NVARCHAR(100) NULL
 
-	CONSTRAINT [PK_Position_PositionId] PRIMARY KEY CLUSTERED ([Id] ASC),
     CONSTRAINT [UK_Position_Name] UNIQUE NONCLUSTERED ([Name] ASC), 
     CONSTRAINT [FK_Position_Organization] FOREIGN KEY ([OrganizationId]) REFERENCES [Organization]([Id])
 )
