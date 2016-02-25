@@ -10,6 +10,7 @@ using Spectrum.Data.Core.Context.UnitOfWork;
 using Spectrum.Data.Core.Models;
 using Spectrum.Data.Core.Models.Interfaces;
 using Spectrum.Data.Core.Repositories;
+using Spectrum.Logic.Identity;
 using Spectrum.Web.Models;
 using Spectrum.Web.IdentityConfig;
 
@@ -92,7 +93,20 @@ namespace Spectrum.Web.Controllers.Api
 
             if (result.Succeeded)
             {
-                return Request.CreateResponse(HttpStatusCode.Created, user);
+                var organizationId = UserUtility.GetUserModelFromCache(User).SelectedOrganizationId;
+                user.UserOrganizations.Add(new UserOrganization
+                {
+                    Default = true,
+                    ObjectState = ObjectState.Added,
+                    OrganizationId = organizationId,
+                    UserId = user.Id
+                });
+
+                var addResult = _manager.Update(user);
+                if (result.Succeeded)
+                {
+                    return Request.CreateResponse(HttpStatusCode.Created, user);
+                }
             }
 
             return Request.CreateResponse(HttpStatusCode.BadRequest);
