@@ -25,20 +25,21 @@ namespace Spectrum.Web.Controllers.Web
         // GET: Organization
         public ActionResult Index()
         {
-            List<OrganizationViewModel> organizationViewModels = new List<OrganizationViewModel>();
+            //List<OrganizationViewModel> organizationViewModels = new List<OrganizationViewModel>();
 
-            foreach (Organization o in _context.Organizations)
-            {
-                organizationViewModels.Add(new OrganizationViewModel()
-                {
-                    Id = o.Id,
-                    Name = o.Name,
-                    OrganizationTypeId = o.OrganizationTypeId
-                });
+            //foreach (Organization o in _context.Organizations)
+            //{
+            //    organizationViewModels.Add(new OrganizationViewModel()
+            //    {
+            //        Id = o.Id,
+            //        Name = o.Name,
+            //        OrganizationTypeId = o.OrganizationTypeId
+            //    });
 
-            }
+            //}
 
-            return View(organizationViewModels);
+            //return View(organizationViewModels);
+            return View();
         }
 
         //TODO: 

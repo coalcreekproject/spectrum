@@ -9,10 +9,9 @@ using Spectrum.Data.Core.Context.Interfaces;
 using Spectrum.Data.Core.Context.UnitOfWork;
 using Spectrum.Data.Core.Models;
 using Spectrum.Data.Core.Models.Interfaces;
-using Spectrum.Data.Core.Repositories;
 using Spectrum.Data.Core.Repositories.Interfaces;
-//using Microsoft.Practices.Unity;
 using Spectrum.Web.Models;
+//using Microsoft.Practices.Unity;
 
 namespace Spectrum.Web.Controllers.Api
 {
@@ -31,7 +30,7 @@ namespace Spectrum.Web.Controllers.Api
         //    _roleRepository = new RoleRepository(uow);
         //}
 
-            //new
+        //new
         public RolesController(IRoleRepository roleRepository)
         {
             _roleRepository = roleRepository;
@@ -39,7 +38,7 @@ namespace Spectrum.Web.Controllers.Api
         }
 
         // GET: api/Roles
-        [System.Web.Http.HttpGet]
+        [HttpGet]
         public IEnumerable<RoleViewModel> Get()
         {
             var roleViewModels = new List<RoleViewModel>();
@@ -53,7 +52,7 @@ namespace Spectrum.Web.Controllers.Api
             return roleViewModels;
         }
 
-        [System.Web.Http.HttpGet]
+        [HttpGet]
         // GET: api/Roles/5
         public HttpResponseMessage Get(int id)
         {

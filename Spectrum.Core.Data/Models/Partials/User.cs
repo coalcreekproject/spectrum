@@ -6,7 +6,7 @@ using Spectrum.Data.Core.Models.Interfaces;
 
 namespace Spectrum.Data.Core.Models
 {
-    public partial class User : IUser<int>, IObjectState //<---- TODO: look into this
+    public partial class User : IUser<int>, IObjectState
     {
         [NotMapped]
         public ObjectState ObjectState { get; set; }
@@ -15,8 +15,10 @@ namespace Spectrum.Data.Core.Models
         {
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
             var userIdentity = await manager.CreateIdentityAsync(this, DefaultAuthenticationTypes.ApplicationCookie);
-            
+
             // Add custom user claims here
+            //userIdentity.AddClaim(new Claim("OrganizationId", this.OrganizationId));
+
             return userIdentity;
         }
     }

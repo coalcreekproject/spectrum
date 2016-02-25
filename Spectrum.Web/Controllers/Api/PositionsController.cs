@@ -11,8 +11,8 @@ using Spectrum.Data.Core.Models;
 using Spectrum.Data.Core.Models.Interfaces;
 using Spectrum.Data.Core.Repositories;
 using Spectrum.Data.Core.Repositories.Interfaces;
-//using Microsoft.Practices.Unity;
 using Spectrum.Web.Models;
+//using Microsoft.Practices.Unity;
 
 namespace Spectrum.Web.Controllers.Api
 {
@@ -38,7 +38,7 @@ namespace Spectrum.Web.Controllers.Api
 
 
         // GET: api/Positions
-        [System.Web.Http.HttpGet]
+        [HttpGet]
         public IEnumerable<PositionViewModel> Get()
         {
             var positionViewModels = new List<PositionViewModel>();
@@ -57,7 +57,7 @@ namespace Spectrum.Web.Controllers.Api
         /// </summary>
         /// <param name="id">This is the organization id</param>
         /// <returns></returns>
-        [System.Web.Http.HttpGet]
+        [HttpGet]
         // GET: api/Positions/5
         public HttpResponseMessage Get(int id)
         {
@@ -72,7 +72,7 @@ namespace Spectrum.Web.Controllers.Api
             return Request.CreateResponse(HttpStatusCode.OK, positionViewModels);
         }
 
-        [System.Web.Http.HttpPost]
+        [HttpPost]
         // POST: api/Positions
         public async Task<HttpResponseMessage> Post([FromBody] PositionViewModel newPosition)
         {
@@ -92,7 +92,7 @@ namespace Spectrum.Web.Controllers.Api
             return Request.CreateResponse(HttpStatusCode.BadRequest);
         }
 
-        [System.Web.Http.HttpPut]
+        [HttpPut]
         // PUT: api/Positions/5
         public HttpResponseMessage Put(int id, [FromBody] PositionViewModel editPosition)
         {
@@ -113,7 +113,7 @@ namespace Spectrum.Web.Controllers.Api
             return Request.CreateResponse(HttpStatusCode.OK, position);
         }
 
-        [System.Web.Http.HttpDelete]
+        [HttpDelete]
         // DELETE: api/Positions/5
         public HttpResponseMessage Delete(int id)
         {

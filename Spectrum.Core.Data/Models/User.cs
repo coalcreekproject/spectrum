@@ -22,6 +22,8 @@ namespace Spectrum.Data.Core.Models
             InitializePartial();
         }
 
+        public int Id { get; set; }
+        public string UserName { get; set; }
         public string Email { get; set; }
         public bool EmailConfirmed { get; set; }
         public string PasswordHash { get; set; }
@@ -45,8 +47,6 @@ namespace Spectrum.Data.Core.Models
         public virtual ICollection<UserPreference> UserPreferences { get; set; }
         public virtual ICollection<UserProfile> UserProfiles { get; set; }
         public virtual ICollection<UserRole> UserRoles { get; set; }
-        public int Id { get; set; }
-        public string UserName { get; set; }
 
         partial void InitializePartial();
     }

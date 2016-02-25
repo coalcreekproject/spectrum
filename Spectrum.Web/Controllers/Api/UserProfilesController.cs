@@ -26,7 +26,7 @@ namespace Spectrum.Web.Controllers.Api
             _userProfileRepository = new UserProfileRepository(unitOfWork);
         }
 
-        [System.Web.Http.HttpGet]
+        [HttpGet]
         // GET: api/UserProfiles/5
         public HttpResponseMessage Get(int id)
         {

@@ -9,6 +9,7 @@ using Spectrum.Data.Core.Context.UnitOfWork;
 using Spectrum.Data.Core.Models;
 using Spectrum.Data.Core.Models.Interfaces;
 using Spectrum.Data.Core.Repositories;
+using Spectrum.Web.IdentityConfig;
 using Spectrum.Web.Models;
 
 namespace Spectrum.Web.Controllers.Api
@@ -17,7 +18,7 @@ namespace Spectrum.Web.Controllers.Api
     {
         private ICoreDbContext _context;
         private UserRepository _userRepository;
-        private readonly UserManager<User, int> _manager;
+        private readonly ApplicationUserManager _manager;
 
         public UserPositionsController(ICoreUnitOfWork uow)
         {
@@ -25,7 +26,7 @@ namespace Spectrum.Web.Controllers.Api
 
             //Ugh still newing stuff up...
             _userRepository = new UserRepository(uow);
-            _manager = new UserManager<User, int>(_userRepository);
+            _manager = new ApplicationUserManager(_userRepository);
         }
 
         // GET: api/UserPositions/5

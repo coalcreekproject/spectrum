@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Net;
 using System.Net.Http;
-using System.Threading.Tasks;
 using System.Web.Http;
 using AutoMapper;
 using Microsoft.AspNet.Identity;
@@ -12,6 +9,7 @@ using Spectrum.Data.Core.Context.UnitOfWork;
 using Spectrum.Data.Core.Models;
 using Spectrum.Data.Core.Models.Interfaces;
 using Spectrum.Data.Core.Repositories;
+using Spectrum.Web.IdentityConfig;
 using Spectrum.Web.Models;
 
 namespace Spectrum.Web.Controllers.Api
@@ -20,24 +18,24 @@ namespace Spectrum.Web.Controllers.Api
     {
         private ICoreDbContext _context;
         private UserRepository _userRepository;
-        private readonly UserManager<User, int> _manager;
+        private readonly ApplicationUserManager _manager;
 
         public UserRolesController(ICoreUnitOfWork uow)
         {
             _context = uow.Context;
 
             _userRepository = new UserRepository(uow);
-            _manager = new UserManager<User, int>(_userRepository);
+            _manager = new ApplicationUserManager(_userRepository);
         }
 
         // TODO: Get a mapper working for this.
-        [System.Web.Http.HttpGet]
+        [HttpGet]
         public HttpResponseMessage Get(int id)
         {
             var user = _userRepository.FindByIdAsync(id).Result;
             var userRoles = user.UserRoles;
 
-            var userRoleViewModels = userRoles.Select(r => new UserRoleViewModel()
+            var userRoleViewModels = userRoles.Select(r => new UserRoleViewModel
             {
                 ApplicationId = r.Role.ApplicationId,
                 Default = r.Default,
@@ -53,7 +51,7 @@ namespace Spectrum.Web.Controllers.Api
 
 
         // PUT: api/Roles/5
-        [System.Web.Http.HttpPut]
+        [HttpPut]
         public HttpResponseMessage Put([FromBody] UserViewModel editUser)
         {
             var user = _manager.FindById(editUser.Id);

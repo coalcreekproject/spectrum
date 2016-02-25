@@ -25,7 +25,7 @@ namespace Spectrum.Web.Controllers.Api
             _organizationRepository = new OrganizationRepository(uow);
         }
 
-        [System.Web.Http.HttpGet]
+        [HttpGet]
         // GET: api/Organization
         public IEnumerable<OrganizationViewModel> Get()
         {
@@ -46,7 +46,7 @@ namespace Spectrum.Web.Controllers.Api
         }
 
         // GET: api/Organization/5
-        [System.Web.Http.HttpGet]
+        [HttpGet]
         public HttpResponseMessage Get(int id)
         {
             var organization = _organizationRepository.FindAsync(id).Result;
@@ -67,7 +67,7 @@ namespace Spectrum.Web.Controllers.Api
         }
 
         // POST: api/Organization
-        [System.Web.Http.HttpPost]
+        [HttpPost]
         public async Task<HttpResponseMessage> Post([FromBody]OrganizationViewModel newOrganization)
         {
             Organization organization = new Organization();
@@ -93,7 +93,7 @@ namespace Spectrum.Web.Controllers.Api
         }
 
         // PUT: api/Organization/5
-        [System.Web.Http.HttpPut]
+        [HttpPut]
         public HttpResponseMessage Put([FromBody]OrganizationViewModel editOrganization)
         {
             var organization = _organizationRepository.FindAsync(editOrganization.Id).Result;
@@ -122,7 +122,7 @@ namespace Spectrum.Web.Controllers.Api
         }
 
         // DELETE: api/Organization/5
-        [System.Web.Http.HttpDelete]
+        [HttpDelete]
         public HttpResponseMessage Delete(int id)
         {
             Organization organization = _organizationRepository.Find(id);

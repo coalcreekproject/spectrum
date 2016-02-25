@@ -30,6 +30,9 @@ namespace Spectrum.Web
 
                 cfg.CreateMap<UserViewModel, User>();
 
+                cfg.CreateMap<UserOrganization, UserOrganizationViewModel>();
+                cfg.CreateMap<UserOrganizationViewModel, UserOrganization>();
+
                 cfg.CreateMap<UserProfile, UserProfileModel>();
                 cfg.CreateMap<UserProfileModel, UserProfile>();
 
