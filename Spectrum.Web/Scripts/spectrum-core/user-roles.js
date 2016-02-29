@@ -19,9 +19,9 @@ function UserRolesModalController($scope, $modalInstance, userRoleFactory, user)
     };
 
     // Find the user default profile organization id
-    for (var i = 0; i < user.UserProfiles.length; ++i) {
-        if (user.UserProfiles[i].Default === true) {
-            userRoleParameters.organizationId = user.UserProfiles[i].OrganizationId;
+    for (var i = 0; i < user.UserOrganizations.length; ++i) {
+        if (user.UserOrganizations[i].Default === true) {
+            userRoleParameters.organizationId = user.UserOrganizations[i].OrganizationId;
         }
     }
 

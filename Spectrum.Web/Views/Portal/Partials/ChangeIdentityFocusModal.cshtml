@@ -1,4 +1,6 @@
-﻿<div class="modal-dialog">
+﻿@model Spectrum.Web.Models.UserViewModel
+
+<div class="modal-dialog" ng-controller="identityFocusController">
     <div class="modal-header">
         <h4 class="modal-title">Change Identity Focus</h4>
         <small class="font-bold">Select the user organization and role to access the information in that context</small>
@@ -7,54 +9,50 @@
     <div class="modal-body">
         <form method="get" class="form-horizontal">
 
-            @*<div class="dropdown">
-                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                    Dropdown
-                    <span class="caret"></span>
-                </button>
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                    <li><a href="#">Action</a></li>
-                    <li><a href="#">Another action</a></li>
-                    <li><a href="#">Something else here</a></li>
-                    <li role="separator" class="divider"></li>
-                    <li><a href="#">Separated link</a></li>
-                </ul>
-            </div>*@
-
             <div class="form-group">
 
                 <div class="row">
                     <div class="col-md-7 dropdown">
                         <label for="Organization">Organization</label>
-                        <select id="Organization" class="form-control m-b" name="organization">
-                            <option value="-1" disabled selected>-- select --</option>
-                            <option>Spectrum Operational</option>
-                            <option>New County OEM</option>
-                        </select>
+                        <div id="Organization" class="orm-control m-b">
+                            <select class="form-control m-b" name="SelectedOrganizationId" ng-model="identityFocusViewModel">
+                                @foreach (var m in Model.UserOrganizations)
+                                {
+                                    <option value="@m.OrganizationId">@m.Name</option>
+                                }
+                            </select>
+                        </div>
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="col-md-7">
                         <label for="Role">Role</label>
-                        <select id="Role" class="form-control m-b" name="position">
-                            <option value="-1" disabled selected>-- select --</option>
-                            <option>Administrator</option>
-                            <option>User</option>
-                        </select>
+                        <div id="Role" class="orm-control m-b">
+                            <select class="form-control m-b" name="SelectedRoleId" ng-model="identityFocusViewModel">
+                                @foreach (var r in Model.UserRoles)
+                                {
+                                    <option value="@r.RoleId">@r.Name</option>
+                                }
+                            </select>
+                        </div>
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="col-md-7">
                         <label for="Position">Position</label>
-                        <select id="Position" class="form-control m-b" name="account">
-                            <option value="-1" disabled selected>-- select --</option>
-                            <option>ESF00 - Test</option>
-                        </select>
+                        <div id="Position" class="orm-control m-b">
+                            @*@Html.DropDownListFor(x => x.SelectedRoleId, new SelectList(Model.UserPositions, "PositionId", "Name", Model.SelectedPositionId), new { @class = "form-control m-b" })*@
+                            <select class="form-control m-b" name="SelectedPositionId" ng-model="identityFocusViewModel">
+                                @foreach (var p in Model.UserPositions)
+                                {
+                                    <option value="@p.PositionId">@p.Name</option>
+                                }
+                            </select>
+                        </div>
                     </div>
                 </div>
-
             </div>
         </form>
     </div>
@@ -62,5 +60,5 @@
 
 <div class="modal-footer">
     <button type="button" class="btn btn-default" ng-click="cancel()">Close</button>
-    <button type="button" class="btn btn-success" ng-click="ok()">Change Focus</button>
+    <button type="button" class="btn btn-success" ng-click="ok(model)">Change Focus</button>
 </div>

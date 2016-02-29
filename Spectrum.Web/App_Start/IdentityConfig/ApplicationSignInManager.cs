@@ -27,7 +27,8 @@ namespace Spectrum.Web.IdentityConfig
 
         public override Task<ClaimsIdentity> CreateUserIdentityAsync(User user)
         {
-            UserUtility.MemoryCacheLoggedInUser(user);
+            UserUtility.SetLoginIdentityFocus(user);
+
             return user.GenerateUserIdentityAsync((ApplicationUserManager) UserManager);
         }
 

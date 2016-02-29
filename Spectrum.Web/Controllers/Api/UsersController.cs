@@ -93,21 +93,24 @@ namespace Spectrum.Web.Controllers.Api
 
             if (result.Succeeded)
             {
-                var organizationId = UserUtility.GetUserModelFromCache(User).SelectedOrganizationId;
                 user.UserOrganizations.Add(new UserOrganization
                 {
                     Default = true,
                     ObjectState = ObjectState.Added,
-                    OrganizationId = organizationId,
+                    OrganizationId = UserUtility.GetUserFromMemoryCache(User).SelectedOrganizationId,
                     UserId = user.Id
                 });
 
                 var addResult = _manager.Update(user);
-                if (result.Succeeded)
+                if (addResult.Succeeded)
                 {
                     return Request.CreateResponse(HttpStatusCode.Created, user);
                 }
             }
+
+            //If the user has an existing default organization
+            //if (user.UserOrganizations.Any(o => o.Default == true))
+            //{ }
 
             return Request.CreateResponse(HttpStatusCode.BadRequest);
         }

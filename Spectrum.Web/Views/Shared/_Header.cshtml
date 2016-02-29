@@ -1,4 +1,6 @@
 ﻿@using Microsoft.AspNet.Identity
+@using Spectrum.Logic.Identity
+@using Spectrum.Logic.Models
 <div class="color-line">
 </div>
 <div id="logo" class="light-version">
@@ -26,13 +28,16 @@
             <li class="dropdown" ng-controller="identityFocusController">
                 <a class="dropdown-toggle" ng-click="changeFocus()">
                     <i class="pe pe-7s-id"></i>
-
-                        @if (User.Identity.IsAuthenticated)
-                        {
-                            <label class="label label-info" style="font-size: 10px;">
-                                @User.Identity.GetUserName() as SuperUser for Spectrum Operational
-                            </label>
-                        }
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        var loggedInUser = UserUtility.GetUserFromMemoryCache(User);
+                        <label class="label label-info" style="font-size: 10px;">
+                            @Html.Encode(loggedInUser.UserName) for
+                            @Html.Encode(loggedInUser.SelectedOrganizationName) as
+                            @Html.Encode(loggedInUser.SelectedRoleName)
+                            @Html.Encode(loggedInUser.SelectedPositionName)
+                        </label>
+                    }
                 </a>
             </li>
 
@@ -193,6 +198,18 @@
                 </ul>
             </li>
         </ul>
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

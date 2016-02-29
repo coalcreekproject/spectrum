@@ -1,5 +1,10 @@
 ﻿using System;
 using System.Web.Mvc;
+using AutoMapper;
+using Spectrum.Logic.Identity;
+using Spectrum.Logic.Models;
+using Spectrum.Web.Models;
+using System.Threading.Tasks;
 
 namespace Spectrum.Web.Controllers.Web
 {
@@ -11,6 +16,12 @@ namespace Spectrum.Web.Controllers.Web
             return View();
         }
 
+        [HttpPost]
+        public ActionResult ChangeIdentityFocus(IdentityFocusViewModel identityFocusViewModel)
+        {
+            return new HttpNotFoundResult();
+        }
+
         public ActionResult Template(string template)
         {
             switch (template.ToLower())
@@ -18,7 +29,8 @@ namespace Spectrum.Web.Controllers.Web
                 case "portalindex":
                     return PartialView("~/Views/Portal/Partials/PortalIndex.cshtml");
                 case "changeuserfocusmodal":
-                    return PartialView("~/Views/Portal/Partials/ChangeIdentityFocusModal.cshtml");
+                    var userModel = UserUtility.GetUserFromMemoryCache(User);
+                    return PartialView("~/Views/Portal/Partials/ChangeIdentityFocusModal.cshtml", Mapper.Map<UserViewModel>(userModel));
                 default:
                     throw new ApplicationException("Unknown Template");
             }

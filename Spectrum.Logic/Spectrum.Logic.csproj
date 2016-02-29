@@ -91,38 +91,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Identity\UserUtility.cs" />
-    <Compile Include="Models\AddressModel.cs" />
-    <Compile Include="Models\ApplicationModel.cs" />
-    <Compile Include="Models\ApplicationNoteModel.cs" />
-    <Compile Include="Models\ApplicationParameterModel.cs" />
-    <Compile Include="Models\ApplicationProfileModel.cs" />
-    <Compile Include="Models\AreaOfResponsibilityModel.cs" />
-    <Compile Include="Models\AreaOfResponsibilityNoteModel.cs" />
-    <Compile Include="Models\AreaOfResponsibilityProfileModel.cs" />
-    <Compile Include="Models\ContactModel.cs" />
-    <Compile Include="Models\GroupModel.cs" />
-    <Compile Include="Models\JurisdictionModel.cs" />
-    <Compile Include="Models\JurisdictionNoteModel.cs" />
-    <Compile Include="Models\JurisdictionProfileModel.cs" />
-    <Compile Include="Models\MessageModel.cs" />
-    <Compile Include="Models\OrganizationApplicationModel.cs" />
     <Compile Include="Models\OrganizationModel.cs" />
-    <Compile Include="Models\OrganizationNote.cs" />
-    <Compile Include="Models\OrganizationProfileModel.cs" />
-    <Compile Include="Models\OrganizationTypeModel.cs" />
-    <Compile Include="Models\ParameterModel.cs" />
     <Compile Include="Models\PositionModel.cs" />
-    <Compile Include="Models\PreferenceModel.cs" />
     <Compile Include="Models\RoleModel.cs" />
-    <Compile Include="Models\RuleModel.cs" />
-    <Compile Include="Models\RuleParameterModel.cs" />
-    <Compile Include="Models\RuleTypeModel.cs" />
-    <Compile Include="Models\UserApplicationModel.cs" />
-    <Compile Include="Models\UserAreaOfResponsibilityModel.cs" />
-    <Compile Include="Models\UserClaimModel.cs" />
-    <Compile Include="Models\UserExternalLoginModel.cs" />
     <Compile Include="Models\UserModel.cs" />
-    <Compile Include="Models\UserNoteModel.cs" />
+    <Compile Include="Models\UserOrganizationModel.cs" />
+    <Compile Include="Models\UserPositionModel.cs" />
+    <Compile Include="Models\UserRoleModel.cs" />
     <Compile Include="Models\UserProfileModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

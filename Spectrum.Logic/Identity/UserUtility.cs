@@ -18,26 +18,44 @@ namespace Spectrum.Logic.Identity
         public static void RedisCacheLoggedInUser(User user)
         {
             var userModel = Mapper.Map<UserModel>(user);
-
-            SetLoginIdentityFocus(user, userModel);
-
             var cache = RedisCache.Connection.GetDatabase();
+
             cache.Set("user:" + userModel.Id, userModel);
         }
 
-        public static void MemoryCacheLoggedInUser(User user)
+        public static void MemoryCacheUser(User user)
         {
             var userModel = Mapper.Map<UserModel>(user);
+            var cache = MemoryCache.Default;
 
-            SetLoginIdentityFocus(user, userModel);
-            
+            cache.Set("user:" + userModel.Id, userModel, DateTimeOffset.Now.AddMinutes(30));
+        }
+
+        public static void MemoryCacheUser(UserModel userModel)
+        {
             var cache = MemoryCache.Default;
             cache.Set("user:" + userModel.Id, userModel, DateTimeOffset.Now.AddMinutes(30));
         }
 
-        private static void SetLoginIdentityFocus(User user, UserModel userModel)
+        public static UserModel GetUserFromMemoryCache(IPrincipal user)
+        {
+            var id = user.Identity.GetUserId();
+
+            var cache = MemoryCache.Default;
+            var userModel = cache.Get<UserModel>("user:" + id);
+
+            return userModel;
+        }
+
+        public static void SetIdentityFocus(UserModel userModel)
+        {
+            MemoryCacheUser(userModel);
+        }
+
+        public static void SetLoginIdentityFocus(User user)
         {
             var profile = user.UserProfiles.FirstOrDefault(p => p.Default == true);
+            var userModel = Mapper.Map<UserModel>(user);
 
             //Set the default organization for the user
             var defaultOrganization = user.UserOrganizations.FirstOrDefault(o => o.OrganizationId == profile?.OrganizationId && o.Default == true);
@@ -103,16 +121,9 @@ namespace Spectrum.Logic.Identity
                     userModel.SelectedPositionName = firstPosition.Position.Name;
                 }
             }
+
+            MemoryCacheUser(userModel);
         }
 
-        public static UserModel GetUserModelFromCache(IPrincipal user)
-        {
-            var id = user.Identity.GetUserId();
-
-            var cache = MemoryCache.Default;
-            var userModel = cache.Get<UserModel>("user:" + id);
-
-            return userModel;
-        }
     }
 }

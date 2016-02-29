@@ -583,6 +583,7 @@
     <Content Include="Scripts\spectrum-core\usersgrid-index.js" />
     <Content Include="Scripts\spectrum-core\users-index.js" />
     <Content Include="Scripts\spectrum-eoc\checklists.js" />
+    <Content Include="Templates\Common\panel_tools.html" />
     <Content Include="Views\Organization\Partials\AddOrganizationPositionModal.cshtml" />
     <Content Include="Views\Home\Old.cshtml" />
     <None Include="Views\Organization\Partials\AddOrganizationProfileModal.cshtml" />
