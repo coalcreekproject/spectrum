@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net;
 using System.Web.Mvc;
 using AutoMapper;
 using Spectrum.Logic.Identity;
@@ -17,9 +18,10 @@ namespace Spectrum.Web.Controllers.Web
         }
 
         [HttpPost]
-        public ActionResult ChangeIdentityFocus(IdentityFocusViewModel identityFocusViewModel)
+        public ActionResult ChangeIdentityFocus(UserViewModel userViewModel)
         {
-            return new HttpNotFoundResult();
+            UserUtility.MemoryCacheUser(Mapper.Map<UserModel>(userViewModel));
+            return new HttpStatusCodeResult(HttpStatusCode.OK);
         }
 
         public ActionResult Template(string template)

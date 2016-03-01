@@ -15,7 +15,7 @@ namespace Spectrum.Logic.Identity
     public static class UserUtility
     {
         //TODO: Look at this mechanism, we want to inject a cache provider
-        public static void RedisCacheLoggedInUser(User user)
+        public static void RedisCacheUser(User user)
         {
             var userModel = Mapper.Map<UserModel>(user);
             var cache = RedisCache.Connection.GetDatabase();
