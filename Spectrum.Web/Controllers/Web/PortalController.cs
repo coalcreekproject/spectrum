@@ -17,13 +17,6 @@ namespace Spectrum.Web.Controllers.Web
             return View();
         }
 
-        [HttpPost]
-        public ActionResult ChangeIdentityFocus(UserViewModel userViewModel)
-        {
-            UserUtility.MemoryCacheUser(Mapper.Map<UserModel>(userViewModel));
-            return new HttpStatusCodeResult(HttpStatusCode.OK);
-        }
-
         public ActionResult Template(string template)
         {
             switch (template.ToLower())
@@ -31,8 +24,7 @@ namespace Spectrum.Web.Controllers.Web
                 case "portalindex":
                     return PartialView("~/Views/Portal/Partials/PortalIndex.cshtml");
                 case "changeuserfocusmodal":
-                    var userModel = UserUtility.GetUserFromMemoryCache(User);
-                    return PartialView("~/Views/Portal/Partials/ChangeIdentityFocusModal.cshtml", Mapper.Map<UserViewModel>(userModel));
+                    return PartialView("~/Views/Portal/Partials/ChangeIdentityFocusModal.cshtml");
                 default:
                     throw new ApplicationException("Unknown Template");
             }

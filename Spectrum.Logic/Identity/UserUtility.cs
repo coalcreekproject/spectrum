@@ -47,9 +47,12 @@ namespace Spectrum.Logic.Identity
             return userModel;
         }
 
-        public static void SetIdentityFocus(UserModel userModel)
+        public static UserModel GetUserFromMemoryCache(int userId)
         {
-            MemoryCacheUser(userModel);
+            var cache = MemoryCache.Default;
+            var userModel = cache.Get<UserModel>("user:" + userId);
+
+            return userModel;
         }
 
         public static void SetLoginIdentityFocus(User user)
@@ -76,7 +79,6 @@ namespace Spectrum.Logic.Identity
                 }
             }
 
-            //TODO: Should I just cache the organization object as well?
             //TODO: Should always have some value, business rule is, every user has a default profile and an organization.
             if (defaultOrganization != null)
             {
@@ -100,7 +102,6 @@ namespace Spectrum.Logic.Identity
                     userModel.SelectedRoleId = firstRole.RoleId;
                     userModel.SelectedRoleName = firstRole.Role.Name;
                 }
-                    
             }
 
             //Set the default position for the user.

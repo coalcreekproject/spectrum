@@ -1,16 +1,4 @@
-﻿@model Spectrum.Web.Models.UserViewModel
-
-<p hidden>
-    {{ userViewModel.Id = '@Model.Id'}}
-    {{ userViewModel.UserName = '@Model.UserName'}}
-    {{ userViewModel.Email = '@Model.Email'}}
-    {{ userViewModel.UserOrganizations = '@Model.UserOrganizations'}}
-    {{ userViewModel.UserRoles = '@Model.UserRoles'}}
-    {{ userViewModel.UserProfiles = '@Model.UserProfiles'}}
-    {{ userViewModel.UserPositions = '@Model.UserPositions'}}
-</p>
-
-<div class="modal-dialog" ng-controller="identityFocusController">
+﻿<div class="modal-dialog" ng-controller="identityFocusController">
     <div class="modal-header">
         <h4 class="modal-title">Change Identity Focus</h4>
         <small class="font-bold">Select the user organization and role to access the information in that context</small>

@@ -1,6 +1,4 @@
-﻿@using Microsoft.AspNet.Identity
-@using Spectrum.Logic.Identity
-@using Spectrum.Logic.Models
+﻿@using Spectrum.Logic.Identity
 <div class="color-line">
 </div>
 <div id="logo" class="light-version">
@@ -30,13 +28,9 @@
                     <i class="pe pe-7s-id"></i>
                     @if (User.Identity.IsAuthenticated)
                     {
-                        var loggedInUser = UserUtility.GetUserFromMemoryCache(User);
-                        <label class="label label-info" style="font-size: 10px;">
-                            @Html.Encode(loggedInUser.UserName) for
-                            @Html.Encode(loggedInUser.SelectedOrganizationName) as
-                            @Html.Encode(loggedInUser.SelectedRoleName)
-                            @Html.Encode(loggedInUser.SelectedPositionName)
-                        </label>
+                        <span class="label label-info" style="font-size: 10px;">
+                            {{userViewModel.UserName}} for {{userViewModel.SelectedOrganizationName}} as {{userViewModel.SelectedRoleName}} in position {{userViewModel.SelectedPositionName}}
+                        </span>
                     }
                 </a>
             </li>
@@ -198,20 +192,5 @@
                 </ul>
             </li>
         </ul>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     </div>
 </nav>
