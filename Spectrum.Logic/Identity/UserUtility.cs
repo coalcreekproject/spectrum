@@ -29,7 +29,7 @@ namespace Spectrum.Logic.Identity
             var userModel = Mapper.Map<UserModel>(user);
 
             SetLoginIdentityFocus(user, userModel);
-            
+
             var cache = MemoryCache.Default;
             cache.Set("user:" + userModel.Id, userModel, DateTimeOffset.Now.AddMinutes(30));
         }
@@ -38,19 +38,31 @@ namespace Spectrum.Logic.Identity
         {
             var profile = user.UserProfiles.FirstOrDefault(p => p.Default == true);
 
-            //Set the default organization for the user
-            userModel.SelectedOrganizationId =
-                user.UserOrganizations.FirstOrDefault(o => o.OrganizationId == profile?.OrganizationId).OrganizationId;
+            if (profile != null && profile.OrganizationId != null)
+            {
+                var orgId = Convert.ToInt32(profile.OrganizationId);
+                var defaultUserOrg = user.UserOrganizations.FirstOrDefault(o => o.OrganizationId == orgId);
+                if (defaultUserOrg != null)
+                {
+                    // Set the default organization for the user
+                    userModel.SelectedOrganizationId = defaultUserOrg.OrganizationId;
 
-            //Set the default role for the user
-            userModel.SelectedRoleId =
-                user.UserRoles.FirstOrDefault(
-                    r => r.OrganizationId == userModel.SelectedOrganizationId && r.Default == true).RoleId;
+                    // Set the default role for the user
+                    userModel.SelectedRoleId =
+                        user.UserRoles.FirstOrDefault(
+                            r => r.OrganizationId == userModel.SelectedOrganizationId).RoleId;
 
-            //Set the default position for the user.
-            userModel.SelectedPositionId =
-                user.UserPositions.FirstOrDefault(
-                    p => p.OrganizationId == userModel.SelectedOrganizationId && p.Default == true).PositionId;
+                    var defaultUserPosition = user.UserPositions
+                        .FirstOrDefault(p => p.OrganizationId == userModel.SelectedOrganizationId);
+
+                    if (defaultUserPosition != null)
+                    {
+                        // Set the default position for the user.
+                        userModel.SelectedPositionId = defaultUserPosition.PositionId;
+                    }
+                    userModel.SelectedPositionId = 1;
+                }
+            }
         }
 
         public static UserModel GetUserModelFromCache(IPrincipal user)

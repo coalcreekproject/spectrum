@@ -9,7 +9,7 @@
 
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700" rel="stylesheet" type="text/css">
 
-    @Styles.Render("~/bundles/main/vendor")
+    @Styles.Render("~/bundles/vendor/styles")
     @Styles.Render("~/Content/css")
 
     <!-- Add local styles, mostly for plugins css file -->
@@ -41,12 +41,8 @@
 <!-- Main view -->
 @RenderBody()
 
-<!-- Order does matter -->
-@Scripts.Render("~/bundles/vendor/jquery")
-@Scripts.Render("~/bundles/vendor/bootstrap")
+@Scripts.Render("~/bundles/vendor")
 @Scripts.Render("~/bundles/vendor/angular")
-@Scripts.Render("~/bundles/vendor/misc")
-@Scripts.Render("~/bundles/app/main")
 
 <!-- Handler for local scripts -->
 @RenderSection("scripts", required: false)

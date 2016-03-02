@@ -1,12 +1,6 @@
 ﻿@{
     ViewBag.Title = "EOC Checklist Index";
+    Layout = "~/Areas/Eoc/Views/Shared/_Layout_Eoc.cshtml";
 }
 
-@section Styles {
-}
-
-<div ui-view></div>
-
-@section Scripts {
-    <script src="~/Scripts/spectrum-eoc/checklists.js"></script>
-}
+@Html.Partial("Partials/CheckListIndex")

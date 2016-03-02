@@ -2,13 +2,14 @@
 <!DOCTYPE html>
 <html ng-app="app">
 <head>
+    <base href="/">
     <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="IE=edge" http-equiv="X-UA-Compatible">
 
     <title>Spectrum Operational | @ViewBag.Title</title>
 
-    @Styles.Render("~/bundles/main/vendor")
+    @Styles.Render("~/bundles/vendor/styles")
     @Styles.Render("~/Content/css")
 
     <!-- Add local styles, mostly for plugins css file -->
@@ -44,11 +45,8 @@
     @RenderBody()
 </div>
 
-<!-- Order does matter -->
-@Scripts.Render("~/bundles/vendor/jquery")
-@Scripts.Render("~/bundles/vendor/bootstrap")
+@Scripts.Render("~/bundles/vendor")
 @Scripts.Render("~/bundles/vendor/angular")
-@Scripts.Render("~/bundles/vendor/misc")
 @Scripts.Render("~/bundles/app/main")
 
 <!-- Handler for local scripts -->

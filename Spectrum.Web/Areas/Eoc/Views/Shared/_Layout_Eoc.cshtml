@@ -1,0 +1,59 @@
+﻿@using Spectrum.Web.Helpers
+<!DOCTYPE html>
+<html ng-app="app">
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+
+    <title>Spectrum Operational | @ViewBag.Title</title>
+
+    @Styles.Render("~/bundles/vendor/styles")
+    @Styles.Render("~/Content/css")
+
+    <!-- Add local styles, mostly for plugins css file -->
+    @if (IsSectionDefined("Styles"))
+    {
+        @RenderSection("Styles", required: false)
+    }
+
+</head>
+<body class="@Html.PageClass()">
+
+<!-- Simple splash screen-->
+<div class="splash">
+    <div class="color-line"></div>
+    <div class="splash-title">
+        <h1>Spectrum Operational - Emergency Management Suite</h1>
+        <p>
+            The ultimate collaborative suite for emergency management teams and organizations.
+        </p><img alt="The ultimate collaborative suite for emergency management teams and organizations." height="64" src="~/Content/images/loading-bars.svg" width="64" />
+    </div>
+</div>
+
+<div id="header">
+    @Html.Partial("_Header")
+</div>
+
+<!-- Navigation -->
+<aside id="menu">
+    @Html.Partial("_Navigation")
+</aside>
+
+<!-- Main view -->
+<div id="wrapper">
+    @RenderBody()
+</div>
+
+<!-- Order does matter as jQuery needs to load first -->
+@Scripts.Render("~/bundles/vendor/jquery")
+@Scripts.Render("~/bundles/vendor/bootstrap")
+@Scripts.Render("~/bundles/vendor/angular")
+@Scripts.Render("~/bundles/vendor/misc")
+@Scripts.Render("~/bundles/app/core")
+@Scripts.Render("~/bundles/app/eoc")
+
+<!-- Handler for local scripts -->
+@RenderSection("scripts", required: false)
+</body>
+</html>

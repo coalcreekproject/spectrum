@@ -1,5 +1,12 @@
 ﻿@{
-    ViewBag.Title = "Portal";
+    ViewBag.Title = "Portal Home";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div ui-view></div>
+<div ng-view></div>
+
+@section scripts {
+    <script src="@Url.Content("~/Scripts/app/portal/main.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/app/core/portal-identityfocus.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/app/core/users-index.js")" type="text/javascript"></script>
+}

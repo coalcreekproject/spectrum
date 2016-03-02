@@ -10,6 +10,18 @@ namespace Spectrum.Web
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
+                name: "EocReroute",
+                url: "Eoc/IncidentManagement",
+                defaults: new { controller = "Portal", action = "Index" }
+            );
+
+            routes.MapRoute(
+                name: "TestReroute",
+                url: "Test/{*.}",
+                defaults: new {controller="Portal", action = "Index" }
+            );
+
+            routes.MapRoute(
                 name: "Templates",
                 url: "Templates/{controller}/{template}",
                 defaults: new { action = "Template" },

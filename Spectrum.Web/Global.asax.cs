@@ -1,4 +1,5 @@
-﻿using System.Web.Http;
+﻿using System.Web;
+using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
@@ -9,7 +10,7 @@ using Spectrum.Web.Models;
 
 namespace Spectrum.Web
 {
-    public class MvcApplication : System.Web.HttpApplication
+    public class MvcApplication : HttpApplication
     {
         protected void Application_Start()
         {
@@ -49,7 +50,7 @@ namespace Spectrum.Web
                 cfg.CreateMap<RoleViewModel, Role>()
                     .ForMember(dest => dest.Id,
                         opts => opts.MapFrom(src => src.RoleId));
-                
+
                 cfg.CreateMap<UserRole, UserRoleViewModel>();
                 cfg.CreateMap<UserRoleViewModel, UserRole>();
 
@@ -63,7 +64,6 @@ namespace Spectrum.Web
                 cfg.CreateMap<UserPosition, UserPositionViewModel>();
                 cfg.CreateMap<UserPositionViewModel, UserPosition>();
             });
-
         }
     }
 }
