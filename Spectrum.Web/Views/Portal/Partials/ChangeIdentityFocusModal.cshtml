@@ -1,5 +1,15 @@
 ﻿@model Spectrum.Web.Models.UserViewModel
 
+<p hidden>
+    {{ userViewModel.Id = '@Model.Id'}}
+    {{ userViewModel.UserName = '@Model.UserName'}}
+    {{ userViewModel.Email = '@Model.Email'}}
+    {{ userViewModel.UserOrganizations = '@Model.UserOrganizations'}}
+    {{ userViewModel.UserRoles = '@Model.UserRoles'}}
+    {{ userViewModel.UserProfiles = '@Model.UserProfiles'}}
+    {{ userViewModel.UserPositions = '@Model.UserPositions'}}
+</p>
+
 <div class="modal-dialog" ng-controller="identityFocusController">
     <div class="modal-header">
         <h4 class="modal-title">Change Identity Focus</h4>
@@ -18,7 +28,7 @@
                             <select class="form-control m-b" name="SelectedOrganizationId" ng-model="userViewModel.SelectedOrganizationId">
                                 @foreach (var m in Model.UserOrganizations)
                                 {
-                                    <option value="@m.OrganizationId" name="@m.Name" ng-model="userViewModel.SelectedOrganizationName">{{userViewModel.SelectedOrganizationName = '@m.Name'}}</option>
+                                    <option value="@m.OrganizationId" name="@m.Name">@m.Name</option>
                                 }
                             </select>
                         </div>
@@ -32,7 +42,7 @@
                             <select class="form-control m-b" name="SelectedRoleId" ng-model="userViewModel.SelectedRoleId">
                                 @foreach (var r in Model.UserRoles)
                                 {
-                                    <option value="@r.RoleId">{{ userViewModel.SelectedRoleName = '@r.Name'}}</option>
+                                    <option value="@r.RoleId">@r.Name</option>
                                 }
                             </select>
                         </div>
@@ -47,7 +57,7 @@
                             <select class="form-control m-b" name="SelectedPositionId" ng-model="userViewModel.SelectedPositionId">
                                 @foreach (var p in Model.UserPositions)
                                 {
-                                    <option value="@p.PositionId">{{userViewModel.SelectedPositionName = '@p.Name'}}</option>
+                                    <option value="@p.PositionId">@p.Name</option>
                                 }
                             </select>
                         </div>

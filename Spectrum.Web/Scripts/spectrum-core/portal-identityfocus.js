@@ -12,16 +12,15 @@ function identityFocusController($scope, $http, $modal) {
     $scope.changeFocus = function() {
         var modalInstance = $modal.open({  //modalInstance = orphan?
             templateUrl: '/Templates/Portal/ChangeUserFocusModal',
-            controller: changeIdentityFocusModalController,
-            resolve : { foo: function() { return $scope.foo; } }
+            controller: changeIdentityFocusModalController
         });
     }
 }
 
-function changeIdentityFocusModalController($scope, $http, $modalInstance, foo) {
+function changeIdentityFocusModalController($scope, $http, $modalInstance) {
 
     $scope.userViewModel = {
-        id: null,
+        Id: null,
         UserName: null,
         Email: null,
         SelectedOrganizationId: null,
