@@ -5,6 +5,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using AutoMapper;
+using Microsoft.AspNet.Identity;
 using Spectrum.Data.Core.Models;
 using Spectrum.Data.Core.Models.Interfaces;
 using Spectrum.Logic.Identity;
@@ -14,9 +15,9 @@ namespace Spectrum.Web.Controllers.Api
 {
     public class IdentityFocusController : ApiController
     {
-        public HttpResponseMessage Get(int id)
+        public HttpResponseMessage Get()
         {
-            var currentUser = UserUtility.GetUserFromMemoryCache(id);
+            var currentUser = UserUtility.GetUserFromMemoryCache(Convert.ToInt32(User.Identity.GetUserId()));
 
             if (currentUser == null)
             {

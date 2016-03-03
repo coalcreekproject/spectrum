@@ -13,12 +13,10 @@
                     <div class="col-md-7 dropdown">
                         <label for="Organization">Organization</label>
                         <div id="Organization" class="orm-control m-b">
-                            <select class="form-control m-b" name="SelectedOrganizationId" ng-model="userViewModel.SelectedOrganizationId">
-                                @foreach (var m in Model.UserOrganizations)
-                                {
-                                    <option value="@m.OrganizationId" name="@m.Name">@m.Name</option>
-                                }
+                            <select class="form-control m-b" name="SelectedOrganizationId" ng-model="currentUser.SelectedOrganizationId"
+                                    ng-options="userOrganization.Name for userOrganization in currentUser.UserOrganizations">
                             </select>
+                            {{currentUser.UserName}}
                         </div>
                     </div>
                 </div>
@@ -27,11 +25,8 @@
                     <div class="col-md-7">
                         <label for="Role">Role</label>
                         <div id="Role" class="orm-control m-b">
-                            <select class="form-control m-b" name="SelectedRoleId" ng-model="userViewModel.SelectedRoleId">
-                                @foreach (var r in Model.UserRoles)
-                                {
-                                    <option value="@r.RoleId">@r.Name</option>
-                                }
+                            <select class="form-control m-b" name="SelectedRoleId" ng-model="currentUser.SelectedRoleId" 
+                                    ng-options="userRole.Name for userRole in currentUser.UserRoles">
                             </select>
                         </div>
                     </div>
@@ -41,12 +36,9 @@
                     <div class="col-md-7">
                         <label for="Position">Position</label>
                         <div id="Position" class="orm-control m-b">
-                            @*@Html.DropDownListFor(x => x.SelectedRoleId, new SelectList(Model.UserPositions, "PositionId", "Name", Model.SelectedPositionId), new { @class = "form-control m-b" })*@
-                            <select class="form-control m-b" name="SelectedPositionId" ng-model="userViewModel.SelectedPositionId">
-                                @foreach (var p in Model.UserPositions)
-                                {
-                                    <option value="@p.PositionId">@p.Name</option>
-                                }
+                            <select class="form-control m-b" name="SelectedPositionId" ng-model="currentUser.SelectedPositionId"
+                                    ng-options="userPosition.Name for userPosition in currentUser.UserPositions"
+                                    ng-selected="userPosition.PositionId == currentUser.SelectedPositionId">
                             </select>
                         </div>
                     </div>
@@ -58,5 +50,5 @@
 
 <div class="modal-footer">
     <button type="button" class="btn btn-default" ng-click="cancel()">Close</button>
-    <button type="button" class="btn btn-success" ng-click="ok(userViewModel)">Change Focus</button>
+    <button type="button" class="btn btn-success" ng-click="ok(currentUser)">Change Focus</button>
 </div>

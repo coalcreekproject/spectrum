@@ -1,5 +1,4 @@
-﻿@using Spectrum.Logic.Identity
-<div class="color-line">
+﻿<div class="color-line">
 </div>
 <div id="logo" class="light-version">
     <div class="">
@@ -29,7 +28,7 @@
                     @if (User.Identity.IsAuthenticated)
                     {
                         <span class="label label-info" style="font-size: 10px;">
-                            {{userViewModel.UserName}} for {{userViewModel.SelectedOrganizationName}} as {{userViewModel.SelectedRoleName}} in position {{userViewModel.SelectedPositionName}}
+                            {{currentUser.UserName}} for {{currentUser.SelectedOrganizationName}} as {{currentUser.SelectedRoleName}} in position {{currentUser.SelectedPositionName}}
                         </span>
                     }
                 </a>
