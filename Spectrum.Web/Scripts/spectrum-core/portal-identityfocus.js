@@ -9,7 +9,7 @@ function identityFocusParameters() {
 
 function identityFocusController($scope, $http, $modal, currentUserFactory) {
 
-    //$modal.scope = $scope;
+    $modal.scope = $scope;
     $scope.data = currentUserFactory;
 
     currentUserFactory.getCurrentUser()
@@ -22,32 +22,44 @@ function identityFocusController($scope, $http, $modal, currentUserFactory) {
             });
 
     $scope.changeFocus = function() {
-        var modalInstance = $modal.open({  //modalInstance = orphan?
+        var modalInstance = $modal.open({
+            //modalInstance = orphan?
             templateUrl: '/Templates/Portal/ChangeUserFocusModal',
             controller: changeIdentityFocusModalController,
             resolve: {
-                currentUser: function() {
+                userViewModel: function() {
                     return angular.copy($scope.currentUser);
+                },
+                currentUser: function() {
+                    return $scope.currentUser;
                 }
             }
         });
     }
 }
 
-function changeIdentityFocusModalController($scope, $http, $modalInstance, currentUserFactory, currentUser) {
+function changeIdentityFocusModalController($scope, $http, $modalInstance, currentUserFactory, userViewModel, currentUser) {
 
     $scope.currentUser = currentUser;
+    $scope.userViewModel = userViewModel;
 
     $scope.ok = function (userViewModel) {
 
+        currentUser.SelectedOrganizationId = userViewModel.SelectedOrganizationId.OrganizationId;
+        currentUser.SelectedOrganizationName = userViewModel.SelectedOrganizationId.Name;
+        currentUser.SelectedRoleId = userViewModel.SelectedRoleId.RoleId;
+        currentUser.SelectedRoleName = userViewModel.SelectedRoleId.Name;
+        currentUser.SelectedPositionId = userViewModel.SelectedPositionId.PositionId;
+        currentUser.SelectedPositionName = userViewModel.SelectedPositionId.Name;
+
         //do some work with the new factory
-        currentUserFactory.editCurrentUser(userViewModel)
+        currentUserFactory.editCurrentUser(currentUser)
             .then(function(result) {
-                    $scope.currentUser = result;
+                //Focus pill is automagically updated
                 },
                 function() {
                     //error
-                    alert("Sorry! There was a problem loading the current user.  Please try again later.", "error");
+                    alert("Sorry! There was a problem setting the identity focus.  Please try again later.", "error");
                 });
 
 
@@ -106,7 +118,7 @@ function currentUserFactory($http, $q) {
 
         var deferred = $q.defer();
 
-        $http.post('/api/IdentityFocus/', currentUser)
+        $http.put('/api/IdentityFocus/', currentUser)
          .then(function (result) {
              // success
              var editedUser = result.data;

@@ -15,6 +15,7 @@ namespace Spectrum.Web.Controllers.Api
 {
     public class IdentityFocusController : ApiController
     {
+        [HttpGet]
         public HttpResponseMessage Get()
         {
             var currentUser = UserUtility.GetUserFromMemoryCache(Convert.ToInt32(User.Identity.GetUserId()));
@@ -27,9 +28,8 @@ namespace Spectrum.Web.Controllers.Api
             return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<UserViewModel>(currentUser));
         }
 
-        [HttpPost]
-        // POST: api/Users
-        public HttpResponseMessage Post([FromBody]UserViewModel userViewModel)
+        [HttpPut]
+        public HttpResponseMessage Put([FromBody]UserViewModel userViewModel)
         {
             var currentUser = UserUtility.GetUserFromMemoryCache(userViewModel.Id);
 
