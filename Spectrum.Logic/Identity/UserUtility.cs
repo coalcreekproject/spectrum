@@ -86,7 +86,10 @@ namespace Spectrum.Logic.Identity
             }
 
             //Set the default role for the user
-            var defaultRole = user.UserRoles.FirstOrDefault(r => r.OrganizationId == userModel.SelectedOrganizationId && r.Default == true);
+            var defaultRole = user.UserRoles.FirstOrDefault(r =>
+            {
+                return r.Default != null && (r.OrganizationId == userModel.SelectedOrganizationId && r.Default == true);
+            });
 
             if (defaultRole != null)
             {

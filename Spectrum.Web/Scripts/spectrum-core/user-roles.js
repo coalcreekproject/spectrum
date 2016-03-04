@@ -22,6 +22,10 @@ function UserRolesModalController($scope, $modalInstance, userRoleFactory, user)
     for (var i = 0; i < user.UserOrganizations.length; ++i) {
         if (user.UserOrganizations[i].Default === true) {
             userRoleParameters.organizationId = user.UserOrganizations[i].OrganizationId;
+        } else {
+            if (user.UserOrganizations.length > 0) {
+                userRoleParameters.organizationId = user.UserOrganizations[0].OrganizationId;
+            }
         }
     }
 

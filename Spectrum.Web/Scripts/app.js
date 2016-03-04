@@ -26,7 +26,8 @@
         //'oitozero.ngSweetAlert',
         'ui.grid',                  // Angular UI Grid
         'ui.grid.selection',        // Selection tools for Ui Grid
-        'dndLists'                  //drag and drop lists
+        'dndLists',                  //drag and drop lists
+        'ngRoute'
     ]);
 })();
 

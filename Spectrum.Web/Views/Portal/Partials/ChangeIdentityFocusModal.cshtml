@@ -14,7 +14,8 @@
                         <label for="Organization">Organization</label>
                         <div id="Organization" class="orm-control m-b">
                             <select class="form-control m-b" name="SelectedOrganizationId" ng-model="userViewModel.SelectedOrganizationId"
-                                    ng-options="userOrganization.Name for userOrganization in userViewModel.UserOrganizations track by userOrganization.OrganizationId">
+                                    ng-options="userOrganization.Name for userOrganization in userViewModel.UserOrganizations track by userOrganization.OrganizationId"
+                                    ng-selected="userViewModel.userOrganization == userViewModel.SelectedOrganizationId">
                             </select>
                         </div>
                     </div>

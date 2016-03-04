@@ -14,17 +14,6 @@ namespace Spectrum.Web.Controllers.Web
     //[Authorize]
     public class UserController : Controller
     {
-        private CoreDbContext _context;
-        private UserRepository _userRepository;
-        private readonly UserManager<User, int> _manager;
-
-        public UserController(ICoreUnitOfWork uow)
-        {
-            _context = uow.Context;
-            _userRepository = new UserRepository(uow);
-            _manager = new UserManager<User, int>(_userRepository);
-        }
-
         // GET: User
         public ActionResult Index()
         {
@@ -61,15 +50,6 @@ namespace Spectrum.Web.Controllers.Web
                 default:
                     throw new ApplicationException("Unknown Template");
             }
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                _context.Dispose();
-            }
-            base.Dispose(disposing);
         }
     }
 }

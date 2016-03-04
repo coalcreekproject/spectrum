@@ -12,6 +12,7 @@ function identityFocusController($scope, $http, $modal, currentUserFactory) {
     $modal.scope = $scope;
     $scope.data = currentUserFactory;
 
+
     currentUserFactory.getCurrentUser()
         .then(function(result) {
                 $scope.currentUser = result;
@@ -42,6 +43,8 @@ function changeIdentityFocusModalController($scope, $http, $modalInstance, curre
 
     $scope.currentUser = currentUser;
     $scope.userViewModel = userViewModel;
+
+    $scope.userViewModel.SelectedOrganizationId = 2;
 
     $scope.ok = function (userViewModel) {
 
