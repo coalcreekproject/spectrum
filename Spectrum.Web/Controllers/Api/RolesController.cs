@@ -9,36 +9,36 @@ using Spectrum.Data.Core.Context.Interfaces;
 using Spectrum.Data.Core.Context.UnitOfWork;
 using Spectrum.Data.Core.Models;
 using Spectrum.Data.Core.Models.Interfaces;
-using Spectrum.Data.Core.Repositories;
 using Spectrum.Data.Core.Repositories.Interfaces;
-//using Microsoft.Practices.Unity;
 using Spectrum.Web.Models;
+//using Microsoft.Practices.Unity;
 
 namespace Spectrum.Web.Controllers.Api
 {
     public class RolesController : ApiController
     {
+        private ICoreUnitOfWork _uow;
         private ICoreDbContext _context;
         private IRoleRepository _roleRepository;
 
-        public RolesController(ICoreUnitOfWork uow)
-        {
-            _context = uow.Context;
-
-            //TODO: Newing this up is no good
-            _roleRepository = new RoleRepository(uow);
-        }
-
-        //[Dependency]
-        //public IRoleRepository RoleRepository
+        //old
+        //public RolesController(ICoreUnitOfWork uow)
         //{
-        //    get { return _roleRepository; }
-        //    set { _roleRepository = value; }
+        //    _context = uow.Context;
+
+        //    //TODO: Newing this up is no good
+        //    _roleRepository = new RoleRepository(uow);
         //}
 
+        //new
+        public RolesController(IRoleRepository roleRepository)
+        {
+            _roleRepository = roleRepository;
+            _context = roleRepository.Context;
+        }
 
         // GET: api/Roles
-        [System.Web.Http.HttpGet]
+        [HttpGet]
         public IEnumerable<RoleViewModel> Get()
         {
             var roleViewModels = new List<RoleViewModel>();
@@ -52,7 +52,7 @@ namespace Spectrum.Web.Controllers.Api
             return roleViewModels;
         }
 
-        [System.Web.Http.HttpGet]
+        [HttpGet]
         // GET: api/Roles/5
         public HttpResponseMessage Get(int id)
         {
@@ -89,7 +89,7 @@ namespace Spectrum.Web.Controllers.Api
         // PUT: api/Roles/5
         public HttpResponseMessage Put(int id, [FromBody] RoleViewModel editRole)
         {
-            var role = _roleRepository.FindAsync(editRole.Id).Result;
+            var role = _roleRepository.FindAsync(editRole.RoleId).Result;
 
             if (role == null)
             {

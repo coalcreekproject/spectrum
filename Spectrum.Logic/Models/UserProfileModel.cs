@@ -1,16 +1,10 @@
-using System;
-using System.Collections.Generic;
+﻿using System;
 
 namespace Spectrum.Logic.Models
 {
     [Serializable]
     public class UserProfileModel
     {
-        public UserProfileModel()
-        {
-            AddressModels = new List<AddressModel>();
-        }
-
         public int Id { get; set; }
         public int UserId { get; set; }
         public int? OrganizationId { get; set; }
@@ -28,15 +22,5 @@ namespace Spectrum.Logic.Models
         public string Language { get; set; }
         public byte[] Photo { get; set; }
         public string Position { get; set; }
-        public bool? Cloaked { get; set; }
-        public bool? Archive { get; set; }
-        public DateTime? CreatedDate { get; set; }
-        public int? CreatedByUserId { get; set; }
-        public DateTime? ModifiedDate { get; set; }
-        public int? ModifiedByUserId { get; set; }
-
-        public virtual ICollection<AddressModel> AddressModels { get; set; }
-
-        public virtual UserModel UserModel { get; set; }
     }
 }

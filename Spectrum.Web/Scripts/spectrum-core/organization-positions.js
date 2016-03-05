@@ -33,7 +33,7 @@ function organizationPositionController($scope, $http, $window, $modal, $statePa
 
     $scope.edit = function (organizationPosition) {
         var modalInstance = $modal.open({
-            templateUrl: '/Templates/Organization/EditOrganizationPositionModal',
+            templateUrl: '/Templates/Organization/editOrganizationPositionModal',
             controller: EditOrganizationPositionModalController,
             resolve: {
                 organizationPosition: function () {

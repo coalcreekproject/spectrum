@@ -240,6 +240,7 @@
     <Compile Include="Areas\Eoc\Controllers\Web\ChecklistController.cs" />
     <Compile Include="Areas\Eoc\Controllers\Web\DashboardController.cs" />
     <Compile Include="Areas\Eoc\EocAreaRegistration.cs" />
+    <Compile Include="Controllers\Api\IdentityFocusController.cs" />
     <Compile Include="Controllers\Api\PositionsController.cs" />
     <Compile Include="Controllers\Api\RolesController.cs" />
     <Compile Include="Controllers\Api\UserPositionsController.cs" />
@@ -265,6 +266,7 @@
     <Compile Include="Models\ForgotPasswordViewModel.cs" />
     <Compile Include="Models\ExternalLoginConfirmationViewModel.cs" />
     <Compile Include="Models\ExternalLoginListViewModel.cs" />
+    <Compile Include="Models\IdentityFocusViewModel.cs" />
     <Compile Include="Models\Identity\ApplicationDbContext.cs" />
     <Compile Include="Models\Identity\ApplicationUser.cs" />
     <Compile Include="Models\Identity\CustomRole.cs" />
@@ -285,6 +287,7 @@
     <Compile Include="Models\RoleViewModel.cs" />
     <Compile Include="Models\SendCodeViewModel.cs" />
     <Compile Include="Models\SetPasswordViewModel.cs" />
+    <Compile Include="Models\UserOrganizationViewModel.cs" />
     <Compile Include="Models\UserPositionViewModel.cs" />
     <Compile Include="Models\UserProfileViewModel.cs" />
     <Compile Include="Models\UserRoleViewModel.cs" />
@@ -305,6 +308,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\fonts\fontawesome-webfont.svg" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\fonts\open-sans\css\OpenSans.css" />
     <Content Include="Content\fonts\pe-icon-7-stroke\css\helper.css" />
     <Content Include="Content\fonts\pe-icon-7-stroke\css\pe-icon-7-stroke.css" />
     <Content Include="Content\fonts\pe-icon-7-stroke\fonts\Pe-icon-7-stroke.svg" />
@@ -465,6 +469,10 @@
     <Content Include="Content\fonts\pe-icon-7-stroke\fonts\Pe-icon-7-stroke.woff" />
     <Content Include="Areas\Eoc\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Eoc\Views\Dashboard\Index.cshtml" />
+    <Content Include="Content\fonts\open-sans\font\OpenSans-Semibold.woff" />
+    <Content Include="Content\fonts\open-sans\font\OpenSans-Bold.woff" />
+    <Content Include="Content\fonts\open-sans\font\OpenSans-Light.woff" />
+    <Content Include="Content\fonts\open-sans\font\OpenSans.woff" />
     <None Include="Content\images\landing\header.jpg.old" />
     <Content Include="Content\images\landing\s1.png" />
     <Content Include="Content\images\landing\s2.png" />
@@ -569,20 +577,14 @@
     <Content Include="Scripts\spectrum-core\organization-roles.js" />
     <Content Include="Scripts\spectrum-core\organization-profiles.js" />
     <Content Include="Scripts\spectrum-core\organizations-index.js" />
-    <Content Include="Scripts\spectrum-core\portal-userfocus.js" />
+    <Content Include="Scripts\spectrum-core\portal-identityfocus.js" />
+    <Content Include="Scripts\spectrum-core\user-positions.js" />
     <Content Include="Scripts\spectrum-core\user-roles.js" />
     <Content Include="Scripts\spectrum-core\userprofiles-index.js" />
     <Content Include="Scripts\spectrum-core\usersgrid-index.js" />
     <Content Include="Scripts\spectrum-core\users-index.js" />
     <Content Include="Scripts\spectrum-eoc\checklists.js" />
-    <Content Include="Templates\Common\content.html" />
-    <Content Include="Templates\Common\content_blank.html" />
-    <Content Include="Templates\Common\content_empty.html" />
-    <Content Include="Templates\Common\content_small.html" />
-    <Content Include="Templates\Common\header.html" />
-    <Content Include="Templates\Common\navigation.html" />
     <Content Include="Templates\Common\panel_tools.html" />
-    <Content Include="Templates\Dashboard\dashboard.html" />
     <Content Include="Views\Organization\Partials\AddOrganizationPositionModal.cshtml" />
     <Content Include="Views\Home\Old.cshtml" />
     <None Include="Views\Organization\Partials\AddOrganizationProfileModal.cshtml" />
@@ -593,7 +595,7 @@
     <Content Include="Views\Organization\Partials\EditOrganizationPositionModal.cshtml" />
     <None Include="Views\Organization\Partials\EditOrganizationProfileModal.cshtml" />
     <Content Include="Views\Organization\Partials\EditOrganizationRoleModal.cshtml" />
-    <Content Include="Views\Portal\Partials\ChangeUserFocusModal.cshtml" />
+    <Content Include="Views\Portal\Partials\ChangeIdentityFocusModal.cshtml" />
     <Content Include="Views\Portal\Partials\PortalIndex.cshtml" />
     <Content Include="Views\Organization\Partials\OrganizationPosition.cshtml" />
     <Content Include="Views\Shared\_Legacy_Home.cshtml" />
@@ -664,6 +666,7 @@
     <Content Include="Views\User\Partials\UserProfileIndex.cshtml" />
     <Content Include="Views\User\Partials\UserPanelIndex.cshtml" />
     <Content Include="Views\User\Partials\UserRolesModal.cshtml" />
+    <Content Include="Views\User\Partials\UserPositionsModal.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

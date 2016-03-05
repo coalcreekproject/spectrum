@@ -1,5 +1,11 @@
 ﻿using System;
+using System.Net;
 using System.Web.Mvc;
+using AutoMapper;
+using Spectrum.Logic.Identity;
+using Spectrum.Logic.Models;
+using Spectrum.Web.Models;
+using System.Threading.Tasks;
 
 namespace Spectrum.Web.Controllers.Web
 {
@@ -18,7 +24,7 @@ namespace Spectrum.Web.Controllers.Web
                 case "portalindex":
                     return PartialView("~/Views/Portal/Partials/PortalIndex.cshtml");
                 case "changeuserfocusmodal":
-                    return PartialView("~/Views/Portal/Partials/ChangeUserFocusModal.cshtml");
+                    return PartialView("~/Views/Portal/Partials/ChangeIdentityFocusModal.cshtml");
                 default:
                     throw new ApplicationException("Unknown Template");
             }

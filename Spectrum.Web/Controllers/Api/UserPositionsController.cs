@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
@@ -11,6 +9,7 @@ using Spectrum.Data.Core.Context.UnitOfWork;
 using Spectrum.Data.Core.Models;
 using Spectrum.Data.Core.Models.Interfaces;
 using Spectrum.Data.Core.Repositories;
+using Spectrum.Web.IdentityConfig;
 using Spectrum.Web.Models;
 
 namespace Spectrum.Web.Controllers.Api
@@ -19,29 +18,41 @@ namespace Spectrum.Web.Controllers.Api
     {
         private ICoreDbContext _context;
         private UserRepository _userRepository;
-        private readonly UserManager<User, int> _manager;
+        private readonly ApplicationUserManager _manager;
 
         public UserPositionsController(ICoreUnitOfWork uow)
         {
             _context = uow.Context;
+
+            //Ugh still newing stuff up...
             _userRepository = new UserRepository(uow);
+            _manager = new ApplicationUserManager(_userRepository);
         }
 
         // GET: api/UserPositions/5
-        [System.Web.Http.HttpGet]
+        [HttpGet]
         public HttpResponseMessage Get(int id)
         {
             var user = _userRepository.FindByIdAsync(id).Result;
             var userPositions = user.UserPositions;
 
-            var userPositionViewModels = userPositions.Select(r => Mapper.Map<PositionViewModel>(r.Position)).ToList();
+            var userPositionViewModels = userPositions.Select(u => new UserPositionViewModel
+            {
+                Default = u.Default,
+                Description = u.Position.Description,
+                Name = u.Position.Name,
+                OrganizationId = u.OrganizationId,
+                PositionId = u.PositionId,
+                UserId = u.UserId,
+                Value = u.Position.Value
+            }).ToList();
 
             return Request.CreateResponse(HttpStatusCode.OK, userPositionViewModels);
         }
 
 
         // PUT: api/Positions/5
-        [System.Web.Http.HttpPut]
+        [HttpPut]
         public HttpResponseMessage Put([FromBody] UserViewModel editUser)
         {
             var user = _manager.FindById(editUser.Id);
@@ -51,16 +62,16 @@ namespace Spectrum.Web.Controllers.Api
                 return Request.CreateResponse(HttpStatusCode.NotFound);
             }
 
-            foreach (var r in user.UserPositions.ToList())
+            foreach (var p in user.UserPositions.ToList())
             {
-                user.UserPositions.Remove(r);
-                r.ObjectState = ObjectState.Deleted;
+                user.UserPositions.Remove(p);
+                p.ObjectState = ObjectState.Deleted;
             }
 
-            foreach (var r in editUser.UserPositions)
+            foreach (var p in editUser.UserPositions)
             {
                 var tempUserPosition = new UserPosition();
-                Mapper.Map(r, tempUserPosition);
+                Mapper.Map(p, tempUserPosition);
                 user.UserPositions.Add(tempUserPosition);
             }
 

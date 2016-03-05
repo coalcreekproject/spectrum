@@ -4,7 +4,6 @@ using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
-using System.Web.Services.Description;
 using AutoMapper;
 using Spectrum.Data.Core.Context.Interfaces;
 using Spectrum.Data.Core.Context.UnitOfWork;
@@ -30,7 +29,7 @@ namespace Spectrum.Web.Controllers.Api
         }
 
         // GET: api/OrganizationProfiles
-        [System.Web.Http.HttpGet]
+        [HttpGet]
         public IEnumerable<OrganizationProfileViewModel> Get()
         {
             var organizationProfileViewModels = new List<OrganizationProfileViewModel>();
@@ -44,7 +43,7 @@ namespace Spectrum.Web.Controllers.Api
             return organizationProfileViewModels;
         }
 
-        [System.Web.Http.HttpGet]
+        [HttpGet]
         // GET: api/OrganizationProfiles/5
         public HttpResponseMessage Get(int id)
         {

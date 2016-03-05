@@ -14,17 +14,6 @@ namespace Spectrum.Web.Controllers.Web
     //[Authorize]
     public class UserController : Controller
     {
-        private CoreDbContext _context;
-        private UserRepository _userRepository;
-        private readonly UserManager<User, int> _manager;
-
-        public UserController(ICoreUnitOfWork uow)
-        {
-            _context = uow.Context;
-            _userRepository = new UserRepository(uow);
-            _manager = new UserManager<User, int>(_userRepository);
-        }
-
         // GET: User
         public ActionResult Index()
         {
@@ -56,18 +45,11 @@ namespace Spectrum.Web.Controllers.Web
                     return PartialView("~/Views/User/Partials/DeleteUserProfileModal.cshtml");
                 case "assignuserrolesmodal":
                     return PartialView("~/Views/User/Partials/UserRolesModal.cshtml");
+                case "assignuserpositionsmodal":
+                    return PartialView("~/Views/User/Partials/UserPositionsModal.cshtml");
                 default:
                     throw new ApplicationException("Unknown Template");
             }
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                _context.Dispose();
-            }
-            base.Dispose(disposing);
         }
     }
 }

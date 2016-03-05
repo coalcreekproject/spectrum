@@ -8,18 +8,10 @@ namespace Spectrum.Logic.Models
     {
         public UserModel()
         {
-            UserApplicationModels = new List<UserApplicationModel>();
-            UserAreaOfResponsibilityModels = new List<UserAreaOfResponsibilityModel>();
-            UserClaimModels = new List<UserClaimModel>();
-            UserExternalLoginModels = new List<UserExternalLoginModel>();
-            UserNoteModels = new List<UserNoteModel>();
-            UserProfileModels = new List<UserProfileModel>();
-            GroupModels = new List<GroupModel>();
-            JurisdictionModels = new List<JurisdictionModel>();
-            OrganizationModels = new List<OrganizationModel>();
-            PositionModels = new List<PositionModel>();
-            PreferenceModels = new List<PreferenceModel>();
-            RoleModels = new List<RoleModel>();
+            UserProfiles = new List<UserProfileModel>();
+            UserRoles = new List<UserRoleModel>();
+            UserOrganizations = new List<UserOrganizationModel>();
+            UserPositions = new List<UserPositionModel>();
         }
 
         public int Id { get; set; }
@@ -43,17 +35,9 @@ namespace Spectrum.Logic.Models
         public int SelectedPositionId { get; set; }
         public string SelectedPositionName { get; set; }
 
-        public virtual ICollection<GroupModel> GroupModels { get; set; }
-        public virtual ICollection<JurisdictionModel> JurisdictionModels { get; set; }
-        public virtual ICollection<OrganizationModel> OrganizationModels { get; set; }
-        public virtual ICollection<PositionModel> PositionModels { get; set; }
-        public virtual ICollection<PreferenceModel> PreferenceModels { get; set; }
-        public virtual ICollection<RoleModel> RoleModels { get; set; }
-        public virtual ICollection<UserApplicationModel> UserApplicationModels { get; set; }
-        public virtual ICollection<UserAreaOfResponsibilityModel> UserAreaOfResponsibilityModels { get; set; }
-        public virtual ICollection<UserClaimModel> UserClaimModels { get; set; }
-        public virtual ICollection<UserExternalLoginModel> UserExternalLoginModels { get; set; }
-        public virtual ICollection<UserNoteModel> UserNoteModels { get; set; }
-        public virtual ICollection<UserProfileModel> UserProfileModels { get; set; }
+        public virtual ICollection<UserOrganizationModel> UserOrganizations { get; set; }
+        public virtual ICollection<UserPositionModel> UserPositions { get; set; }
+        public virtual ICollection<UserRoleModel> UserRoles { get; set; }
+        public virtual ICollection<UserProfileModel> UserProfiles { get; set; }
     }
 }

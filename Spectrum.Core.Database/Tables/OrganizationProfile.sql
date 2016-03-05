@@ -14,13 +14,7 @@
     [TimeZone] NVARCHAR(100) NULL, 
     [DstAdjust] BIT NULL, 
     [Language] NVARCHAR(100) NULL,
-	[Notes] NVARCHAR(MAX) NULL,
-    [Cloaked]			   BIT					  NULL, 
-    [Archive]			   BIT					  NULL, 
-    [CreatedDate]		   DATETIME				  NULL,
-	[CreatedByUserId]	   INT					  NULL,
-    [ModifiedDate]		   DATETIME				  NULL, 
-	[ModifiedByUserId]	   INT					  NULL
+	[Notes] NVARCHAR(MAX) NULL
 
     CONSTRAINT [FK_OrganizationProfile_Organization] FOREIGN KEY ([OrganizationId]) REFERENCES [Organization]([Id]) ON DELETE CASCADE
 )

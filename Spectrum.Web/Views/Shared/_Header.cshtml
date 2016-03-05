@@ -1,5 +1,4 @@
-﻿@using Microsoft.AspNet.Identity
-<div class="color-line">
+﻿<div class="color-line">
 </div>
 <div id="logo" class="light-version">
     <div class="">
@@ -12,8 +11,8 @@
 <nav role="navigation">
     <minimaliza-menu></minimaliza-menu>
     @*<div class="small-logo">
-        <span class="text-primary">Emergency Management</span>
-    </div>*@
+            <span class="text-primary">Emergency Management</span>
+        </div>*@
     <form role="search" class="navbar-form-custom" method="post" action="#">
         <div class="form-group">
             <input type="text" placeholder="Enter search term..." class="form-control" name="search">
@@ -22,201 +21,175 @@
 
     <div class="navbar-right">
 
-        @*<div class="pull-left" style="padding-top: 17px">
-            @if (User.Identity.IsAuthenticated)
-            {
-                <span class="label label-info">
-                    <a href="@Url.Action("Index", "Manage")" class="text-color text-white" style="font-size: 12px" >@User.Identity.GetUserName() as SuperUser</a>
-                </span>
-            }
-        </div>*@
-
-    <ul class="nav navbar-nav no-borders">
-        <li class="dropdown" dropdown>
-            @if (User.Identity.IsAuthenticated)
-            {
-                <a class="dropdown-toggle" href="#" dropdown-toggle  style="padding-top: 0">
-                    <span class="label label-info text-center" style="font-size: 43%">
-                        @User.Identity.GetUserName() as SuperUser
-                    </span><br/>
-                    <span class="label label-info text-center" style="font-size: 43%">
-                        Spectrum Operational
-                    </span>
+        <ul class="nav navbar-nav no-borders">
+            <li class="dropdown" ng-controller="identityFocusController">
+                <a class="dropdown-toggle" ng-click="changeFocus()">
+                    <i class="pe pe-7s-id"></i>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <span class="label label-info" style="font-size: 10px;">
+                            {{currentUser.UserName}} for {{currentUser.SelectedOrganizationName}} as {{currentUser.SelectedRoleName}} in position {{currentUser.SelectedPositionName}}
+                        </span>
+                    }
                 </a>
-                <div class="dropdown-menu hdropdown bigmenu animated flipInX" ng-controller="userFocusController">
+            </li>
+
+            <li class="dropdown" dropdown>
+                <a class="dropdown-toggle" href="#" dropdown-toggle>
+                    <i class="pe pe-7s-angle-down-circle"></i>
+                </a>
+
+                <div class="dropdown-menu hdropdown bigmenu animated flipInX">
                     <table>
                         <tbody>
                             <tr>
                                 <td>
-                                    <a ng-click="changeFocus()">
-                                        <i class="pe pe-7s-id text-info"></i>
-                                        <h5>Change Identity Focus</h5>
+                                    <a href="@Url.Action("Index", "Contact", new { Area = string.Empty })">
+                                        <i class="pe pe-7s-user-female text-info"></i>
+                                        <h5>Contacts</h5>
                                     </a>
-                                    @*NOTE: Cool trick:
-                                    <a href="#" ng-click="$event.preventDefault();logout()"/>
-                                    This allows for right click open in new tab but left click
-                                    performs the ng-click*@
                                 </td>
                                 <td>
-                                    <a href="@Url.Action("Index", "Manage", new {Area = string.Empty})">
-                                        <i class="pe pe-7s-info text-info"></i>
-                                        <h5>Manage Your Account</h5>
+                                    <a href="@Url.Action("Index", "User", new { Area = string.Empty })">
+                                        <i class="pe pe-7s-users text-info"></i>
+                                        <h5>Users</h5>
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="@Url.Action("Index", "Organization", new { Area = string.Empty })">
+                                        <i class="pe pe-7s-global text-info"></i>
+                                        <h5>Organizations</h5>
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <a href="">
+                                        <i class="pe pe-7s-folder text-info"></i>
+                                        <h5>Files</h5>
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="@Url.Action("", "", new { Area = string.Empty })">
+                                        <i class="pe pe-7s-chat text-info"></i>
+                                        <h5>Discussion Board</h5>
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <a href="">
+                                        <i class="pe pe-7s-config text-info"></i>
+                                        <h5>Settings</h5>
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="@Url.Action("", "", new { Area = string.Empty })">
+                                        <i class="pe pe-7s-credit text-info"></i>
+                                        <h5>Billing</h5>
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="">
+                                        <i class="pe pe-7s-help1 text-warning"></i>
+                                        <h5>Help</h5>
                                     </a>
                                 </td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
-            }
-        </li>
+            </li>
 
-        <li class="dropdown" dropdown>
-            <a class="dropdown-toggle" href="#" dropdown-toggle>
-                <i class="pe pe-7s-angle-down-circle"></i>
-            </a>
+            <li class="dropdown" dropdown>
+                <a class="dropdown-toggle" href="#" dropdown-toggle>
+                    <i class="pe-7s-speaker"></i>
+                </a>
+                <ul class="dropdown-menu hdropdown notification animated flipInX">
+                    <li>
+                        <a>
+                            <span class="label label-success">NEW</span> Update: The New County fire has been 80% contained.
+                        </a>
+                    </li>
+                    <li>
+                        <a>
+                            <span class="label label-warning">MSG</span> Request for volunteers in Jefferson county MO.
+                        </a>
+                    </li>
+                    <li>
+                        <a>
+                            <span class="label label-danger">SYS</span> System advisory message: slowness in planning module under investigation.
+                        </a>
+                    </li>
+                    <li class="summary">
+                        <a href="#">See all notifications</a>
+                    </li>
+                </ul>
+            </li>
 
-            <div class="dropdown-menu hdropdown bigmenu animated flipInX">
-                <table>
-                    <tbody>
-                        <tr>
-                            <td>
-                                <a href="@Url.Action("Index", "Contact", new { Area = string.Empty })">
-                                    <i class="pe pe-7s-user-female text-info"></i>
-                                    <h5>Contacts</h5>
-                                </a>
-                            </td>
-                            <td>
-                                <a href="@Url.Action("Index", "User", new { Area = string.Empty })">
-                                    <i class="pe pe-7s-users text-info"></i>
-                                    <h5>Users</h5>
-                                </a>
-                            </td>
-                            <td>
-                                <a href="@Url.Action("Index", "Organization", new { Area = string.Empty })">
-                                    <i class="pe pe-7s-global text-info"></i>
-                                    <h5>Organizations</h5>
-                                </a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <a href="">
-                                    <i class="pe pe-7s-folder text-info"></i>
-                                    <h5>Files</h5>
-                                </a>
-                            </td>
-                            <td>
-                                <a href="@Url.Action("", "", new { Area = string.Empty })">
-                                    <i class="pe pe-7s-chat text-info"></i>
-                                    <h5>Discussion Board</h5>
-                                </a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <a href="">
-                                    <i class="pe pe-7s-config text-info"></i>
-                                    <h5>Settings</h5>
-                                </a>
-                            </td>
-                            <td>
-                                <a href="@Url.Action("", "", new { Area = string.Empty })">
-                                    <i class="pe pe-7s-credit text-info"></i>
-                                    <h5>Billing</h5>
-                                </a>
-                            </td>
-                            <td>
-                                <a href="">
-                                    <i class="pe pe-7s-help1 text-warning"></i>
-                                    <h5>Help</h5>
-                                </a>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </li>
+            <li class="dropdown" dropdown>
+                <a class="dropdown-toggle label-menu-corner" href="#" dropdown-toggle>
+                    <i class="pe-7s-mail"></i>
+                    <span class="label label-warning">4</span>
+                </a>
+                <ul class="dropdown-menu hdropdown animated flipInX">
+                    <div class="title">
+                        You have 4 new messages
+                    </div>
+                    <li>
+                        <a>
+                            RE: Wild Canyon Fire
+                        </a>
+                    </li>
+                    <li>
+                        <a>
+                            Volunteers in Jefferson County
+                        </a>
+                    </li>
+                    <li>
+                        <a>
+                            Mutual aid request response
+                        </a>
+                    </li>
+                    <li>
+                        <a>
+                            Governor briefed
+                        </a>
+                    </li>
+                    <li class="summary">
+                        <a href="#">See All Messages</a>
+                    </li>
+                </ul>
+            </li>
 
-        <li class="dropdown" dropdown>
-            <a class="dropdown-toggle" href="#" dropdown-toggle>
-                <i class="pe-7s-speaker"></i>
-            </a>
-            <ul class="dropdown-menu hdropdown notification animated flipInX">
-                <li>
-                    <a>
-                        <span class="label label-success">NEW</span> Update: The New County fire has been 80% contained.
-                    </a>
-                </li>
-                <li>
-                    <a>
-                        <span class="label label-warning">MSG</span> Request for volunteers in Jefferson county MO needed for .
-                    </a>
-                </li>
-                <li>
-                    <a>
-                        <span class="label label-danger">SYS</span> System advisory message: slowness in planning module under investigation.
-                    </a>
-                </li>
-                <li class="summary">
-                    <a href="#">See all notifications</a>
-                </li>
-            </ul>
-        </li>
-
-        <li class="dropdown" dropdown>
-            <a class="dropdown-toggle label-menu-corner" href="#" dropdown-toggle>
-                <i class="pe-7s-mail"></i>
-                <span class="label label-warning">4</span>
-            </a>
-            <ul class="dropdown-menu hdropdown animated flipInX">
-                <div class="title">
-                    You have 4 new messages
-                </div>
-                <li>
-                    <a>
-                        RE: Wild Canyon Fire
-                    </a>
-                </li>
-                <li>
-                    <a>
-                        Volunteers in Jefferson County
-                    </a>
-                </li>
-                <li>
-                    <a>
-                        Mutual aid request response
-                    </a>
-                </li>
-                <li>
-                    <a>
-                        Governor briefed
-                    </a>
-                </li>
-                <li class="summary">
-                    <a href="#">See All Messages</a>
-                </li>
-            </ul>
-        </li>
-
-        <li class="dropdown" dropdown>
-            <a class="dropdown-toggle label-menu-corner" href="#" dropdown-toggle>
-                <i class="pe-7s-user"></i>
-            </a>
-            <ul class="dropdown-menu hdropdown animated flipInX">
-                <div class="title">
-                    Login or Register
-                </div>
-                <li>
-                    @Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })
-                </li>
-                <li>
-                    @Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })
-                </li>
-                <li>
-                    @Html.ActionLink("Sign Out", "SignOut", "Account", routeValues: null, htmlAttributes: new { id = "signOutLink" })
-                </li>
-            </ul>
-        </li>
-    </ul>
+            <li class="dropdown" dropdown>
+                <a class="dropdown-toggle label-menu-corner" href="#" dropdown-toggle>
+                    <i class="pe-7s-user"></i>
+                </a>
+                <ul class="dropdown-menu hdropdown animated flipInX">
+                    <div class="title">
+                        Your Login
+                    </div>
+                    <li class="bigmenu no-padding">
+                        <a href="@Url.Action("Index", "Manage", new {Area = string.Empty})">
+                            <i class="pe pe-7s-info text-info"></i>
+                            <h5>Manage Your Account</h5>
+                        </a>
+                    </li>
+                    <li>
+                        @Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })
+                    </li>
+                    <li>
+                        @Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })
+                    </li>
+                    <li>
+                        @Html.ActionLink("Sign Out", "SignOut", "Account", routeValues: null, htmlAttributes: new { id = "signOutLink" })
+                    </li>
+                    <li class="summary">
+                        <a></a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
     </div>
 </nav>

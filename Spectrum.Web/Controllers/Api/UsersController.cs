@@ -3,14 +3,16 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using Microsoft.AspNet.Identity;
-using Spectrum.Web.Models;
 using AutoMapper;
+using Microsoft.AspNet.Identity;
 using Spectrum.Data.Core.Context.Interfaces;
 using Spectrum.Data.Core.Context.UnitOfWork;
 using Spectrum.Data.Core.Models;
 using Spectrum.Data.Core.Models.Interfaces;
 using Spectrum.Data.Core.Repositories;
+using Spectrum.Logic.Identity;
+using Spectrum.Web.Models;
+using Spectrum.Web.IdentityConfig;
 
 namespace Spectrum.Web.Controllers.Api
 {
@@ -30,18 +32,18 @@ namespace Spectrum.Web.Controllers.Api
 
         private ICoreDbContext _context;
         private IUserStore<User, int> _userRepository;
-        private readonly UserManager<User, int> _manager;
+        private readonly ApplicationUserManager _manager;
 
         public UsersController(ICoreUnitOfWork uow)
         {
             _context = uow.Context;
             _userRepository = new UserRepository(uow);
-            _manager = new UserManager<User, int>(_userRepository);
+            _manager = new ApplicationUserManager(_userRepository, true);
         }
 
         //TODO: Update all of these with async calls.
 
-        [System.Web.Http.HttpGet]
+        [HttpGet]
         // GET: api/Users
         public IEnumerable<UserViewModel> Get()
         {
@@ -58,7 +60,7 @@ namespace Spectrum.Web.Controllers.Api
         
         }
 
-        [System.Web.Http.HttpGet]
+        [HttpGet]
         // GET: api/Users/5
         public HttpResponseMessage Get(int id)
         {
@@ -79,25 +81,41 @@ namespace Spectrum.Web.Controllers.Api
             return Request.CreateResponse(HttpStatusCode.OK, userViewModel); 
         }
 
-        [System.Web.Http.HttpPost]
+        [HttpPost]
         // POST: api/Users
         public HttpResponseMessage Post([FromBody]UserViewModel newUser)
         {
             User user = new User();
             Mapper.Map(newUser, user);
 
+            //TODO: Need user password validation here and some feedback
             var result = _manager.Create(user, newUser.Password);
 
             if (result.Succeeded)
             {
-                return Request.CreateResponse(HttpStatusCode.Created,
-                    user);
+                user.UserOrganizations.Add(new UserOrganization
+                {
+                    Default = true,
+                    ObjectState = ObjectState.Added,
+                    OrganizationId = UserUtility.GetUserFromMemoryCache(User).SelectedOrganizationId,
+                    UserId = user.Id
+                });
+
+                var addResult = _manager.Update(user);
+                if (addResult.Succeeded)
+                {
+                    return Request.CreateResponse(HttpStatusCode.Created, user);
+                }
             }
+
+            //If the user has an existing default organization
+            //if (user.UserOrganizations.Any(o => o.Default == true))
+            //{ }
 
             return Request.CreateResponse(HttpStatusCode.BadRequest);
         }
 
-        [System.Web.Http.HttpPut]
+        [HttpPut]
         // PUT: api/Users/5
         public HttpResponseMessage Put(int id, [FromBody]UserViewModel editUser)
         {
@@ -131,7 +149,7 @@ namespace Spectrum.Web.Controllers.Api
             return Request.CreateResponse(HttpStatusCode.BadRequest);
         }
 
-        [System.Web.Http.HttpDelete]
+        [HttpDelete]
         // DELETE: api/Users/5
         public HttpResponseMessage Delete(int id)
         {

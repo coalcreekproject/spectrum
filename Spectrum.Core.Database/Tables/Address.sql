@@ -8,11 +8,5 @@
     [StreetTwo] NVARCHAR(256) NULL, 
     [City] NVARCHAR(128) NOT NULL, 
     [State] NVARCHAR(2) NOT NULL, 
-    [Zip] NVARCHAR(10) NOT NULL,
-    [Cloaked]			   BIT					  NULL, 
-    [Archive]			   BIT					  NULL, 
-    [CreatedDate]		   DATETIME				  NULL,
-	[CreatedByUserId]	   INT					  NULL,
-    [ModifiedDate]		   DATETIME				  NULL, 
-	[ModifiedByUserId]	   INT					  NULL
+    [Zip] NVARCHAR(10) NOT NULL
 )

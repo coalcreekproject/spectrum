@@ -8,12 +8,37 @@ using Spectrum.Data.Core.Repositories;
 
 namespace Spectrum.Web.IdentityConfig
 {
-    // Configure the application user manager used in this application. UserManager is defined in ASP.NET Identity and is used by the application.
+    // Configure the application user manager used in this application. 
+    // UserManager is defined in ASP.NET Identity and is used by the application.
     public class ApplicationUserManager : UserManager<User, int>
     {
         public ApplicationUserManager(IUserStore<User, int> store)
             : base(store)
         {
+        }
+
+        public ApplicationUserManager(IUserStore<User, int> store, bool setValidation)
+            : this(store)
+        {
+            if (setValidation)
+            {
+                // Configure validation logic for usernames
+                UserValidator = new UserValidator<User, int>(this)
+                {
+                    AllowOnlyAlphanumericUserNames = false,
+                    RequireUniqueEmail = true
+                };
+
+                // Configure validation logic for passwords
+                PasswordValidator = new PasswordValidator
+                {
+                    RequiredLength = 6,
+                    RequireNonLetterOrDigit = true,
+                    RequireDigit = true,
+                    RequireLowercase = true,
+                    RequireUppercase = true,
+                };
+            }
         }
 
         public static ApplicationUserManager Create(IdentityFactoryOptions<ApplicationUserManager> options, IOwinContext context) 

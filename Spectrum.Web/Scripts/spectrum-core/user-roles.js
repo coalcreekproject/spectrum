@@ -19,9 +19,13 @@ function UserRolesModalController($scope, $modalInstance, userRoleFactory, user)
     };
 
     // Find the user default profile organization id
-    for (var i = 0; i < user.UserProfiles.length; ++i) {
-        if (user.UserProfiles[i].Default === true) {
-            userRoleParameters.organizationId = user.UserProfiles[i].OrganizationId;
+    for (var i = 0; i < user.UserOrganizations.length; ++i) {
+        if (user.UserOrganizations[i].Default === true) {
+            userRoleParameters.organizationId = user.UserOrganizations[i].OrganizationId;
+        } else {
+            if (user.UserOrganizations.length > 0) {
+                userRoleParameters.organizationId = user.UserOrganizations[0].OrganizationId;
+            }
         }
     }
 
@@ -51,21 +55,15 @@ function UserRolesModalController($scope, $modalInstance, userRoleFactory, user)
                 for (var i = 0; i < $scope.userRoles.length; ++i) {
                     $scope.models.lists.Assigned.push({
                         label: $scope.userRoles[i].Name,
+                        Default: $scope.userRoles[i].Default,
                         object: $scope.userRoles[i]
                     });
-
                     var j = 0;
                     while (j < $scope.models.lists.Available.length) {
-                        if ($scope.userRoles[i].Id === $scope.models.lists.Available[j].object.Id) {
+                        if ($scope.userRoles[i].RoleId === $scope.models.lists.Available[j].object.RoleId) {
                             $scope.models.lists.Available.splice(j, 1);
                         }
                         j++;
-                    //Reconcile the lists
-                    //for (var j = 0; j < $scope.availableRoles.length; ++j) {
-                    //    if ($scope.userRoles[i].Id === $scope.availableRoles[j].Id) {
-                    //        $scope.models.lists.Available.splice(j, 1); //pop($scope.availableRoles[j]);
-                    //    }
-                    //}
                     };
                 }
             },
@@ -108,17 +106,16 @@ function userRoleFactory($http, $q) {
 
     var _availableRoles = [];
     var _userRoles = [];
-
     var _getAvailableRoles = function (id) {
 
         var deferred = $q.defer();
 
         $http.get('/api/Roles/' + id)
             .then(function (result) {
-                // Successful
-                angular.copy(result.data, _availableRoles);
-                deferred.resolve(_availableRoles);
-            },
+                    // Successful
+                    angular.copy(result.data, _availableRoles);
+                    deferred.resolve(_availableRoles);
+                },
                 function () {
                     // Error
                     deferred.reject();
@@ -145,7 +142,6 @@ function userRoleFactory($http, $q) {
         return deferred.promise;
     };
 
-
     var _editUserRoles = function(roleList, user) {
 
         user.UserRoles = [];
@@ -153,8 +149,9 @@ function userRoleFactory($http, $q) {
         for (var i = 0; i < roleList.length; i++) {
             var userRole = {
                 UserId: user.Id,
-                RoleId: roleList[i].object.Id,
-                OrganizationId: userRoleParameters.organizationId
+                RoleId: roleList[i].object.RoleId,
+                OrganizationId: userRoleParameters.organizationId,
+                Default: roleList[i].Default
             };
             user.UserRoles.push(userRole);
         }

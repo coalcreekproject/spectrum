@@ -3,7 +3,7 @@
     .controller('UserPanelController', userPanelController)
     .config(config);
 
-function config($stateProvider, $urlRouterProvider, $compileProvider) {
+function config($locationProvider, $stateProvider, $urlRouterProvider, $compileProvider) {
 
     // Optimize load start with remove binding information inside the DOM element
     $compileProvider.debugInfoEnabled(true);
@@ -22,7 +22,7 @@ function config($stateProvider, $urlRouterProvider, $compileProvider) {
             url: "/grid",
             templateUrl: "/Templates/User/UserGridIndex",
             params: { userId: null },
-            data: { pageTitle: 'profiles' }
+            data: { pageTitle: 'grid' }
         })
         .state('userprofiles', {
             url: "/profiles/:userId",
@@ -83,6 +83,18 @@ function userPanelController($scope, $http, $modal, $state, userFactory) {
         var modalInstance = $modal.open({
             templateUrl: '/Templates/User/AssignUserRolesModal',
             controller: UserRolesModalController,
+            resolve: {
+                user: function () {
+                    return angular.copy(user);
+                }
+            }
+        });
+    };
+
+    $scope.positions = function (user) {
+        var modalInstance = $modal.open({
+            templateUrl: '/Templates/User/AssignUserPositionsModal',
+            controller: UserPositionsModalController,
             resolve: {
                 user: function () {
                     return angular.copy(user);

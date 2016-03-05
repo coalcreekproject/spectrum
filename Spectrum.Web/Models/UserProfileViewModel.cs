@@ -1,5 +1,3 @@
-using System.ComponentModel.DataAnnotations;
-
 namespace Spectrum.Web.Models
 {
     public class UserProfileViewModel

@@ -43,6 +43,9 @@
                                         dnd-selected="models.selected = item"
                                         ng-class="{'selected': models.selected === item}">
                                         {{item.label}}
+                                        <div>
+                                            <input type="checkbox" name="checkboxDefault" ng-model="item.Default"> Make default
+                                        </div>
                                     </li>
                                 </ul>
                             </div>

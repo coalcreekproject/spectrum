@@ -1,0 +1,53 @@
+﻿<div class="modal-dialog" ng-controller="identityFocusController as identityFocusController">
+    <div class="modal-header">
+        <h4 class="modal-title">Change Identity Focus</h4>
+        <small class="font-bold">Select the user organization and role to access the information in that context</small>
+    </div>
+
+    <div class="modal-body">
+        <form method="get" class="form-horizontal">
+
+            <div class="form-group">
+
+                <div class="row">
+                    <div class="col-md-7 dropdown">
+                        <label for="Organization">Organization</label>
+                        <div id="Organization" class="orm-control m-b">
+                            <select class="form-control m-b" name="SelectedOrganizationId" ng-model="userViewModel.SelectedOrganizationId"
+                                    ng-options="userOrganization.Name for userOrganization in userViewModel.UserOrganizations track by userOrganization.OrganizationId"
+                                    ng-selected="userViewModel.userOrganization == userViewModel.SelectedOrganizationId">
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-7">
+                        <label for="Role">Role</label>
+                        <div id="Role" class="orm-control m-b">
+                            <select class="form-control m-b" name="SelectedRoleId" ng-model="userViewModel.SelectedRoleId" 
+                                    ng-options="userRole.Name for userRole in userViewModel.UserRoles track by userRole.RoleId">
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-7">
+                        <label for="Position">Position</label>
+                        <div id="Position" class="orm-control m-b">
+                            <select class="form-control m-b" name="SelectedPositionId" ng-model="userViewModel.SelectedPositionId"
+                                    ng-options="userPosition.Name for userPosition in userViewModel.UserPositions track by userPosition.PositionId">
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="modal-footer">
+    <button type="button" class="btn btn-default" ng-click="cancel()">Close</button>
+    <button type="button" class="btn btn-success" ng-click="ok(userViewModel)">Change Focus</button>
+</div>

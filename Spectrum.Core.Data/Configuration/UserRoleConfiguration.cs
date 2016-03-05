@@ -14,6 +14,7 @@ namespace Spectrum.Data.Core.Configuration
             Property(x => x.UserId).HasColumnName("UserId").IsRequired().HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
             Property(x => x.RoleId).HasColumnName("RoleId").IsRequired().HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
             Property(x => x.OrganizationId).HasColumnName("OrganizationId").IsRequired();
+            Property(x => x.Default).HasColumnName("Default").IsOptional();
 
             HasRequired(a => a.User).WithMany(b => b.UserRoles).HasForeignKey(c => c.UserId);
             HasRequired(a => a.Role).WithMany(b => b.UserRoles).HasForeignKey(c => c.RoleId);

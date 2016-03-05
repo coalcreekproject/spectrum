@@ -5,6 +5,7 @@ using Spectrum.Data.Core.Context;
 using Spectrum.Data.Core.Context.UnitOfWork;
 using Spectrum.Data.Core.Models;
 using Spectrum.Data.Core.Repositories;
+using Spectrum.Data.Core.Repositories.Interfaces;
 using Spectrum.Web.Controllers;
 using Spectrum.Web.Controllers.Web;
 
@@ -56,6 +57,7 @@ namespace Spectrum.Web
             container.RegisterType<IUserStore<User, int>, UserRepository>(new InjectionConstructor(typeof(CoreDbContext)));
             container.RegisterType<AccountController>(new InjectionConstructor());
             container.RegisterType<ManageController>(new InjectionConstructor());
+            container.RegisterType<IRoleRepository, RoleRepository>();
         }
     }
 }

@@ -1,0 +1,59 @@
+﻿<div class="modal-dialog">
+    <div class="modal-header">
+        <h4 class="modal-title">User Positions</h4>
+        <small class="font-bold">Assign Positions to this User</small>
+    </div>
+
+    <div class="modal-body">
+
+        <div class="simpleDemo row">
+
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="panel panel-dragdroplist">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Available</h3>
+                            </div>
+                            <div class="panel-dragdroplist-body">
+                                <ul dnd-list="models.lists.Available">
+                                    <li ng-repeat="item in models.lists.Available"
+                                        dnd-draggable="item"
+                                        dnd-moved="models.lists.Available.splice($index, 1)"
+                                        dnd-effect-allowed="move"
+                                        dnd-selected="models.selected = item"
+                                        ng-class="{'selected': models.selected === item}">
+                                        {{item.label}}
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="panel panel-dragdroplist">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Assigned</h3>
+                            </div>
+                            <div class="panel-dragdroplist-body">
+                                <ul dnd-list="models.lists.Assigned">
+                                    <li ng-repeat="item in models.lists.Assigned"
+                                        dnd-draggable="item"
+                                        dnd-moved="models.lists.Assigned.splice($index, 1)"
+                                        dnd-effect-allowed="move"
+                                        dnd-selected="models.selected = item"
+                                        ng-class="{'selected': models.selected === item}">
+                                        {{item.label}}
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-default" ng-click="cancel()">Close</button>
+    <button type="button" class="btn btn-success" ng-click="ok(user)">Save changes</button>
+</div>
