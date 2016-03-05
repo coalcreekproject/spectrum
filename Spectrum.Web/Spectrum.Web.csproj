@@ -247,6 +247,7 @@
     <Compile Include="Controllers\Api\UserRolesController.cs" />
     <Compile Include="Controllers\Web\AccountController.cs" />
     <Compile Include="Controllers\Web\ContactController.cs" />
+    <Compile Include="Controllers\Web\FileManagerController.cs" />
     <Compile Include="Controllers\Web\PortalController.cs" />
     <Compile Include="Controllers\Web\HomeController.cs" />
     <Compile Include="Controllers\Web\ManageController.cs" />
@@ -560,6 +561,7 @@
     <Content Include="Content\old\fonts\myriadpro-semibold_1.ttf" />
     <Content Include="Content\old\fonts\myriadpro-semibold_1.woff" />
     <None Include="Properties\PublishProfiles\spectrumoperational.pubxml" />
+    <Content Include="Scripts\spectrum-core\filemanager-index.js" />
     <Content Include="Scripts\spectrum-core\organization-positions.js" />
     <Content Include="Scripts\spectrum-core\organization-roles.js" />
     <Content Include="Scripts\spectrum-core\organization-profiles.js" />
@@ -573,7 +575,8 @@
     <Content Include="Scripts\spectrum-eoc\checklists.js" />
     <Content Include="Templates\Common\panel_tools.html" />
     <Content Include="Views\Organization\Partials\AddOrganizationPositionModal.cshtml" />
-    <Content Include="Views\Home\Old.cshtml" />
+    <Content Include="Views\FileManager\Index.cshtml" />
+    <Content Include="Views\FileManager\Partials\FileManagerIndex.cshtml" />
     <None Include="Views\Organization\Partials\AddOrganizationProfileModal.cshtml" />
     <Content Include="Views\Organization\Partials\AddOrganizationRoleModal.cshtml" />
     <Content Include="Views\Organization\Partials\DeleteOrganizationPositionModal.cshtml" />
