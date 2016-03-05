@@ -74,6 +74,10 @@
       <HintPath>..\packages\Microsoft.AspNet.Identity.Owin.2.2.1\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Microsoft.Azure.Documents.Client, Version=1.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Azure.DocumentDB.1.5.3\lib\net40\Microsoft.Azure.Documents.Client.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Owin, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Owin.3.0.1\lib\net45\Microsoft.Owin.dll</HintPath>
@@ -484,7 +488,10 @@
     <Content Include="Areas\Eoc\Views\IncidentManagement\Partials\IncidentManagementIndex.cshtml" />
     <Content Include="Areas\Eoc\Views\Dashboard\Dashboard.cshtml" />
     <Content Include="Areas\Eoc\Views\Checklist\Checklists.cshtml" />
+    <Content Include="Scripts\app\data\incidentData.js" />
     <Content Include="Scripts\app\templates\im.html" />
+    <Content Include="Areas\Eoc\Views\IncidentManagement\Partials\IncidentManagementAddModal.cshtml" />
+    <Content Include="Areas\Eoc\Views\IncidentManagement\Partials\IncidentManagementDeleteModal.cshtml" />
     <None Include="Content\images\landing\header.jpg.old" />
     <Content Include="Content\images\landing\s1.png" />
     <Content Include="Content\images\landing\s2.png" />
@@ -738,7 +745,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Eoc\Models\" />
     <Folder Include="Views\Contact\Partials\" />
   </ItemGroup>
   <ItemGroup>

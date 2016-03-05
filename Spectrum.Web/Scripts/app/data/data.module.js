@@ -1,6 +1,6 @@
 ﻿(function() {
     "use strict";
 
-    angular.module("app.data", []);
+    angular.module("app.data", ["ngResource"]);
 
 })();

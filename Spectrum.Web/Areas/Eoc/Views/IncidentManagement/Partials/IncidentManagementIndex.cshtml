@@ -42,7 +42,7 @@
                         <div class="col-lg-2">
                             <div class="pull-right">
                                 <div style="padding-bottom: 15px">
-                                    <button class="btn btn-primary" id="add" ng-click="add()">Add an Incident</button>
+                                    <button class="btn btn-primary" id="add" ng-click="im.openModal()">Add an Incident</button>
                                 </div>
                             </div>
                         </div>
@@ -60,7 +60,7 @@
                         <div class="hpanel">
                             <div class="hbuilt panel-heading">
                                 <div panel-tools></div>
-                                {{ i.incidentName }} Incident
+                                Incident: {{ i.incidentName }}
                             </div>
                             <div class="panel-body">
                                 <div class="row">
@@ -78,8 +78,8 @@
                             <div class="panel-footer">
                                 <div class="btn-toolbar">
                                     <div class="pull-right">
-                                        <button class="btn btn-default btn-sm" ng-click="edit({{ p }})">Edit</button>
-                                        <button class="btn btn-default btn-sm" ng-click="delete({{ p }})">Delete</button>
+                                        <button class="btn btn-default btn-sm" ng-click="im.editModal(i)">Edit</button>
+                                        <button class="btn btn-default btn-sm" ng-click="im.deleteModal(i)">Delete</button>
                                     </div>
                                 </div>
                             </div>

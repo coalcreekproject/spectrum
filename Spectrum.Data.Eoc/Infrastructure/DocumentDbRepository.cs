@@ -57,7 +57,7 @@ namespace Spectrum.Data.Eoc.Infrastructure
             if (col == null)
             {
                 var collectionSpec = new DocumentCollection {Id = _collectionId};
-                var requestOptions = new RequestOptions {OfferType = "S1"};
+                var requestOptions = new RequestOptions {OfferType = "S1"}; // S1 is only type available at the moment
 
                 col = _client.CreateDocumentCollectionAsync(databaseLink, collectionSpec, requestOptions).Result;
             }
@@ -65,6 +65,7 @@ namespace Spectrum.Data.Eoc.Infrastructure
             return col;
         }
 
+        // A little weird we don't have async query functions
         public IEnumerable<T> GetItems(Expression<Func<T, bool>> predicate)
         {
             return _client.CreateDocumentQuery<T>(Collection.DocumentsLink)
@@ -94,6 +95,16 @@ namespace Spectrum.Data.Eoc.Infrastructure
         {
             var doc = GetDocument(id);
             return await _client.ReplaceDocumentAsync(doc.SelfLink, item);
+        }
+
+        public async Task<ResourceResponse<Document>> DeleteItemAsync(string id)
+        {
+            var doc = GetDocument(id);
+            if (doc != null)
+            {
+                return await _client.DeleteDocumentAsync(doc.SelfLink);
+            }
+            return null;
         }
 
         private Document GetDocument(string id)

@@ -1,4 +1,6 @@
 ﻿using System.Web.Http;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 
 namespace Spectrum.Web
 {
@@ -11,11 +13,15 @@ namespace Spectrum.Web
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
                 routeTemplate: "api/{controller}/{id}",
-                defaults: new { id = RouteParameter.Optional }
-            );
+                defaults: new {id = RouteParameter.Optional}
+                );
 
             config.Formatters.JsonFormatter.SerializerSettings.ReferenceLoopHandling
-                = Newtonsoft.Json.ReferenceLoopHandling.Ignore; 
+                = ReferenceLoopHandling.Ignore;
+
+            // Default to camel case serialization
+            config.Formatters.JsonFormatter.SerializerSettings.ContractResolver =
+                new CamelCasePropertyNamesContractResolver();
         }
     }
 }
