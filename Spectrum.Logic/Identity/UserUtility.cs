@@ -28,13 +28,13 @@ namespace Spectrum.Logic.Identity
             var userModel = Mapper.Map<UserModel>(user);
             var cache = MemoryCache.Default;
 
-            cache.Set("user:" + userModel.Id, userModel, DateTimeOffset.Now.AddMinutes(30));
+            cache.Set("user:" + userModel.Id, userModel, DateTimeOffset.Now.AddMinutes(120));
         }
 
         public static void MemoryCacheUser(UserModel userModel)
         {
             var cache = MemoryCache.Default;
-            cache.Set("user:" + userModel.Id, userModel, DateTimeOffset.Now.AddMinutes(30));
+            cache.Set("user:" + userModel.Id, userModel, DateTimeOffset.Now.AddMinutes(120));
         }
 
         public static UserModel GetUserFromMemoryCache(IPrincipal user)
