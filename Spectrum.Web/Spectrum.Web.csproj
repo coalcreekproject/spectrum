@@ -245,6 +245,7 @@
     <Compile Include="Controllers\Api\RolesController.cs" />
     <Compile Include="Controllers\Api\UserPositionsController.cs" />
     <Compile Include="Controllers\Api\UserRolesController.cs" />
+    <Compile Include="Controllers\CommunityController.cs" />
     <Compile Include="Controllers\Web\AccountController.cs" />
     <Compile Include="Controllers\Web\ContactController.cs" />
     <Compile Include="Controllers\Web\FileManagerController.cs" />
@@ -316,6 +317,8 @@
     <Content Include="Content\images\green%402x.png" />
     <Content Include="Content\images\green.png" />
     <Content Include="Content\images\landing\banner.png" />
+    <Content Include="Content\images\logo\SO-Full-Color-Text-Right-Two-Rows-20pct.png" />
+    <Content Include="Content\images\logo\SO-Full-Color-Text-Right-Two-Rows-25pct.png" />
     <Content Include="Content\images\profile-new.png" />
     <Content Include="Content\images\logo\SO-Full-Color-Text-Right-One-Row-100pct.png" />
     <Content Include="Content\images\logo\SO-Full-Color-Text-Right-One-Row-10pct.png" />
@@ -577,6 +580,7 @@
     <Content Include="Views\Organization\Partials\AddOrganizationPositionModal.cshtml" />
     <Content Include="Views\FileManager\Index.cshtml" />
     <Content Include="Views\FileManager\Partials\FileManagerIndex.cshtml" />
+    <Content Include="Views\Community\Index.cshtml" />
     <None Include="Views\Organization\Partials\AddOrganizationProfileModal.cshtml" />
     <Content Include="Views\Organization\Partials\AddOrganizationRoleModal.cshtml" />
     <Content Include="Views\Organization\Partials\DeleteOrganizationPositionModal.cshtml" />
@@ -589,6 +593,7 @@
     <Content Include="Views\Portal\Partials\PortalIndex.cshtml" />
     <Content Include="Views\Organization\Partials\OrganizationPosition.cshtml" />
     <Content Include="Views\Shared\_Legacy_Home.cshtml" />
+    <Content Include="Views\Community\Partials\Index.cshtml" />
     <None Include="Views\User\Partials\DeleteUserProfileModal.cshtml" />
     <None Include="Views\User\Partials\EditUserProfileModal.cshtml" />
     <None Include="Views\User\Partials\AddUserProfileModal.cshtml" />
