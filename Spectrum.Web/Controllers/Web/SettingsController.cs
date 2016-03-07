@@ -4,11 +4,11 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace Spectrum.Web.Controllers
+namespace Spectrum.Web.Controllers.Web
 {
-    public class CommunityController : Controller
+    public class SettingsController : Controller
     {
-        // GET: Community
+        // GET: Settings
         public ActionResult Index()
         {
             return View();

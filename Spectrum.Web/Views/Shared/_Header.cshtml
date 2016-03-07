@@ -77,19 +77,19 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <a href="">
+                                    <a href="@Url.Action("Index", "Settings", new { Area = string.Empty })">
                                         <i class="pe pe-7s-config text-info"></i>
                                         <h5>Settings</h5>
                                     </a>
                                 </td>
                                 <td>
-                                    <a href="@Url.Action("", "", new { Area = string.Empty })">
+                                    <a href="@Url.Action("Index", "Billing", new { Area = string.Empty })">
                                         <i class="pe pe-7s-credit text-info"></i>
                                         <h5>Billing</h5>
                                     </a>
                                 </td>
                                 <td>
-                                    <a href="">
+                                    <a href="@Url.Action("Index", "Help", new { Area = string.Empty })">
                                         <i class="pe pe-7s-help1 text-warning"></i>
                                         <h5>Help</h5>
                                     </a>
@@ -156,7 +156,7 @@
                         </a>
                     </li>
                     <li class="summary">
-                        <a href="#">See All Messages</a>
+                        <a href="@Url.Action("Index", "Messages", new { Area = string.Empty })">See all Messages</a>
                     </li>
                 </ul>
             </li>
