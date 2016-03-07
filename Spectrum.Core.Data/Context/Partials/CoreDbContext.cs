@@ -7,6 +7,9 @@ namespace Spectrum.Data.Core.Context
     {
         public CoreDbContext()
         {
+            //@%^!ing Azure
+            this.Database.CommandTimeout = 180;
+
             //Debug.Write(Database.Connection.ConnectionString);
 
             Database.SetInitializer(new CoreInitializer());
