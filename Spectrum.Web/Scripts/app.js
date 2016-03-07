@@ -11,14 +11,14 @@
         'angular-flot',             // Flot chart
         'angles',                   // Chart.js
         'angular-peity',            // Peity (small) charts
-        'cgNotify',                 // Angular notify
+        //'cgNotify',                 // Angular notify
         'angles',                   // Angular ChartJS
         'ngAnimate',                // Angular animations
-        'ui.map',                   // Ui Map for Google maps
-        'ui.calendar',              // UI Calendar
-        'summernote',               // Summernote plugin
+        //'ui.map',                   // Ui Map for Google maps
+        //'ui.calendar',              // UI Calendar
+        //'summernote',               // Summernote plugin
         'ui.tree',                  // Angular ui Tree
-        'bm.bsTour',                // Angular bootstrap tour
+        //'bm.bsTour',                // Angular bootstrap tour
         'xeditable',                // Angular-xeditable
         'ui.select',                // AngularJS ui-select
         'ui.sortable',              // AngularJS ui-sortable
@@ -26,8 +26,7 @@
         //'oitozero.ngSweetAlert',
         'ui.grid',                  // Angular UI Grid
         'ui.grid.selection',        // Selection tools for Ui Grid
-        'dndLists',                  //drag and drop lists
-        'ngRoute'
+        'dndLists'                  //drag and drop lists
     ]);
 })();
 

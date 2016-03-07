@@ -245,11 +245,17 @@
     <Compile Include="Controllers\Api\RolesController.cs" />
     <Compile Include="Controllers\Api\UserPositionsController.cs" />
     <Compile Include="Controllers\Api\UserRolesController.cs" />
+    <Compile Include="Controllers\Web\CommunityController.cs" />
     <Compile Include="Controllers\Web\AccountController.cs" />
+    <Compile Include="Controllers\Web\BillingController.cs" />
     <Compile Include="Controllers\Web\ContactController.cs" />
+    <Compile Include="Controllers\Web\FileManagerController.cs" />
+    <Compile Include="Controllers\Web\HelpController.cs" />
+    <Compile Include="Controllers\Web\MessagesController.cs" />
     <Compile Include="Controllers\Web\PortalController.cs" />
     <Compile Include="Controllers\Web\HomeController.cs" />
     <Compile Include="Controllers\Web\ManageController.cs" />
+    <Compile Include="Controllers\Web\SettingsController.cs" />
     <Compile Include="Controllers\Web\UserController.cs" />
     <Compile Include="Controllers\Web\OrganizationController.cs" />
     <Compile Include="Controllers\Api\OrganizationProfilesController.cs" />
@@ -315,6 +321,8 @@
     <Content Include="Content\images\green%402x.png" />
     <Content Include="Content\images\green.png" />
     <Content Include="Content\images\landing\banner.png" />
+    <Content Include="Content\images\logo\SO-Full-Color-Text-Right-Two-Rows-20pct.png" />
+    <Content Include="Content\images\logo\SO-Full-Color-Text-Right-Two-Rows-25pct.png" />
     <Content Include="Content\images\profile-new.png" />
     <Content Include="Content\images\logo\SO-Full-Color-Text-Right-One-Row-100pct.png" />
     <Content Include="Content\images\logo\SO-Full-Color-Text-Right-One-Row-10pct.png" />
@@ -560,6 +568,10 @@
     <Content Include="Content\old\fonts\myriadpro-semibold_1.ttf" />
     <Content Include="Content\old\fonts\myriadpro-semibold_1.woff" />
     <None Include="Properties\PublishProfiles\spectrumoperational.pubxml" />
+    <Content Include="Scripts\spectrum-core\messages-index.js" />
+    <Content Include="Scripts\spectrum-core\community-index.js" />
+    <Content Include="Scripts\spectrum-core\help-index.js" />
+    <Content Include="Scripts\spectrum-core\filemanager-index.js" />
     <Content Include="Scripts\spectrum-core\organization-positions.js" />
     <Content Include="Scripts\spectrum-core\organization-roles.js" />
     <Content Include="Scripts\spectrum-core\organization-profiles.js" />
@@ -573,7 +585,15 @@
     <Content Include="Scripts\spectrum-eoc\checklists.js" />
     <Content Include="Templates\Common\panel_tools.html" />
     <Content Include="Views\Organization\Partials\AddOrganizationPositionModal.cshtml" />
-    <Content Include="Views\Home\Old.cshtml" />
+    <Content Include="Views\FileManager\Index.cshtml" />
+    <Content Include="Views\FileManager\Partials\FileManagerIndex.cshtml" />
+    <Content Include="Views\Community\Index.cshtml" />
+    <Content Include="Views\Help\Index.cshtml" />
+    <Content Include="Views\Help\Partials\HelpIndex.cshtml" />
+    <Content Include="Views\Help\Partials\Faq.cshtml" />
+    <Content Include="Views\Billing\Index.cshtml" />
+    <Content Include="Views\Messages\Index.cshtml" />
+    <Content Include="Views\Messages\Partials\MessagesIndex.cshtml" />
     <None Include="Views\Organization\Partials\AddOrganizationProfileModal.cshtml" />
     <Content Include="Views\Organization\Partials\AddOrganizationRoleModal.cshtml" />
     <Content Include="Views\Organization\Partials\DeleteOrganizationPositionModal.cshtml" />
@@ -586,6 +606,9 @@
     <Content Include="Views\Portal\Partials\PortalIndex.cshtml" />
     <Content Include="Views\Organization\Partials\OrganizationPosition.cshtml" />
     <Content Include="Views\Shared\_Legacy_Home.cshtml" />
+    <Content Include="Views\Community\Partials\CommunityIndex.cshtml" />
+    <Content Include="Views\Settings\Index.cshtml" />
+    <Content Include="Views\Settings\Partials\SettingsIndex.cshtml" />
     <None Include="Views\User\Partials\DeleteUserProfileModal.cshtml" />
     <None Include="Views\User\Partials\EditUserProfileModal.cshtml" />
     <None Include="Views\User\Partials\AddUserProfileModal.cshtml" />
@@ -659,6 +682,7 @@
     <Folder Include="Areas\Eoc\Models\" />
     <Folder Include="Areas\Eoc\Views\Shared\" />
     <Folder Include="Scripts\vendor\" />
+    <Folder Include="Views\Billing\Partials\" />
     <Folder Include="Views\Contact\Partials\" />
   </ItemGroup>
   <ItemGroup>

@@ -7,7 +7,7 @@
     <div class="container">
         <div class="navbar-header">
             <a href="@Url.Action("Index", "Portal", new {Area = string.Empty})" class="navbar-brand">EM Suite Portal</a>
-            <img src="~/Content/images/logo/SO-Full-Color-Text-Right-One-Row-25pct.png" style="padding-left: 15px; padding-top: 7px"/>
+            <img src="~/Content/images/logo/SO-Full-Color-Text-Right-One-Row-20pct.png" style="padding-left: 15px; padding-top: 11px"/>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
@@ -23,58 +23,31 @@
     </div>
 </nav>
 
-<header id="page-top">
-    <div class="container">
-        <img src="~/Content/images/landing/banner.png" class="img-responsive" alt="Responsive Image">
-        @*<div class="heading">
-                <h1>
-                    Welcome to Spectrum Operational
-                </h1>
-                <span>Contrary to popular belief, Lorem Ipsum is not<br /> simply random text for print.</span>
-                <p class="small">
-                    Lorem Ipsum is simply dummy text of the printing and Lorem Ipsum is
-                    Lorem Ipsum is simply dummy of the simply dummy text of the ypesetting.
-                </p>
-                <a href="#" class="btn btn-info btn-sm">Learn more</a>
-            </div>*@
-    </div>
-</header>
-<section>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-4">
-                <h4>HTML5 & CSS3</h4>
-                <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus.</p>
-                <p><a class="navy-link btn btn-sm" href="#" role="button">Learn more</a></p>
-            </div>
-            <div class="col-md-4">
-                <h4>Staggering Animations</h4>
-                <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of.</p>
-                <p><a class="navy-link btn btn-sm" href="#" role="button">Learn more</a></p>
-            </div>
-            <div class="col-md-4">
-                <h4>Unique Dashboard</h4>
-                <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour.</p>
-                <p><a class="navy-link btn btn-sm" href="#" role="button">Learn more</a></p>
-            </div>
-        </div>
-    </div>
-</section>
+<div class="heading container">
+    <img src="~/Content/images/landing/banner.png" class="img-responsive" alt="Responsive Image">
+</div>
 
 <section id="components" class="bg-light">
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
-                <h2><span class="text-info">The best user experience </span>by far</h2>
-                <p>Lorem Ipsum available, but the majority have suffered alteration euismod. </p>
+                <h2><span class="text-info">The best user experience </span><strong>by far</strong></h2>
             </div>
         </div>
         <div class="row m-t-md">
             <div class="col-md-6">
-                <h4 class="m-t-xxxl">Modern Application Design</h4>
-                <p> Built for speed and redundancy.</p>
-                <h4 class="m-t-xxxl">Efficient Workflow Based UI</h4>
-                <p>Designed for the way Emergency Management and you work, minimal training ramp-up.</p>
+                <h4 class="m-t-l">Fast</h4>
+                <p>
+                    We strive to keep our application running fast, so you are never waiting on it. During an incident, you need to be able to rely on
+                    the responsiveness of your tools.
+                </p>
+                <h4 class="m-t-xl">Workflow Based</h4>
+                <p>
+                    Efficient workflow drives the application, not the other way around. It's made for the way Emergency Management professionals work,
+                    infomation you need is never far away.
+                </p>
+                <h4 class="m-t-xl">Familiar</h4>
+                <p>EM Suite is designed to be familiar. Leverage what you already know from using older systems on the platform for the next generation of Emergency Management.</p>
             </div>
             <div class="col-md-6">
                 <img src="~/Content/images/landing/s2.png" class="img-responsive">
@@ -85,7 +58,7 @@
                 <img src="~/Content/images/landing/s4.png" class="img-responsive">
             </div>
             <div class="col-md-6">
-                <h4 class="m-t-xxl">Additional analytical components</h4>
+                <h4 class="m-t-xxl">Analytical components</h4>
                 <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum.</p>
             </div>
         </div>
@@ -110,7 +83,7 @@
     </div>
 </section>
 
-<section id="features">
+@*<section id="features">
     <div class="container">
         <div class="row">
             <div class="col-md-6 col-md-offset-3 text-center">
@@ -201,7 +174,7 @@
         </div>
 
     </div>
-</section>
+</section>*@
 
 <section id="team">
     <div class="container">
@@ -281,17 +254,13 @@
         </div>
 
         <div class="row m-t-lg">
-            <div class="col-lg-3">
+            <div class="col-lg-4">
                 <ul class="pricing-plan list-unstyled">
                     <li class="pricing-title">
-                        Basic
+                        Standard
                     </li>
                     <li class="pricing-desc">
                         Emergency Management Suite
-                        <ul class="list-style-type:circle" style="text-align: left">
-                            <li>Planning</li>
-                            <li>EOC</li>
-                        </ul>
                     </li>
                     <li class="pricing-price">
                         <span>$150</span>
@@ -300,16 +269,19 @@
                         Shared Cloud Hosting
                     </li>
                     <li>
-                        Single Agency
+                        Unlimited Users
                     </li>
                     <li>
-                        Up to 5 Users
+                        Up to 5 Agencies
                     </li>
                     <li>
-                        Low cost per use pricing for in-app services and analytics.
+                        Up to 5 EOC Activations
                     </li>
                     <li>
-                        Try it Free for 30 Days
+                        Low cost, per-use pricing for services and analytics.
+                    </li>
+                    <li>
+                        Free 30 Day Trial
                     </li>
                     <li>
                         <a class="btn btn-primary btn-sm" href="#">Signup today</a>
@@ -317,31 +289,34 @@
                 </ul>
             </div>
 
-            <div class="col-lg-3">
+            <div class="col-lg-4">
                 <ul class="pricing-plan list-unstyled selected">
                     <li class="pricing-title">
-                        Standard
+                        Premium
                     </li>
                     <li class="pricing-desc">
-                        Emergency Management Suite
+                        EM Suite Premium
                     </li>
                     <li class="pricing-price">
                         <span>$250</span>
                     </li>
                     <li>
-                        Shared Hosting
+                        Shared Cloud Hosting
                     </li>
                     <li>
-                        Multiple Agencies
+                        Unlimited Users
                     </li>
                     <li>
-                        Up to 200 users
+                        Unlimited Agencies
                     </li>
                     <li>
-                        $100 monthly in-app service credits
+                        Unlimited EOC Activations, Plans and Excercises
                     </li>
                     <li>
-                        Try it Free for 30 Days
+                        $125 monthly in-app service credits
+                    </li>
+                    <li>
+                        Free 45 Day Trial
                     </li>
                     <li class="plan-action">
                         <a class="btn btn-primary btn-sm" href="#">Signup today</a>
@@ -349,31 +324,34 @@
                 </ul>
             </div>
 
-            <div class="col-lg-3">
+            <div class="col-lg-4">
                 <ul class="pricing-plan list-unstyled">
                     <li class="pricing-title">
-                        Premium
+                        Dedicated
                     </li>
                     <li class="pricing-desc">
-
+                        Best bang for your buck, get ready for anything.
                     </li>
                     <li class="pricing-price">
-                        <span>$500</span>
+                        <span>$500 monthly</span>
                     </li>
                     <li>
-                        Dashboards
+                        Dedicated Cloud Hosting
                     </li>
                     <li>
-                        Projects view
+                        Unlimited Users
                     </li>
                     <li>
-                        Contacts
+                        Unlimited Agencies
                     </li>
                     <li>
-                        Calendar
+                        Unlimited EM Suite Access
                     </li>
                     <li>
-                        AngularJs
+                        $250.00 in-app service credits monthly*
+                    </li>
+                    <li>
+                        Free 60 Day Trial
                     </li>
                     <li>
                         <a class="btn btn-primary btn-sm" href="#">Signup today</a>
@@ -381,7 +359,7 @@
                 </ul>
             </div>
 
-            <div class="col-lg-3">
+            @*<div class="col-lg-3">
                 <ul class="pricing-plan list-unstyled">
                     <li class="pricing-title">
                         Prestige
@@ -411,7 +389,7 @@
                         <a class="btn btn-primary btn-sm" href="#">Signup today</a>
                     </li>
                 </ul>
-            </div>
+            </div>*@
         </div>
 
     </div>
@@ -420,18 +398,19 @@
     <div class="container">
         <div class="row text-center">
             <div class="col-md-6 col-md-offset-3">
-                <h2><span class="text-info">Our best</span> clients</h2>
+                <h2>
+                    <span class="text-info">Our </span> EM Innovators
+                </h2>
                 <p>
-                    Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes.
+                    EM Innovators are thought-leaders in Emergency Management that have chosen the advanced Spectrum Operational Software platform.
+                    With their operational experience, EM Innovators are driving the <strong>next generation</strong> of Emergency Management practice.
                 </p>
             </div>
         </div>
 
         <div class="row text-center m-t-lg">
             <div class="col-md-6 col-md-offset-3">
-
                 <div class="row">
-
                     <div class="col-md-6">
                         <div class="client">Company logo</div>
                     </div>
@@ -450,12 +429,8 @@
                     <div class="col-md-6">
                         <div class="client">Company logo</div>
                     </div>
-
                 </div>
-
-
             </div>
-
         </div>
 
 
@@ -467,7 +442,7 @@
             <div class="col-md-6 col-md-offset-3">
                 <h2><span class="text-info">Contact us</span> anytime</h2>
                 <p>
-                    Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes.
+                    We're always listening...
                 </p>
             </div>
         </div>
@@ -510,13 +485,11 @@
                     <strong><span class="navy">Spectrum Operational LLC</span></strong><br />
                     2770 Arapahoe Road<br/>
                     Suite 132-113<br />
-                    Lafayette, CO 80026<br />
+                    Lafayette, CO 80026<br/>
                     <abbr title="Phone">P:</abbr> (303) 704-2500
                 </address>
                 <p class="text-color">
-                    Consectetur adipisicing elit. Aut eaque, totam corporis laboriosam veritatis quis ad perspiciatis,
-                    totam corporis laboriosam veritatis, consectetur adipisicing elit quos non quis ad perspiciatis,
-                    totam corporis ea.
+                    Interested in custom implementation of the Spectrum Operational platform for your Emergency Management organization? <a href="mailto:sales@example.com">Contact our sales team.</a>
                 </p>
             </div>
         </div>
