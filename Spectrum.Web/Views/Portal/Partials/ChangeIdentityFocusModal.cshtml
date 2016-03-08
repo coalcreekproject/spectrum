@@ -8,46 +8,29 @@
         <form method="get" class="form-horizontal">
 
             <div class="form-group">
-
                 <div class="row">
                     <div class="col-md-7 dropdown">
-                        <label for="Organization">Organization</label>
-                        <div id="Organization" class="orm-control m-b">
-                            <select class="form-control m-b" name="SelectedOrganizationId" ng-model="userViewModel.SelectedOrganizationId"
-                                    ng-options="userOrganization.Name for userOrganization in userViewModel.UserOrganizations track by userOrganization.OrganizationId"
-                                    ng-selected="userViewModel.userOrganization == userViewModel.SelectedOrganizationId">
-                            </select>
-                        </div>
+                        <label for="orgSelect">Organization</label>
+                        <select class="form-control m-b" id="orgSelect" name="orgSelect" ng-model="currentUser.selectedOrg" ng-options="option.name for option in organizations track by option.id"></select>
                     </div>
                 </div>
-
                 <div class="row">
                     <div class="col-md-7">
-                        <label for="Role">Role</label>
-                        <div id="Role" class="orm-control m-b">
-                            <select class="form-control m-b" name="SelectedRoleId" ng-model="userViewModel.SelectedRoleId" 
-                                    ng-options="userRole.Name for userRole in userViewModel.UserRoles track by userRole.RoleId">
-                            </select>
-                        </div>
+                        <label for="roleSelect">Role</label>
+                        <select class="form-control m-b" id="roleSelect" name="roleSelect" ng-model="currentUser.selectedRole" ng-options="option.name for option in roles track by option.roleId"></select>
                     </div>
                 </div>
-
                 <div class="row">
                     <div class="col-md-7">
-                        <label for="Position">Position</label>
-                        <div id="Position" class="orm-control m-b">
-                            <select class="form-control m-b" name="SelectedPositionId" ng-model="userViewModel.SelectedPositionId"
-                                    ng-options="userPosition.Name for userPosition in userViewModel.UserPositions track by userPosition.PositionId">
-                            </select>
-                        </div>
+                        <label for="positionSelect">Position</label>
+                        <select class="form-control m-b" id="positionSelect" name="positionSelect" ng-model="currentUser.selectedPosition" ng-options="option.name for option in positions track by option.positionId"></select>
                     </div>
                 </div>
             </div>
         </form>
     </div>
 </div>
-
 <div class="modal-footer">
-    <button type="button" class="btn btn-default" ng-click="cancel()">Close</button>
-    <button type="button" class="btn btn-success" ng-click="ok(userViewModel)">Change Focus</button>
+    <button class="btn btn-default" ng-click="cancel()" type="button">Close</button>
+    <button class="btn btn-success" ng-click="ok(currentUser)" type="button">Change Focus</button>
 </div>

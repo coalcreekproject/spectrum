@@ -1,151 +1,122 @@
-﻿angular
-    .module('app')
-    .controller('identityFocusController', identityFocusController);
+﻿(function () {
+    angular
+        .module("app")
+        .controller("identityFocusController", identityFocusController);
 
-function identityFocusParameters() {
-    this.userId = null;
-    this.organizationId = null;
-};
+    identityFocusController.$inject = ["$scope", "$http", "$uibModal", "currentUserFactory"];
 
-function identityFocusController($scope, $http, $uibModal, currentUserFactory) {
+    function identityFocusController($scope, $http, $uibModal, currentUserFactory) {
 
-    $uibModal.scope = $scope;
-    $scope.data = currentUserFactory;
+        // Controller declarations
+        $scope.currentUser = {};
+        $scope.changeFocus = changeFocus;
 
+        // Activate page
+        activate();
 
-    currentUserFactory.getCurrentUser()
-        .then(function(result) {
-                $scope.currentUser = result;
-            },
-            function() {
-                //error NOTE: need to change this to SignalR or some messaging engine.
-                alert("Sorry! There was a problem loading the current user.  Please try again later.", "error");
-            });
+        function activate() {
+            getCurrentUser();
+        }
 
-    $scope.changeFocus = function() {
-        var modalInstance = $uibModal.open({
-            //modalInstance = orphan?
-            templateUrl: '/Templates/Portal/ChangeUserFocusModal',
-            controller: changeIdentityFocusModalController,
-            resolve: {
-                userViewModel: function() {
-                    return angular.copy($scope.currentUser);
+        function getCurrentUser() {
+            currentUserFactory.getCurrentUser()
+                .then(function (result) {
+                    $scope.currentUser = result;
                 },
-                currentUser: function() {
-                    return $scope.currentUser;
+                    function () {
+                        //error NOTE: need to change this to SignalR or some messaging engine.
+                        alert("Sorry! There was a problem loading the current user.  Please try again later.", "error");
+                    });
+        }
+
+        function changeFocus() {
+
+            var changeFocusDialog = $uibModal.open({
+                templateUrl: "/Templates/Portal/ChangeUserFocusModal",
+                controller: changeIdentityFocusModalController,
+                resolve: {
+                    currentUser: function () {
+                        return $scope.currentUser;
+                    }
                 }
-            }
-        });
+            });
+            changeFocusDialog.result.finally(function () {
+                getCurrentUser();
+            });
+        }
     }
-}
 
-function changeIdentityFocusModalController($scope, $http, $uibModalInstance, currentUserFactory, userViewModel, currentUser) {
+    changeIdentityFocusModalController.$inject = ["$scope", "$http", "$uibModalInstance", "currentUserFactory", "currentUser"];
 
-    $scope.currentUser = currentUser;
-    $scope.userViewModel = userViewModel;
+    function changeIdentityFocusModalController($scope, $http, $uibModalInstance, currentUserFactory, currentUser) {
 
-    $scope.userViewModel.SelectedOrganizationId = 2;
+        $scope.currentUser = currentUser;
 
-    $scope.ok = function (userViewModel) {
+        // TODO: Get real organizations list
+        $scope.organizations = [
+            {
+                id: 1,
+                name: "Spectrum Operational"
+            },
+            {
+                id: 2,
+                name: "Adams County OEM"
+            },
+            {
+                id: 3,
+                name: "Boulder County OEM"
+            }
+        ];
 
-        currentUser.SelectedOrganizationId = userViewModel.SelectedOrganizationId.OrganizationId;
-        currentUser.SelectedOrganizationName = userViewModel.SelectedOrganizationId.Name;
-        currentUser.SelectedRoleId = userViewModel.SelectedRoleId.RoleId;
-        currentUser.SelectedRoleName = userViewModel.SelectedRoleId.Name;
-        currentUser.SelectedPositionId = userViewModel.SelectedPositionId.PositionId;
-        currentUser.SelectedPositionName = userViewModel.SelectedPositionId.Name;
+        // TODO: Get real roles
+        $scope.roles = [
+            {
+                roleId: 1,
+                name: "Administrator"
+            },
+            {
+                roleId: 2,
+                name: "User"
+            }
+        ];
 
-        //do some work with the new factory
-        currentUserFactory.editCurrentUser(currentUser)
-            .then(function(result) {
-                //Focus pill is automagically updated
+        // TODO: Get real positions
+        $scope.positions = [
+            {
+                positionId: 1,
+                name: "ESF-000"
+            },
+            {
+                positionId: 2,
+                name: "ESF-001"
+            },
+            {
+                positionId: 3,
+                name: "FF-911"
+            }
+        ];
+
+        $scope.currentUser.selectedOrg = { id: currentUser.selectedOrganizationId };
+        $scope.currentUser.selectedRole = { roleId: currentUser.selectedRoleId };
+        $scope.currentUser.selectedPosition = { positionId: currentUser.positionId ? null : 1 };
+
+        $scope.ok = function (currentUserData) {
+
+            currentUserData.SelectedPositionId = currentUserData.selectedPosition.positionId;
+
+            // Edit the current user
+            currentUserFactory.editCurrentUser(currentUserData)
+                .then(function () {
+                    $uibModalInstance.close();
                 },
-                function() {
-                    //error
-                    alert("Sorry! There was a problem setting the identity focus.  Please try again later.", "error");
-                });
+                    function () {
+                        alert("Sorry! There was a problem setting the identity focus.  Please try again later.", "error");
+                    });
+        };
 
-
-        $uibModalInstance.close();
+        $scope.cancel = function () {
+            $uibModalInstance.dismiss("cancel");
+        };
     };
-
-    $scope.cancel = function() {
-        $uibModalInstance.dismiss('cancel');
-    };
-}
-
-/**
- * Pass function into module
- */
-angular
-    .module('app')
-    .factory('currentUserFactory', currentUserFactory);
-
-function currentUserFactory($http, $q) {
-
-    var _currentUser = {
-        Id: null,
-        UserName: null,
-        Email: null,
-        SelectedOrganizationId: null,
-        SelectedOrganizationName: null,
-        SelectedRoleId: null,
-        SelectedRoleName: null,
-        SelectedPositionId: null,
-        SelectedPositionName: null,
-        UserOrganizations: null,
-        UserRoles: null,
-        UserProfiles: null,
-        UserPositions: null
-    };
-
-    var _getCurrentUser = function () {
-
-        var deferred = $q.defer();
-
-        $http.get('/api/IdentityFocus/')
-          .then(function (result) {
-              // Successful
-              angular.copy(result.data, _currentUser);
-              deferred.resolve(_currentUser);
-          },
-          function () {
-              // Error
-              deferred.reject();
-          });
-
-        return deferred.promise;
-    };
-
-    var _editCurrentUser = function (currentUser) {
-
-        var deferred = $q.defer();
-
-        $http.put('/api/IdentityFocus/', currentUser)
-         .then(function (result) {
-             // success
-             var editedUser = result.data;
-
-             //currentUser.SelectedOrganizationId = editedUser.SelectedOrganizationId;
-             //currentUser.SelectedOrganizationName = editedUser.SelectedOrganizationName;
-             //currentUser.SelectedRoleId = editedUser.SelectedRoleId;
-             //currentUser.SelectedRoleName = editedUser.SelectedRoleName;
-             //currentUser.SelectedPositionId = editedUser.SelectedPositionId;
-             //currentUser.SelectedPositionName = editedUser.SelectedPositionName;
-
-             deferred.resolve(editedUser);
-         },
-         function () {
-             // error
-             deferred.reject();
-         });
-
-        return deferred.promise;
-    };
-
-    return {
-        currentUser: _currentUser,
-        getCurrentUser: _getCurrentUser,
-        editCurrentUser: _editCurrentUser
-    };
-};
+})
+();
