@@ -123,9 +123,9 @@ namespace Spectrum.Data.Core.Context.Initializers
                     Default = true,
                     ProfileName = " Default - Spectrum Operational LLC",
                     Description = "Spectrum Operational HQ Profile",
-                    PrimaryContact = "Patrick Welch",
+                    PrimaryContact = "Developer",
                     Phone = "303-704-2500",
-                    Email = "patrick.welch@spectrumoperational.com",
+                    Email = "develop@spectrumoperational.com",
                     County = "Boulder",
                     Country = "United States",
                     TimeZone = "US Mountain",
@@ -170,24 +170,24 @@ namespace Spectrum.Data.Core.Context.Initializers
                 PasswordHash = hasher.HashPassword("p@ssw0rd")
             };
 
-            var pwelch = new User
+            var develop = new User
             {
-                UserName = "pwelch",
-                Email = "patrick.welch@spectrumoperational.com",
+                UserName = "develop",
+                Email = "develop@spectrumoperational.com",
                 PasswordHash = hasher.HashPassword("p@ssw0rd")
             };
 
-            var pwelchProfile = new UserProfile
+            var developProfile = new UserProfile
             {
                 OrganizationId = context.Organizations.FirstOrDefault(org => org.Name == "Spectrum Operational").Id,
                 Default = true,
-                ProfileName = "Default for Patrick Welch, Spectrum Operational LLC",
-                FirstName = "Lawrence",
-                MiddleName = "Patrick",
-                LastName = "Welch",
-                Nickname = "Patrick",
-                SecondaryEmail = "patrick_welch@comcast.net",
-                SecondaryPhoneNumber = "720-282-5144",
+                ProfileName = "Default for Developer, Spectrum Operational LLC",
+                FirstName = "",
+                MiddleName = "",
+                LastName = "",
+                Nickname = "",
+                SecondaryEmail = "developer@example.net",
+                SecondaryPhoneNumber = "720-555-1212",
                 TimeZone = "US Mountain",
                 DstAdjust = true
             };
@@ -207,11 +207,11 @@ namespace Spectrum.Data.Core.Context.Initializers
                 DstAdjust = true
             };
 
-            UserProfileAddress pwelchUserProfileAddress = new UserProfileAddress {Address = address};
-            pwelchUserProfileAddress.UserProfile = pwelchProfile;
+            UserProfileAddress developUserProfileAddress = new UserProfileAddress {Address = address};
+            developUserProfileAddress.UserProfile = developProfile;
 
-            pwelchProfile.UserProfileAddresses.Add(pwelchUserProfileAddress);
-            pwelch.UserProfiles.Add(pwelchProfile);
+            developProfile.UserProfileAddresses.Add(developUserProfileAddress);
+            develop.UserProfiles.Add(developProfile);
 
             UserProfileAddress superuserUserProfileAddress = new UserProfileAddress {Address = address};
             superuserUserProfileAddress.UserProfile = superUserProfile;
@@ -219,7 +219,7 @@ namespace Spectrum.Data.Core.Context.Initializers
             superUserProfile.UserProfileAddresses.Add(superuserUserProfileAddress);
             superuser.UserProfiles.Add(superUserProfile);
 
-            context.Users.Add(pwelch);
+            context.Users.Add(develop);
             context.Users.Add(superuser);
 
             context.SaveChanges();
@@ -238,7 +238,7 @@ namespace Spectrum.Data.Core.Context.Initializers
                 },
                 new UserOrganization
                 {
-                    UserId = context.Users.FirstOrDefault(user => user.UserName == "pwelch").Id,
+                    UserId = context.Users.FirstOrDefault(user => user.UserName == "develop").Id,
                     OrganizationId =
                         context.Organizations.FirstOrDefault(org => org.Name.Equals("Spectrum Operational")).Id
                 }
@@ -253,7 +253,7 @@ namespace Spectrum.Data.Core.Context.Initializers
             {
                 UserRole ur = new UserRole()
                 {
-                    UserId = context.Users.FirstOrDefault(user => user.UserName == "pwelch").Id,
+                    UserId = context.Users.FirstOrDefault(user => user.UserName == "develop").Id,
                     OrganizationId = context.Organizations.FirstOrDefault(org => org.Name.Equals("Spectrum Operational")).Id,
                     RoleId = p.Id
                 };
@@ -429,7 +429,7 @@ namespace Spectrum.Data.Core.Context.Initializers
                 UserPosition up = new UserPosition()
                 {
                     PositionId = p.Id,
-                    UserId = context.Users.FirstOrDefault(user => user.UserName.Equals("pwelch")).Id,
+                    UserId = context.Users.FirstOrDefault(user => user.UserName.Equals("develop")).Id,
                     OrganizationId = context.Organizations.FirstOrDefault(org => org.Name.Equals("Spectrum Operational")).Id
                 };
                 context.UserPositions.Add(up);

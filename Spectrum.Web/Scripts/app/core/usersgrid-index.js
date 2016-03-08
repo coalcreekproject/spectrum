@@ -2,7 +2,7 @@
     .module('app')
     .controller('UserGridController', userGridController);
 
-function userGridController($scope, $http, $location, $modal, $state, uiGridConstants, userFactory) {
+function userGridController($scope, $http, $location, $uibModal, $state, uiGridConstants, userFactory) {
 
     $scope.data = userFactory;
 
@@ -43,7 +43,7 @@ function userGridController($scope, $http, $location, $modal, $state, uiGridCons
       //});
 
     $scope.add = function () {
-        var modalInstance = $modal.open({
+        var modalInstance = $uibModal.open({
             templateUrl: '/Templates/User/AddUserModal',
             controller: AddUserModalController
         });
@@ -51,7 +51,7 @@ function userGridController($scope, $http, $location, $modal, $state, uiGridCons
 
 
     $scope.edit = function (row) {
-        $modal.open({
+        $uibModal.open({
             templateUrl: '/Templates/User/editUserModal',
             controller: EditUserModalController,
             resolve: {
@@ -63,7 +63,7 @@ function userGridController($scope, $http, $location, $modal, $state, uiGridCons
     };
 
     $scope.delete = function(row) {
-        var modalInstance = $modal.open({
+        var modalInstance = $uibModal.open({
             templateUrl: '/Templates/User/deleteUserModal',
             controller: DeleteUserModalController,
             resolve: {
@@ -75,7 +75,7 @@ function userGridController($scope, $http, $location, $modal, $state, uiGridCons
     };
 
     $scope.positions = function (row) {
-        var modalInstance = $modal.open({
+        var modalInstance = $uibModal.open({
             templateUrl: '/Templates/User/AssignUserPositionsModal',
             controller: UserPositionsModalController,
             resolve: {
@@ -87,7 +87,7 @@ function userGridController($scope, $http, $location, $modal, $state, uiGridCons
     };
 
     $scope.roles = function (row) {
-        var modalInstance = $modal.open({
+        var modalInstance = $uibModal.open({
             templateUrl: '/Templates/User/AssignUserRolesModal',
             controller: UserRolesModalController,
             resolve: {
@@ -103,7 +103,7 @@ function userGridController($scope, $http, $location, $modal, $state, uiGridCons
     };
 };
 
-//function AddUserModalController($scope, $modalInstance, userFactory) {
+//function AddUserModalController($scope, $uibModalInstance, userFactory) {
 
 //    $scope.ok = function(user) {
 
@@ -117,15 +117,15 @@ function userGridController($scope, $http, $location, $modal, $state, uiGridCons
 //                    alert("could not save user");
 //                });
 
-//        $modalInstance.close();
+//        $uibModalInstance.close();
 //    };
 
 //    $scope.cancel = function() {
-//        $modalInstance.dismiss('cancel');
+//        $uibModalInstance.dismiss('cancel');
 //    };
 //};
 
-//function EditUserModalController($scope, $modalInstance, userFactory, user) {
+//function EditUserModalController($scope, $uibModalInstance, userFactory, user) {
 
 //    $scope.user = user;
 
@@ -140,15 +140,15 @@ function userGridController($scope, $http, $location, $modal, $state, uiGridCons
 //                    alert("could not edit or update user");
 //                });
 
-//        $modalInstance.close();
+//        $uibModalInstance.close();
 //    };
 
 //    $scope.cancel = function () {
-//        $modalInstance.dismiss('cancel');
+//        $uibModalInstance.dismiss('cancel');
 //    };
 //};
 
-//function DeleteUserModalController($scope, $modalInstance, userFactory, user) {
+//function DeleteUserModalController($scope, $uibModalInstance, userFactory, user) {
 
 //    $scope.user = user;
 
@@ -164,11 +164,11 @@ function userGridController($scope, $http, $location, $modal, $state, uiGridCons
 //                    alert("could not delete user");
 //                });
 
-//        $modalInstance.close();
+//        $uibModalInstance.close();
 //    };
 
 //    $scope.cancel = function () {
-//        $modalInstance.dismiss('cancel');
+//        $uibModalInstance.dismiss('cancel');
 //    };
 //};
 

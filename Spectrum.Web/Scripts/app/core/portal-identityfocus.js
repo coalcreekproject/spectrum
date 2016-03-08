@@ -7,9 +7,9 @@ function identityFocusParameters() {
     this.organizationId = null;
 };
 
-function identityFocusController($scope, $http, $modal, currentUserFactory) {
+function identityFocusController($scope, $http, $uibModal, currentUserFactory) {
 
-    $modal.scope = $scope;
+    $uibModal.scope = $scope;
     $scope.data = currentUserFactory;
 
 
@@ -23,7 +23,7 @@ function identityFocusController($scope, $http, $modal, currentUserFactory) {
             });
 
     $scope.changeFocus = function() {
-        var modalInstance = $modal.open({
+        var modalInstance = $uibModal.open({
             //modalInstance = orphan?
             templateUrl: '/Templates/Portal/ChangeUserFocusModal',
             controller: changeIdentityFocusModalController,
@@ -39,7 +39,7 @@ function identityFocusController($scope, $http, $modal, currentUserFactory) {
     }
 }
 
-function changeIdentityFocusModalController($scope, $http, $modalInstance, currentUserFactory, userViewModel, currentUser) {
+function changeIdentityFocusModalController($scope, $http, $uibModalInstance, currentUserFactory, userViewModel, currentUser) {
 
     $scope.currentUser = currentUser;
     $scope.userViewModel = userViewModel;
@@ -66,11 +66,11 @@ function changeIdentityFocusModalController($scope, $http, $modalInstance, curre
                 });
 
 
-        $modalInstance.close();
+        $uibModalInstance.close();
     };
 
     $scope.cancel = function() {
-        $modalInstance.dismiss('cancel');
+        $uibModalInstance.dismiss('cancel');
     };
 }
 

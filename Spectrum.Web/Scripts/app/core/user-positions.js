@@ -7,7 +7,7 @@ function userPositionParameters() {
     this.organizationId = null;
 };
 
-function UserPositionsModalController($scope, $modalInstance, userPositionFactory, user) {
+function UserPositionsModalController($scope, $uibModalInstance, userPositionFactory, user) {
 
     $scope.userId = user.Id;
     userPositionParameters.userId = $scope.userId;
@@ -77,18 +77,18 @@ function UserPositionsModalController($scope, $modalInstance, userPositionFactor
         userPositionFactory.editUserPositions($scope.models.lists.Assigned, $scope.user)
             .then(function () {
                 // success
-                $modalInstance.close();
+                $uibModalInstance.close();
             },
                 function () {
                     // error
                     alert("could not save positions");
                 });
 
-        $modalInstance.close();
+        $uibModalInstance.close();
     };
 
     $scope.cancel = function () {
-        $modalInstance.dismiss('cancel');
+        $uibModalInstance.dismiss('cancel');
     };
 };
 

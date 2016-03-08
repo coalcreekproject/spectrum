@@ -7,7 +7,7 @@ function userRoleParameters() {
     this.organizationId = null;
 };
 
-function UserRolesModalController($scope, $modalInstance, userRoleFactory, user) {
+function UserRolesModalController($scope, $uibModalInstance, userRoleFactory, user) {
 
     $scope.userId = user.Id;
     userRoleParameters.userId = $scope.userId;
@@ -82,18 +82,18 @@ function UserRolesModalController($scope, $modalInstance, userRoleFactory, user)
         userRoleFactory.editUserRoles($scope.models.lists.Assigned, $scope.user)
             .then(function () {
                 // success
-                $modalInstance.close();
+                $uibModalInstance.close();
             },
                 function () {
                     // error
                     alert("could not save roles");
                 });
 
-        $modalInstance.close();
+        $uibModalInstance.close();
     };
 
     $scope.cancel = function () {
-        $modalInstance.dismiss('cancel');
+        $uibModalInstance.dismiss('cancel');
     };
 };
 

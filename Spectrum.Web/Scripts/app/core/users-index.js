@@ -32,9 +32,9 @@ function config($locationProvider, $stateProvider, $urlRouterProvider, $compileP
         });
 }
 
-function userPanelController($scope, $http, $modal, $state, userFactory) {
+function userPanelController($scope, $http, $uibModal, $state, userFactory) {
 
-    $modal.scope = $scope;
+    $uibModal.scope = $scope;
 
     $scope.data = userFactory;
 
@@ -49,14 +49,14 @@ function userPanelController($scope, $http, $modal, $state, userFactory) {
             });
 
     $scope.add = function () {
-        var modalInstance = $modal.open({
+        var modalInstance = $uibModal.open({
             templateUrl: '/Templates/User/AddUserModal',
             controller: AddUserModalController
         });
     };
 
     $scope.edit = function (user) {
-        var modalInstance = $modal.open({
+        var modalInstance = $uibModal.open({
             templateUrl: '/Templates/User/EditUserModal',
             controller: EditUserModalController,
             resolve: {
@@ -68,7 +68,7 @@ function userPanelController($scope, $http, $modal, $state, userFactory) {
     };
 
     $scope.delete = function (user) {
-        var modalInstance = $modal.open({
+        var modalInstance = $uibModal.open({
             templateUrl: '/Templates/User/DeleteUserModal',
             controller: DeleteUserModalController,
             resolve: {
@@ -80,7 +80,7 @@ function userPanelController($scope, $http, $modal, $state, userFactory) {
     };
 
     $scope.roles = function (user) {
-        var modalInstance = $modal.open({
+        var modalInstance = $uibModal.open({
             templateUrl: '/Templates/User/AssignUserRolesModal',
             controller: UserRolesModalController,
             resolve: {
@@ -92,7 +92,7 @@ function userPanelController($scope, $http, $modal, $state, userFactory) {
     };
 
     $scope.positions = function (user) {
-        var modalInstance = $modal.open({
+        var modalInstance = $uibModal.open({
             templateUrl: '/Templates/User/AssignUserPositionsModal',
             controller: UserPositionsModalController,
             resolve: {
@@ -108,29 +108,29 @@ function userPanelController($scope, $http, $modal, $state, userFactory) {
     };
 };
 
-function AddUserModalController($scope, $modalInstance, userFactory) {
+function AddUserModalController($scope, $uibModalInstance, userFactory) {
 
     $scope.ok = function(user) {
 
         userFactory.addUser(user)
             .then(function() {
                     // success
-                $modalInstance.close();
+                $uibModalInstance.close();
             },
                 function() {
                     // error
                     alert("could not save user");
                 });
 
-        $modalInstance.close();
+        $uibModalInstance.close();
     };
 
     $scope.cancel = function() {
-        $modalInstance.dismiss('cancel');
+        $uibModalInstance.dismiss('cancel');
     };
 };
 
-function EditUserModalController($scope, $modalInstance, userFactory, user) {
+function EditUserModalController($scope, $uibModalInstance, userFactory, user) {
 
     $scope.user = user;
 
@@ -145,16 +145,16 @@ function EditUserModalController($scope, $modalInstance, userFactory, user) {
                     alert("could not edit or update user");
                 });
 
-        $modalInstance.close();
+        $uibModalInstance.close();
 
     };
 
     $scope.cancel = function () {
-        $modalInstance.dismiss('cancel');
+        $uibModalInstance.dismiss('cancel');
     };
 };
 
-function DeleteUserModalController($scope, $modalInstance, userFactory, user) {
+function DeleteUserModalController($scope, $uibModalInstance, userFactory, user) {
 
     $scope.user = user;
 
@@ -169,11 +169,11 @@ function DeleteUserModalController($scope, $modalInstance, userFactory, user) {
                     alert("could not delete user");
                 });
 
-        $modalInstance.close();
+        $uibModalInstance.close();
     };
 
     $scope.cancel = function () {
-        $modalInstance.dismiss('cancel');
+        $uibModalInstance.dismiss('cancel');
     };
 };
 
