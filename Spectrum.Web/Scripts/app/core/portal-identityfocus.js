@@ -51,58 +51,45 @@
     function changeIdentityFocusModalController($scope, $http, $uibModalInstance, currentUserFactory, currentUser) {
 
         $scope.currentUser = currentUser;
+        $scope.organizations = [];
+        $scope.roles = [];
+        $scope.positions = [];
+        var i;
 
-        // TODO: Get real organizations list
-        $scope.organizations = [
-            {
-                id: 1,
-                name: "Spectrum Operational"
-            },
-            {
-                id: 2,
-                name: "Adams County OEM"
-            },
-            {
-                id: 3,
-                name: "Boulder County OEM"
-            }
-        ];
+        for (i = 0; i < currentUser.userOrganizations.length; i++) {
+            $scope.organizations.push({
+                organizationId: currentUser.userOrganizations[i].organizationId,
+                name: currentUser.userOrganizations[i].name//,
+                //selected: (currentUser.userOrganizations[i].organizationId === currentUser.selectedOrganizationId)
+            });
+        }
 
-        // TODO: Get real roles
-        $scope.roles = [
-            {
-                roleId: 1,
-                name: "Administrator"
-            },
-            {
-                roleId: 2,
-                name: "User"
-            }
-        ];
+        for (i = 0; i < currentUser.userRoles.length; i++) {
+            $scope.roles.push({
+                roleId: currentUser.userRoles[i].roleId,
+                name: currentUser.userRoles[i].name//,
+                //selected: (currentUser.userRoles[i].roleId === currentUser.selectedRoleId)
+            });
+        }
 
-        // TODO: Get real positions
-        $scope.positions = [
-            {
-                positionId: 1,
-                name: "ESF-000"
-            },
-            {
-                positionId: 2,
-                name: "ESF-001"
-            },
-            {
-                positionId: 3,
-                name: "FF-911"
-            }
-        ];
+        for (i = 0; i < currentUser.userPositions.length; i++) {
+            $scope.positions.push({
+                positionId: currentUser.userPositions[i].positionId,
+                name: currentUser.userPositions[i].name//,
+                //selected: (currentUser.userPositions[i].positionId === currentUser.SelectedPositionId)
+            });
+        }
 
-        $scope.currentUser.selectedOrg = { id: currentUser.selectedOrganizationId };
-        $scope.currentUser.selectedRole = { roleId: currentUser.selectedRoleId };
-        $scope.currentUser.selectedPosition = { positionId: currentUser.positionId ? null : 1 };
+        $scope.currentUser.selectedOrganization = { organizationId: currentUser.selectedOrganizationId, name: currentUser.selectedOrganizationName  };
+        $scope.currentUser.selectedRole = { roleId: currentUser.selectedRoleId, name: currentUser.selectedRoleName };
+        $scope.currentUser.selectedPosition = { positionId: currentUser.selectedPositionId, name: currentUser.selectedPositionName };
 
         $scope.ok = function (currentUserData) {
 
-            currentUserData.SelectedPositionId = currentUserData.selectedPosition.positionId;
+            //Check for nulls here and set to the already selected value if null
+            currentUserData.selectedOrganizationId = currentUserData.selectedOrganization.organizationId;
+            currentUserData.selectedRoleId = currentUserData.selectedRole.roleId;
+            currentUserData.selectedPositionId = currentUserData.selectedPosition.positionId;
 
             // Edit the current user
             currentUserFactory.editCurrentUser(currentUserData)

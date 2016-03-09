@@ -22,12 +22,15 @@
 
         <ul class="nav navbar-nav no-borders">
             <li class="dropdown" ng-controller="identityFocusController">
-                <a class="dropdown-toggle" ng-click="changeFocus()">
+                <a class="dropdown-toggle identity-focus" ng-click="changeFocus()">
                     <i class="pe pe-7s-id"></i>
                     @if (User.Identity.IsAuthenticated)
                     {
-                        <span class="label label-info" style="font-size: 10px;">
-                            {{currentUser.UserName}} for {{currentUser.SelectedOrganizationName}} as {{currentUser.SelectedRoleName}} in position {{currentUser.SelectedPositionName}}
+                        <span class="label label-info if-label" style="font-size: 10px;">
+                            {{currentUser.userName}} for 
+                            {{currentUser.selectedOrganizationName}} as 
+                            {{currentUser.selectedRoleName}} in position 
+                            {{currentUser.selectedPositionName}}
                         </span>
                     }
                 </a>

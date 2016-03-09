@@ -11,19 +11,23 @@
                 <div class="row">
                     <div class="col-md-7 dropdown">
                         <label for="orgSelect">Organization</label>
-                        <select class="form-control m-b" id="orgSelect" name="orgSelect" ng-model="currentUser.selectedOrg" ng-options="option.name for option in organizations track by option.id"></select>
+                        <select class="form-control m-b" id="selectedOrganization" name="orgSelect" ng-model="currentUser.selectedOrganization"
+                                ng-options="organization.name for organization in organizations track by organization.organizationId" ng-selected="option.selected">
+                        </select>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-7">
                         <label for="roleSelect">Role</label>
-                        <select class="form-control m-b" id="roleSelect" name="roleSelect" ng-model="currentUser.selectedRole" ng-options="option.name for option in roles track by option.roleId"></select>
+                        <select class="form-control m-b" id="selectedRole" name="roleSelect" ng-model="currentUser.selectedRole" 
+                                ng-options="option.name for option in roles track by option.roleId"></select>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-7">
                         <label for="positionSelect">Position</label>
-                        <select class="form-control m-b" id="positionSelect" name="positionSelect" ng-model="currentUser.selectedPosition" ng-options="option.name for option in positions track by option.positionId"></select>
+                        <select class="form-control m-b" id="selectedPosition" name="positionSelect" ng-model="currentUser.selectedPosition" 
+                                ng-options="option.positionId as option.name for option in positions track by option.positionId"></select>
                     </div>
                 </div>
             </div>

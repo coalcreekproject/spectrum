@@ -19,3 +19,16 @@ textarea {
 .navbar-logo {
     padding-left: 10px
 }
+
+.identity-focus {
+    min-width: 450px;
+    font-size: 14px !important;
+}
+
+i.if-icon {
+    font-size: 24px !important;
+}
+
+span.if-label {
+    vertical-align: text-top;
+}

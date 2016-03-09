@@ -1,4 +1,5 @@
 ﻿using System.Web.Http;
+using Newtonsoft.Json.Serialization;
 
 namespace Spectrum.Web
 {
@@ -15,7 +16,11 @@ namespace Spectrum.Web
             );
 
             config.Formatters.JsonFormatter.SerializerSettings.ReferenceLoopHandling
-                = Newtonsoft.Json.ReferenceLoopHandling.Ignore; 
+                = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+
+            // Default to camel case serialization
+            config.Formatters.JsonFormatter.SerializerSettings.ContractResolver =
+                new CamelCasePropertyNamesContractResolver();
         }
     }
 }
