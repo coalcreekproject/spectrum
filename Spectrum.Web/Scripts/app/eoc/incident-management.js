@@ -21,7 +21,7 @@
                 controller: openModalInstance
             });
             modalDialog.result.finally(function() {
-                getIncidents(); // reload
+                getIncidents();
             });
         };
         vm.deleteModal = function(incident) {
@@ -36,7 +36,21 @@
                 }
             });
             modalDialog.result.finally(function() {
-                getIncidents(); // reload
+                getIncidents();
+            });
+        };
+        vm.editModal = function(incident) {
+            var modalDialog = $uibModal.open({
+                templateUrl: "Eoc/Templates/IncidentManagement/IncidentManagementEditModal",
+                controller: editModalInstance,
+                resolve: {
+                    incidentModalData: function() {
+                        return incident;
+                    }
+                }
+            });
+            modalDialog.result.finally(function() {
+                getIncidents();
             });
         };
 
@@ -56,6 +70,50 @@
                     function() {
                         console.log("Error loading incidents.  See log.");
                     });
+        }
+
+        editModalInstance.$inject = ["$scope", "$uibModalInstance", "incidentModalData", "incidentData"];
+
+        function editModalInstance($scope, $uibModalInstance, incidentModalData, incidentData) {
+
+            var incidentTypes = incidentData.getIncidentTypes();
+            var incidentType = getIndex(incidentTypes, incidentModalData.type);
+
+            $scope.incident = {
+                incidentTypes: incidentTypes,
+                incidentLevels: incidentData.getIncidentLevels(),
+                statuses: incidentData.getIncidentStatuses(),
+                name: incidentModalData.incidentName,
+                selectedLevel: incidentModalData.level.toString(),
+                organizationId: incidentModalData.organizationId,
+                selectedStatus: incidentModalData.status,
+                selectedType: incidentType,
+                userId: incidentModalData.userId
+            };
+
+            $scope.close = function() {
+                $uibModalInstance.dismiss("cancel");
+            };
+
+            $scope.saveChanges = function(incident) {
+                // Edit the incident
+                incidentData.editIncident(incident)
+                    .then(function() {
+                        $uibModalInstance.close();
+                    }, function(result) {
+                        console.log(result.message);
+                    });
+            };
+
+            function getIndex(values, searchVal) {
+                for (var i = 0; i < values.length; i++)
+                {
+                    if (values[i].name === searchVal)
+                    {
+                        return values[i];
+                    }
+                }
+            }
         }
 
         deleteModalInstance.$inject = ["$scope", "$uibModalInstance", "incidentModalData"];

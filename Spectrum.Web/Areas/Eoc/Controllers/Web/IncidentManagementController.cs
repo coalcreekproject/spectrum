@@ -21,6 +21,9 @@ namespace Spectrum.Web.Areas.Eoc.Controllers.Web
                 case "incidentmanagementaddmodal":
                     return
                         PartialView("~/Areas/Eoc/Views/IncidentManagement/Partials/IncidentManagementAddModal.cshtml");
+                case "incidentmanagementeditmodal":
+                    return
+                        PartialView("~/Areas/Eoc/Views/IncidentManagement/Partials/IncidentManagementEditModal.cshtml");
                 case "incidentmanagementdeletemodal":
                     return
                         PartialView("~/Areas/Eoc/Views/IncidentManagement/Partials/IncidentManagementDeleteModal.cshtml");

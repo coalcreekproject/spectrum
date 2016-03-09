@@ -492,6 +492,7 @@
     <Content Include="Scripts\app\templates\im.html" />
     <Content Include="Areas\Eoc\Views\IncidentManagement\Partials\IncidentManagementAddModal.cshtml" />
     <Content Include="Areas\Eoc\Views\IncidentManagement\Partials\IncidentManagementDeleteModal.cshtml" />
+    <Content Include="Areas\Eoc\Views\IncidentManagement\Partials\IncidentManagementEditModal.cshtml" />
     <None Include="Content\images\landing\header.jpg.old" />
     <Content Include="Content\images\landing\s1.png" />
     <Content Include="Content\images\landing\s2.png" />
