@@ -492,6 +492,13 @@
     <Content Include="Content\images\profile.png" />
     <Content Include="Gruntfile.js" />
     <Content Include="Scripts\app.js" />
+    <Content Include="Scripts\app\app.js" />
+    <Content Include="Scripts\app\data\currentUser.js" />
+    <Content Include="Scripts\app\data\userData.js" />
+    <Content Include="Scripts\app\eoc\checklists.js" />
+    <Content Include="Scripts\app\eoc\dashboard.js" />
+    <Content Include="Scripts\app\eoc\eoc.module.js" />
+    <Content Include="Scripts\app\eoc\incident-management.js" />
     <Content Include="Scripts\charts.js" />
     <Content Include="Scripts\config.js" />
     <Content Include="Scripts\controllers\alerts.js" />
@@ -681,9 +688,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Eoc\Models\" />
     <Folder Include="Areas\Eoc\Views\Shared\" />
-    <Folder Include="Scripts\app\data\" />
     <Folder Include="Scripts\app\directives\" />
-    <Folder Include="Scripts\app\eoc\" />
     <Folder Include="Scripts\app\filters\" />
     <Folder Include="Scripts\vendor\" />
     <Folder Include="Views\Billing\Partials\" />
