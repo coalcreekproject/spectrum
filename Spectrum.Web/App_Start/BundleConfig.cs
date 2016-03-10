@@ -108,7 +108,8 @@ namespace Spectrum.Web
                     "~/Scripts/app/core/users-index.js",
                     "~/Scripts/app/eoc/checklists.js",
                     "~/Scripts/app/eoc/dashboard.js",
-                    "~/Scripts/app/eoc/incident-management.js"
+                    "~/Scripts/app/eoc/incident-management.js",
+                    "~/Scripts/app/directives/loading-directive.js"
                 ));
         }
     }

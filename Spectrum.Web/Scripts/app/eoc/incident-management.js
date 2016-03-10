@@ -1,12 +1,14 @@
 ﻿(function() {
 
+    var INCIDENT_TEMPLATE_PATH = "Eoc/Templates/IncidentManagement/";
+
     angular
         .module("app.eoc")
         .controller("IncidentMgmtCtrl", IncidentMgmtCtrl);
 
-    IncidentMgmtCtrl.$inject = ["incidentData", "$uibModal"];
+    IncidentMgmtCtrl.$inject = ["$scope", "incidentData", "$uibModal"];
 
-    function IncidentMgmtCtrl(incidentData, $uibModal) {
+    function IncidentMgmtCtrl($scope, incidentData, $uibModal) {
 
         // Setting scope object
         var vm = this;
@@ -15,33 +17,31 @@
         // scan all available operations
         vm.name = "Sean";
         vm.incidents = [];
-        vm.openModal = function() {
+        vm.search = "";
+        vm.clear = clear;
+        vm.openModal = openModal;
+        vm.editModal = editModal;
+        vm.deleteModal = deleteModal;
+
+        // Then define controller functions
+
+        function clear() {
+            vm.search = "";
+        }
+
+        function openModal() {
             var modalDialog = $uibModal.open({
-                templateUrl: "Eoc/Templates/IncidentManagement/IncidentManagementAddModal",
+                templateUrl: INCIDENT_TEMPLATE_PATH + "IncidentManagementAddModal",
                 controller: openModalInstance
             });
             modalDialog.result.finally(function() {
                 getIncidents();
             });
-        };
-        vm.deleteModal = function(incident) {
+        }
 
+        function editModal(incident) {
             var modalDialog = $uibModal.open({
-                templateUrl: "Eoc/Templates/IncidentManagement/IncidentManagementDeleteModal",
-                controller: deleteModalInstance,
-                resolve: {
-                    incidentModalData: function() {
-                        return incident;
-                    }
-                }
-            });
-            modalDialog.result.finally(function() {
-                getIncidents();
-            });
-        };
-        vm.editModal = function(incident) {
-            var modalDialog = $uibModal.open({
-                templateUrl: "Eoc/Templates/IncidentManagement/IncidentManagementEditModal",
+                templateUrl: INCIDENT_TEMPLATE_PATH + "IncidentManagementEditModal",
                 controller: editModalInstance,
                 resolve: {
                     incidentModalData: function() {
@@ -52,93 +52,44 @@
             modalDialog.result.finally(function() {
                 getIncidents();
             });
-        };
+        }
 
-        // Activate the page
-        activate();
+        function deleteModal(incident) {
+            var modalDialog = $uibModal.open({
+                templateUrl: INCIDENT_TEMPLATE_PATH + "IncidentManagementDeleteModal",
+                controller: deleteModalInstance,
+                resolve: {
+                    incidentModalData: function() {
+                        return incident;
+                    }
+                }
+            });
+            modalDialog.result.finally(function() {
+                getIncidents();
+            });
+        }
 
-        // Then define controller functions
         function activate() {
             return getIncidents();
         }
 
         function getIncidents() {
+            $scope.loading = true;
             return incidentData.getIncidents()
                 .then(function(incidents) {
                         vm.incidents = incidents;
+                        $scope.loading = false;
                     },
                     function() {
+                        $scope.loading = false;
                         console.log("Error loading incidents.  See log.");
                     });
         }
 
-        editModalInstance.$inject = ["$scope", "$uibModalInstance", "incidentModalData", "incidentData"];
+        // Activate the page
+        activate();
 
-        function editModalInstance($scope, $uibModalInstance, incidentModalData, incidentData) {
-
-            var incidentTypes = incidentData.getIncidentTypes();
-            var incidentType = getIndex(incidentTypes, incidentModalData.type);
-
-            $scope.incident = {
-                incidentTypes: incidentTypes,
-                incidentLevels: incidentData.getIncidentLevels(),
-                statuses: incidentData.getIncidentStatuses(),
-                name: incidentModalData.incidentName,
-                selectedLevel: incidentModalData.level.toString(),
-                organizationId: incidentModalData.organizationId,
-                selectedStatus: incidentModalData.status,
-                selectedType: incidentType,
-                userId: incidentModalData.userId
-            };
-
-            $scope.close = function() {
-                $uibModalInstance.dismiss("cancel");
-            };
-
-            $scope.saveChanges = function(incident) {
-                // Edit the incident
-                incidentData.editIncident(incident)
-                    .then(function() {
-                        $uibModalInstance.close();
-                    }, function(result) {
-                        console.log(result.message);
-                    });
-            };
-
-            function getIndex(values, searchVal) {
-                for (var i = 0; i < values.length; i++)
-                {
-                    if (values[i].name === searchVal)
-                    {
-                        return values[i];
-                    }
-                }
-            }
-        }
-
-        deleteModalInstance.$inject = ["$scope", "$uibModalInstance", "incidentModalData"];
-
-        function deleteModalInstance($scope, $uibModalInstance, incidentModalData) {
-
-            $scope.incidentId = incidentModalData.id;
-            $scope.incidentName = incidentModalData.incidentName;
-
-            $scope.cancel = function() {
-                $uibModalInstance.dismiss("cancel");
-            };
-
-            $scope.delete = function(incidentId) {
-
-                // Remove the incident
-                incidentData.deleteIncident(incidentId)
-                    .then(function() {
-                        $uibModalInstance.close();
-                    }, function(result) {
-                        console.log(result.message);
-                    });
-            };
-        }
-
+        // Add modal instance
         openModalInstance.$inject = ["$scope", "$uibModalInstance", "incidentData"];
 
         function openModalInstance($scope, $uibModalInstance, incidentData) {
@@ -175,6 +126,74 @@
 
             $scope.close = function() {
                 $uibModalInstance.dismiss("cancel");
+            };
+        }
+
+        // Edit modal instance
+        editModalInstance.$inject = ["$scope", "$uibModalInstance", "incidentModalData", "incidentData"];
+
+        function editModalInstance($scope, $uibModalInstance, incidentModalData, incidentData) {
+
+            var incidentTypes = incidentData.getIncidentTypes();
+            var incidentType = getIndex(incidentTypes, incidentModalData.type);
+
+            $scope.incident = {
+                incidentTypes: incidentTypes,
+                incidentLevels: incidentData.getIncidentLevels(),
+                statuses: incidentData.getIncidentStatuses(),
+                name: incidentModalData.incidentName,
+                selectedLevel: incidentModalData.level.toString(),
+                organizationId: incidentModalData.organizationId,
+                selectedStatus: incidentModalData.status,
+                selectedType: incidentType,
+                userId: incidentModalData.userId
+            };
+
+            $scope.close = function() {
+                $uibModalInstance.dismiss("cancel");
+            };
+
+            $scope.saveChanges = function(incident) {
+                // Edit the incident
+                incidentData.editIncident(incident)
+                    .then(function() {
+                        $uibModalInstance.close();
+                    }, function(result) {
+                        console.log(result.message);
+                    });
+            };
+
+            function getIndex(values, searchVal) {
+                for (var i = 0; i < values.length; i++) {
+                    if (values[i].name === searchVal) {
+                        return values[i];
+                    }
+                }
+                return -1; // not found
+            }
+        }
+
+        // Delete modal instance
+        deleteModalInstance.$inject = ["$scope", "$uibModalInstance", "incidentModalData"];
+
+        function deleteModalInstance($scope, $uibModalInstance, incidentModalData) {
+
+            $scope.incidentId = incidentModalData.id;
+            $scope.incidentName = incidentModalData.incidentName;
+
+            $scope.cancel = function() {
+                $uibModalInstance.dismiss("cancel");
+            };
+
+            $scope.delete = function(incidentId) {
+
+                // Remove the incident
+                incidentData.deleteIncident(incidentId)
+                    .then(function() {
+                        $uibModalInstance.close();
+                    }, function(result) {
+                        console.log(result.message);
+                    });
             };
         }
     }

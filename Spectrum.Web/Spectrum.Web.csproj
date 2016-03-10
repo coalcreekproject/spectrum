@@ -489,6 +489,7 @@
     <Content Include="Areas\Eoc\Views\Dashboard\Dashboard.cshtml" />
     <Content Include="Areas\Eoc\Views\Checklist\Checklists.cshtml" />
     <Content Include="Scripts\app\data\incidentData.js" />
+    <Content Include="Scripts\app\directives\loading-directive.js" />
     <Content Include="Scripts\app\templates\im.html" />
     <Content Include="Areas\Eoc\Views\IncidentManagement\Partials\IncidentManagementAddModal.cshtml" />
     <Content Include="Areas\Eoc\Views\IncidentManagement\Partials\IncidentManagementDeleteModal.cshtml" />
