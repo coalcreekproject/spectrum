@@ -2,7 +2,7 @@
     .module('app')
     .controller('UserGridController', userGridController);
 
-function userGridController($scope, $http, $location, $modal, $state, uiGridConstants, userFactory) {
+function userGridController($scope, $http, $location, $uibModal, $state, uiGridConstants, userFactory) {
 
     $scope.data = userFactory;
 
@@ -20,6 +20,7 @@ function userGridController($scope, $http, $location, $modal, $state, uiGridCons
             { name: 'Options', cellTemplate: '<button class="btn btn-sm btn-default" ng-click="grid.appScope.edit(row)">Edit</button>' +
                 '<button class="btn btn-sm btn-default" ng-click="grid.appScope.userprofiles(row)">Profiles</button>' +
                 '<button class="btn btn-sm btn-default" ng-click="grid.appScope.roles(row)">Roles</button>' +
+                '<button class="btn btn-sm btn-default" ng-click="grid.appScope.positions(row)">Positions</button>' +
                 '<button class="btn btn-sm btn-default" ng-click="grid.appScope.delete(row)">Delete</button>'
             }
         ],
@@ -42,7 +43,7 @@ function userGridController($scope, $http, $location, $modal, $state, uiGridCons
       //});
 
     $scope.add = function () {
-        var modalInstance = $modal.open({
+        var modalInstance = $uibModal.open({
             templateUrl: '/Templates/User/AddUserModal',
             controller: AddUserModalController
         });
@@ -50,7 +51,7 @@ function userGridController($scope, $http, $location, $modal, $state, uiGridCons
 
 
     $scope.edit = function (row) {
-        var modalInstance = $modal.open({
+        $uibModal.open({
             templateUrl: '/Templates/User/editUserModal',
             controller: EditUserModalController,
             resolve: {
@@ -62,7 +63,7 @@ function userGridController($scope, $http, $location, $modal, $state, uiGridCons
     };
 
     $scope.delete = function(row) {
-        var modalInstance = $modal.open({
+        var modalInstance = $uibModal.open({
             templateUrl: '/Templates/User/deleteUserModal',
             controller: DeleteUserModalController,
             resolve: {
@@ -73,8 +74,20 @@ function userGridController($scope, $http, $location, $modal, $state, uiGridCons
         });
     };
 
+    $scope.positions = function (row) {
+        var modalInstance = $uibModal.open({
+            templateUrl: '/Templates/User/AssignUserPositionsModal',
+            controller: UserPositionsModalController,
+            resolve: {
+                user: function () {
+                    return angular.copy(row.entity);
+                }
+            }
+        });
+    };
+
     $scope.roles = function (row) {
-        var modalInstance = $modal.open({
+        var modalInstance = $uibModal.open({
             templateUrl: '/Templates/User/AssignUserRolesModal',
             controller: UserRolesModalController,
             resolve: {
@@ -90,183 +103,183 @@ function userGridController($scope, $http, $location, $modal, $state, uiGridCons
     };
 };
 
-function AddUserModalController($scope, $modalInstance, userFactory) {
+//function AddUserModalController($scope, $uibModalInstance, userFactory) {
 
-    $scope.ok = function(user) {
+//    $scope.ok = function(user) {
 
-        userFactory.addUser(user)
-            .then(function() {
-                    // success
-                    //$scope.gridOptions1.data = users;
-                },
-                function() {
-                    // error
-                    alert("could not save user");
-                });
+//        userFactory.addUser(user)
+//            .then(function() {
+//                    // success
+//                    //$scope.gridOptions1.data = users;
+//                },
+//                function() {
+//                    // error
+//                    alert("could not save user");
+//                });
 
-        $modalInstance.close();
-    };
+//        $uibModalInstance.close();
+//    };
 
-    $scope.cancel = function() {
-        $modalInstance.dismiss('cancel');
-    };
-};
+//    $scope.cancel = function() {
+//        $uibModalInstance.dismiss('cancel');
+//    };
+//};
 
-function EditUserModalController($scope, $modalInstance, userFactory, user) {
+//function EditUserModalController($scope, $uibModalInstance, userFactory, user) {
 
-    $scope.user = user;
+//    $scope.user = user;
 
-    $scope.ok = function () {
+//    $scope.ok = function () {
 
-        userFactory.editUser(user)
-            .then(function () {
-                // success
-            },
-                function () {
-                    // error
-                    alert("could not edit or update user");
-                });
+//        userFactory.editUser(user)
+//            .then(function () {
+//                // success
+//            },
+//                function () {
+//                    // error
+//                    alert("could not edit or update user");
+//                });
 
-        $modalInstance.close();
-    };
+//        $uibModalInstance.close();
+//    };
 
-    $scope.cancel = function () {
-        $modalInstance.dismiss('cancel');
-    };
-};
+//    $scope.cancel = function () {
+//        $uibModalInstance.dismiss('cancel');
+//    };
+//};
 
-function DeleteUserModalController($scope, $modalInstance, userFactory, user) {
+//function DeleteUserModalController($scope, $uibModalInstance, userFactory, user) {
 
-    $scope.user = user;
+//    $scope.user = user;
 
-    $scope.ok = function () {
+//    $scope.ok = function () {
 
-        userFactory.deleteUser(user)
-            .then(function () {
-                // success
-                //$scope.gridOptions1.data = users;
-            },
-                function () {
-                    // error
-                    alert("could not delete user");
-                });
+//        userFactory.deleteUser(user)
+//            .then(function () {
+//                // success
+//                //$scope.gridOptions1.data = users;
+//            },
+//                function () {
+//                    // error
+//                    alert("could not delete user");
+//                });
 
-        $modalInstance.close();
-    };
+//        $uibModalInstance.close();
+//    };
 
-    $scope.cancel = function () {
-        $modalInstance.dismiss('cancel');
-    };
-};
+//    $scope.cancel = function () {
+//        $uibModalInstance.dismiss('cancel');
+//    };
+//};
 
-/**
- * Pass function into module
- */
-angular
-    .module('app')
-    .factory('userFactory', userFactory);
+///**
+// * Pass function into module
+// */
+//angular
+//    .module('app')
+//    .factory('userFactory', userFactory);
 
-function userFactory($http, $q) {
+//function userFactory($http, $q) {
 
-    var _users = [];
+//    var _users = [];
 
-    var _getUsers = function () {
+//    var _getUsers = function () {
 
-        var deferred = $q.defer();
+//        var deferred = $q.defer();
 
-        $http.get('/api/Users')
-          .then(function (result) {
-              // Successful
-              angular.copy(result.data, _users);
-              deferred.resolve(_users);
-          },
-          function () {
-              // Error
-              deferred.reject();
-          });
+//        $http.get('/api/Users')
+//          .then(function (result) {
+//              // Successful
+//              angular.copy(result.data, _users);
+//              deferred.resolve(_users);
+//          },
+//          function () {
+//              // Error
+//              deferred.reject();
+//          });
 
-        return deferred.promise;
-    };
+//        return deferred.promise;
+//    };
 
 
-    var _addUser = function (newUser) {
+//    var _addUser = function (newUser) {
 
-        var deferred = $q.defer();
+//        var deferred = $q.defer();
 
-        $http.post('/api/Users', newUser)
-         .then(function (result) {
-             // success
-             var newlyCreatedUser = result.data;
-             _users.splice(0, 0, newlyCreatedUser);
-             deferred.resolve(newlyCreatedUser);
-         },
-         function () {
-             // error
-             deferred.reject();
-         });
+//        $http.post('/api/Users', newUser)
+//         .then(function (result) {
+//             // success
+//             var newlyCreatedUser = result.data;
+//             _users.splice(0, 0, newlyCreatedUser);
+//             deferred.resolve(newlyCreatedUser);
+//         },
+//         function () {
+//             // error
+//             deferred.reject();
+//         });
 
-        return deferred.promise;
-    };
+//        return deferred.promise;
+//    };
 
-    var _editUser = function(user) {
+//    var _editUser = function(user) {
 
-        var deferred = $q.defer();
+//        var deferred = $q.defer();
 
-        $http.put('/api/Users/' + user.Id, user)
-         .then(function (result) {
-             // success
-             var editedUser = result.data;
+//        $http.put('/api/Users/' + user.Id, user)
+//         .then(function (result) {
+//             // success
+//             var editedUser = result.data;
 
-             for (var i = 0; i < _users.length; i++) {
-                 if (_users[i].Id === editedUser.Id) {
-                     _users[i].UserName = editedUser.UserName;
-                     _users[i].Email = editedUser.Email;
-                     break;
-                 }
-             }
+//             for (var i = 0; i < _users.length; i++) {
+//                 if (_users[i].Id === editedUser.Id) {
+//                     _users[i].UserName = editedUser.UserName;
+//                     _users[i].Email = editedUser.Email;
+//                     break;
+//                 }
+//             }
 
-             deferred.resolve(editedUser);
-         },
-         function () {
-             // error
-             deferred.reject();
-         });
+//             deferred.resolve(editedUser);
+//         },
+//         function () {
+//             // error
+//             deferred.reject();
+//         });
 
-        return deferred.promise;
-    };
+//        return deferred.promise;
+//    };
 
-    var _deleteUser = function(user) {
+//    var _deleteUser = function(user) {
 
-        var deferred = $q.defer();
+//        var deferred = $q.defer();
 
-        $http.delete('/api/Users/' + user.Id, user)
-         .then(function (result) {
+//        $http.delete('/api/Users/' + user.Id, user)
+//         .then(function (result) {
 
-             var deletedUser = result.data;
+//             var deletedUser = result.data;
 
-             for (var i = 0; i < _users.length; i++) {
-                 if (_users[i].Id === deletedUser.Id) {
-                     _users.splice(i, 1);
-                     break;
-                 }
-             }
+//             for (var i = 0; i < _users.length; i++) {
+//                 if (_users[i].Id === deletedUser.Id) {
+//                     _users.splice(i, 1);
+//                     break;
+//                 }
+//             }
 
-             deferred.resolve();
-         },
-         function () {
-             // error
-             deferred.reject();
-         });
+//             deferred.resolve();
+//         },
+//         function () {
+//             // error
+//             deferred.reject();
+//         });
 
-        return deferred.promise;
-    };
+//        return deferred.promise;
+//    };
 
-    return {
-        users: _users,
-        getUsers: _getUsers,
-        addUser: _addUser,
-        editUser: _editUser,
-        deleteUser: _deleteUser
-    };
-};
+//    return {
+//        users: _users,
+//        getUsers: _getUsers,
+//        addUser: _addUser,
+//        editUser: _editUser,
+//        deleteUser: _deleteUser
+//    };
+//};
 

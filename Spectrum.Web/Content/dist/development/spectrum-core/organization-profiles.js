@@ -6,12 +6,12 @@ function organizationProfileParameters() {
     this.organizationId = null;
 };
 
-function organizationProfileController($scope, $http, $window, $modal, $stateParams, organizationProfileFactory) {
+function organizationProfileController($scope, $http, $window, $uibModal, $stateParams, organizationProfileFactory) {
 
     $scope.organizationId = $stateParams.organizationId;
     organizationProfileParameters.organizationId = $scope.organizationId;
 
-    $modal.scope = $scope;
+    $uibModal.scope = $scope;
     $scope.data = organizationProfileFactory;
 
     organizationProfileFactory.getOrganizationProfiles($scope.organizationId).then(function (organizationProfiles) {
@@ -23,14 +23,14 @@ function organizationProfileController($scope, $http, $window, $modal, $statePar
     });
 
     $scope.add = function () {
-        var modalInstance = $modal.open({
+        var modalInstance = $uibModal.open({
             templateUrl: '/Templates/Organization/addOrganizationProfileModal',
             controller: AddOrganizationProfileModalController
         });
     };
 
     $scope.edit = function (_organizationProfile) {
-        var modalInstance = $modal.open({
+        var modalInstance = $uibModal.open({
             templateUrl: '/Templates/Organization/EditOrganizationProfileModal',
             controller: EditOrganizationProfileModalController,
             resolve: {
@@ -42,7 +42,7 @@ function organizationProfileController($scope, $http, $window, $modal, $statePar
     };
 
     $scope.delete = function (_organizationProfile2) {
-        var modalInstance = $modal.open({
+        var modalInstance = $uibModal.open({
             templateUrl: '/Templates/Organization/deleteOrganizationProfileModal',
             controller: DeleteOrganizationProfileModalController,
             resolve: {
@@ -54,7 +54,7 @@ function organizationProfileController($scope, $http, $window, $modal, $statePar
     };
 };
 
-function AddOrganizationProfileModalController($scope, $modalInstance, organizationProfileFactory) {
+function AddOrganizationProfileModalController($scope, $uibModalInstance, organizationProfileFactory) {
 
     $scope.ok = function (organizationProfile) {
 
@@ -62,21 +62,21 @@ function AddOrganizationProfileModalController($scope, $modalInstance, organizat
 
         organizationProfileFactory.addOrganizationProfiles(organizationProfile).then(function () {
             // success
-            $modalInstance.close();
+            $uibModalInstance.close();
         }, function () {
             // error
             alert("could not save organization profile");
         });
 
-        $modalInstance.close();
+        $uibModalInstance.close();
     };
 
     $scope.cancel = function () {
-        $modalInstance.dismiss('cancel');
+        $uibModalInstance.dismiss('cancel');
     };
 };
 
-function EditOrganizationProfileModalController($scope, $modalInstance, organizationProfileFactory, organizationProfile) {
+function EditOrganizationProfileModalController($scope, $uibModalInstance, organizationProfileFactory, organizationProfile) {
 
     $scope.organizationProfile = organizationProfile;
 
@@ -89,15 +89,15 @@ function EditOrganizationProfileModalController($scope, $modalInstance, organiza
             alert("could not edit or update organization profile");
         });
 
-        $modalInstance.close();
+        $uibModalInstance.close();
     };
 
     $scope.cancel = function () {
-        $modalInstance.dismiss('cancel');
+        $uibModalInstance.dismiss('cancel');
     };
 };
 
-function DeleteOrganizationProfileModalController($scope, $modalInstance, organizationProfileFactory, organizationProfile) {
+function DeleteOrganizationProfileModalController($scope, $uibModalInstance, organizationProfileFactory, organizationProfile) {
 
     $scope.organizationProfile = organizationProfile;
 
@@ -111,11 +111,11 @@ function DeleteOrganizationProfileModalController($scope, $modalInstance, organi
             alert("could not delete organization profile");
         });
 
-        $modalInstance.close();
+        $uibModalInstance.close();
     };
 
     $scope.cancel = function () {
-        $modalInstance.dismiss('cancel');
+        $uibModalInstance.dismiss('cancel');
     };
 };
 

@@ -1,4 +1,4 @@
-﻿<div class="modal-dialog" ng-controller="identityFocusController">
+﻿<div class="modal-dialog" ng-controller="identityFocusController as identityFocusController">
     <div class="modal-header">
         <h4 class="modal-title">Change Identity Focus</h4>
         <small class="font-bold">Select the user organization and role to access the information in that context</small>
@@ -11,23 +11,22 @@
                 <div class="row">
                     <div class="col-md-7 dropdown">
                         <label for="selectedOrganization">Organization</label>
-                        <select class="form-control m-b" id="selectedOrganization" name="orgSelect" ng-model="currentUser.selectedOrganization"
-                                ng-options="option.name for option in organizations">
-                        </select>
+                        <select class="form-control m-b" id="selectedOrganization" name="selectedOrganization" ng-model="currentUser.selectedOrganization"
+                                ng-options="option.name for option in organizations track by option.organizationId"></select>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-7">
                         <label for="selectedRole">Role</label>
-                        <select class="form-control m-b" id="selectedRole" name="selectedRole" ng-model="currentUser.selectedRole" 
-                                ng-options="option.name for option in roles"></select>
+                        <select class="form-control m-b" id="selectedRole" name="selectedRole" ng-model="currentUser.selectedRole"
+                                ng-options="option.name for option in roles track by option.roleId"></select>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-7">
-                        <label for="positionSelect">Position</label>
-                        <select class="form-control m-b" id="positionSelect" name="positionSelect" ng-model="selectedPosition" 
-                                ng-options="position.name for position in positions track by positionId"></select>
+                        <label for="selectedPosition">Position</label>
+                        <select class="form-control m-b" id="selectedPosition" name="selectedPosition" ng-model="currentUser.selectedPosition"
+                                ng-options="option.name for option in positions track by option.positionId"></select>
                     </div>
                 </div>
             </div>

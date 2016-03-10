@@ -6,12 +6,12 @@ function organizationPositionParameters() {
     this.organizationId = null;
 };
 
-function organizationPositionController($scope, $http, $window, $modal, $stateParams, organizationPositionFactory) {
+function organizationPositionController($scope, $http, $window, $uibModal, $stateParams, organizationPositionFactory) {
 
     $scope.organizationId = $stateParams.organizationId;
     organizationPositionParameters.organizationId = $scope.organizationId;
 
-    $modal.scope = $scope;
+    $uibModal.scope = $scope;
     $scope.data = organizationPositionFactory;
 
     organizationPositionFactory.getOrganizationPositions($scope.organizationId).then(function (organizationPositions) {
@@ -23,14 +23,14 @@ function organizationPositionController($scope, $http, $window, $modal, $statePa
     });
 
     $scope.add = function () {
-        var modalInstance = $modal.open({
+        var modalInstance = $uibModal.open({
             templateUrl: '/Templates/Organization/addOrganizationPositionModal',
             controller: AddOrganizationPositionModalController
         });
     };
 
     $scope.edit = function (_organizationPosition) {
-        var modalInstance = $modal.open({
+        var modalInstance = $uibModal.open({
             templateUrl: '/Templates/Organization/EditOrganizationPositionModal',
             controller: EditOrganizationPositionModalController,
             resolve: {
@@ -42,7 +42,7 @@ function organizationPositionController($scope, $http, $window, $modal, $statePa
     };
 
     $scope.delete = function (_organizationPosition2) {
-        var modalInstance = $modal.open({
+        var modalInstance = $uibModal.open({
             templateUrl: '/Templates/Organization/deleteOrganizationPositionModal',
             controller: DeleteOrganizationPositionModalController,
             resolve: {
@@ -54,7 +54,7 @@ function organizationPositionController($scope, $http, $window, $modal, $statePa
     };
 };
 
-function AddOrganizationPositionModalController($scope, $modalInstance, organizationPositionFactory) {
+function AddOrganizationPositionModalController($scope, $uibModalInstance, organizationPositionFactory) {
 
     $scope.ok = function (organizationPosition) {
 
@@ -62,21 +62,21 @@ function AddOrganizationPositionModalController($scope, $modalInstance, organiza
 
         organizationPositionFactory.addOrganizationPositions(organizationPosition).then(function () {
             // success
-            $modalInstance.close();
+            $uibModalInstance.close();
         }, function () {
             // error
             alert("could not save organization position");
         });
 
-        $modalInstance.close();
+        $uibModalInstance.close();
     };
 
     $scope.cancel = function () {
-        $modalInstance.dismiss('cancel');
+        $uibModalInstance.dismiss('cancel');
     };
 };
 
-function EditOrganizationPositionModalController($scope, $modalInstance, organizationPositionFactory, organizationPosition) {
+function EditOrganizationPositionModalController($scope, $uibModalInstance, organizationPositionFactory, organizationPosition) {
 
     $scope.organizationPosition = organizationPosition;
 
@@ -89,15 +89,15 @@ function EditOrganizationPositionModalController($scope, $modalInstance, organiz
             alert("could not edit or update organization position");
         });
 
-        $modalInstance.close();
+        $uibModalInstance.close();
     };
 
     $scope.cancel = function () {
-        $modalInstance.dismiss('cancel');
+        $uibModalInstance.dismiss('cancel');
     };
 };
 
-function DeleteOrganizationPositionModalController($scope, $modalInstance, organizationPositionFactory, organizationPosition) {
+function DeleteOrganizationPositionModalController($scope, $uibModalInstance, organizationPositionFactory, organizationPosition) {
 
     $scope.organizationPosition = organizationPosition;
 
@@ -111,11 +111,11 @@ function DeleteOrganizationPositionModalController($scope, $modalInstance, organ
             alert("could not delete organization position");
         });
 
-        $modalInstance.close();
+        $uibModalInstance.close();
     };
 
     $scope.cancel = function () {
-        $modalInstance.dismiss('cancel');
+        $uibModalInstance.dismiss('cancel');
     };
 };
 

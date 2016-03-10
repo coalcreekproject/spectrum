@@ -230,15 +230,15 @@ function userFactory($http, $q) {
 
         var deferred = $q.defer();
 
-        $http.put('/api/Users/' + user.Id, user)
+        $http.put('/api/Users/' + user.id, user)
          .then(function (result) {
              // success
              var editedUser = result.data;
 
              for (var i = 0; i < _users.length; i++) {
-                 if (_users[i].Id === editedUser.Id) {
-                     _users[i].UserName = editedUser.UserName;
-                     _users[i].Email = editedUser.Email;
+                 if (_users[i].id === editedUser.id) {
+                     _users[i].userName = editedUser.userName;
+                     _users[i].email = editedUser.email;
                      break;
                  }
              }
@@ -257,13 +257,13 @@ function userFactory($http, $q) {
 
         var deferred = $q.defer();
 
-        $http.delete('/api/Users/' + user.Id, user)
+        $http.delete('/api/Users/' + user.id, user)
          .then(function (result) {
 
              var deletedUser = result.data;
 
              for (var i = 0; i < _users.length; i++) {
-                 if (_users[i].Id === deletedUser.Id) {
+                 if (_users[i].id === deletedUser.id) {
                      _users.splice(i, 1);
                      break;
                  }

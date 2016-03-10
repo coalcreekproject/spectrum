@@ -39,9 +39,9 @@ function config($stateProvider, $urlRouterProvider, $compileProvider) {
     });
 }
 
-function organizationController($scope, $http, $modal, $state, organizationFactory) {
+function organizationController($scope, $http, $uibModal, $state, organizationFactory) {
 
-    $modal.scope = $scope;
+    $uibModal.scope = $scope;
 
     $scope.data = organizationFactory;
 
@@ -54,14 +54,14 @@ function organizationController($scope, $http, $modal, $state, organizationFacto
     });
 
     $scope.add = function () {
-        var modalInstance = $modal.open({
+        var modalInstance = $uibModal.open({
             templateUrl: "/Templates/Organization/addOrganizationModal",
             controller: AddOrganizationModalController
         });
     };
 
     $scope.edit = function (_organization) {
-        var modalInstance = $modal.open({
+        var modalInstance = $uibModal.open({
             templateUrl: "/Templates/Organization/editOrganizationModal",
             controller: EditOrganizationModalController,
             resolve: {
@@ -73,7 +73,7 @@ function organizationController($scope, $http, $modal, $state, organizationFacto
     };
 
     $scope.delete = function (_organization2) {
-        var modalInstance = $modal.open({
+        var modalInstance = $uibModal.open({
             templateUrl: "/Templates/Organization/deleteOrganizationModal",
             controller: DeleteOrganizationModalController,
             resolve: {
@@ -97,27 +97,27 @@ function organizationController($scope, $http, $modal, $state, organizationFacto
     };
 };
 
-function AddOrganizationModalController($scope, $modalInstance, organizationFactory) {
+function AddOrganizationModalController($scope, $uibModalInstance, organizationFactory) {
 
     $scope.ok = function (organization) {
 
         organizationFactory.addOrganizations(organization).then(function () {
             // success
-            $modalInstance.close();
+            $uibModalInstance.close();
         }, function () {
             // error
             alert("could not save organization");
         });
 
-        $modalInstance.close();
+        $uibModalInstance.close();
     };
 
     $scope.cancel = function () {
-        $modalInstance.dismiss('cancel');
+        $uibModalInstance.dismiss('cancel');
     };
 };
 
-function EditOrganizationModalController($scope, $modalInstance, organizationFactory, organization) {
+function EditOrganizationModalController($scope, $uibModalInstance, organizationFactory, organization) {
 
     $scope.organization = organization;
 
@@ -130,15 +130,15 @@ function EditOrganizationModalController($scope, $modalInstance, organizationFac
             alert("could not edit or update organization");
         });
 
-        $modalInstance.close();
+        $uibModalInstance.close();
     };
 
     $scope.cancel = function () {
-        $modalInstance.dismiss('cancel');
+        $uibModalInstance.dismiss('cancel');
     };
 };
 
-function DeleteOrganizationModalController($scope, $modalInstance, organizationFactory, organization) {
+function DeleteOrganizationModalController($scope, $uibModalInstance, organizationFactory, organization) {
 
     $scope.organization = organization;
 
@@ -152,11 +152,11 @@ function DeleteOrganizationModalController($scope, $modalInstance, organizationF
             alert("could not delete organization");
         });
 
-        $modalInstance.close();
+        $uibModalInstance.close();
     };
 
     $scope.cancel = function () {
-        $modalInstance.dismiss('cancel');
+        $uibModalInstance.dismiss('cancel');
     };
 };
 

@@ -6,12 +6,12 @@ function userProfileParameters() {
     this.userId = null;
 };
 
-function userProfileController($scope, $http, $window, $modal, $stateParams, userProfileFactory) {
+function userProfileController($scope, $http, $window, $uibModal, $stateParams, userProfileFactory) {
 
     $scope.userId = $stateParams.userId;
     userProfileParameters.userId = $scope.userId;
 
-    $modal.scope = $scope;
+    $uibModal.scope = $scope;
     $scope.data = userProfileFactory;
 
     userProfileFactory.getUserProfiles($scope.userId).then(function (userProfiles) {
@@ -22,14 +22,14 @@ function userProfileController($scope, $http, $window, $modal, $stateParams, use
     });
 
     $scope.add = function () {
-        var modalInstance = $modal.open({
+        var modalInstance = $uibModal.open({
             templateUrl: '/Templates/User/AddUserProfileModal',
             controller: AddUserProfileModalController
         });
     };
 
     $scope.edit = function (_userProfile) {
-        var modalInstance = $modal.open({
+        var modalInstance = $uibModal.open({
             templateUrl: '/Templates/User/EditUserProfileModal',
             controller: EditUserProfileModalController,
             resolve: {
@@ -41,7 +41,7 @@ function userProfileController($scope, $http, $window, $modal, $stateParams, use
     };
 
     $scope.delete = function (_userProfile2) {
-        var modalInstance = $modal.open({
+        var modalInstance = $uibModal.open({
             templateUrl: '/Templates/User/DeleteUserProfileModal',
             controller: DeleteUserProfileModalController,
             resolve: {
@@ -53,7 +53,7 @@ function userProfileController($scope, $http, $window, $modal, $stateParams, use
     };
 };
 
-function AddUserProfileModalController($scope, $modalInstance, userProfileFactory) {
+function AddUserProfileModalController($scope, $uibModalInstance, userProfileFactory) {
 
     $scope.ok = function (userProfile) {
 
@@ -62,21 +62,21 @@ function AddUserProfileModalController($scope, $modalInstance, userProfileFactor
         userProfileFactory.addUserProfile(userProfile).then(function () {
             // success
             // TODO: Saved message
-            $modalInstance.close();
+            $uibModalInstance.close();
         }, function () {
             // error
             alert("could not save the profile.");
         });
 
-        $modalInstance.close();
+        $uibModalInstance.close();
     };
 
     $scope.cancel = function () {
-        $modalInstance.dismiss('cancel');
+        $uibModalInstance.dismiss('cancel');
     };
 };
 
-function EditUserProfileModalController($scope, $modalInstance, userProfileFactory, userProfile) {
+function EditUserProfileModalController($scope, $uibModalInstance, userProfileFactory, userProfile) {
 
     $scope.userProfile = userProfile;
 
@@ -89,15 +89,15 @@ function EditUserProfileModalController($scope, $modalInstance, userProfileFacto
             alert("could not edit or update profile");
         });
 
-        $modalInstance.close();
+        $uibModalInstance.close();
     };
 
     $scope.cancel = function () {
-        $modalInstance.dismiss('cancel');
+        $uibModalInstance.dismiss('cancel');
     };
 };
 
-function DeleteUserProfileModalController($scope, $modalInstance, userProfileFactory, userProfile) {
+function DeleteUserProfileModalController($scope, $uibModalInstance, userProfileFactory, userProfile) {
 
     $scope.userProfile = userProfile;
 
@@ -110,11 +110,11 @@ function DeleteUserProfileModalController($scope, $modalInstance, userProfileFac
             alert("could not delete user");
         });
 
-        $modalInstance.close();
+        $uibModalInstance.close();
     };
 
     $scope.cancel = function () {
-        $modalInstance.dismiss('cancel');
+        $uibModalInstance.dismiss('cancel');
     };
 };
 
