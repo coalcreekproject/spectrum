@@ -101,15 +101,20 @@
 
     <!-- Local controllers -->
     <script src="~/Scripts/homer.js"></script>
-    <script src="~/Scripts/app.js"></script>
-    <script src="~/Scripts/config.js"></script>
-    <script src="~/Scripts/directives/directives.js"></script>
 
-    <script src="~/Scripts/app/core/portal-identityfocus.js"></script>
+    <script src="~/Scripts/app/app.js"></script>
+    <script src="~/Scripts/app/core/core.module.js"></script>
+    <script src="~/Scripts/app/eoc/eoc.module.js"></script>
+
+    <script src="~/Scripts/app/directives/directives.js"></script>
+    <script src="~/Scripts/app/directives/loading-directive.js"></script>
+
+    <script src="~/Scripts/app/data/data.module.js"></script>
     <script src="~/Scripts/app/data/currentUser.js"></script>
     <script src="~/Scripts/app/data/userData.js"></script>
+    <script src="~/Scripts/app/data/incidentData.js"></script>
 
-
+    <script src="~/Scripts/app/core/portal-identityfocus.js"></script>
     <!-- Handler for local scripts -->
     @RenderSection("scripts", required: false)
 </body>

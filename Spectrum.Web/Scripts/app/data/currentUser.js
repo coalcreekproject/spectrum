@@ -1,7 +1,7 @@
 ﻿(function() {
 
     angular
-        .module("app")
+        .module("app.data")
         .factory("currentUserFactory", currentUserFactory);
 
     currentUserFactory.$inject = ["$http", "$q"];

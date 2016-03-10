@@ -6,7 +6,6 @@
         /*
          * Angular
          */
-        "ngRoute",
         "ngSanitize",
         "ngAnimate",
         "ngTouch",
@@ -21,10 +20,7 @@
         "angular-peity",
         "cgNotify",
         "ui.map",
-        "ui.calendar",
-        "summernote",
         "ui.tree",
-        "bm.bsTour",
         "xeditable",
         "ui.select",
         "ui.sortable",

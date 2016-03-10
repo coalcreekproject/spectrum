@@ -15,11 +15,10 @@
              */
             "app.data",
 
-            /*
-            * Our main modules
-            */
-            "app.portal"
-            //"app.eoc"
+                        /*
+             * Data services and factories
+             */
+            "app.eoc"
         ]);
 
 })();

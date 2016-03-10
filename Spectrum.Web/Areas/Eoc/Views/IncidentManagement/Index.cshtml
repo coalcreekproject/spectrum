@@ -1,0 +1,12 @@
+﻿@{
+    ViewBag.Title = "EOC - Incident Management";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div ui-view></div>
+
+@section scripts {
+    <script src="@Url.Content("~/Scripts/app/eoc/dashboard.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/app/eoc/incident-management.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/app/eoc/checklists.js")" type="text/javascript"></script>
+}

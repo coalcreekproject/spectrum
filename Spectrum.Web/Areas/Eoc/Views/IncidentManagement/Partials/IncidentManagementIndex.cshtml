@@ -1,0 +1,94 @@
+﻿<div class="row">
+
+    <div class="normalheader transition" small-header>
+        <div class="hpanel" content="Incidents" placement="bottom" title="Incidents">
+            <div class="panel-body">
+                <a href="" ng-click="small()">
+                    <div class="clip-header">
+                        <i class="fa fa-arrow-up"></i>
+                    </div>
+                </a>
+                <div class="m-t-lg pull-right" id="hbreadcrumb">
+                    <ol class="breadcrumb hbreadcrumb">
+                        <li>
+                            <a href="@Url.Action("Index", "Dashboard")">Dashboard</a>
+                        </li>
+                        <li class="active">
+                            Incident Management
+                        </li>
+                    </ol>
+                </div>
+                <h2 class="font-light m-b-xs">
+                    Incident Management
+                </h2>
+                <small>Manage your incidents {{im.name}}.</small>
+            </div>
+        </div>
+    </div>
+
+    <div child="row" class="normalheader transition" small-header>
+        <div animate-panel effect="fadeInUp">
+            <div class="hpanel">
+                <div class="panel-body">
+                    <div class="form-inline">
+                        <div class="col-lg-10">
+                            <div class="input-group m-b">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-primary" type="button" ng-click="im.clear()">Clear filter</button>
+                                </span>
+                                <input class="form-control" placeholder="Filter incidents..." type="text" ng-model="im.search">
+                            </div>
+                        </div>
+                        <div class="col-lg-2">
+                            <div class="pull-right">
+                                <div style="padding-bottom: 15px">
+                                    <button class="btn btn-primary" id="add" ng-click="im.openModal()">Add an Incident</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="content">
+        <loading></loading>
+        <div ng-repeat="i in im.incidents | filter:im.search">
+            <div animate-panel child="row" effect="fadeInUp">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="hpanel">
+                            <div class="hbuilt panel-heading">
+                                <div panel-tools></div>
+                                Incident: {{ i.incidentName }}
+                            </div>
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <label class="control-label">Type: </label> {{ i.type }}
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <label class="control-label">Level: </label> {{ i.level }}
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <label class="control-label">Status: </label> {{ i.status }}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel-footer">
+                                <div class="btn-toolbar">
+                                    <div class="pull-right">
+                                        <button class="btn btn-default btn-sm" ng-click="im.editModal(i)">Edit</button>
+                                        <button class="btn btn-default btn-sm" ng-click="im.deleteModal(i)">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
