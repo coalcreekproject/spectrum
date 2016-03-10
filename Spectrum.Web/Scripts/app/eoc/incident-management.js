@@ -138,6 +138,7 @@
             var incidentType = getIndex(incidentTypes, incidentModalData.type);
 
             $scope.incident = {
+                id: incidentModalData.id,
                 incidentTypes: incidentTypes,
                 incidentLevels: incidentData.getIncidentLevels(),
                 statuses: incidentData.getIncidentStatuses(),

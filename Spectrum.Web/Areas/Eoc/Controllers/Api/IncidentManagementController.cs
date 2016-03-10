@@ -34,6 +34,29 @@ namespace Spectrum.Web.Areas.Eoc.Controllers.Api
         }
 
         [Route("Eoc/api/Incidents")]
+        [HttpPut]
+        public async Task<IHttpActionResult> PutIncident(Incident incident)
+        {
+            if (incident == null)
+            {
+                return BadRequest("Incident data is invalid.");
+            }
+
+            try
+            {
+                // TODO: Hook into user utility for current user
+                incident.OrganizationId = 1;
+                incident.UserId = 1;
+                var document = await _dbRepository.UpdateItemAsync(incident.Id, incident);
+                return Ok(document.Id);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [Route("Eoc/api/Incidents")]
         [HttpPost]
         public async Task<IHttpActionResult> PostIncident(Incident incident)
         {
