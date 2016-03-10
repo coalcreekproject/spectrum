@@ -493,6 +493,7 @@
     <Content Include="Gruntfile.js" />
     <Content Include="Scripts\app.js" />
     <Content Include="Scripts\app\app.js" />
+    <Content Include="Scripts\app\core\core.module.js" />
     <Content Include="Scripts\app\data\currentUser.js" />
     <Content Include="Scripts\app\data\userData.js" />
     <Content Include="Scripts\app\eoc\checklists.js" />
@@ -589,7 +590,6 @@
     <Content Include="Scripts\app\core\userprofiles-index.js" />
     <Content Include="Scripts\app\core\usersgrid-index.js" />
     <Content Include="Scripts\app\core\users-index.js" />
-    <Content Include="Scripts\spectrum-eoc\checklists.js" />
     <Content Include="Templates\Common\panel_tools.html" />
     <Content Include="Views\Organization\Partials\AddOrganizationPositionModal.cshtml" />
     <Content Include="Views\FileManager\Index.cshtml" />

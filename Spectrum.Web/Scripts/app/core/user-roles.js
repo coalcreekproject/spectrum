@@ -19,12 +19,12 @@ function UserRolesModalController($scope, $uibModalInstance, userRoleFactory, us
     };
 
     // Find the user default profile organization id
-    for (var i = 0; i < user.UserOrganizations.length; ++i) {
-        if (user.UserOrganizations[i].Default === true) {
-            userRoleParameters.organizationId = user.UserOrganizations[i].OrganizationId;
+    for (var i = 0; i < user.userOrganizations.length; ++i) {
+        if (user.userOrganizations[i].default === true) {
+            userRoleParameters.organizationId = user.userOrganizations[i].organizationId;
         } else {
-            if (user.UserOrganizations.length > 0) {
-                userRoleParameters.organizationId = user.UserOrganizations[0].OrganizationId;
+            if (user.userOrganizations.length > 0) {
+                userRoleParameters.organizationId = user.userOrganizations[0].organizationId;
             }
         }
     }
@@ -37,7 +37,7 @@ function UserRolesModalController($scope, $uibModalInstance, userRoleFactory, us
                 $scope.availableRoles = availableRoles;
                 for (var i = 0; i < $scope.availableRoles.length; ++i) {
                     $scope.models.lists.Available.push({
-                        label: $scope.availableRoles[i].Name,
+                        label: $scope.availableRoles[i].name,
                         object: $scope.availableRoles[i]
                     });
                 }
@@ -54,13 +54,13 @@ function UserRolesModalController($scope, $uibModalInstance, userRoleFactory, us
                 $scope.userRoles = userRoles;
                 for (var i = 0; i < $scope.userRoles.length; ++i) {
                     $scope.models.lists.Assigned.push({
-                        label: $scope.userRoles[i].Name,
-                        Default: $scope.userRoles[i].Default,
+                        label: $scope.userRoles[i].name,
+                        Default: $scope.userRoles[i].default,
                         object: $scope.userRoles[i]
                     });
                     var j = 0;
                     while (j < $scope.models.lists.Available.length) {
-                        if ($scope.userRoles[i].RoleId === $scope.models.lists.Available[j].object.RoleId) {
+                        if ($scope.userRoles[i].RoleId === $scope.models.lists.Available[j].object.roleId) {
                             $scope.models.lists.Available.splice(j, 1);
                         }
                         j++;

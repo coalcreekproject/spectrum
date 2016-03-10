@@ -50,43 +50,51 @@
 
     function changeIdentityFocusModalController($scope, $http, $uibModalInstance, currentUserFactory, currentUser) {
 
-        $scope.currentUser = currentUser;
-        $scope.organizations = [];
-        $scope.roles = [];
-        $scope.positions = [];
-        var i;
+        $scope.currentUser = {};
+        $scope.positions = currentUser.userPositions;
 
-        for (i = 0; i < currentUser.userOrganizations.length; i++) {
-            $scope.organizations.push({
-                organizationId: currentUser.userOrganizations[i].organizationId,
-                name: currentUser.userOrganizations[i].name//,
-                //selected: (currentUser.userOrganizations[i].organizationId === currentUser.selectedOrganizationId)
-            });
-        }
+        //$scope.currentUser = {
+        //    selectedPosition: { "positionId": 5, "name": "ESF #6 - Mass Care, Emergency Assistance, Temporary Housing, and Human Services" }
+        //};
 
-        for (i = 0; i < currentUser.userRoles.length; i++) {
-            $scope.roles.push({
-                roleId: currentUser.userRoles[i].roleId,
-                name: currentUser.userRoles[i].name//,
-                //selected: (currentUser.userRoles[i].roleId === currentUser.selectedRoleId)
-            });
-        }
+        $scope.selectedPosition = 5;
 
-        for (i = 0; i < currentUser.userPositions.length; i++) {
-            $scope.positions.push({
-                positionId: currentUser.userPositions[i].positionId,
-                name: currentUser.userPositions[i].name//,
-                //selected: (currentUser.userPositions[i].positionId === currentUser.SelectedPositionId)
-            });
-        }
+        $scope.organizations = currentUser.userOrganizations;
+        $scope.roles = currentUser.userRoles;
+        
+        //var i;
+
+        //for (i = 0; i < currentUser.userOrganizations.length; i++) {
+        //    $scope.organizations.push({
+        //        organizationId: currentUser.userOrganizations[i].organizationId,
+        //        name: currentUser.userOrganizations[i].name//,
+        //        //selected: (currentUser.userOrganizations[i].organizationId === currentUser.selectedOrganizationId)
+        //    });
+        //}
+
+        //for (i = 0; i < currentUser.userRoles.length; i++) {
+        //    $scope.roles.push({
+        //        roleId: currentUser.userRoles[i].roleId,
+        //        name: currentUser.userRoles[i].name//,
+        //        //selected: (currentUser.userRoles[i].roleId === currentUser.selectedRoleId)
+        //    });
+        //}
+
+        //for (i = 0; i < currentUser.userPositions.length; i++) {
+        //    $scope.positions.push({
+        //        positionId: currentUser.userPositions[i].positionId,
+        //        name: currentUser.userPositions[i].name//,
+        //        //selected: (currentUser.userPositions[i].positionId === currentUser.SelectedPositionId)
+        //    });
+        //}
 
         $scope.currentUser.selectedOrganization = { organizationId: currentUser.selectedOrganizationId, name: currentUser.selectedOrganizationName  };
         $scope.currentUser.selectedRole = { roleId: currentUser.selectedRoleId, name: currentUser.selectedRoleName };
-        $scope.currentUser.selectedPosition = { positionId: currentUser.selectedPositionId, name: currentUser.selectedPositionName };
+        //$scope.currentUser.selectedPosition = { name: "AngularRocks", positionId: 2};
 
         $scope.ok = function (currentUserData) {
 
-            //Check for nulls here and set to the already selected value if null
+            //TODO: Check and set to the already selected value if null
             currentUserData.selectedOrganizationId = currentUserData.selectedOrganization.organizationId;
             currentUserData.selectedRoleId = currentUserData.selectedRole.roleId;
             currentUserData.selectedPositionId = currentUserData.selectedPosition.positionId;
@@ -105,5 +113,4 @@
             $uibModalInstance.dismiss("cancel");
         };
     };
-})
-();
+}());

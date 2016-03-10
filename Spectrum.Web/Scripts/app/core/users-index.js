@@ -104,7 +104,7 @@ function userPanelController($scope, $http, $uibModal, $state, userFactory) {
     };
 
     $scope.userprofiles = function (user) {
-        $state.go('userprofiles', { 'userId': user.Id });
+        $state.go('userprofiles', { 'userId': user.id });
     };
 };
 
