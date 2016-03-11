@@ -9,7 +9,7 @@ function userPositionParameters() {
 
 function UserPositionsModalController($scope, $uibModalInstance, userPositionFactory, user) {
 
-    $scope.userId = user.Id;
+    $scope.userId = user.id;
     userPositionParameters.userId = $scope.userId;
     $scope.user = user;
 
@@ -19,9 +19,9 @@ function UserPositionsModalController($scope, $uibModalInstance, userPositionFac
     };
 
     // Find the user default profile organization id
-    for (var i = 0; i < user.UserProfiles.length; ++i) {
-        if (user.UserProfiles[i].Default === true) {
-            userPositionParameters.organizationId = user.UserProfiles[i].OrganizationId;
+    for (var i = 0; i < user.userProfiles.length; ++i) {
+        if (user.userProfiles[i].default === true) {
+            userPositionParameters.organizationId = user.userProfiles[i].organizationId;
         }
     }
 
@@ -33,7 +33,7 @@ function UserPositionsModalController($scope, $uibModalInstance, userPositionFac
                 $scope.availablePositions = availablePositions;
                 for (var i = 0; i < $scope.availablePositions.length; ++i) {
                     $scope.models.lists.Available.push({
-                        label: $scope.availablePositions[i].Name,
+                        label: $scope.availablePositions[i].name,
                         object: $scope.availablePositions[i]
                     });
                 }
@@ -50,12 +50,12 @@ function UserPositionsModalController($scope, $uibModalInstance, userPositionFac
                 $scope.userPositions = userPositions;
                 for (var i = 0; i < $scope.userPositions.length; ++i) {
                     $scope.models.lists.Assigned.push({
-                        label: $scope.userPositions[i].Name,
+                        label: $scope.userPositions[i].name,
                         object: $scope.userPositions[i]
                     });
                     var j = 0;
                     while (j < $scope.models.lists.Available.length) {
-                        if ($scope.userPositions[i].PositionId === $scope.models.lists.Available[j].object.PositionId) {
+                        if ($scope.userPositions[i].positionId === $scope.models.lists.Available[j].object.positionId) {
                             $scope.models.lists.Available.splice(j, 1);
                         }
                         j++;
@@ -144,9 +144,9 @@ function userPositionFactory($http, $q) {
         for (var i = 0; i < positionList.length; i++) {
             var userPosition = {
                 UserId: user.Id,
-                PositionId: positionList[i].object.PositionId,
+                PositionId: positionList[i].object.positionId,
                 OrganizationId: userPositionParameters.organizationId,
-                Default: positionList[i].Default
+                Default: positionList[i].default
             };
             user.UserPositions.push(userPosition);
         }

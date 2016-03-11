@@ -9,7 +9,7 @@ function userRoleParameters() {
 
 function UserRolesModalController($scope, $uibModalInstance, userRoleFactory, user) {
 
-    $scope.userId = user.Id;
+    $scope.userId = user.id;
     userRoleParameters.userId = $scope.userId;
     $scope.user = user;
 
@@ -60,7 +60,7 @@ function UserRolesModalController($scope, $uibModalInstance, userRoleFactory, us
                     });
                     var j = 0;
                     while (j < $scope.models.lists.Available.length) {
-                        if ($scope.userRoles[i].RoleId === $scope.models.lists.Available[j].object.roleId) {
+                        if ($scope.userRoles[i].roleId === $scope.models.lists.Available[j].object.roleId) {
                             $scope.models.lists.Available.splice(j, 1);
                         }
                         j++;
@@ -148,10 +148,10 @@ function userRoleFactory($http, $q) {
 
         for (var i = 0; i < roleList.length; i++) {
             var userRole = {
-                UserId: user.Id,
-                RoleId: roleList[i].object.RoleId,
+                UserId: user.id,
+                RoleId: roleList[i].object.roleId,
                 OrganizationId: userRoleParameters.organizationId,
-                Default: roleList[i].Default
+                Default: roleList[i].default
             };
             user.UserRoles.push(userRole);
         }
