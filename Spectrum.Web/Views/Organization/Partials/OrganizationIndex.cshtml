@@ -10,7 +10,7 @@
                 <div id="hbreadcrumb" class="pull-right m-t-lg">
                     <ol class="hbreadcrumb breadcrumb">
                         <li>
-                            <a href="@Url.Action("Index", "Dashboard")">Dashboard</a>
+                            <a href="@Url.Action("Index", "Portal")">Portal</a>
                         </li>
                         <li>
                             <a href="@Url.Action("Index", "Organization")">Organizations</a>
@@ -60,15 +60,15 @@
                         <div class="hpanel">
                             <div class="panel-heading hbuilt">
                                 <div panel-tools></div>
-                                {{ o.Name }}
+                                {{ o.name }}
                             </div>
                             <div class="panel-body">
                                 <div class="row">
                                     <div class="col-sm-4">
-                                        <label class="control-label">Organization Name: </label> {{ o.Name }}
+                                        <label class="control-label">Organization Name: </label> {{ o.name }}
                                     </div>
                                     <div class="col-sm-4">
-                                        <label class="control-label">Organization Type: </label> {{ o.OrganizationTypeId }}
+                                        <label class="control-label">Organization Type: </label> {{ o.organizationTypeId }}
                                     </div>
                                 </div>
                             </div>

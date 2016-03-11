@@ -3,29 +3,40 @@
     ViewBag.Title = "Spectrum Operational Home";
 }
 
-<nav class="navbar navbar-default navbar-fixed-top">
-    <div class="container">
-        <div class="navbar-header">
-            <a href="@Url.Action("Index", "Portal", new {Area = string.Empty})" class="navbar-brand">EM Suite Portal</a>
-            <img src="~/Content/images/logo/SO-Full-Color-Text-Right-One-Row-20pct.png" style="padding-left: 15px; padding-top: 11px" />
+<section id="page-top" style="padding: 56px 0 0 0">
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <a href="@Url.Action("Index", "Portal", new {Area = string.Empty})" class="navbar-brand">EM Suite Portal</a>
+                <img src="~/Content/images/logo/SO-Full-Color-Logo-Only-20pct.png" style="padding-left: 15px; padding-top: 11px"/>
+                <img src="~/Content/images/logo/SO-Name-Only-One-Row-40pct.png" style="padding-left: 7px; padding-top: 11px"/>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="active">
+                        <a class="page-scroll" href="#page-top">Home</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" page-scroll href="#components">UI</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" page-scroll href="#team">Team</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" page-scroll href="#pricing">Pricing </a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" page-scroll href="#clients">Clients </a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" page-scroll href="#contact">Contact</a>
+                    </li>
+                </ul>
+            </div>
         </div>
-        <div id="navbar" class="navbar-collapse collapse">
-            <ul class="nav navbar-nav navbar-right">
-                <li class="active"><a class="page-scroll" href="#page-top">Home</a></li>
-                <li><a class="page-scroll" page-scroll href="#components">UI</a></li>
-                <li><a class="page-scroll" page-scroll href="#features">Features</a></li>
-                <li><a class="page-scroll" page-scroll href="#team">Team</a></li>
-                <li><a class="page-scroll" page-scroll href="#pricing">Pricing </a></li>
-                <li><a class="page-scroll" page-scroll href="#clients">Clients </a></li>
-                <li><a class="page-scroll" page-scroll href="#contact">Contact</a></li>
-            </ul>
-        </div>
-    </div>
-</nav>
-
-<div class="heading container">
-    <img src="~/Content/images/landing/banner.png" class="img-responsive" alt="Responsive Image">
-</div>
+    </nav>
+    <img src="~/Content/images/landing/banner.png" class="img-responsive" alt="Responsive Image" style="width: 100%; height: 100%">
+</section>
 
 <section id="components" class="bg-light">
     <div class="container">

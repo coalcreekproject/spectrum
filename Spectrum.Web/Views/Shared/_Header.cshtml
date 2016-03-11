@@ -179,13 +179,13 @@
                         </a>
                     </li>
                     <li>
-                        @Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })
+                        @Html.ActionLink("Log in", "Login", "Account", new { Area = string.Empty }, htmlAttributes: new { id = "loginLink" })
                     </li>
                     <li>
-                        @Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })
+                        @Html.ActionLink("Register", "Register", "Account", new { Area = string.Empty }, htmlAttributes: new { id = "registerLink" })
                     </li>
                     <li>
-                        @Html.ActionLink("Sign Out", "SignOut", "Account", routeValues: null, htmlAttributes: new { id = "signOutLink" })
+                        @Html.ActionLink("Sign Out", "SignOut", "Account", new { Area = string.Empty }, htmlAttributes: new { id = "signOutLink" })
                     </li>
                     <li class="summary">
                         <a></a>

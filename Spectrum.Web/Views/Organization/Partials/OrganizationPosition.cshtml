@@ -1,4 +1,4 @@
-﻿<div ng-controller="OrganizationPositionController as organizationPositionController">
+﻿<div ng-controller="OrganizationPositionController">
     <div small-header class="normalheader transition">
         <div class="hpanel" title="Page header" content="Place your page title and breadcrumb." placement="bottom">
             <div class="panel-body">
@@ -10,7 +10,7 @@
                 <div id="hbreadcrumb" class="pull-right m-t-lg">
                     <ol class="hbreadcrumb breadcrumb">
                         <li>
-                            <a href="@Url.Action("Index", "Dashboard")">Dashboard</a>
+                            <a href="@Url.Action("Index", "Dashboard")">Portal</a>
                         </li>
                         <li>
                             <a href="@Url.Action("Index", "Organization")">Oragnization</a>
@@ -55,22 +55,22 @@
     </div>
 
     <div class="content">
-        <div ng-repeat="p in data.organizationPositions track by p.PositionId">
+        <div ng-repeat="p in data.organizationPositions track by p.positionId">
             <div animate-panel child="row" effect="fadeInRight">
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="hpanel">
                             <div class="panel-heading hbuilt">
                                 <div panel-tools></div>
-                                {{ p.Name }}
+                                {{ p.name }}
                             </div>
                             <div class="panel-body">
                                 <div class="row">
                                     <div class="col-sm-3">
-                                        <label class="control-label">Position Name: </label> {{ p.Name }}
+                                        <label class="control-label">Position Name: </label> {{ p.name }}
                                     </div>
                                     <div class="col-sm-3">
-                                        <label class="control-label">Position Description: </label> {{ p.Description }}
+                                        <label class="control-label">Position Description: </label> {{ p.description }}
                                     </div>
                                 </div>
                             </div>

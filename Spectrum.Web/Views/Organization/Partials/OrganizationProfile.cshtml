@@ -19,7 +19,7 @@
                 <div id="hbreadcrumb" class="pull-right m-t-lg">
                     <ol class="hbreadcrumb breadcrumb">
                         <li>
-                            <a href="@Url.Action("Index", "Dashboard")">Dashboard</a>
+                            <a href="@Url.Action("Index", "Dashboard")">Portal</a>
                         </li>
                         <li>
                             <a href="@Url.Action("Index", "Organization")">Organizations</a>
@@ -71,50 +71,50 @@
                         <div class="hpanel">
                             <div class="panel-heading hbuilt">
                                 <div panel-tools></div>
-                                {{ p.ProfileName }}
+                                {{ p.profileName }}
                             </div>
                             <div class="panel-body">
                                 <div class="row">
                                     <div class="col-sm-4">
-                                        <label class="control-label">Profile Name: </label> {{ p.ProfileName }}
+                                        <label class="control-label">Profile Name: </label> {{ p.profileName }}
                                     </div>
                                     <div class="col-sm-4">
-                                        <label class="control-label">Profile Description: </label> {{ p.Description }}
+                                        <label class="control-label">Profile Description: </label> {{ p.description }}
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-4">
-                                        <label class="control-label">Primary Contact: </label> {{ p.PrimaryContact }}
+                                        <label class="control-label">Primary Contact: </label> {{ p.primaryContact }}
                                     </div>
                                     <div class="col-md-4">
-                                        <label class="control-label">Phone: </label> {{ p.Phone }}
+                                        <label class="control-label">Phone: </label> {{ p.phone }}
                                     </div>
                                     <div class="col-md-4">
-                                        <label class="control-label">Fax: </label> {{ p.Fax }}
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <label class="control-label">Email: </label> {{ p.Email }}
-                                    </div>
-                                    <div class="col-md-4">
-                                        <label class="control-label">Country: </label> {{ p.Country}}
-                                    </div>
-                                    <div class="col-md-4">
-                                        <label class="control-label">County: </label> {{ p.County }}
+                                        <label class="control-label">Fax: </label> {{ p.fax }}
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-4">
-                                        <label class="control-label">Time Zone: </label> {{ p.TimeZone }}
+                                        <label class="control-label">Email: </label> {{ p.email }}
                                     </div>
                                     <div class="col-md-4">
-                                        <label class="control-label">Language: </label> {{ p.Language}}
+                                        <label class="control-label">Country: </label> {{ p.country}}
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label class="control-label">County: </label> {{ p.county }}
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-4">
-                                        <label class="control-label">Notes: </label> {{ p.Notes }}
+                                        <label class="control-label">Time Zone: </label> {{ p.timeZone }}
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label class="control-label">Language: </label> {{ p.language}}
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-8">
+                                        <label class="control-label">Notes: </label> {{ p.notes }}
                                     </div>
                                 </div>
                             </div>

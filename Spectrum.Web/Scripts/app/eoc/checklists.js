@@ -1,96 +1,111 @@
-﻿(function() {
+﻿angular
+    .module('app.eoc')
+    .controller('CheckListsController', CheckListsController)
+    .config(config);
 
-    angular
-        .module("app.eoc")
-        .controller("ChecklistsCtrl", ChecklistsCtrl);
+function config($stateProvider, $urlRouterProvider, $compileProvider) {
 
-    ChecklistsCtrl.$inject = ["$scope"];
+    // Optimize load start with remove binding information inside the DOM element
+    $compileProvider.debugInfoEnabled(true);
 
-    function ChecklistsCtrl($scope) {
+    // Set default state
+    //$urlRouterProvider.otherwise("/dashboard");
 
-        // Handle actions
-        $scope.remove = function(scope) {
-            scope.remove();
-        };
+    $stateProvider
+        .state('index', {
+            url: "",
+            templateUrl: "/Eoc/Templates/CheckList/CheckListIndex",
+            data: { pageTitle: 'index' }
+        });
+}
 
-        $scope.toggle = function(scope) {
-            scope.toggle();
-        };
+function userRoleParameters() {
+    this.userId = null;
+    this.organizationId = null;
+};
 
-        $scope.moveLastToTheBeginning = function() {
-            var a = $scope.data.pop();
-            $scope.data.splice(0, 0, a);
-        };
+function CheckListsController($scope) {
+    // Handle actions
+    $scope.remove = function (scope) {
+        scope.remove();
+    };
 
-        $scope.newSubItem = function(scope) {
-            var nodeData = scope.$modelValue;
-            nodeData.nodes.push({
-                id: nodeData.id * 10 + nodeData.nodes.length,
-                title: nodeData.title + "." + (nodeData.nodes.length + 1),
-                nodes: []
-            });
-        };
+    $scope.toggle = function (scope) {
+        scope.toggle();
+    };
 
-        $scope.collapseAll = function() {
-            $scope.$broadcast("collapseAll");
-        };
+    $scope.moveLastToTheBeginning = function () {
+        var a = $scope.data.pop();
+        $scope.data.splice(0, 0, a);
+    };
 
-        $scope.expandAll = function() {
-            $scope.$broadcast("expandAll");
-        };
+    $scope.newSubItem = function (scope) {
+        var nodeData = scope.$modelValue;
+        nodeData.nodes.push({
+            id: nodeData.id * 10 + nodeData.nodes.length,
+            title: nodeData.title + '.' + (nodeData.nodes.length + 1),
+            nodes: []
+        });
+    };
 
-        // Nestable list example data
-        $scope.data = [
-            {
-                "id": 1,
-                "title": "node1",
-                "nodes": [
-                    {
-                        "id": 11,
-                        "title": "node1.1",
-                        "nodes": [
-                            {
-                                "id": 111,
-                                "title": "node1.1.1",
-                                "nodes": []
-                            }
-                        ]
-                    },
-                    {
-                        "id": 12,
-                        "title": "node1.2",
-                        "nodes": []
-                    }
-                ]
-            },
-            {
-                "id": 2,
-                "title": "node2",
-                "nodes": [
-                    {
-                        "id": 21,
-                        "title": "node2.1",
-                        "nodes": []
-                    },
-                    {
-                        "id": 22,
-                        "title": "node2.2",
-                        "nodes": []
-                    }
-                ]
-            },
-            {
-                "id": 3,
-                "title": "node3",
-                "nodes": [
-                    {
-                        "id": 31,
-                        "title": "node3.1",
-                        "nodes": []
-                    }
-                ]
-            }
-        ];
-    }
+    $scope.collapseAll = function () {
+        $scope.$broadcast('collapseAll');
+    };
 
-})();
+    $scope.expandAll = function () {
+        $scope.$broadcast('expandAll');
+    };
+
+    // Nestable list example data
+    $scope.data = [
+        {
+            "id": 1,
+            "title": "node1",
+            "nodes": [
+                {
+                    "id": 11,
+                    "title": "node1.1",
+                    "nodes": [
+                        {
+                            "id": 111,
+                            "title": "node1.1.1",
+                            "nodes": []
+                        }
+                    ]
+                },
+                {
+                    "id": 12,
+                    "title": "node1.2",
+                    "nodes": []
+                }
+            ]
+        },
+        {
+            "id": 2,
+            "title": "node2",
+            "nodes": [
+                {
+                    "id": 21,
+                    "title": "node2.1",
+                    "nodes": []
+                },
+                {
+                    "id": 22,
+                    "title": "node2.2",
+                    "nodes": []
+                }
+            ]
+        },
+        {
+            "id": 3,
+            "title": "node3",
+            "nodes": [
+                {
+                    "id": 31,
+                    "title": "node3.1",
+                    "nodes": []
+                }
+            ]
+        }
+    ];
+}
