@@ -26,6 +26,7 @@ namespace Spectrum.Web.Areas.Eoc.Controllers.Api
         private readonly string _endpoint = ConfigurationManager.AppSettings["endpoint"];
 
         [Route("Eoc/api/Incidents")]
+        [HttpGet]
         public IEnumerable<Incident> GetIncident()
         {
             var incidents = _dbRepository.GetItems()

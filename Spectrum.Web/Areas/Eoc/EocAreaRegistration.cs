@@ -6,10 +6,7 @@ namespace Spectrum.Web.Areas.Eoc
     {
         public override string AreaName
         {
-            get
-            {
-                return "Eoc";
-            }
+            get { return "Eoc"; }
         }
 
         public override void RegisterArea(AreaRegistrationContext context)
@@ -17,16 +14,18 @@ namespace Spectrum.Web.Areas.Eoc
             context.MapRoute(
                 name: "Eoc Templates",
                 url: "Eoc/Templates/{controller}/{template}",
-                defaults: new { action = "Template" },
-                namespaces: new[] { "Spectrum.Web.Areas.Eoc.Controllers.Web" }
+                defaults: new {action = "Template"},
+                namespaces: new[] {"Spectrum.Web.Areas.Eoc.Controllers.Web"}
                 );
 
             context.MapRoute(
-                name: "Eoc",
-                url: "Eoc/{controller}/{action}/{id}",
-                defaults: new { action = "Index", id = UrlParameter.Optional },
+                name: "EocIncident",
+                url: "Eoc/IncidentManagement/{action}/{id}",
+                defaults: new { action = "Index", controller= "IncidentManagement", id = UrlParameter.Optional },
                 namespaces: new[] { "Spectrum.Web.Areas.Eoc.Controllers.Web" }
-            );
+                );
+
+            
         }
     }
 }
