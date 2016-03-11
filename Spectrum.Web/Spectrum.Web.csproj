@@ -242,7 +242,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\Eoc\Controllers\Api\ChecklistsController.cs" />
     <Compile Include="Areas\Eoc\Controllers\Api\IncidentManagementController.cs" />
-    <Compile Include="Areas\Eoc\Controllers\Web\ChecklistController.cs" />
+    <Compile Include="Areas\Eoc\Controllers\Web\CheckListController.cs" />
     <Compile Include="Areas\Eoc\Controllers\Web\DashboardController.cs" />
     <Compile Include="Areas\Eoc\Controllers\Web\IncidentManagementController.cs" />
     <Compile Include="Areas\Eoc\EocAreaRegistration.cs" />

@@ -25,7 +25,14 @@ namespace Spectrum.Web.Areas.Eoc
                 namespaces: new[] { "Spectrum.Web.Areas.Eoc.Controllers.Web" }
                 );
 
-            
+            context.MapRoute(
+                name: "EocChecklists",
+                url: "Eoc/CheckList/{action}/{id}",
+                defaults: new {action = "Index", controller = "CheckList", id = UrlParameter.Optional},
+                namespaces: new[] {"Spectrum.Web.Areas.Eoc.Controllers.Web"}
+                );
+
+
         }
     }
 }

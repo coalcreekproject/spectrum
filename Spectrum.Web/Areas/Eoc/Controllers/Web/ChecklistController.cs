@@ -3,7 +3,7 @@ using System.Web.Mvc;
 
 namespace Spectrum.Web.Areas.Eoc.Controllers.Web
 {
-    public class ChecklistController : Controller
+    public class CheckListController : Controller
     {
         // GET: Eoc/Checklist
         public ActionResult Index()
