@@ -31,7 +31,7 @@ function organizationPositionController($scope, $http, $window, $uibModal, $stat
 
     $scope.edit = function (_organizationPosition) {
         var modalInstance = $uibModal.open({
-            templateUrl: '/Templates/Organization/EditOrganizationPositionModal',
+            templateUrl: '/Templates/Organization/editOrganizationPositionModal',
             controller: EditOrganizationPositionModalController,
             resolve: {
                 organizationPosition: function organizationPosition() {

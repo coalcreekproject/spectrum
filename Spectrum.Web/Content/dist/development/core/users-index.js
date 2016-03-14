@@ -1,35 +1,46 @@
 'use strict';
 
-angular.module('app').controller('UserGridController', userGridController);
+angular.module('app').controller('UserPanelController', userPanelController).config(config);
 
-function userGridController($scope, $http, $location, $uibModal, $state, uiGridConstants, userFactory) {
+function config($locationProvider, $stateProvider, $urlRouterProvider, $compileProvider) {
+
+    // Optimize load start with remove binding information inside the DOM element
+    $compileProvider.debugInfoEnabled(true);
+
+    // Set default state
+    //$urlRouterProvider.otherwise("/dashboard");
+
+    $stateProvider.state('index', {
+        url: "",
+        templateUrl: "/Templates/User/UserPanelIndex",
+        data: { pageTitle: 'index' }
+    }).state('grid', {
+        //url: "/grid/:userId",
+        url: "/grid",
+        templateUrl: "/Templates/User/UserGridIndex",
+        params: { userId: null },
+        data: { pageTitle: 'grid' }
+    }).state('userprofiles', {
+        url: "/profiles/:userId",
+        templateUrl: "/Templates/User/UserProfileIndex",
+        params: { userId: null },
+        data: { pageTitle: 'profiles' }
+    });
+}
+
+function userPanelController($scope, $http, $uibModal, $state, userFactory) {
+
+    $uibModal.scope = $scope;
 
     $scope.data = userFactory;
 
-    $scope.usersGrid = {
-        enableHorizontalScrollbar: uiGridConstants.scrollbars.WHEN_NEEDED,
-        enableVerticalScrollbar: uiGridConstants.scrollbars.WHEN_NEEDED,
-        enableSorting: true,
-        enableRowSelection: true,
-        enableRowHeaderSelection: false,
-        multiSelect: false,
-        columnDefs: [{ field: 'Id', visible: false }, { field: 'UserName' }, { field: 'Email' }, { name: 'Options', cellTemplate: '<button class="btn btn-sm btn-default" ng-click="grid.appScope.edit(row)">Edit</button>' + '<button class="btn btn-sm btn-default" ng-click="grid.appScope.userprofiles(row)">Profiles</button>' + '<button class="btn btn-sm btn-default" ng-click="grid.appScope.roles(row)">Roles</button>' + '<button class="btn btn-sm btn-default" ng-click="grid.appScope.delete(row)">Delete</button>'
-        }],
-        onRegisterApi: function onRegisterApi(gridApi) {
-            $scope.gridApi = gridApi;
-        }
-    };
-
     userFactory.getUsers().then(function (users) {
         // success
-        $scope.usersGrid.data = users;
+        //$scope.data = users;
     }, function () {
         // error
-        alert("Sorry, there was a problem loading users.  Please try again later.");
+        alert("Sorry!", "There was a problem loading users.  Please try again later.", "error");
     });
-    //.then(function () {
-    //    $scope.isBusy = false;
-    //});
 
     $scope.add = function () {
         var modalInstance = $uibModal.open({
@@ -38,44 +49,56 @@ function userGridController($scope, $http, $location, $uibModal, $state, uiGridC
         });
     };
 
-    $scope.edit = function (row) {
+    $scope.edit = function (_user) {
         var modalInstance = $uibModal.open({
-            templateUrl: '/Templates/User/editUserModal',
+            templateUrl: '/Templates/User/EditUserModal',
             controller: EditUserModalController,
             resolve: {
                 user: function user() {
-                    return angular.copy(row.entity);
+                    return angular.copy(_user);
                 }
             }
         });
     };
 
-    $scope.delete = function (row) {
+    $scope.delete = function (_user2) {
         var modalInstance = $uibModal.open({
-            templateUrl: '/Templates/User/deleteUserModal',
+            templateUrl: '/Templates/User/DeleteUserModal',
             controller: DeleteUserModalController,
             resolve: {
                 user: function user() {
-                    return angular.copy(row.entity);
+                    return angular.copy(_user2);
                 }
             }
         });
     };
 
-    $scope.roles = function (row) {
+    $scope.roles = function (_user3) {
         var modalInstance = $uibModal.open({
             templateUrl: '/Templates/User/AssignUserRolesModal',
             controller: UserRolesModalController,
             resolve: {
                 user: function user() {
-                    return angular.copy(row.entity);
+                    return angular.copy(_user3);
                 }
             }
         });
     };
 
-    $scope.userprofiles = function (row) {
-        $state.go('userprofiles', { 'userId': row.entity.Id });
+    $scope.positions = function (_user4) {
+        var modalInstance = $uibModal.open({
+            templateUrl: '/Templates/User/AssignUserPositionsModal',
+            controller: UserPositionsModalController,
+            resolve: {
+                user: function user() {
+                    return angular.copy(_user4);
+                }
+            }
+        });
+    };
+
+    $scope.userprofiles = function (user) {
+        $state.go('userprofiles', { 'userId': user.id });
     };
 };
 
@@ -85,7 +108,7 @@ function AddUserModalController($scope, $uibModalInstance, userFactory) {
 
         userFactory.addUser(user).then(function () {
             // success
-            //$scope.gridOptions1.data = users;
+            $uibModalInstance.close();
         }, function () {
             // error
             alert("could not save user");
@@ -128,7 +151,6 @@ function DeleteUserModalController($scope, $uibModalInstance, userFactory, user)
 
         userFactory.deleteUser(user).then(function () {
             // success
-            //$scope.gridOptions1.data = users;
         }, function () {
             // error
             alert("could not delete user");
@@ -188,14 +210,14 @@ function userFactory($http, $q) {
 
         var deferred = $q.defer();
 
-        $http.put('/api/Users/' + user.Id, user).then(function (result) {
+        $http.put('/api/Users/' + user.id, user).then(function (result) {
             // success
             var editedUser = result.data;
 
             for (var i = 0; i < _users.length; i++) {
-                if (_users[i].Id === editedUser.Id) {
-                    _users[i].UserName = editedUser.UserName;
-                    _users[i].Email = editedUser.Email;
+                if (_users[i].id === editedUser.id) {
+                    _users[i].userName = editedUser.userName;
+                    _users[i].email = editedUser.email;
                     break;
                 }
             }
@@ -213,12 +235,12 @@ function userFactory($http, $q) {
 
         var deferred = $q.defer();
 
-        $http.delete('/api/Users/' + user.Id, user).then(function (result) {
+        $http.delete('/api/Users/' + user.id, user).then(function (result) {
 
             var deletedUser = result.data;
 
             for (var i = 0; i < _users.length; i++) {
-                if (_users[i].Id === deletedUser.Id) {
+                if (_users[i].id === deletedUser.id) {
                     _users.splice(i, 1);
                     break;
                 }

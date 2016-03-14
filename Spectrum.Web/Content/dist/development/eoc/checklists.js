@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('app').controller('CheckListsController', CheckListsController).config(config);
+angular.module('app.eoc').controller('CheckListsController', CheckListsController).config(config);
 
 function config($stateProvider, $urlRouterProvider, $compileProvider) {
 

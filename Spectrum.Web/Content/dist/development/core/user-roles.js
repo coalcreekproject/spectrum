@@ -9,7 +9,7 @@ function userRoleParameters() {
 
 function UserRolesModalController($scope, $uibModalInstance, userRoleFactory, user) {
 
-    $scope.userId = user.Id;
+    $scope.userId = user.id;
     userRoleParameters.userId = $scope.userId;
     $scope.user = user;
 
@@ -19,9 +19,13 @@ function UserRolesModalController($scope, $uibModalInstance, userRoleFactory, us
     };
 
     // Find the user default profile organization id
-    for (var i = 0; i < user.UserProfiles.length; ++i) {
-        if (user.UserProfiles[i].Default === true) {
-            userRoleParameters.organizationId = user.UserProfiles[i].OrganizationId;
+    for (var i = 0; i < user.userOrganizations.length; ++i) {
+        if (user.userOrganizations[i].default === true) {
+            userRoleParameters.organizationId = user.userOrganizations[i].organizationId;
+        } else {
+            if (user.userOrganizations.length > 0) {
+                userRoleParameters.organizationId = user.userOrganizations[0].organizationId;
+            }
         }
     }
 
@@ -32,7 +36,7 @@ function UserRolesModalController($scope, $uibModalInstance, userRoleFactory, us
         $scope.availableRoles = availableRoles;
         for (var i = 0; i < $scope.availableRoles.length; ++i) {
             $scope.models.lists.Available.push({
-                label: $scope.availableRoles[i].Name,
+                label: $scope.availableRoles[i].name,
                 object: $scope.availableRoles[i]
             });
         }
@@ -46,22 +50,16 @@ function UserRolesModalController($scope, $uibModalInstance, userRoleFactory, us
         $scope.userRoles = userRoles;
         for (var i = 0; i < $scope.userRoles.length; ++i) {
             $scope.models.lists.Assigned.push({
-                label: $scope.userRoles[i].Name,
+                label: $scope.userRoles[i].name,
+                Default: $scope.userRoles[i].default,
                 object: $scope.userRoles[i]
             });
-
             var j = 0;
             while (j < $scope.models.lists.Available.length) {
-                if ($scope.userRoles[i].Id === $scope.models.lists.Available[j].object.Id) {
+                if ($scope.userRoles[i].roleId === $scope.models.lists.Available[j].object.roleId) {
                     $scope.models.lists.Available.splice(j, 1);
                 }
                 j++;
-                //Reconcile the lists
-                //for (var j = 0; j < $scope.availableRoles.length; ++j) {
-                //    if ($scope.userRoles[i].Id === $scope.availableRoles[j].Id) {
-                //        $scope.models.lists.Available.splice(j, 1); //pop($scope.availableRoles[j]);
-                //    }
-                //}
             };
         }
     }, function () {
@@ -98,7 +96,6 @@ function userRoleFactory($http, $q) {
 
     var _availableRoles = [];
     var _userRoles = [];
-
     var _getAvailableRoles = function _getAvailableRoles(id) {
 
         var deferred = $q.defer();
@@ -137,9 +134,10 @@ function userRoleFactory($http, $q) {
 
         for (var i = 0; i < roleList.length; i++) {
             var userRole = {
-                UserId: user.Id,
-                RoleId: roleList[i].object.Id,
-                OrganizationId: userRoleParameters.organizationId
+                UserId: user.id,
+                RoleId: roleList[i].object.roleId,
+                OrganizationId: userRoleParameters.organizationId,
+                Default: roleList[i].default
             };
             user.UserRoles.push(userRole);
         }

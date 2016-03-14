@@ -107,7 +107,7 @@ function DeleteUserProfileModalController($scope, $uibModalInstance, userProfile
             // success
         }, function () {
             // error
-            alert("could not delete user");
+            alert("could not delete profile");
         });
 
         $uibModalInstance.close();
@@ -169,27 +169,27 @@ function userProfileFactory($http, $q) {
             var editedUserProfile = result.data;
 
             for (var i = 0; i < _userProfiles.length; i++) {
-                if (_userProfiles[i].Id === editedUserProfile.Id) {
-                    _userProfiles[i].UserId = editedUserProfile.UserId;
-                    _userProfiles[i].OrganizationId = editedUserProfile.OrganizationId;
+                if (_userProfiles[i].id === editedUserProfile.id) {
+                    _userProfiles[i].userId = editedUserProfile.userId;
+                    _userProfiles[i].organizationId = editedUserProfile.organizationId;
 
-                    _userProfiles[i].Default = editedUserProfile.Default;
-                    _userProfiles[i].ProfileName = editedUserProfile.ProfileName;
-                    _userProfiles[i].Title = editedUserProfile.Title;
-                    _userProfiles[i].FirstName = editedUserProfile.FirstName;
-                    _userProfiles[i].MiddleName = editedUserProfile.MiddleName;
-                    _userProfiles[i].LastName = editedUserProfile.LastName;
-                    _userProfiles[i].NickName = editedUserProfile.NickName;
+                    _userProfiles[i].default = editedUserProfile.default;
+                    _userProfiles[i].profileName = editedUserProfile.profileName;
+                    _userProfiles[i].title = editedUserProfile.title;
+                    _userProfiles[i].firstName = editedUserProfile.firstName;
+                    _userProfiles[i].fiddleName = editedUserProfile.fiddleName;
+                    _userProfiles[i].lastName = editedUserProfile.lastName;
+                    _userProfiles[i].nickName = editedUserProfile.nickName;
 
-                    _userProfiles[i].SecondaryEmail = editedUserProfile.SecondaryEmail;
-                    _userProfiles[i].SecondaryPhoneNumber = editedUserProfile.SecondaryPhoneNumber;
+                    _userProfiles[i].secondaryEmail = editedUserProfilesecondaryEmail;
+                    _userProfiles[i].secondaryPhoneNumber = editedUserProfile.secondaryPhoneNumber;
 
-                    _userProfiles[i].TimeZone = editedUserProfile.TimeZone;
-                    _userProfiles[i].DstAdjust = editedUserProfile.DstAdjust;
-                    _userProfiles[i].Language = editedUserProfile.Language;
+                    _userProfiles[i].timeZone = editedUserProfile.timeZone;
+                    _userProfiles[i].dstAdjust = editedUserProfile.dstAdjust;
+                    _userProfiles[i].language = editedUserProfile.language;
 
-                    _userProfiles[i].Photo = editedUserProfile.Photo;
-                    _userProfiles[i].Position = editedUserProfile.Position;
+                    _userProfiles[i].photo = editedUserProfile.photo;
+                    _userProfiles[i].position = editedUserProfile.position;
                     break;
                 }
             }
@@ -207,12 +207,12 @@ function userProfileFactory($http, $q) {
 
         var deferred = $q.defer();
 
-        $http.delete('/api/UserProfiles/' + userProfile.Id, userProfile).then(function (result) {
+        $http.delete('/api/UserProfiles/' + userProfile.id, userProfile).then(function (result) {
 
             var deletedUserProfile = result.data;
 
             for (var i = 0; i < _userProfiles.length; i++) {
-                if (_userProfiles[i].Id === deletedUserProfile.Id) {
+                if (_userProfiles[i].id === deletedUserProfile.id) {
                     _userProfiles.splice(i, 1);
                     break;
                 }

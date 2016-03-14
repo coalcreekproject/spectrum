@@ -85,15 +85,15 @@ function organizationController($scope, $http, $uibModal, $state, organizationFa
     };
 
     $scope.profiles = function (organization) {
-        $state.go('profiles', { 'organizationId': organization.Id });
+        $state.go('profiles', { 'organizationId': organization.id });
     };
 
     $scope.roles = function (organization) {
-        $state.go('roles', { 'organizationId': organization.Id });
+        $state.go('roles', { 'organizationId': organization.id });
     };
 
     $scope.positions = function (organization) {
-        $state.go('positions', { 'organizationId': organization.Id });
+        $state.go('positions', { 'organizationId': organization.id });
     };
 };
 
@@ -211,9 +211,9 @@ function organizationFactory($http, $q) {
             var editedOrganization = result.data;
 
             for (var i = 0; i < _organizations.length; i++) {
-                if (_organizations[i].Id === editedOrganization.Id) {
-                    _organizations[i].Name = editedOrganization.Name;
-                    _organizations[i].TypeId = editedOrganization.TypeId;
+                if (_organizations[i].id === editedOrganization.id) {
+                    _organizations[i].name = editedOrganization.name;
+                    _organizations[i].typeId = editedOrganization.typeId;
                     break;
                 }
             }
@@ -236,7 +236,7 @@ function organizationFactory($http, $q) {
             var deletedOrganization = result.data;
 
             for (var i = 0; i < _organizations.length; i++) {
-                if (_organizations[i].Id === deletedOrganization.Id) {
+                if (_organizations[i].id === deletedOrganization.id) {
                     _organizations.splice(i, 1);
                     break;
                 }

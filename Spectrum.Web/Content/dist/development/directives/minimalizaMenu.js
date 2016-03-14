@@ -1,8 +1,8 @@
 "use strict";
 
-(function (app) {
+(function () {
 
-    app.directive("minimalizaMenu", minimalizaMenu);
+    angular.module("app.core").directive("minimalizaMenu", minimalizaMenu);
 
     minimalizaMenu.$inject = ["$rootScope"];
 
@@ -22,4 +22,4 @@
             }
         };
     };
-})(angular.module("app"));
+})();

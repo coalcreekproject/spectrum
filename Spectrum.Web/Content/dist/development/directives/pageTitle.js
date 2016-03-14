@@ -1,8 +1,8 @@
 "use strict";
 
-(function (app) {
+(function () {
 
-    app.directive("pageTitle", pageTitle);
+    angular.module("app.core").directive("pageTitle", pageTitle);
 
     pageTitle.$inject = ["$rootScope", "$timeout"];
 
@@ -23,4 +23,4 @@
             }
         };
     };
-})(angular.module("app"));
+})();

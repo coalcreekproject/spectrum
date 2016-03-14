@@ -165,14 +165,14 @@ function organizationRoleFactory($http, $q) {
 
         var deferred = $q.defer();
 
-        $http.put('/api/Roles/' + organizationRole.Id, organizationRole).then(function (result) {
+        $http.put('/api/Roles/' + organizationRole.id, organizationRole).then(function (result) {
             // success
             var editedOrganizationRole = result.data;
 
             for (var i = 0; i < _organizationRoles.length; i++) {
-                if (_organizationRoles[i].Id === editedOrganizationRole.Id) {
-                    _organizationRoles[i].Name = editedOrganizationRole.Name;
-                    _organizationRoles[i].Description = editedOrganizationRole.Description;
+                if (_organizationRoles[i].id === editedOrganizationRole.id) {
+                    _organizationRoles[i].name = editedOrganizationRole.mame;
+                    _organizationRoles[i].description = editedOrganizationRole.description;
 
                     break;
                 }
@@ -191,12 +191,12 @@ function organizationRoleFactory($http, $q) {
 
         var deferred = $q.defer();
 
-        $http.delete('/api/Roles/' + organizationRole.Id, organizationRole).then(function (result) {
+        $http.delete('/api/Roles/' + organizationRole.id, organizationRole).then(function (result) {
 
             var deletedOrganizationRole = result.data;
 
             for (var i = 0; i < _organizationRoles.length; i++) {
-                if (_organizationRoles[i].Id === deletedOrganizationRole.Id) {
+                if (_organizationRoles[i].id === deletedOrganizationRole.id) {
                     _organizationRoles.splice(i, 1);
                     break;
                 }

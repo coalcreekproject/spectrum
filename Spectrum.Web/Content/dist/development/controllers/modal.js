@@ -1,41 +1,40 @@
+"use strict";
+
 /**
  *
  * modalCtrl
  *
  */
 
-angular
-    .module('app')
-    .controller('modalCtrl', modalCtrl)
+angular.module("app").controller("modalCtrl", modalCtrl);
 
 function modalCtrl($scope, $uibModal) {
 
     $scope.open = function () {
-
         var modalInstance = $uibModal.open({
-            templateUrl: 'views/modal/modal_example.html',
-            controller: ModalInstanceCtrl,
+            templateUrl: "views/modal/modal_example.html",
+            controller: ModalInstanceCtrl
         });
     };
 
     $scope.open1 = function () {
         var modalInstance = $uibModal.open({
-            templateUrl: 'views/modal/modal_example1.html',
+            templateUrl: "views/modal/modal_example1.html",
             controller: ModalInstanceCtrl
         });
     };
 
     $scope.open3 = function (size) {
         var modalInstance = $uibModal.open({
-            templateUrl: 'views/modal/modal_example3.html',
+            templateUrl: "views/modal/modal_example3.html",
             size: size,
-            controller: ModalInstanceCtrl,
+            controller: ModalInstanceCtrl
         });
     };
 
     $scope.open2 = function () {
         var modalInstance = $uibModal.open({
-            templateUrl: 'views/modal/modal_example2.html',
+            templateUrl: "views/modal/modal_example2.html",
             controller: ModalInstanceCtrl,
             windowClass: "hmodal-info"
         });
@@ -43,7 +42,7 @@ function modalCtrl($scope, $uibModal) {
 
     $scope.open4 = function () {
         var modalInstance = $uibModal.open({
-            templateUrl: 'views/modal/modal_example2.html',
+            templateUrl: "views/modal/modal_example2.html",
             controller: ModalInstanceCtrl,
             windowClass: "hmodal-warning"
         });
@@ -51,7 +50,7 @@ function modalCtrl($scope, $uibModal) {
 
     $scope.open5 = function () {
         var modalInstance = $uibModal.open({
-            templateUrl: 'views/modal/modal_example2.html',
+            templateUrl: "views/modal/modal_example2.html",
             controller: ModalInstanceCtrl,
             windowClass: "hmodal-success"
         });
@@ -59,20 +58,20 @@ function modalCtrl($scope, $uibModal) {
 
     $scope.open6 = function () {
         var modalInstance = $uibModal.open({
-            templateUrl: 'views/modal/modal_example2.html',
+            templateUrl: "views/modal/modal_example2.html",
             controller: ModalInstanceCtrl,
             windowClass: "hmodal-danger"
         });
     };
 };
 
-function ModalInstanceCtrl ($scope, $uibModalInstance) {
+function ModalInstanceCtrl($scope, $uibModalInstance) {
 
     $scope.ok = function () {
         $uibModalInstance.close();
     };
 
     $scope.cancel = function () {
-        $uibModalInstance.dismiss('cancel');
+        $uibModalInstance.dismiss("cancel");
     };
 };

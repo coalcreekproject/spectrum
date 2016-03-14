@@ -1,8 +1,8 @@
 "use strict";
 
-(function (app) {
+(function () {
 
-    app.directive("touchSpin", touchSpin);
+    angular.module("app.core").directive("touchSpin", touchSpin);
 
     function touchSpin() {
         return {
@@ -20,4 +20,4 @@
             }
         };
     };
-})(angular.module("app"));
+})();

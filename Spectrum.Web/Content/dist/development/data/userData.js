@@ -1,14 +1,14 @@
 "use strict";
 
-(function (app) {
+(function () {
 
     "use strict";
 
-    app.service("UserService", userService);
+    angular.module("app.data").service("UserData", UserData);
 
-    userService.$inject = ["$http", "$q"];
+    UserData.$inject = ["$http", "$q"];
 
-    function userService($http, $q) {
+    function UserData($http, $q) {
 
         var users = [];
 
@@ -98,4 +98,4 @@
             deleteUser: deleteUser
         };
     }
-})(angular.module("app"));
+})();
