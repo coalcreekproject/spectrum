@@ -368,6 +368,8 @@
     <Content Include="Content\dist\development\factories\sweet-alert.js" />
     <Content Include="Content\dist\development\filters\props.js" />
     <Content Include="Content\dist\development\templates\im.html" />
+    <Content Include="Content\dist\production\all.min.js" />
+    <Content Include="Content\dist\production\all.vendor.min.js" />
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\fonts\fontawesome-webfont.svg" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
@@ -708,7 +710,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Eoc\Models\" />
     <Folder Include="Areas\Eoc\Views\Shared\" />
-    <Folder Include="Content\dist\production\" />
     <Folder Include="Views\Billing\Partials\" />
     <Folder Include="Views\Contact\Partials\" />
   </ItemGroup>
