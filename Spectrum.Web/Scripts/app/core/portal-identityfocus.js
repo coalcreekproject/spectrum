@@ -51,45 +51,11 @@
     function changeIdentityFocusModalController($scope, $http, $uibModalInstance, currentUserFactory, currentUser) {
 
         $scope.currentUser = currentUser;
-        $scope.organizations = [];
-        $scope.roles = [];
-        $scope.positions = [];
-        var i;
-
-        for (i = 0; i < currentUser.userOrganizations.length; i++) {
-            $scope.organizations.push({
-                organizationId: currentUser.userOrganizations[i].organizationId,
-                name: currentUser.userOrganizations[i].name//,
-                //selected: (currentUser.userOrganizations[i].organizationId === currentUser.selectedOrganizationId)
-            });
-        }
-
-        for (i = 0; i < currentUser.userRoles.length; i++) {
-            $scope.roles.push({
-                roleId: currentUser.userRoles[i].roleId,
-                name: currentUser.userRoles[i].name//,
-                //selected: (currentUser.userRoles[i].roleId === currentUser.selectedRoleId)
-            });
-        }
-
-        for (i = 0; i < currentUser.userPositions.length; i++) {
-            $scope.positions.push({
-                positionId: currentUser.userPositions[i].positionId,
-                name: currentUser.userPositions[i].name//,
-                //selected: (currentUser.userPositions[i].positionId === currentUser.SelectedPositionId)
-            });
-        }
-
-        $scope.currentUser.selectedOrganization = { organizationId: currentUser.selectedOrganizationId, name: currentUser.selectedOrganizationName  };
-        $scope.currentUser.selectedRole = { roleId: currentUser.selectedRoleId, name: currentUser.selectedRoleName };
-        $scope.currentUser.selectedPosition = { positionId: currentUser.selectedPositionId, name: currentUser.selectedPositionName };
+        $scope.organizations = currentUser.userOrganizations;
+        $scope.roles = currentUser.userRoles;
+        $scope.positions = currentUser.userPositions;
 
         $scope.ok = function (currentUserData) {
-
-            //Check for nulls here and set to the already selected value if null
-            currentUserData.selectedOrganizationId = currentUserData.selectedOrganization.organizationId;
-            currentUserData.selectedRoleId = currentUserData.selectedRole.roleId;
-            currentUserData.selectedPositionId = currentUserData.selectedPosition.positionId;
 
             // Edit the current user
             currentUserFactory.editCurrentUser(currentUserData)
