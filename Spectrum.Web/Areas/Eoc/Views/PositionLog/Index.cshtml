@@ -1,0 +1,12 @@
+﻿@{
+    ViewBag.Title = "EOC - Position Log";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div ui-view></div>
+
+@section scripts {
+    <script src="@Url.Content("~/Scripts/app/eoc/dashboard.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/app/eoc/position-log-ctrl.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/app/eoc/position-log-mgmt-ctrl.js")" type="text/javascript"></script>
+}
