@@ -172,69 +172,6 @@ namespace Spectrum.Web.Controllers.Web
         }
 
         //
-        // GET: /Account/Register
-        [AllowAnonymous]
-        public ActionResult Register()
-        {
-            return View();
-        }
-
-        //
-        // POST: /Account/Register
-        [HttpPost]
-        [AllowAnonymous]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Register(RegisterViewModel model)
-        {
-            if (ModelState.IsValid)
-            {
-                var user = new User {UserName = model.UserName, Email = model.Email};
-                var result = await UserManager.CreateAsync(user, model.Password);
-                int? orgId = null;
-
-
-                if (result.Succeeded)
-                {
-                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
-
-                    //TODO Matching mechanism
-                    if (!string.IsNullOrEmpty(model.OrganizationName))
-                    {
-                        var organization = new Organization {Name = model.OrganizationName};
-                        organization.ObjectState = ObjectState.Added;
-
-                        OrganizationRepository.InsertOrUpdate(organization);
-                        OrganizationRepository.Save();
-
-                        orgId = organization.Id;
-                    }
-
-                    UserProfile userProfile = new UserProfile();
-                    userProfile.UserId = Convert.ToInt32(user.Id);
-                    userProfile.OrganizationId = orgId;
-                    userProfile.Default = true;
-                    userProfile.ProfileName = "Default";
-                    userProfile.ObjectState = ObjectState.Added;
-
-                    UserProfileRepository.InsertOrUpdate(userProfile);
-                    UserProfileRepository.Save();
-
-                    // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
-                    // Send an email with this link
-                    // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
-                    // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                    // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
-
-                    return RedirectToAction("Index", "Portal");
-                }
-                AddErrors(result);
-            }
-
-            // If we got this far, something failed, redisplay form
-            return View(model);
-        }
-
-        //
         // GET: /Account/ConfirmEmail
         [AllowAnonymous]
         public async Task<ActionResult> ConfirmEmail(int userId, string code)

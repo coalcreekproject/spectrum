@@ -238,6 +238,7 @@
     <Compile Include="Repositories\Interfaces\IRuleTypeRepository.cs" />
     <Compile Include="Repositories\Interfaces\IUserProfileRepository.cs" />
     <Compile Include="Repositories\Interfaces\IRoleRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IUserRepository.cs" />
     <Compile Include="Repositories\PositionRepository.cs" />
     <Compile Include="Utilities\PasswordHash.cs" />
     <Compile Include="Utilities\PasswordUtility.cs" />

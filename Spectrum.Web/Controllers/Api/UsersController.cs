@@ -6,10 +6,9 @@ using System.Web.Http;
 using AutoMapper;
 using Microsoft.AspNet.Identity;
 using Spectrum.Data.Core.Context.Interfaces;
-using Spectrum.Data.Core.Context.UnitOfWork;
 using Spectrum.Data.Core.Models;
 using Spectrum.Data.Core.Models.Interfaces;
-using Spectrum.Data.Core.Repositories;
+using Spectrum.Data.Core.Repositories.Interfaces;
 using Spectrum.Logic.Identity;
 using Spectrum.Web.Models;
 using Spectrum.Web.IdentityConfig;
@@ -18,26 +17,14 @@ namespace Spectrum.Web.Controllers.Api
 {
     public class UsersController : ApiController
     {
-        // TODO: Get dependency injection working here
-        //private ICoreDbContext _context;
-        //private IUserStore<User, int> _userRepository;
-        //private readonly UserManager<User, int> _manager;
-
-        //public UsersController(ICoreUnitOfWork uow, IUserStore<User, int> userRepository, UserManager<User, int> userManager)
-        //{
-        //    _context = uow.Context;
-        //    _userRepository = userRepository;
-        //    _manager = userManager;
-        //}
-
         private ICoreDbContext _context;
         private IUserStore<User, int> _userRepository;
         private readonly ApplicationUserManager _manager;
 
-        public UsersController(ICoreUnitOfWork uow)
+        public UsersController(IUserRepository userRepository)
         {
-            _context = uow.Context;
-            _userRepository = new UserRepository(uow);
+            _context = userRepository.Context;
+            _userRepository = userRepository;
             _manager = new ApplicationUserManager(_userRepository, true);
         }
 
@@ -49,15 +36,13 @@ namespace Spectrum.Web.Controllers.Api
         {
             var userViewModels = new List<UserViewModel>();
 
-            foreach (User u in _manager.Users)
+            foreach (var u in _manager.Users)
             {
                 userViewModels.Add(Mapper.Map<UserViewModel>(u));
             }
             
             //TODO: Get Paging working
             return userViewModels;  //.Take(10);
-            //return userViewModels;
-        
         }
 
         [HttpGet]
