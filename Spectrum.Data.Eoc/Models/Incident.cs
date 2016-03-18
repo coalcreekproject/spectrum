@@ -1,4 +1,6 @@
-﻿using Newtonsoft.Json;
+﻿using System;
+using System.Collections.Generic;
+using Newtonsoft.Json;
 
 namespace Spectrum.Data.Eoc.Models
 {
@@ -13,5 +15,7 @@ namespace Spectrum.Data.Eoc.Models
         public string Type { get; set; }
         public int Level { get; set; }
         public string Status { get; set; }
+        public DateTime CreateDate { get; set; }
+        public IList<Log> Logs { get; set; }
     }
 }

@@ -28,6 +28,22 @@
             return deferred.promise;
         };
 
+        var incident = {};
+        var getIncident = function(incidentId) {
+            var deferred = $q.defer();
+
+            $http.get("/Eoc/api/Incident" + "/" + incidentId)
+                .then(function(result) {
+                        angular.copy(result.data, incident);
+                        deferred.resolve(incident);
+                    },
+                    function() {
+                        deferred.reject();
+                    });
+
+            return deferred.promise;
+        };
+
         var addIncident = function(incident) {
 
             var deferred = $q.defer();
@@ -36,6 +52,22 @@
                 .then(function(result) {
                     deferred.resolve(result);
                 }, function() {
+                    deferred.reject();
+                });
+
+            return deferred.promise;
+        };
+
+        var addIncidentLog = function (inputModel)
+        {
+            var deferred = $q.defer();
+
+            $http.post("/Eoc/api/Incident/Log", inputModel)
+                .then(function (result)
+                {
+                    deferred.resolve(result);
+                }, function ()
+                {
                     deferred.reject();
                 });
 
@@ -111,8 +143,10 @@
         };
 
         return {
+            getIncident: getIncident,
             getIncidents: getIncidents,
             addIncident: addIncident,
+            addIncidentLog: addIncidentLog,
             editIncident: editIncident,
             deleteIncident: deleteIncident,
             getIncidentTypes: getIncidentTypes,

@@ -2,8 +2,16 @@
     width: 170px;
 }
 
+.table.table-position tbody td:first-child {
+    padding: 6px;
+}
+
 .table.table-position tbody td:first-child a {
     margin-left: 20px;
+}
+
+.table.table-position tbody tr td {
+    vertical-align: text-bottom;
 }
 
 .spinner {

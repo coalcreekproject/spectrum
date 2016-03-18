@@ -1,7 +1,4 @@
 ﻿(function () {
-
-    var INCIDENT_TEMPLATE_PATH = "Eoc/Templates/IncidentManagement/";
-
     angular
         .module("app.eoc")
         .controller("IncidentMgmtCtrl", IncidentMgmtCtrl)
@@ -26,7 +23,9 @@
 
     IncidentMgmtCtrl.$inject = ["$scope", "incidentData", "$uibModal"];
 
-    function IncidentMgmtCtrl($scope, incidentData, $uibModal) {
+    function IncidentMgmtCtrl($scope, incidentData, $uibModal)
+    {
+        var INCIDENT_TEMPLATE_PATH = "Eoc/Templates/IncidentManagement/";
 
         // Setting scope object
         var vm = this;

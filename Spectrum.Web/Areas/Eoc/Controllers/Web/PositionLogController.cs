@@ -13,16 +13,15 @@ namespace Spectrum.Web.Areas.Eoc.Controllers.Web
 
         public ActionResult Template(string template)
         {
-            switch (template.ToLower())
+            const string basePath = "~/Areas/Eoc/Views/PositionLog/Partials/";
+            var partialView = basePath + template + ".cshtml";
+            try
             {
-                case "positionlogindex":
-                    return
-                        PartialView("~/Areas/Eoc/Views/PositionLog/Partials/PositionLogIndex.cshtml");
-                case "positionlogmanagement":
-                    return
-                        PartialView("~/Areas/Eoc/Views/PositionLog/Partials/PositionLogManagement.cshtml");
-                default:
-                    throw new ApplicationException("Unknown Template");
+                return PartialView(partialView);
+            }
+            catch (Exception)
+            {
+                throw new ApplicationException("Unknown Template");
             }
         }
     }
