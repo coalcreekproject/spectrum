@@ -10,8 +10,8 @@
             <div class="form-group">
                 <div class="row">
                     <div class="col-md-6">
-                        <label for="OrganizationTypeId">Name</label>
-                        <input type="text" placeholder="Name" ng-model="organization.name" class="form-control">
+                        <label for="Name">Name</label>
+                        <input type="text" id="Name" placeholder="Name" ng-model="organization.name" class="form-control">
                     </div>
                 </div>
             </div>
@@ -19,8 +19,13 @@
             <div class="form-group">
                 <div class="row">
                     <div class="col-md-6">
-                        <label for="OrganizationTypeId">Organization Type</label>
-                        <input type="text" id="OrganizationTypeId" placeholder="OrganizationTypeId" ng-model="organization.organizationTypeId" class="form-control">
+                        <label for="organizationTypeId">Organization Type</label>
+                        @*<input type="text" id="OrganizationTypeId" placeholder="OrganizationTypeId" ng-model="organization.organizationTypeId" class="form-control">*@
+                        <select class="form-control m-b" name="organizationTypeId" id="organizationTypeId" ng-model="organization.organizationType">
+                            <option ng-repeat="option in organization.organizationTypes" value="{{option.id}}" ng-selected="organization.organizationTypeId === option.id">
+                                {{option.name}}
+                            </option>
+                        </select>
                     </div>
                 </div>
             </div>

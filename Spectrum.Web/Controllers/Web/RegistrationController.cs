@@ -106,32 +106,71 @@ namespace Spectrum.Web.Controllers.Web
                             await organizationRepository.SaveAsync();
 
                             //Default organization profile creation
-                            var organizationProfile = new OrganizationProfile
+                            organization.OrganizationProfiles.Add(new OrganizationProfile
                             {
                                 ProfileName = "Default for " + organization.Name,
                                 Default = true,
                                 OrganizationId = organization.Id,
                                 ObjectState = ObjectState.Added
-                            };
+                            });
 
-                            organization.OrganizationProfiles.Add(organizationProfile);
+                            //Add standard organization roles
+                            organization.Roles.Add(new Role
+                            {
+                                Name = "admin",
+                                Description = "Administrator",
+                                OrganizationId = organization.Id,
+                                ObjectState = ObjectState.Added
+                            });
+
+                            organization.Roles.Add(new Role
+                            {
+                                Name = "user",
+                                Description = "Standard user",
+                                OrganizationId = organization.Id,
+                                ObjectState = ObjectState.Added
+                            });
+
+                            organization.Roles.Add(new Role
+                            {
+                                Name = "observer",
+                                Description = "Read only role",
+                                OrganizationId = organization.Id,
+                                ObjectState = ObjectState.Added
+                            });
+
                             organization.ObjectState = ObjectState.Modified;
                             organizationRepository.InsertOrUpdate(organization);
                             await organizationRepository.SaveAsync();
 
                             //Default user profile creation
-                            var userProfile = new UserProfile
+                            user.UserProfiles.Add(new UserProfile
                             {
                                 UserId = user.Id,
                                 OrganizationId = organization.Id,
                                 Default = true,
                                 ProfileName = "Default for " + user.UserName,
                                 ObjectState = ObjectState.Added
-                            };
+                            });
 
-                            //TODO: Add user organization assignment.
+                            //Add user organization assignment.
+                            user.UserOrganizations.Add(new UserOrganization
+                            {
+                                Default = true,
+                                ObjectState = ObjectState.Added,
+                                OrganizationId = organization.Id,
+                                UserId = user.Id
+                            });
 
-                            user.UserProfiles.Add(userProfile);
+                            //Add a user role, in this case base user, TODO: determine how to do admins
+                            user.UserRoles.Add(new UserRole
+                            {
+                                Default = true,
+                                OrganizationId = organization.Id,
+                                RoleId = organization.Roles.FirstOrDefault(r => r.Name.Equals("user")).Id,
+                                ObjectState = ObjectState.Added
+                            });
+
                             user.ObjectState = ObjectState.Modified;
                             await userRepository.UpdateAsync(user);
 

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -18,11 +19,17 @@ namespace Spectrum.Web.Controllers.Api
     {
         private ICoreDbContext _context;
         private IOrganizationRepository _organizationRepository;
+        private List<OrganizationTypeViewModel> organizationTypes = new List<OrganizationTypeViewModel>();
 
         public OrganizationsController(ICoreUnitOfWork uow)
         {
             _context = uow.Context;
             _organizationRepository = new OrganizationRepository(uow);
+            
+            foreach (var t in _context.OrganizationTypes)
+            {
+                organizationTypes.Add(Mapper.Map<OrganizationTypeViewModel>(t));
+            }
         }
 
         [HttpGet]
@@ -37,7 +44,9 @@ namespace Spectrum.Web.Controllers.Api
                 {
                     Id = o.Id,
                     Name = o.Name,
-                    OrganizationTypeId = o.OrganizationTypeId
+                    OrganizationTypeId = o.OrganizationTypeId,
+                    OrganizationTypeName = o.OrganizationType.Name,
+                    OrganizationTypes = organizationTypes
                 });
             }
 
@@ -60,7 +69,9 @@ namespace Spectrum.Web.Controllers.Api
             {
                 Id = organization.Id,
                 Name = organization.Name,
-                OrganizationTypeId = organization.OrganizationTypeId
+                OrganizationTypeId = organization.OrganizationTypeId,
+                OrganizationTypeName = organization.OrganizationType.Name,
+                OrganizationTypes = organizationTypes
             };
             
             return Request.CreateResponse(HttpStatusCode.OK, organizationViewModel);
@@ -71,12 +82,6 @@ namespace Spectrum.Web.Controllers.Api
         public async Task<HttpResponseMessage> Post([FromBody]OrganizationViewModel newOrganization)
         {
             Organization organization = new Organization();
-            //{
-            //    Id = newOrganization.Id,
-            //    Name = newOrganization.Name,
-            //    OrganizationTypeId = newOrganization.OrganizationTypeId,
-            //    ObjectState = ObjectState.Added
-            //};
 
             Mapper.Map(newOrganization, organization);
 
@@ -105,16 +110,13 @@ namespace Spectrum.Web.Controllers.Api
 
             Mapper.Map(editOrganization, organization);
 
-            //organization.Name = editOrganization.Name;
-            //organization.OrganizationTypeId = editOrganization.OrganizationTypeId;
-
             organization.ObjectState = ObjectState.Modified;
             _organizationRepository.InsertOrUpdate(organization);
             var result = Task.FromResult(_organizationRepository.SaveAsync());
 
             if (result.IsCompleted)
             {
-                return Request.CreateResponse(HttpStatusCode.Created,
+                return Request.CreateResponse(HttpStatusCode.OK,
                     organization);
             }
 
@@ -139,7 +141,7 @@ namespace Spectrum.Web.Controllers.Api
 
             if (result.IsCompleted)
             {
-                return Request.CreateResponse(HttpStatusCode.Created,
+                return Request.CreateResponse(HttpStatusCode.OK,
                     organization);
             }
 

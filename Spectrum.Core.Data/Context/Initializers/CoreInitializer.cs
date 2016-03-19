@@ -17,7 +17,7 @@ namespace Spectrum.Data.Core.Context.Initializers
         {
             var hasher = new PasswordHasher();
 
-            #region Oranization Type Seeding
+            #region Organization Type Seeding
 
             new List<OrganizationType>
             {
@@ -26,7 +26,7 @@ namespace Spectrum.Data.Core.Context.Initializers
                     Id = 1,
                     Name = "Local Government",
                     Description =
-                        "Municipality, city, town, township or bourough that has icorporated status and local government"
+                        "Municipality, city, town, township or bourough that has incorporated status and local government"
                 },
                 new OrganizationType
                 {
@@ -123,9 +123,9 @@ namespace Spectrum.Data.Core.Context.Initializers
                     Default = true,
                     ProfileName = " Default - Spectrum Operational LLC",
                     Description = "Spectrum Operational HQ Profile",
-                    PrimaryContact = "Developer",
+                    PrimaryContact = "developer",
                     Phone = "303-704-2500",
-                    Email = "develop@spectrumoperational.com",
+                    Email = "developer@spectrumoperational.com",
                     County = "Boulder",
                     Country = "United States",
                     TimeZone = "US Mountain",
@@ -170,22 +170,29 @@ namespace Spectrum.Data.Core.Context.Initializers
                 PasswordHash = hasher.HashPassword("p@ssw0rd")
             };
 
-            var develop = new User
+            var developer = new User
             {
-                UserName = "develop",
-                Email = "develop@spectrumoperational.com",
+                UserName = "developer",
+                Email = "developer@spectrumoperational.com",
                 PasswordHash = hasher.HashPassword("p@ssw0rd")
             };
 
-            var developProfile = new UserProfile
+            var system = new User
+            {
+                UserName = "system",
+                Email = "system@spectrumoperational.com",
+                PasswordHash = hasher.HashPassword("p@ssw0rd")
+            };
+
+            var developerProfile = new UserProfile
             {
                 OrganizationId = context.Organizations.FirstOrDefault(org => org.Name == "Spectrum Operational").Id,
                 Default = true,
                 ProfileName = "Default for Developer, Spectrum Operational LLC",
-                FirstName = "",
-                MiddleName = "",
-                LastName = "",
-                Nickname = "",
+                FirstName = "Developer",
+                MiddleName = "Developer",
+                LastName = "Developer",
+                Nickname = "Developer",
                 SecondaryEmail = "developer@example.net",
                 SecondaryPhoneNumber = "720-555-1212",
                 TimeZone = "US Mountain",
@@ -197,21 +204,36 @@ namespace Spectrum.Data.Core.Context.Initializers
                 OrganizationId = context.Organizations.FirstOrDefault(org => org.Name == "Spectrum Operational").Id,
                 Default = true,
                 ProfileName = "Default for superuser, Spectrum Operational LLC",
+                FirstName = "Superuser",
+                MiddleName = "Superuser",
+                LastName = "Superuser",
+                Nickname = "SySuperuserstem",
+                SecondaryEmail = "superuser@spectrumoperational.com",
+                //SecondaryPhoneNumber = "", for future assignment
+                TimeZone = "US Mountain",
+                DstAdjust = true
+            };
+
+            var systemUserProfile = new UserProfile
+            {
+                OrganizationId = context.Organizations.FirstOrDefault(org => org.Name == "Spectrum Operational").Id,
+                Default = true,
+                ProfileName = "System account used to perform internal operations only",
                 FirstName = "System",
                 MiddleName = "System",
                 LastName = "System",
                 Nickname = "System",
-                SecondaryEmail = "support@spectrumoperational.com",
+                SecondaryEmail = "System@spectrumoperational.com",
                 //SecondaryPhoneNumber = "", for future assignment
                 TimeZone = "US Mountain",
                 DstAdjust = true
             };
 
             UserProfileAddress developUserProfileAddress = new UserProfileAddress {Address = address};
-            developUserProfileAddress.UserProfile = developProfile;
+            developUserProfileAddress.UserProfile = developerProfile;
 
-            developProfile.UserProfileAddresses.Add(developUserProfileAddress);
-            develop.UserProfiles.Add(developProfile);
+            developerProfile.UserProfileAddresses.Add(developUserProfileAddress);
+            developer.UserProfiles.Add(developerProfile);
 
             UserProfileAddress superuserUserProfileAddress = new UserProfileAddress {Address = address};
             superuserUserProfileAddress.UserProfile = superUserProfile;
@@ -219,7 +241,7 @@ namespace Spectrum.Data.Core.Context.Initializers
             superUserProfile.UserProfileAddresses.Add(superuserUserProfileAddress);
             superuser.UserProfiles.Add(superUserProfile);
 
-            context.Users.Add(develop);
+            context.Users.Add(developer);
             context.Users.Add(superuser);
 
             context.SaveChanges();
@@ -238,7 +260,7 @@ namespace Spectrum.Data.Core.Context.Initializers
                 },
                 new UserOrganization
                 {
-                    UserId = context.Users.FirstOrDefault(user => user.UserName == "develop").Id,
+                    UserId = context.Users.FirstOrDefault(user => user.UserName == "developer").Id,
                     OrganizationId =
                         context.Organizations.FirstOrDefault(org => org.Name.Equals("Spectrum Operational")).Id
                 }
@@ -253,7 +275,7 @@ namespace Spectrum.Data.Core.Context.Initializers
             {
                 UserRole ur = new UserRole()
                 {
-                    UserId = context.Users.FirstOrDefault(user => user.UserName == "develop").Id,
+                    UserId = context.Users.FirstOrDefault(user => user.UserName == "developer").Id,
                     OrganizationId = context.Organizations.FirstOrDefault(org => org.Name.Equals("Spectrum Operational")).Id,
                     RoleId = p.Id
                 };
@@ -429,7 +451,7 @@ namespace Spectrum.Data.Core.Context.Initializers
                 UserPosition up = new UserPosition()
                 {
                     PositionId = p.Id,
-                    UserId = context.Users.FirstOrDefault(user => user.UserName.Equals("develop")).Id,
+                    UserId = context.Users.FirstOrDefault(user => user.UserName.Equals("developer")).Id,
                     OrganizationId = context.Organizations.FirstOrDefault(org => org.Name.Equals("Spectrum Operational")).Id
                 };
                 context.UserPositions.Add(up);

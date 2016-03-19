@@ -247,6 +247,7 @@
     <Compile Include="Areas\Eoc\Controllers\Web\IncidentManagementController.cs" />
     <Compile Include="Areas\Eoc\EocAreaRegistration.cs" />
     <Compile Include="Controllers\Api\IdentityFocusController.cs" />
+    <Compile Include="Controllers\Api\OrganizationTypeController.cs" />
     <Compile Include="Controllers\Api\PositionsController.cs" />
     <Compile Include="Controllers\Api\RolesController.cs" />
     <Compile Include="Controllers\Api\UserPositionsController.cs" />
@@ -293,6 +294,7 @@
     <Compile Include="Models\ManageLoginsViewModel.cs" />
     <Compile Include="Models\ConfigureTwoFactorViewModel.cs" />
     <Compile Include="Models\OrganizationProfileViewModel.cs" />
+    <Compile Include="Models\OrganizationTypeViewModel.cs" />
     <Compile Include="Models\OrganizationViewModel.cs" />
     <Compile Include="Models\PositionViewModel.cs" />
     <Compile Include="Models\RegisterOrganizationViewModel.cs" />

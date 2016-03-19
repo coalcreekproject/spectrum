@@ -119,6 +119,8 @@ namespace Spectrum.Web
                     .ForMember(dest => dest.Name,
                         opts => opts.MapFrom(src => src.Position.Name));
                 cfg.CreateMap<UserPositionViewModel, UserPositionModel>();
+
+                cfg.CreateMap<OrganizationType, OrganizationTypeViewModel>();
             });
         }
     }
