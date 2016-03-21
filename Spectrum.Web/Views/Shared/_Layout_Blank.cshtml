@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html>
+<html ng-app="app">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,8 +10,17 @@
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
 
     <!-- Primary vendor style -->
+    <link rel="stylesheet" href="~/bower_components/angular-notify/dist/angular-notify.min.css" />
     <link rel="stylesheet" href="~/bower_components/font-awesome/css/font-awesome.css" />
+    <link rel="stylesheet" href="~/bower_components/metisMenu/dist/metisMenu.css" />
+    <link rel="stylesheet" href="~/bower_components/animate.css/animate.css" />
     <link rel="stylesheet" href="~/bower_components/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="~/bower_components/angular-ui-tree/dist/angular-ui-tree.min.css" />
+    <link rel="stylesheet" href="~/bower_components/angular-xeditable/dist/css/xeditable.css" />
+    <link rel="stylesheet" href="~/bower_components/ui-select/dist/select.min.css" />
+    <link rel="stylesheet" href="~/bower_components/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.css" />
+    <link rel="stylesheet" href="~/bower_components/blueimp-gallery/css/blueimp-gallery.min.css" />
+    <link rel="stylesheet" href="~/bower_components/angular-ui-grid/ui-grid.css" />
 
     <link rel="stylesheet" href="/Content/fonts/pe-icon-7-stroke/css/pe-icon-7-stroke.css" />
     <link rel="stylesheet" href="/Content/fonts/pe-icon-7-stroke/css/helper.css" />
@@ -19,7 +28,8 @@
 
     <!-- Add local styles, mostly for plugins css file -->
     @if (IsSectionDefined("Styles"))
-    {@RenderSection("Styles", required: false)}
+    {@RenderSection("Styles", required: false)
+    }
 
 </head>
 <body class="blank">
@@ -37,21 +47,61 @@
 
     <div class="color-line"></div>
 
-    <div class="pull-left m">
+<div class="content m">
+    <div class="row">
         <a href="@Url.Action("Index", "Home")" class="btn btn-primary">Return to Homepage</a>
     </div>
+</div>
 
-    <!-- Main view  -->
+    <!-- Main view -->
     @RenderBody()
 
     <!-- Section for main scripts render -->
     <script src="~/bower_components/jquery/dist/jquery.min.js"></script>
     <script src="~/bower_components/jquery-ui/jquery-ui.min.js"></script>
+    <script src="~/bower_components/slimScroll/jquery.slimscroll.min.js"></script>
+    <script src="~/bower_components/angular/angular.js"></script>
+    <script src="~/bower_components/angular-sanitize/angular-sanitize.min.js"></script>
+    <script src="~/bower_components/angular-animate/angular-animate.min.js"></script>
+    <script src="~/bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+    <script src="~/bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+    <script src="~/bower_components/angular-ui-grid/ui-grid.js"></script>
     <script src="~/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="~/bower_components/iCheck/icheck.min.js"></script>
+    <script src="~/bower_components/jquery-flot/jquery.flot.js"></script>
+    <script src="~/bower_components/jquery-flot/jquery.flot.resize.js"></script>
+    <script src="~/bower_components/jquery-flot/jquery.flot.pie.js"></script>
+    <script src="~/bower_components/flot.curvedlines/curvedLines.js"></script>
+    <script src="~/bower_components/jquery.flot.spline/index.js"></script>
+    <script src="~/bower_components/angular-flot/angular-flot.js"></script>
+    <script src="~/bower_components/metisMenu/dist/metisMenu.min.js"></script>
+    <script src="~/bower_components/sparkline/index.js"></script>
+    <script src="~/bower_components/chartjs/Chart.min.js"></script>
+    <script src="~/bower_components/angles/angles.js"></script>
+    <script src="~/bower_components/peity/jquery.peity.js"></script>
+    <script src="~/bower_components/angular-peity/angular-peity.js"></script>
+    <script src="~/bower_components/angular-notify/dist/angular-notify.min.js"></script>
+    <script src="~/bower_components/angles/angles.js"></script>
+    <script src="~/bower_components/angular-ui-utils/modules/utils.js"></script>
+    <script src="~/bower_components/angular-ui-map/ui-map.js"></script>
+    <script src="~/bower_components/angular-ui-tree/dist/angular-ui-tree.min.js"></script>
+    <script src="~/bower_components/angular-xeditable/dist/js/xeditable.min.js"></script>
+    <script src="~/bower_components/ui-select/dist/select.js"></script>
+    <script src="~/bower_components/angular-ui-sortable/sortable.min.js"></script>
+    <script src="~/bower_components/angular-touch/angular-touch.js"></script>
+    <script src="~/bower_components/angular-drag-and-drop-lists/angular-drag-and-drop-lists.min.js"></script>
+    <script src="~/bower_components/angular-ui-event/dist/event.min.js"></script>
 
     <!-- Local controllers -->
     <script src="~/Scripts/homer.js"></script>
+
+    <script src="~/Scripts/app/app.js"></script>
+    <script src="~/Scripts/app/core/core.module.js"></script>
+    <script src="~/Scripts/app/eoc/eoc.module.js"></script>
+
+    <script src="~/Scripts/app/directives/directives.js"></script>
+    <script src="~/Scripts/app/directives/loading-directive.js"></script>
+
+    <script src="~/Scripts/app/data/data.module.js"></script>
 
     <!-- Handler for local scripts -->
     @RenderSection("scripts", required: false)

@@ -48,19 +48,25 @@ namespace Spectrum.Web.Controllers.Web
             }
         }
 
-        // GET: /Account/Register
         [AllowAnonymous]
-        public ActionResult Register()
+        public ActionResult Index()
         {
-            var coreDbContext = new CoreDbContext();
-
-            var registerViewModel = new RegisterViewModel
-            {
-                OrganizationTypes = coreDbContext.OrganizationTypes.ToList()
-            };
-
-            return View(registerViewModel);
+            return View();
         }
+
+        //// GET: /Account/Register
+        //[AllowAnonymous]
+        //public ActionResult Register()
+        //{
+        //    //var coreDbContext = new CoreDbContext();
+
+        //    //var registerViewModel = new RegisterViewModel
+        //    //{
+        //    //    OrganizationTypes = coreDbContext.OrganizationTypes.ToList()
+        //    //};
+
+        //    return View();
+        //}
 
         // POST: /Account/Register
         [HttpPost]
@@ -198,6 +204,18 @@ namespace Spectrum.Web.Controllers.Web
             foreach (var error in result.Errors)
             {
                 ModelState.AddModelError("", error);
+            }
+        }
+
+        [AllowAnonymous]
+        public ActionResult Template(string template)
+        {
+            switch (template.ToLower())
+            {
+                case "registerindex":
+                    return PartialView("~/Views/Registration/Partials/RegistrationIndex.cshtml");
+                default:
+                    throw new ApplicationException("Unknown Template");
             }
         }
     }

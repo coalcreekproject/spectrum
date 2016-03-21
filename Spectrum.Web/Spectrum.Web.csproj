@@ -469,6 +469,7 @@
     <Content Include="Areas\Eoc\Views\IncidentManagement\Partials\IncidentManagementIndex.cshtml" />
     <Content Include="Areas\Eoc\Views\Dashboard\Dashboard.cshtml" />
     <Content Include="Scripts\app\core\organizations-index-new.js" />
+    <Content Include="Scripts\app\core\register-wizard.js" />
     <Content Include="Scripts\app\data\incidentData.js" />
     <Content Include="Scripts\app\data\organization-data.js" />
     <Content Include="Scripts\app\directives\loading-directive.js" />
@@ -652,6 +653,8 @@
     <Content Include="Views\Community\Partials\CommunityIndex.cshtml" />
     <Content Include="Views\Settings\Index.cshtml" />
     <Content Include="Views\Settings\Partials\SettingsIndex.cshtml" />
+    <Content Include="Views\Registration\Partials\RegistrationIndex.cshtml" />
+    <Content Include="Views\Registration\Partials\RegisterOld.cshtml" />
     <None Include="Views\User\Partials\DeleteUserProfileModal.cshtml" />
     <None Include="Views\User\Partials\EditUserProfileModal.cshtml" />
     <None Include="Views\User\Partials\AddUserProfileModal.cshtml" />
@@ -691,7 +694,7 @@
       <SubType>Designer</SubType>
     </Content>
     <None Include="Views\Account\Login.old.cshtml" />
-    <Content Include="Views\Registration\Register.cshtml" />
+    <Content Include="Views\Registration\Index.cshtml" />
     <Content Include="Views\Account\ResetPassword.cshtml" />
     <Content Include="Views\Account\ResetPasswordConfirmation.cshtml" />
     <Content Include="Views\Account\SendCode.cshtml" />
