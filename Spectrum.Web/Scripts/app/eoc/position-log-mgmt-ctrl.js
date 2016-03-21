@@ -29,13 +29,17 @@
 
         var vm = this;
 
+        // Controller definitions
         vm.incident = getIncident;
         vm.openAddModal = openAddModal;
+        vm.openDeleteModal = openDeleteModal;
         vm.incidentId = $stateParams.incidentId;
         vm.name = "Wilkins";
         vm.search = "";
         vm.clear = clear;
 
+
+        // Controller functions
         function clear() {
             vm.search = "";
         }
@@ -76,6 +80,32 @@
                 .then(function() {
                     activate();
                 }).catch(function() {
+                    // Do nothing
+                });
+        }
+
+        function openDeleteModal(logItem)
+        {
+            var modalDialog = $uibModal.open({
+                templateUrl: POS_LOG_TEMPLATE_PATH + "PositionLogDeleteModal",
+                controller: deleteModalInstance,
+                resolve: {
+                    deleteItemData: function ()
+                    {
+                        var deleteItem = {
+                            "incidentId": vm.incidentId,
+                            "logItem": logItem
+                        }
+                        return deleteItem;
+                    }
+                }
+            });
+            modalDialog.result
+                .then(function ()
+                {
+                    activate();
+                }).catch(function ()
+                {
                     // Do nothing
                 });
         }
@@ -134,6 +164,34 @@
 
             $scope.close = function() {
                 $uibModalInstance.dismiss("cancel");
+            };
+        }
+
+        // Delete modal instance
+        deleteModalInstance.$inject = ["$scope", "$uibModalInstance", "deleteItemData"];
+
+        function deleteModalInstance($scope, $uibModalInstance, deleteItemData) {
+
+            $scope.incidentId = deleteItemData.incidentId;
+            $scope.logName = deleteItemData.logItem.logName;
+            $scope.logId = deleteItemData.logItem.logId;
+
+            $scope.cancel = function ()
+            {
+                $uibModalInstance.dismiss("cancel");
+            };
+
+            $scope.delete = function ()
+            {
+                // Remove the incident
+                incidentData.deleteIncidentLog($scope.incidentId, $scope.logId)
+                    .then(function ()
+                    {
+                        $uibModalInstance.close();
+                    }, function (result)
+                    {
+                        console.log(result.message);
+                    });
             };
         }
     }

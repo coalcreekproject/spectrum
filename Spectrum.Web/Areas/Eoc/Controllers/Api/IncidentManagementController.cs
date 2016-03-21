@@ -117,7 +117,7 @@ namespace Spectrum.Web.Areas.Eoc.Controllers.Api
                 {
                     return BadRequest("Unable to find document to update: See PostIncidentLog action.");
                 }
-                var savedDocId = await InsertPostionLog(document, incidentLog);
+                var savedDocId = await InsertPositionLog(document, incidentLog);
                 return Ok(savedDocId);
             }
             catch (Exception ex)
@@ -146,7 +146,32 @@ namespace Spectrum.Web.Areas.Eoc.Controllers.Api
             }
         }
 
-        private async Task<string> InsertPostionLog(Incident document, IncidentLogInputViewModel incidentLog)
+        [Route("~/Eoc/api/Incident/{incidentId:guid}/Log/{logId:int}")]
+        [HttpDelete]
+        public async Task<IHttpActionResult> DeleteIncidentLog(Guid incidentId, int logId)
+        {
+            if (logId == 0 || incidentId == Guid.Empty)
+            {
+                return BadRequest("Incident log delete data is invalid.");
+            }
+
+            try
+            {
+                var document = _dbRepository.GetItem(doc => doc.Id == incidentId.ToString());
+                if (document == null)
+                {
+                    return BadRequest("Unable to find document to update: See DeleteIncidentLog action.");
+                }
+                var savedDocId = await DeletePositionLog(document, logId);
+                return Ok(savedDocId);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        private async Task<string> InsertPositionLog(Incident document, IncidentLogInputViewModel incidentLog)
         {
             const int logId = 1;
             if (document.Logs != null)
@@ -164,6 +189,21 @@ namespace Spectrum.Web.Areas.Eoc.Controllers.Api
 
             document.Logs.Add(incidentLog.Log);
             var savedDoc = await _dbRepository.UpdateItemAsync(incidentLog.Id, document);
+            return savedDoc.Id;
+        }
+
+        private async Task<string> DeletePositionLog(Incident document, int logId)
+        {
+            // Remove the log entry
+            var logToRemove = document.Logs?.SingleOrDefault(log => log.LogId == logId);
+
+            if (logToRemove == null)
+            {
+                return null;
+            }
+
+            document.Logs.Remove(logToRemove);
+            var savedDoc = await _dbRepository.UpdateItemAsync(document.Id, document);
             return savedDoc.Id;
         }
     }

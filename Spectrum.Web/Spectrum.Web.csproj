@@ -478,6 +478,7 @@
     <Content Include="Areas\Eoc\Views\PositionLog\Partials\PositionLogIndex.cshtml" />
     <Content Include="Areas\Eoc\Views\PositionLog\Partials\PositionLogManagement.cshtml" />
     <Content Include="Areas\Eoc\Views\PositionLog\Partials\PositionLogAddModal.cshtml" />
+    <Content Include="Areas\Eoc\Views\PositionLog\Partials\PositionLogDeleteModal.cshtml" />
     <None Include="Content\images\landing\header.jpg.old" />
     <Content Include="Content\images\landing\s1.png" />
     <Content Include="Content\images\landing\s2.png" />

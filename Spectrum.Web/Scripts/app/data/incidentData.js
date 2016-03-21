@@ -58,16 +58,26 @@
             return deferred.promise;
         };
 
-        var addIncidentLog = function (inputModel)
-        {
+        var addIncidentLog = function(inputModel) {
             var deferred = $q.defer();
 
             $http.post("/Eoc/api/Incident/Log", inputModel)
-                .then(function (result)
-                {
+                .then(function(result) {
                     deferred.resolve(result);
-                }, function ()
-                {
+                }, function() {
+                    deferred.reject();
+                });
+
+            return deferred.promise;
+        };
+
+        var deleteIncidentLog = function(incidentId, logId) {
+            var deferred = $q.defer();
+
+            $http.delete("/Eoc/api/Incident/" + incidentId + "/Log/" + logId)
+                .then(function(result) {
+                    deferred.resolve(result);
+                }, function() {
                     deferred.reject();
                 });
 
@@ -149,6 +159,7 @@
             addIncidentLog: addIncidentLog,
             editIncident: editIncident,
             deleteIncident: deleteIncident,
+            deleteIncidentLog: deleteIncidentLog,
             getIncidentTypes: getIncidentTypes,
             getIncidentLevels: getIncidentLevels,
             getIncidentStatuses: getIncidentStatuses
