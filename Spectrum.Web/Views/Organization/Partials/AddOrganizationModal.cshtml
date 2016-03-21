@@ -11,20 +11,16 @@
                 <div class="row">
                     <div class="col-md-6">
                         <label for="OrgName">Organization Name</label>
-                        <input type="text" id="OrgName" placeholder="Organization Name" ng-model="organization.Name" class="form-control">
+                        <input type="text" id="OrgName" placeholder="Organization Name" ng-model="organization.name" class="form-control">
                     </div>
                 </div>
             </div>
 
             <div class="form-group">
                 <div class="row">
-                    @*<div class="col-md-6">
-                        <label for="TypeId">Organization Type</label>
-                        <input type="text" id="TypeId" placeholder="Organization Type" ng-model="organization.TypeId" class="form-control">
-                    </div>*@
                     <div class="col-md-6">
-                        <select class="form-control m-b" name="selectedOrganizationType" id="selectedOrganizationType" ng-model="organization.TypeId">
-                            <option ng-repeat="option in organizationTypes" value="{{option.id}}">{{option.name}}</option>
+                        <select class="form-control m-b" name="organizationType" id="organizationType" ng-model="organization.organizationTypeId">
+                            <option ng-repeat="option in organizationTypes" value="{{option.organizationTypeId}}">{{option.name}}</option>
                         </select>
                     </div>
                 </div>

@@ -19,13 +19,12 @@
             <div class="form-group">
                 <div class="row">
                     <div class="col-md-6">
-                        <label for="organizationTypeId">Organization Type</label>
-                        @*<input type="text" id="OrganizationTypeId" placeholder="OrganizationTypeId" ng-model="organization.organizationTypeId" class="form-control">*@
-                        <select class="form-control m-b" name="organizationTypeId" id="organizationTypeId" ng-model="organization.organizationType">
-                            <option ng-repeat="option in organization.organizationTypes" value="{{option.id}}" ng-selected="organization.organizationTypeId === option.id">
-                                {{option.name}}
-                            </option>
+                        <label for="organizationType">Organization Type</label>
+                        <select class="form-control m-b" name="organizationType" id="organizationType" ng-model="organization.organizationTypeId">
+                            <option ng-repeat="option in organizationTypes" value="{{option.organizationTypeId}}">{{option.name}}</option>
+                            <input type="hidden" ng-model="option.name" />
                         </select>
+
                     </div>
                 </div>
             </div>

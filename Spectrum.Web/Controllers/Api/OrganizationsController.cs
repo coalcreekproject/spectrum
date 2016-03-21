@@ -19,17 +19,11 @@ namespace Spectrum.Web.Controllers.Api
     {
         private ICoreDbContext _context;
         private IOrganizationRepository _organizationRepository;
-        private List<OrganizationTypeViewModel> organizationTypes = new List<OrganizationTypeViewModel>();
 
         public OrganizationsController(ICoreUnitOfWork uow)
         {
             _context = uow.Context;
             _organizationRepository = new OrganizationRepository(uow);
-            
-            foreach (var t in _context.OrganizationTypes)
-            {
-                organizationTypes.Add(Mapper.Map<OrganizationTypeViewModel>(t));
-            }
         }
 
         [HttpGet]
@@ -45,8 +39,7 @@ namespace Spectrum.Web.Controllers.Api
                     Id = o.Id,
                     Name = o.Name,
                     OrganizationTypeId = o.OrganizationTypeId,
-                    OrganizationTypeName = o.OrganizationType.Name,
-                    OrganizationTypes = organizationTypes
+                    OrganizationTypeName = o.OrganizationType.Name
                 });
             }
 
@@ -70,8 +63,7 @@ namespace Spectrum.Web.Controllers.Api
                 Id = organization.Id,
                 Name = organization.Name,
                 OrganizationTypeId = organization.OrganizationTypeId,
-                OrganizationTypeName = organization.OrganizationType.Name,
-                OrganizationTypes = organizationTypes
+                OrganizationTypeName = organization.OrganizationType.Name
             };
             
             return Request.CreateResponse(HttpStatusCode.OK, organizationViewModel);
@@ -86,22 +78,23 @@ namespace Spectrum.Web.Controllers.Api
             Mapper.Map(newOrganization, organization);
 
             _organizationRepository.InsertOrUpdate(organization);
-            var result = Task.FromResult(_organizationRepository.SaveAsync());
+            await _organizationRepository.SaveAsync();
 
-            if (result.IsCompleted)
-            {
-                return Request.CreateResponse(HttpStatusCode.Created,
-                    organization);
-            }
-
-            return Request.CreateResponse(HttpStatusCode.BadRequest);
+            return Request.CreateResponse(HttpStatusCode.Created,
+                new OrganizationViewModel
+                {
+                    Id = organization.Id,
+                    Name = organization.Name,
+                    OrganizationTypeId = organization.OrganizationTypeId,
+                    OrganizationTypeName = organization.OrganizationType.Name,
+                });
         }
 
         // PUT: api/Organization/5
         [HttpPut]
-        public HttpResponseMessage Put([FromBody]OrganizationViewModel editOrganization)
+        public async Task<HttpResponseMessage> Put([FromBody]OrganizationViewModel editOrganization)
         {
-            var organization = _organizationRepository.FindAsync(editOrganization.Id).Result;
+            var organization = _organizationRepository.Find(editOrganization.Id);
 
             if (organization == null)
             {
@@ -112,20 +105,14 @@ namespace Spectrum.Web.Controllers.Api
 
             organization.ObjectState = ObjectState.Modified;
             _organizationRepository.InsertOrUpdate(organization);
-            var result = Task.FromResult(_organizationRepository.SaveAsync());
+            await _organizationRepository.SaveAsync();
 
-            if (result.IsCompleted)
-            {
-                return Request.CreateResponse(HttpStatusCode.OK,
-                    organization);
-            }
-
-            return Request.CreateResponse(HttpStatusCode.BadRequest);
+            return Request.CreateResponse(HttpStatusCode.OK, organization);
         }
 
         // DELETE: api/Organization/5
         [HttpDelete]
-        public HttpResponseMessage Delete(int id)
+        public async Task<HttpResponseMessage> Delete(int id)
         {
             Organization organization = _organizationRepository.Find(id);
 
@@ -137,15 +124,10 @@ namespace Spectrum.Web.Controllers.Api
             organization.ObjectState = ObjectState.Deleted;
             _organizationRepository.Delete(organization.Id);
 
-            var result = Task.FromResult(_organizationRepository.SaveAsync());
+            await _organizationRepository.SaveAsync();
 
-            if (result.IsCompleted)
-            {
-                return Request.CreateResponse(HttpStatusCode.OK,
-                    organization);
-            }
-
-            return Request.CreateResponse(HttpStatusCode.BadRequest);
+            return Request.CreateResponse(HttpStatusCode.OK,
+                organization);
         }
     }
 }

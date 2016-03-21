@@ -4,8 +4,10 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using AutoMapper;
 using Spectrum.Data.Core.Context;
 using Spectrum.Data.Core.Context.UnitOfWork;
+using Spectrum.Web.Models;
 
 namespace Spectrum.Web.Controllers.Api
 {
@@ -21,7 +23,10 @@ namespace Spectrum.Web.Controllers.Api
         [HttpGet]
         public HttpResponseMessage Get()
         {
-            return Request.CreateResponse(HttpStatusCode.OK, _context.OrganizationTypes.ToList());
+            var organizationTypes = _context.OrganizationTypes.ToList();
+
+            return Request.CreateResponse(HttpStatusCode.OK, 
+                organizationTypes.Select(Mapper.Map<OrganizationTypeViewModel>).ToList());
         }
     }
 }

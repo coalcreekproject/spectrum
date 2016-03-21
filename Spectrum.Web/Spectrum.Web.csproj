@@ -468,7 +468,9 @@
     <Content Include="Areas\Eoc\Views\IncidentManagement\Index.cshtml" />
     <Content Include="Areas\Eoc\Views\IncidentManagement\Partials\IncidentManagementIndex.cshtml" />
     <Content Include="Areas\Eoc\Views\Dashboard\Dashboard.cshtml" />
+    <Content Include="Scripts\app\core\organizations-index-new.js" />
     <Content Include="Scripts\app\data\incidentData.js" />
+    <Content Include="Scripts\app\data\organization-data.js" />
     <Content Include="Scripts\app\directives\loading-directive.js" />
     <Content Include="Scripts\app\templates\im.html" />
     <Content Include="Areas\Eoc\Views\IncidentManagement\Partials\IncidentManagementAddModal.cshtml" />
