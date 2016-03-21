@@ -245,6 +245,7 @@
     <Compile Include="Areas\Eoc\Controllers\Web\CheckListController.cs" />
     <Compile Include="Areas\Eoc\Controllers\Web\DashboardController.cs" />
     <Compile Include="Areas\Eoc\Controllers\Web\IncidentManagementController.cs" />
+    <Compile Include="Areas\Eoc\Controllers\Web\PositionLogController.cs" />
     <Compile Include="Areas\Eoc\EocAreaRegistration.cs" />
     <Compile Include="Controllers\Api\IdentityFocusController.cs" />
     <Compile Include="Controllers\Api\PositionsController.cs" />
@@ -287,6 +288,7 @@
     <Compile Include="Models\Identity\CustomUserRole.cs" />
     <Compile Include="Models\Identity\CustomUserStore.cs" />
     <Compile Include="Models\Identity\CustomUserLogin.cs" />
+    <Compile Include="Models\IncidentLogInputViewModel.cs" />
     <Compile Include="Models\ManageIndexViewModel.cs" />
     <Compile Include="Models\LoginViewModel.cs" />
     <Compile Include="Models\ManageLoginsViewModel.cs" />
@@ -466,10 +468,17 @@
     <Content Include="Areas\Eoc\Views\Dashboard\Dashboard.cshtml" />
     <Content Include="Scripts\app\data\incidentData.js" />
     <Content Include="Scripts\app\directives\loading-directive.js" />
+    <Content Include="Scripts\app\eoc\position-log-ctrl.js" />
+    <Content Include="Scripts\app\eoc\position-log-mgmt-ctrl.js" />
     <Content Include="Scripts\app\templates\im.html" />
     <Content Include="Areas\Eoc\Views\IncidentManagement\Partials\IncidentManagementAddModal.cshtml" />
     <Content Include="Areas\Eoc\Views\IncidentManagement\Partials\IncidentManagementDeleteModal.cshtml" />
     <Content Include="Areas\Eoc\Views\IncidentManagement\Partials\IncidentManagementEditModal.cshtml" />
+    <Content Include="Areas\Eoc\Views\PositionLog\Index.cshtml" />
+    <Content Include="Areas\Eoc\Views\PositionLog\Partials\PositionLogIndex.cshtml" />
+    <Content Include="Areas\Eoc\Views\PositionLog\Partials\PositionLogManagement.cshtml" />
+    <Content Include="Areas\Eoc\Views\PositionLog\Partials\PositionLogAddModal.cshtml" />
+    <Content Include="Areas\Eoc\Views\PositionLog\Partials\PositionLogDeleteModal.cshtml" />
     <None Include="Content\images\landing\header.jpg.old" />
     <Content Include="Content\images\landing\s1.png" />
     <Content Include="Content\images\landing\s2.png" />

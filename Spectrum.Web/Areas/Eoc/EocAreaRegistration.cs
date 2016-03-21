@@ -21,8 +21,15 @@ namespace Spectrum.Web.Areas.Eoc
             context.MapRoute(
                 name: "EocIncident",
                 url: "Eoc/IncidentManagement/{action}/{id}",
-                defaults: new { action = "Index", controller= "IncidentManagement", id = UrlParameter.Optional },
-                namespaces: new[] { "Spectrum.Web.Areas.Eoc.Controllers.Web" }
+                defaults: new {action = "Index", controller = "IncidentManagement", id = UrlParameter.Optional},
+                namespaces: new[] {"Spectrum.Web.Areas.Eoc.Controllers.Web"}
+                );
+
+            context.MapRoute(
+                name: "EocPositionLog",
+                url: "Eoc/PositionLog/{action}/{id}",
+                defaults: new {action = "Index", controller = "PositionLog", id = UrlParameter.Optional},
+                namespaces: new[] {"Spectrum.Web.Areas.Eoc.Controllers.Web"}
                 );
 
             context.MapRoute(
@@ -31,8 +38,6 @@ namespace Spectrum.Web.Areas.Eoc
                 defaults: new {action = "Index", controller = "CheckList", id = UrlParameter.Optional},
                 namespaces: new[] {"Spectrum.Web.Areas.Eoc.Controllers.Web"}
                 );
-
-
         }
     }
 }

@@ -32,17 +32,17 @@
                 <li class="@Html.IsSelected(action: "Dashboard")">
                     <a href="@Url.Action("Index", "Dashboard", new {Area = "Eoc"})">Dashboard</a>
                 </li>
-                <li class="@Html.IsSelected(action: "Checklists")">
-                    <a href="@Url.Action("Index", "CheckList", new {Area = "Eoc"})">Checklists</a>
-                </li>
                 <li class="@Html.IsSelected(action: "Incident Management")">
-                    <a href="@Url.Action("Index", "IncidentManagement", new {Area = "Eoc"})">Incident Management</a>
+                    <a href="@Url.Action("Index", "IncidentManagement", new {Area = "Eoc"})">Incidents</a>
+                </li>
+                <li class="@Html.IsSelected(action: "Position Log")">
+                    <a href="@Url.Action("Index", "PositionLog")">Position Log</a>
                 </li>
                 <li class="@Html.IsSelected(action: "Timeline")">
                     <a href="@Url.Action("", "")">Events Timeline</a>
                 </li>
-                <li class="@Html.IsSelected(action: "Activity Log")">
-                    <a href="@Url.Action("", "")">Activity Log</a>
+                <li class="@Html.IsSelected(action: "Checklists")">
+                    <a href="@Url.Action("Index", "CheckList", new {Area = "Eoc"})">Checklists</a>
                 </li>
                 <li class="@Html.IsSelected(action: "Action Plans")">
                     <a href="@Url.Action("", "")">Action Plans</a>

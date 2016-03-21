@@ -1,0 +1,92 @@
+﻿<div class="row">
+
+    <div class="normalheader transition" small-header>
+        <div class="hpanel" content="Position Log Management" placement="bottom" title="Position Log Management">
+            <div class="panel-body">
+                <a href="" ng-click="small()">
+                    <div class="clip-header">
+                        <i class="fa fa-arrow-up"></i>
+                    </div>
+                </a>
+                <div class="m-t-lg pull-right" id="hbreadcrumb">
+                    <ol class="breadcrumb hbreadcrumb">
+                        <li>
+                            <a href="@Url.Action("Index", "Dashboard")">Dashboard</a>
+                        </li>
+                        <li class="active">
+                            Position Log Management
+                        </li>
+                    </ol>
+                </div>
+                <h2 class="font-light m-b-xs">
+                    Position Log for {{plm.incident.incidentName}}
+                </h2>
+                <small>Create log entries for {{plm.name}}.</small>
+            </div>
+        </div>
+    </div>
+
+    <div child="row" class="normalheader transition" small-header>
+        <div animate-panel effect="fadeInUp">
+            <div class="hpanel">
+                <div class="panel-body">
+                    <div class="form">
+                        <div class="col-lg-10">
+                            <div class="input-group m-b">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-primary" ng-click="plm.clear()" type="button">Clear filter</button>
+                                </span>
+                                <input class="form-control" ng-model="plm.search" placeholder="Filter logs..." type="text">
+                            </div>
+                        </div>
+                        <div class="col-lg-2">
+                            <div class="pull-right">
+                                <div style="padding-bottom: 15px">
+                                    <button class="btn btn-primary" id="add" ng-click="plm.openAddModal()">Add a Log Entry</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="content">
+        <loading></loading>
+        <div ng-repeat="l in plm.incident.logs | filter:plm.search">
+            <div animate-panel child="row" effect="fadeInUp">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="hpanel">
+                            <div class="hbuilt panel-heading">
+                                <span>
+                                    {{ l.logName }}
+                                </span>
+                                <span class="pull-right">
+                                    {{ l.logDate | date:"MM/dd/yyyy 'at' h:mma"}}
+                                </span>
+                            </div>
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        {{ l.logEntry }}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel-footer">
+                                <div class="btn-toolbar">
+                                    <div class="pull-right">
+                                        <button class="btn btn-default btn-sm" ng-click="plm.openEditModal(l)">Edit</button>
+                                        <button class="btn btn-default btn-sm" ng-click="plm.openDeleteModal(l)">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

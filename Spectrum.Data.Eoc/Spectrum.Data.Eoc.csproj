@@ -64,6 +64,7 @@
   <ItemGroup>
     <Compile Include="Infrastructure\DocumentDbRepository.cs" />
     <Compile Include="Models\Incident.cs" />
+    <Compile Include="Models\Log.cs" />
     <Compile Include="Repositories\CheckListRepository.cs" />
     <Compile Include="Models\CheckList.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
