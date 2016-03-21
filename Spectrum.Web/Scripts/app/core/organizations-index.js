@@ -143,13 +143,7 @@ function EditOrganizationModalController($scope, $uibModalInstance, organization
 
     $scope.organization = organization;
     $scope.organizationTypes = organizationFactory.organizationTypes;
-    $scope.organizationTypeId = organization.organizationTypeId;
-
-    for (var i = 0; i < $scope.organizationTypes.length; i++) {
-        if ($scope.organizationTypes[i].organizationTypeId === $scope.organizationTypeId) {
-            $scope.selected = $scope.organizationTypes[i];
-        }
-    }
+    $scope.selectedOrgType = findSelectedOrganization($scope.organizationTypes, $scope.organization.organizationTypeId);
 
     $scope.ok = function () {
 
@@ -170,6 +164,15 @@ function EditOrganizationModalController($scope, $uibModalInstance, organization
     $scope.cancel = function () {
         $uibModalInstance.dismiss('cancel');
     };
+
+    function findSelectedOrganization(orgTypes, orgIdToFind) {
+        for (var i = 0; i < orgTypes.length; i++) {
+            if (orgTypes[i].organizationTypeId === orgIdToFind) {
+                return orgTypes[i];
+            }
+        }
+        return -1; // Not found
+    }
 };
 
 function DeleteOrganizationModalController($scope, $uibModalInstance, organizationFactory, organization) {
