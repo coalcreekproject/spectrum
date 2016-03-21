@@ -1,133 +1,254 @@
 ﻿<div class="content" ng-controller="registerWizardController">
 
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="hpanel">
-                <div class="panel-body">
+    <div class="register-container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="text-center m-b-md">
+                    <h2>Register</h2>
+                    <h4>Get your Spectrum Operational account today.</h4>
+                </div>
+                <div class="hpanel">
+                    <div class="panel-body">
 
-                    <form name="simpleForm" novalidate id="simpleForm">
+                        <form name="simpleForm" id="simpleForm">
 
-                        <div class="text-center m-b-md">
+                            <div class="text-center m-b-md">
 
-                            <a ng-click="wizard.show(1)" class="btn" ng-class="{ 'btn-primary': step == 1, 'btn-default': step != 1}">Step 1 - Personal data</a>
-                            <a ng-click="wizard.show(2)" class="btn" ng-class="{ 'btn-primary': step == 2, 'btn-default': step != 2}">Step 2 - Payment data</a>
-                            <a ng-click="wizard.show(3)" class="btn" ng-class="{ 'btn-primary': step == 3, 'btn-default': step != 3}">Step 3 - Approval</a>
+                                <a ng-click="wizard.show(1)" class="btn" ng-class="{ 'btn-primary': step == 1, 'btn-default': step != 1}">Step 1 - Basic Data</a>
+                                <a ng-click="wizard.show(2)" class="btn" ng-class="{ 'btn-primary': step == 2, 'btn-default': step != 2}">Step 2 - User Profile</a>
+                                <a ng-click="wizard.show(3)" class="btn" ng-class="{ 'btn-primary': step == 3, 'btn-default': step != 3}">Step 3 - Organization Profile</a>
 
-                        </div>
+                            </div>
 
 
-                        <div ng-show="step == 1" class="p-m">
+                            <div ng-show="step == 1" class="p-m">
 
-                            <div class="row">
-                                <div class="col-lg-3 text-center">
-                                    <i class="pe-7s-user fa-5x text-muted"></i>
-                                    <p class="small m-t-md">
-                                        <strong>Lorem Ipsum</strong> is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard.
-                                        <br /><br />Lorem Ipsum has been the industry's dummy text of the printing and typesetting
-                                    </p>
-                                </div>
-                                <div class="col-lg-9">
-                                    <div class="row">
-                                        <div class="form-group col-lg-12">
-                                            <label>Username</label>
-                                            <input type="" value="" id="" class="form-control" ng-model="user.username" placeholder="username">
+                                <div class="row">
+                                    <div class="row form-group">
+                                        <div class="col-md-6">
+                                            <label>Email Address <span class="text-warning">- this will be your login id</span></label>
+                                            <input type="email" value="" id="" class="form-control" name="Email">
                                         </div>
-                                        <div class="form-group col-lg-6">
+                                        <div class="col-md-6">
+                                            <label>Verify Email Address</label>
+                                            <input type="email" value="" id="" class="form-control" name="ConfirmEmail">
+                                        </div>
+                                    </div>
+
+                                    <div class="row form-group">
+                                        <div class="col-md-6">
+                                            <label>Organization Name</label>
+                                            <input type="text" value="" id="" class="form-control" name="OrganizationName">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label>Organization Type</label>
+                                            <select class="form-control m-b" name="OrganizationType">
+                                                @foreach (var t in Model.OrganizationTypes)
+                                                {
+                                                    <option value="@t.Id" name="@t.Name">@t.Name</option>
+                                                }
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="row form-group">
+                                        <div class="col-md-6">
                                             <label>Password</label>
-                                            <input type="password" value="" id="" class="form-control" name="" placeholder="******" ng-model="user.password">
+                                            <input type="password" value="" id="" class="form-control" name="Password">
                                         </div>
-                                        <div class="form-group col-lg-6">
-                                            <label>Company</label>
-                                            <input type="text" value="" id="" class="form-control" name="" placeholder="Company Name" ng-model="user.company">
+                                        <div class="col-md-6">
+                                            <label>Verify Password</label>
+                                            <input type="password" value="" id="" class="form-control" name="ConfirmPassword">
                                         </div>
-                                        <div class="form-group col-lg-6">
-                                            <label>Email Address</label>
-                                            <input type="" value="" id="" class="form-control" name="" placeholder="user@email.com" ng-model="user.email">
-                                        </div>
-                                        <div class="form-group col-lg-6">
-                                            <label>Country</label>
-                                            <input type="text" value="" id="" class="form-control" name="" ng-model="user.country" placeholder="UK">
+                                    </div>
+                                    <div class="row form-group">
+                                        <div class="col-md-12">
+                                            <input type="checkbox" checked>
+                                            Please keep me informed of the latest Spectrum Operational news and events. <strong>We <u>never</u> sell or share your information with third parties.</strong>
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
-                        </div>
-
-                        <div ng-show="step == 2" class="p-m">
-
-                            <div class="row">
-                                <div class="col-lg-3 text-center">
-                                    <i class="pe-7s-credit fa-5x text-muted"></i>
-                                    <p class="small m-t-md">
-                                        <strong>It is a long</strong> established fact that a reader will be distracted by the readable
-                                        <br /><br />Many desktop publishing packages and web page editors now use
-                                    </p>
-                                </div>
-                                <div class="col-lg-9">
+                            <div ng-show="step == 2" class="p-m">
+                            
+                                @*<div class="form-group">
                                     <div class="row">
-                                        <div class="form-group col-lg-12">
-                                            <label>Name on Card</label>
-                                            <input type="" value="" id="" class="form-control" ng-model="user.card_name">
-                                        </div>
-                                        <div class="form-group col-lg-6">
-                                            <label>Card Number</label>
-                                            <input type="text" value="" id="" class="form-control" name="" ng-model="user.card_number">
-                                        </div>
-                                        <div class="form-group col-lg-6">
-                                            <label>Billing Address</label>
-                                            <input type="text" value="" id="" class="form-control" name="" ng-model="user.billing_address">
-                                        </div>
-                                        <div class="form-group col-lg-12">
-                                            <div class="row">
-                                                <div class="col-xs-4 form-group">
-                                                    <label>CVC</label>
-                                                    <input class="form-control" placeholder="ex. 381" type="text" ng-model="user.cvc">
-                                                </div>
-                                                <div class="col-xs-4 form-group">
-                                                    <label>Expiration</label>
-                                                    <input class="form-control" placeholder="MM" type="text" ng-model="user.expire_month">
-                                                </div>
-                                                <div class="col-xs-4 form-group">
-                                                    <label></label>
-                                                    <input class="form-control" placeholder="YYYY" type="text" ng-model="user.expire_year">
-                                                </div>
+                                        <div class="col-md-6">
+                                            <div>
+                                                <label> <input type="checkbox" name="checkboxDefault" ng-model="userProfile.Default"> Make this the default profile </label>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label for="profileName">Profile Name</label>
+                                            <input type="text" Id="profileName" placeholder="Profile Name" ng-model="userProfile.ProfileName" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>*@
+
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <label for="firstName">First Name</label>
+                                            <input type="text" id="firstName" placeholder="First Name" ng-model="userProfile.FirstName" class="form-control">
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="middleName">Middle Name</label>
+                                            <input type="text" id="middleName" placeholder="Middle Name" ng-model="userProfile.MiddleName" class="form-control">
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="lastName">Last Name</label>
+                                            <input type="text" id="lastName" placeholder="Last Name" ng-model="userProfile.LastName" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <label for="nickName">Nickname</label>
+                                            <input type="text" id="nickName" placeholder="Nickname" ng-model="userProfile.Nickname" class="form-control">
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="title">Title</label>
+                                            <input type="text" Id="title" placeholder="Title" ng-model="userProfile.Title" class="form-control">
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="title">Position</label>
+                                            <input type="text" Id="position" placeholder="Position" ng-model="userProfile.Position" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <label for="secondaryMail">Secondary Mail</label>
+                                            <input type="text" id="secondaryMail" placeholder="Secondary Email" ng-model="userProfile.SecondaryEmail" class="form-control">
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="secondaryMail">Secondary Phone</label>
+                                            <input type="text" id="secondaryPhone" placeholder="Secondary Phone" ng-model="userProfile.SecondaryPhone" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label for="timeZone">TimeZone</label>
+                                            <input type="text" id="timeZone" placeholder="TimeZone" ng-model="userProfile.TimeZone" class="form-control">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="language">Language</label>
+                                            <input type="text" id="language" placeholder="Language" ng-model="userProfile.Language" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
 
-                        </div>
-                        <div ng-show="step == 3">
 
-                            <div class="row text-center m-t-lg m-b-lg">
-                                <div class="col-lg-12">
-                                    <i class="pe-7s-check fa-5x text-muted"></i>
-                                    <p class="small m-t-md">
-                                        <strong>There are many</strong> variations of passages of Lorem Ipsum available, but the majority have suffered
-                                    </p>
-                                </div>
-                                <div class="checkbox col-lg-12">
-                                    <input icheck type="checkbox" ng-model="user.approve">
-                                    Approve this form
+                            <div ng-show="step == 3">
+
+                                @*<div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div>
+                                                <label>
+                                                    <input type="checkbox" ng-model="organizationProfile.Default"> Make this the organization default profile
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
 
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <label for="profileName">Profile Name</label>
+                                            <input type="text" Id="profileName" placeholder="Profile Name" ng-model="organizationProfile.profileName" class="form-control">
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="title">Description</label>
+                                            <input type="text" Id="title" placeholder="Description" ng-model="organizationProfile.description" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>*@
+
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <label for="title">Primary Contact</label>
+                                            <input type="text" Id="primaryContact" placeholder="Contact Name" ng-model="organizationProfile.primaryContact" class="form-control">
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="phone">Phone</label>
+                                            <input type="tel" id="phone" placeholder="Phone" ng-model="organizationProfile.phone" class="form-control">
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="fax">Fax</label>
+                                            <input type="tel" id="fax" placeholder="Fax Number" ng-model="organizationProfile.fax" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <label for="email">Email</label>
+                                            <input type="text" id="email" placeholder="Email" ng-model="organizationProfile.email" class="form-control">
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="country">Country</label>
+                                            <input type="text" id="country" placeholder="Country" ng-model="organizationProfile.country" class="form-control">
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="county">County</label>
+                                            <input type="text" id="county" placeholder="County" ng-model="organizationProfile.county" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label for="timeZone">TimeZone</label>
+                                            <input type="text" id="timeZone" placeholder="Time Zone" ng-model="organizationProfile.timeZone" class="form-control">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="language">Language</label>
+                                            <input type="text" id="language" placeholder="Language" ng-model="organizationProfile.language" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                @*<div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <label for="notes">Notes</label>
+                                            <textarea id="notes" rows="4" placeholder="Notes" ng-model="organizationProfile.notes" class="form-control"></textarea>
+                                        </div>
+                                    </div>
+                                </div>*@
                             </div>
 
-                        </div>
+                            <div class="text-right m-t-xs">
+                                <button ng-click="wizard.prev()" ng-disabled="step == 1" class="btn btn-default">Previous</button>
+                                <button ng-click="wizard.next()" ng-disabled="step == 3" ng-hide="step == 3" class="btn btn-success">Next</button>
+                                <button ng-click="submit()" ng-show="step == 3" class="btn btn-success" ng-disabled="!user.approve">Submit</button>
+                            </div>
 
-                        <div class="text-right m-t-xs">
-                            <button ng-click="wizard.prev()" ng-disabled="step == 1" class="btn btn-default">Previous</button>
-                            <button ng-click="wizard.next()" ng-disabled="step == 3" ng-hide="step == 3" class="btn btn-default">Next</button>
-                            <button ng-click="submit()" ng-show="step == 3" class="btn btn-success" ng-disabled="!user.approve">Submit</button>
-                        </div>
+                        </form>
 
-                    </form>
-
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
+    </div>
 </div>
