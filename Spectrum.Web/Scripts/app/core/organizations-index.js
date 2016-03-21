@@ -87,6 +87,14 @@ function organizationController($scope, $http, $uibModal, $state, organizationFa
                 }
             }
         });
+        modalInstance.result
+                .then(function ()
+                {
+                    // Rebind the scope, which is funked up
+                }).catch(function ()
+                {
+                    // Do nothing
+                });
     };
 
     $scope.delete = function (organization) {
@@ -143,14 +151,18 @@ function EditOrganizationModalController($scope, $uibModalInstance, organization
 
     $scope.organization = organization;
     $scope.organizationTypes = organizationFactory.organizationTypes;
-    $scope.selectedOrgType = findSelectedOrganization($scope.organizationTypes, $scope.organization.organizationTypeId);
+    $scope.organization.selectedOrgType = findSelectedOrganization($scope.organizationTypes, $scope.organization.organizationTypeId);
 
-    $scope.ok = function () {
+    $scope.ok = function (editOrganization)
+    {
+        // Set the values to the selected organization type
+        editOrganization.organizationTypeId = editOrganization.selectedOrgType.organizationTypeId;
+        editOrganization.organizationTypeName = editOrganization.selectedOrgType.name;
 
-        organizationFactory.editOrganizations(organization)
+        organizationFactory.editOrganizations(editOrganization)
             .then(function () {
                 // success
-                    var local = organization;
+                    $uibModalInstance.close();
                 },
                 function () {
                     // error
