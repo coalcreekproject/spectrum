@@ -9,22 +9,23 @@
         <form class="form-horizontal">
             <div class="form-group">
                 <label class="col-sm-3 control-label"
-                       for="dateTimeInput">
-                    Date/Time:
+                       for="dateInput">
+                    Date:
                 </label>
-                <div class="col-sm-8">
+                <div class="col-sm-7">
                     <p class="input-group">
                         <input alt-input-formats="altInputFormats"
                                class="form-control"
                                close-text="Close"
                                datepicker-options="dateOptions"
-                               id="dateTimeInput"
+                               id="dateInput"
                                is-open="datePopUp.opened"
+                               name="dateInput"
                                ng-model="logItem.date"
                                ng-required="true"
+                               popup-placement="bottom-left"
                                type="text"
-                               uib-datepicker-popup="dd-MMMM-yyyy"
-                               popup-placement="right" />
+                               uib-datepicker-popup="dd-MMMM-yyyy" />
                         <span class="input-group-btn">
                             <button class="btn btn-default"
                                     ng-click="openDatePopUp()"
@@ -33,6 +34,21 @@
                             </button>
                         </span>
                     </p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label"
+                       for="timeInput">
+                    Time:
+                </label>
+                <div class="col-sm-8">
+                    <uib-timepicker hour-step="hstep"
+                                    id="timeInput"
+                                    minute-step="mstep"
+                                    name="timeInput"
+                                    ng-model="logItem.selectedTime"
+                                    show-meridian="ismeridian">
+                    </uib-timepicker>
                 </div>
             </div>
             <div class="form-group">
@@ -58,6 +74,10 @@
                               id="remarksEntryInput"
                               ng-model="logItem.remarks"
                               rows="5">
+                        
+                        
+                    
+                    
                     </textarea>
                 </div>
             </div>
