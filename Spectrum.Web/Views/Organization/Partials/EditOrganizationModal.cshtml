@@ -20,11 +20,12 @@
                 <div class="row">
                     <div class="col-md-6">
                         <label for="organizationType">Organization Type</label>
-                        <select class="form-control m-b" name="organizationType" id="organizationType" ng-model="organization.organizationTypeId">
-                            <option ng-repeat="option in organizationTypes" value="{{option.organizationTypeId}}">{{option.name}}</option>
-                            <input type="hidden" ng-model="option.name" />
+                        <select class="form-control m-b"
+                                name="organizationType"
+                                id="organizationType"
+                                ng-model="selectedOrgType"
+                                ng-options="o.name for o in organizationTypes">
                         </select>
-
                     </div>
                 </div>
             </div>
