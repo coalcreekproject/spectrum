@@ -27,11 +27,11 @@ namespace Spectrum.Web.Areas.Eoc.Controllers.Api
         private readonly DocumentDbRepository<Incident> _dbRepository;
         private readonly string _endpoint = ConfigurationManager.AppSettings["endpoint"];
 
-        [Route("~/Eoc/api/Incident/{id}")]
+        [Route("~/Eoc/api/Incident/{id:guid}")]
         [HttpGet]
-        public IHttpActionResult GetIncident(string id)
+        public IHttpActionResult GetIncident(Guid id)
         {
-            var incident = _dbRepository.GetItem(item => item.Id == id);
+            var incident = _dbRepository.GetItem(item => item.Id == id.ToString());
             if (incident == null)
             {
                 return NotFound();
@@ -44,6 +44,30 @@ namespace Spectrum.Web.Areas.Eoc.Controllers.Api
             }
 
             return Ok(incident);
+        }
+
+        [Route("~/Eoc/api/Incident/{incidentId:guid}/Log/{logId:int}")]
+        [HttpGet]
+        public IHttpActionResult GetIncidentLog(Guid incidentId, int logId)
+        {
+            var incident = _dbRepository.GetItem(item => item.Id == incidentId.ToString());
+            if (incident == null)
+            {
+                return NotFound();
+            }
+
+            if (incident.Logs == null || !incident.Logs.Any())
+            {
+                return BadRequest($"Incident {incidentId} does not contain any logs.");
+            }
+
+            var incidentLog = incident.Logs.SingleOrDefault(log => log.LogId == logId);
+            if (incidentLog == null)
+            {
+                return BadRequest($"Unable to find log with Id: {logId}");
+            }
+
+            return Ok(incidentLog);
         }
 
         [Route("")]
@@ -71,6 +95,31 @@ namespace Spectrum.Web.Areas.Eoc.Controllers.Api
                 incident.UserId = 1;
                 var document = await _dbRepository.UpdateItemAsync(incident.Id, incident);
                 return Ok(document.Id);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [Route("~/Eoc/api/Incident/Log")]
+        [HttpPut]
+        public async Task<IHttpActionResult> PutIncidentLog(IncidentLogInputViewModel incidentLog)
+        {
+            if (string.IsNullOrEmpty(incidentLog.Id) || incidentLog.Log == null)
+            {
+                return BadRequest("Incident log data is invalid.");
+            }
+
+            try
+            {
+                var document = _dbRepository.GetItem(doc => doc.Id == incidentLog.Id);
+                if (document == null)
+                {
+                    return BadRequest("Unable to find document to update: See PutIncidentLog action.");
+                }
+                var savedDocId = await EditPositionLog(document, incidentLog);
+                return Ok(savedDocId);
             }
             catch (Exception ex)
             {
@@ -189,6 +238,25 @@ namespace Spectrum.Web.Areas.Eoc.Controllers.Api
 
             document.Logs.Add(incidentLog.Log);
             var savedDoc = await _dbRepository.UpdateItemAsync(incidentLog.Id, document);
+            return savedDoc.Id;
+        }
+
+        private async Task<string> EditPositionLog(Incident document, IncidentLogInputViewModel incidentLog)
+        {
+            // Find the log entry
+            var logToEdit = document.Logs?.SingleOrDefault(log => log.LogId == incidentLog.Log.LogId);
+
+            if (logToEdit == null)
+            {
+                return null;
+            }
+
+            // Edit the properties
+            logToEdit.LogDate = incidentLog.Log.LogDate;
+            logToEdit.LogEntry = incidentLog.Log.LogEntry;
+            logToEdit.LogName = incidentLog.Log.LogName;
+
+            var savedDoc = await _dbRepository.UpdateItemAsync(document.Id, document);
             return savedDoc.Id;
         }
 

@@ -32,12 +32,12 @@
         // Controller definitions
         vm.incident = getIncident;
         vm.openAddModal = openAddModal;
+        vm.openEditModal = openEditModal;
         vm.openDeleteModal = openDeleteModal;
         vm.incidentId = $stateParams.incidentId;
         vm.name = "Wilkins";
         vm.search = "";
         vm.clear = clear;
-
 
         // Controller functions
         function clear() {
@@ -84,28 +84,46 @@
                 });
         }
 
-        function openDeleteModal(logItem)
-        {
+        function openEditModal(logItem) {
+            var modalDialog = $uibModal.open({
+                templateUrl: POS_LOG_TEMPLATE_PATH + "PositionLogAddModal",
+                controller: editModalInstance,
+                resolve: {
+                    editModalData: function() {
+                        var editItem = {
+                            "incidentId": vm.incidentId,
+                            "logItem": logItem
+                        };
+                        return editItem;
+                    }
+                }
+            });
+            modalDialog.result
+                .then(function() {
+                    activate();
+                }).catch(function() {
+                    // Do nothing
+                });
+        }
+
+        function openDeleteModal(logItem) {
             var modalDialog = $uibModal.open({
                 templateUrl: POS_LOG_TEMPLATE_PATH + "PositionLogDeleteModal",
                 controller: deleteModalInstance,
                 resolve: {
-                    deleteItemData: function ()
-                    {
+                    deleteItemData: function() {
                         var deleteItem = {
                             "incidentId": vm.incidentId,
                             "logItem": logItem
-                        }
+                        };
                         return deleteItem;
                     }
                 }
             });
             modalDialog.result
-                .then(function ()
-                {
+                .then(function() {
                     activate();
-                }).catch(function ()
-                {
+                }).catch(function() {
                     // Do nothing
                 });
         }
@@ -167,6 +185,64 @@
             };
         }
 
+        // Edit modal instance
+        editModalInstance.$inject = ["$scope", "$uibModalInstance", "editModalData"];
+
+        function editModalInstance($scope, $uibModalInstance, editModalData) {
+
+            $scope.incidentId = editModalData.incidentId;
+            $scope.logItem = {
+                "logId": editModalData.logItem.logId,
+                "date": new Date(editModalData.logItem.logDate),
+                "occurred": editModalData.logItem.logName,
+                "remarks": editModalData.logItem.logEntry
+            };
+            $scope.dateOptions = {
+                formatYear: "yy",
+                maxDate: new Date(2020, 5, 22),
+                startingDay: 1
+            };
+
+            $scope.datePopUp = {
+                opened: false
+            };
+
+            $scope.openDatePopUp = function() {
+                $scope.datePopUp.opened = true;
+            };
+
+            $scope.close = function() {
+                $uibModalInstance.dismiss("cancel");
+            };
+
+            $scope.saveChanges = function(logItem) {
+
+                // TODO: Better validation
+                if (logItem.occurred && logItem.date && logItem.remarks) {
+
+                    // Shape the model
+                    var incidentLogInputViewModel = {
+                        "id": $scope.incidentId,
+                        "log": {
+                            "logId": $scope.logItem.logId,
+                            "logName": logItem.occurred,
+                            "logDate": logItem.date,
+                            "logEntry": logItem.remarks
+                        }
+                    };
+
+                    // Edit the incident log
+                    incidentData.editIncidentLog(incidentLogInputViewModel)
+                        .then(function() {
+                            $uibModalInstance.close();
+                        }, function(result) {
+                            console.log(result.message);
+                        });
+                }
+                return;
+            };
+        }
+
         // Delete modal instance
         deleteModalInstance.$inject = ["$scope", "$uibModalInstance", "deleteItemData"];
 
@@ -176,20 +252,16 @@
             $scope.logName = deleteItemData.logItem.logName;
             $scope.logId = deleteItemData.logItem.logId;
 
-            $scope.cancel = function ()
-            {
+            $scope.cancel = function() {
                 $uibModalInstance.dismiss("cancel");
             };
 
-            $scope.delete = function ()
-            {
+            $scope.delete = function() {
                 // Remove the incident
                 incidentData.deleteIncidentLog($scope.incidentId, $scope.logId)
-                    .then(function ()
-                    {
+                    .then(function() {
                         $uibModalInstance.close();
-                    }, function (result)
-                    {
+                    }, function(result) {
                         console.log(result.message);
                     });
             };
