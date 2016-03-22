@@ -129,6 +129,8 @@ function AddOrganizationModalController($scope, $uibModalInstance, organizationF
 
     $scope.ok = function(organization) {
 
+        var inspect = organization;
+
         organizationFactory.addOrganizations(organization)
             .then(function() {
                     // success
@@ -261,6 +263,8 @@ function organizationFactory($http, $q) {
 
 
     var _addOrganization = function (newOrganization) {
+
+        var local = newOrganization;
 
         var deferred = $q.defer();
 

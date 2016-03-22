@@ -85,12 +85,18 @@ namespace Spectrum.Data.Core.Context.Initializers
                 new OrganizationType
                 {
                     Id = 11,
-                    Name = "Private",
+                    Name = "Private Company",
                     Description = "Private companies and organizations"
                 },
                 new OrganizationType
                 {
                     Id = 12,
+                    Name = "Non-Profit",
+                    Description = "Not-for-profit companies and organizations"
+                },
+                new OrganizationType
+                {
+                    Id = 13,
                     Name = "Individual",
                     Description = "Private citizen or individual"
                 }

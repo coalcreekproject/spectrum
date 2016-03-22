@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Drawing;
 using System.Web.Mvc;
 using Spectrum.Data.Core.Models;
 
@@ -7,6 +8,9 @@ namespace Spectrum.Web.Models
 {
     public class RegisterViewModel
     {
+
+        #region Basic User Info
+
         [Required]
         [EmailAddress]
         [Display(Name = "Email")]
@@ -31,13 +35,43 @@ namespace Spectrum.Web.Models
         [Display(Name = "OrganizationName")]
         public string OrganizationName { get; set; }
 
-        [Display(Name = "OrganizationType")]
-        public int OrganizationType { get; set; }
+        [Display(Name = "OrganizationTypeId")]
+        public int OrganizationTypeId { get; set; }
 
         [Display(Name = "NewsletterSubscribe")]
         public bool NewsletterSubscribe { get; set; }
 
-        //public IEnumerable<SelectListItem> OrganizationTypes { get; set; }
+        #endregion
+
+        #region User Profile Info
+
+        public string Title { get; set; }
+        public string FirstName { get; set; }
+        public string MiddleName { get; set; }
+        public string LastName { get; set; }
+        public string Nickname { get; set; }
+        public string SecondaryEmail { get; set; }
+        public string SecondaryPhone { get; set; }
+        public string TimeZone { get; set; }
+        public bool? DstAdjust { get; set; }
+        public string Language { get; set; }
+
+        #endregion
+
+        #region Organization Profile
+
+        public string PrimaryContact { get; set; }
+        public string OrgPhone { get; set; }
+        public string Fax { get; set; }
+        public string OrgEmail { get; set; }
+        public string Country { get; set; }
+        public string County { get; set; }
+        public string OrgTimeZone { get; set; }
+        public bool? OrgDstAdjust { get; set; }
+        public string OrgLanguage { get; set; }
+
+        #endregion
+        public OrganizationType OrganizationType { get; set; }
         public List<OrganizationType> OrganizationTypes { get; set; }
     }
 }

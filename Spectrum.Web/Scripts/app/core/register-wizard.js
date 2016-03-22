@@ -3,9 +3,9 @@
     .controller('registerWizardController', registerWizardController)
     .config(config);
 
-config.$inject = ["$stateProvider", "$urlRouterProvider", "$compileProvider"];
+config.$inject = ["$stateProvider"];
 
-function config($stateProvider, $urlRouterProvider, $compileProvider) {
+function config($stateProvider) {
 
     $stateProvider
         .state('index', {
@@ -15,15 +15,11 @@ function config($stateProvider, $urlRouterProvider, $compileProvider) {
         });
 }
 
-function registerWizardController($scope, $http, $state) {
+registerWizardController.$inject = ["$scope", "$http", "$window"];
 
-    // Initial user
-    $scope.user = {
-        username: 'Mark Smith',
-        email: 'mark@company.com',
-        password: 'secret_password',
-        approve: false
-    }
+function registerWizardController($scope, $http, $window) {
+
+    $scope.registerViewModel = {};
 
     // Initial step
     $scope.step = 1;
@@ -42,16 +38,15 @@ function registerWizardController($scope, $http, $state) {
     };
 
     $scope.submit = function () {
-        // Show notification
-        alert({
-            title: "Thank you!",
-            text: "You approved our example form!",
-            type: "success"
+        $http({
+            method: 'POST',
+            url: "/Registration/Register",
+            data: $scope.registerViewModel
+        }).success(function (responseData) {
+            var inspect = responseData;
+            $window.location.href = '/Portal/Index';
+        }).error(function (responseData) {
+            console.log("Error !" + responseData);
         });
-
-        // 'Redirect' to step 1
-        $scope.step = 1;
-
-    }
-
+    };
 }

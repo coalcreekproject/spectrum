@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
@@ -36,17 +37,17 @@ namespace Spectrum.Web.Controllers.Web
             }
         }
 
-        public ApplicationUserManager UserManager
-        {
-            get
-            {
-                return _userManager ?? HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
-            }
-            private set
-            {
-                _userManager = value;
-            }
-        }
+        //public ApplicationUserManager UserManager
+        //{
+        //    get
+        //    {
+        //        return _userManager ?? HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
+        //    }
+        //    private set
+        //    {
+        //        _userManager = value;
+        //    }
+        //}
 
         [AllowAnonymous]
         public ActionResult Index()
@@ -71,7 +72,6 @@ namespace Spectrum.Web.Controllers.Web
         // POST: /Account/Register
         [HttpPost]
         [AllowAnonymous]
-        [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegisterViewModel model)
         {
             User user = null;
@@ -97,6 +97,7 @@ namespace Spectrum.Web.Controllers.Web
                             };
 
                             var userRepository = new UserRepository(uow);
+                            //TODO: Check for user name/email in use
                             await userRepository.CreateAsync(user);
 
                             //New Organization
@@ -104,78 +105,25 @@ namespace Spectrum.Web.Controllers.Web
                             var organization = new Organization
                             {
                                 Name = model.OrganizationName,
-                                OrganizationTypeId = Convert.ToInt32(model.OrganizationType)
+                                OrganizationTypeId = Convert.ToInt32(model.OrganizationTypeId)
                             };
 
                             var organizationRepository = new OrganizationRepository(uow);
                             organizationRepository.InsertOrUpdate(organization);
                             await organizationRepository.SaveAsync();
 
-                            //Default organization profile creation
-                            organization.OrganizationProfiles.Add(new OrganizationProfile
-                            {
-                                ProfileName = "Default for " + organization.Name,
-                                Default = true,
-                                OrganizationId = organization.Id,
-                                ObjectState = ObjectState.Added
-                            });
-
-                            //Add standard organization roles
-                            organization.Roles.Add(new Role
-                            {
-                                Name = "admin",
-                                Description = "Administrator",
-                                OrganizationId = organization.Id,
-                                ObjectState = ObjectState.Added
-                            });
-
-                            organization.Roles.Add(new Role
-                            {
-                                Name = "user",
-                                Description = "Standard user",
-                                OrganizationId = organization.Id,
-                                ObjectState = ObjectState.Added
-                            });
-
-                            organization.Roles.Add(new Role
-                            {
-                                Name = "observer",
-                                Description = "Read only role",
-                                OrganizationId = organization.Id,
-                                ObjectState = ObjectState.Added
-                            });
+                            //Default organization profile and roles creation
+                            AddOrganizationProfile(organization);
+                            AddOrganizationRoles(organization);
 
                             organization.ObjectState = ObjectState.Modified;
                             organizationRepository.InsertOrUpdate(organization);
                             await organizationRepository.SaveAsync();
 
-                            //Default user profile creation
-                            user.UserProfiles.Add(new UserProfile
-                            {
-                                UserId = user.Id,
-                                OrganizationId = organization.Id,
-                                Default = true,
-                                ProfileName = "Default for " + user.UserName,
-                                ObjectState = ObjectState.Added
-                            });
-
-                            //Add user organization assignment.
-                            user.UserOrganizations.Add(new UserOrganization
-                            {
-                                Default = true,
-                                ObjectState = ObjectState.Added,
-                                OrganizationId = organization.Id,
-                                UserId = user.Id
-                            });
-
-                            //Add a user role, in this case base user, TODO: determine how to do admins
-                            user.UserRoles.Add(new UserRole
-                            {
-                                Default = true,
-                                OrganizationId = organization.Id,
-                                RoleId = organization.Roles.FirstOrDefault(r => r.Name.Equals("user")).Id,
-                                ObjectState = ObjectState.Added
-                            });
+                            //Default user profile, roles and organization associations TODO: determine how to do admins
+                            AddUserProfile(user, organization);
+                            AddUserOrganization(user, organization);
+                            AddUserRoles(user, organization);
 
                             user.ObjectState = ObjectState.Modified;
                             await userRepository.UpdateAsync(user);
@@ -185,10 +133,12 @@ namespace Spectrum.Web.Controllers.Web
                         catch (ApplicationException ex)
                         {
                             dbContextTransaction.Rollback();
-                            
+
                             //TODO: If there were problems, mine them from the exception and return the view
                             //AddErrors(result);
-                            return View(model);
+
+                            //TODO: Can we pass the model back?
+                            RedirectToAction("Index");
                         }
                     }
                 }
@@ -196,7 +146,82 @@ namespace Spectrum.Web.Controllers.Web
 
             //If it drops through, no errors, sign in and redirect.
             await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
-            return RedirectToAction("Index", "Portal");
+            // RedirectToAction("Index", "Portal");
+            return new HttpStatusCodeResult(HttpStatusCode.OK);
+        }
+
+        private void AddUserRoles(User user, Organization organization)
+        {
+            user.UserRoles.Add(new UserRole
+            {
+                Default = true,
+                OrganizationId = organization.Id,
+                RoleId = organization.Roles.FirstOrDefault(r => r.Name.Equals("user")).Id,
+                ObjectState = ObjectState.Added
+            });
+        }
+
+        private void AddUserOrganization(User user, Organization organization)
+        {
+            user.UserOrganizations.Add(new UserOrganization
+            {
+                Default = true,
+                ObjectState = ObjectState.Added,
+                OrganizationId = organization.Id,
+                UserId = user.Id
+            });
+        }
+
+        private void AddUserProfile(User user, Organization organization)
+        {
+            user.UserProfiles.Add(new UserProfile
+            {
+                UserId = user.Id,
+                OrganizationId = organization.Id,
+                Default = true,
+                ProfileName = "Default for " + user.UserName,
+                ObjectState = ObjectState.Added
+            });
+        }
+
+        private void AddOrganizationProfile(Organization organization)
+        {
+            organization.OrganizationProfiles.Add(new OrganizationProfile
+            {
+                ProfileName = "Default for " + organization.Name,
+                Default = true,
+                OrganizationId = organization.Id,
+                ObjectState = ObjectState.Added
+            });
+        }
+
+        private void AddOrganizationRoles(Organization organization)
+        {
+            //Add standard organization roles
+            organization.Roles.Add(new Role
+            {
+                Name = "admin",
+                Description = "Administrator",
+                OrganizationId = organization.Id,
+                ObjectState = ObjectState.Added
+            });
+
+            organization.Roles.Add(new Role
+            {
+                Name = "user",
+                Description = "Standard user",
+                OrganizationId = organization.Id,
+                ObjectState = ObjectState.Added
+            });
+
+            organization.Roles.Add(new Role
+            {
+                Name = "observer",
+                Description = "Read only role",
+                OrganizationId = organization.Id,
+                ObjectState = ObjectState.Added
+            });
+
         }
 
         private void AddErrors(IdentityResult result)

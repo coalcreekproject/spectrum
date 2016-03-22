@@ -1,5 +1,4 @@
 ﻿<div class="content" ng-controller="registerWizardController">
-
     <div class="register-container">
         <div class="row">
             <div class="col-md-12">
@@ -27,22 +26,22 @@
                                     <div class="row form-group">
                                         <div class="col-md-6">
                                             <label>Email Address <span class="text-warning">- this will be your login id</span></label>
-                                            <input type="email" value="" id="" class="form-control" name="Email">
+                                            <input type="email" value="" id="" class="form-control" name="Email" ng-model="registerViewModel.Email">
                                         </div>
                                         <div class="col-md-6">
                                             <label>Verify Email Address</label>
-                                            <input type="email" value="" id="" class="form-control" name="ConfirmEmail">
+                                            <input type="email" value="" id="" class="form-control" name="ConfirmEmail" ng-model="registerViewModel.ConfirmEmail">
                                         </div>
                                     </div>
 
                                     <div class="row form-group">
                                         <div class="col-md-6">
                                             <label>Organization Name</label>
-                                            <input type="text" value="" id="" class="form-control" name="OrganizationName">
+                                            <input type="text" value="" id="" class="form-control" name="OrganizationName" ng-model="registerViewModel.OrganizationName">
                                         </div>
                                         <div class="col-md-6">
                                             <label>Organization Type</label>
-                                            <select class="form-control m-b" name="OrganizationType">
+                                            <select class="form-control m-b" name="OrganizationType" ng-model="registerViewModel.OrganizationTypeId">
                                                 @foreach (var t in Model.OrganizationTypes)
                                                 {
                                                     <option value="@t.Id" name="@t.Name">@t.Name</option>
@@ -54,16 +53,16 @@
                                     <div class="row form-group">
                                         <div class="col-md-6">
                                             <label>Password</label>
-                                            <input type="password" value="" id="" class="form-control" name="Password">
+                                            <input type="password" value="" id="" class="form-control" name="Password" ng-model="registerViewModel.Password">
                                         </div>
                                         <div class="col-md-6">
                                             <label>Verify Password</label>
-                                            <input type="password" value="" id="" class="form-control" name="ConfirmPassword">
+                                            <input type="password" value="" id="" class="form-control" name="ConfirmPassword" ng-model="registerViewModel.ConfirmPassword">
                                         </div>
                                     </div>
                                     <div class="row form-group">
                                         <div class="col-md-12">
-                                            <input type="checkbox" checked>
+                                            <input type="checkbox" name="NewsletterSubscribe" checked ng-model="registerViewModel.NewsletterSubscribe">
                                             Please keep me informed of the latest Spectrum Operational news and events. <strong>We <u>never</u> sell or share your information with third parties.</strong>
                                         </div>
                                     </div>
@@ -72,38 +71,19 @@
 
                             <div ng-show="step == 2" class="p-m">
                             
-                                @*<div class="form-group">
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div>
-                                                <label> <input type="checkbox" name="checkboxDefault" ng-model="userProfile.Default"> Make this the default profile </label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <label for="profileName">Profile Name</label>
-                                            <input type="text" Id="profileName" placeholder="Profile Name" ng-model="userProfile.ProfileName" class="form-control">
-                                        </div>
-                                    </div>
-                                </div>*@
-
                                 <div class="form-group">
                                     <div class="row">
                                         <div class="col-md-4">
                                             <label for="firstName">First Name</label>
-                                            <input type="text" id="firstName" placeholder="First Name" ng-model="userProfile.FirstName" class="form-control">
+                                            <input type="text" id="firstName" name="FirstName" placeholder="First Name" ng-model="registerViewModel.FirstName" class="form-control" name="firstName">
                                         </div>
-                                        <div class="col-md-4">
+                                        @*<div class="col-md-4">
                                             <label for="middleName">Middle Name</label>
-                                            <input type="text" id="middleName" placeholder="Middle Name" ng-model="userProfile.MiddleName" class="form-control">
-                                        </div>
+                                            <input type="text" id="middleName" name="MiddleName" placeholder="Middle Name" ng-model="registerViewModel.MiddleName" class="form-control">
+                                        </div>*@
                                         <div class="col-md-4">
                                             <label for="lastName">Last Name</label>
-                                            <input type="text" id="lastName" placeholder="Last Name" ng-model="userProfile.LastName" class="form-control">
+                                            <input type="text" id="lastName" name="LastName" placeholder="Last Name" ng-model="registerViewModel.LastName" class="form-control">
                                         </div>
                                     </div>
                                 </div>
@@ -111,29 +91,29 @@
                                 <div class="form-group">
                                     <div class="row">
                                         <div class="col-md-4">
-                                            <label for="nickName">Nickname</label>
-                                            <input type="text" id="nickName" placeholder="Nickname" ng-model="userProfile.Nickname" class="form-control">
+                                            <label for="nickName">Nickname/Preferred Name</label>
+                                            <input type="text" id="nickName" placeholder="Nickname" name="Nickname" ng-model="registerViewModel.Nickname" class="form-control">
                                         </div>
                                         <div class="col-md-4">
                                             <label for="title">Title</label>
-                                            <input type="text" Id="title" placeholder="Title" ng-model="userProfile.Title" class="form-control">
+                                            <input type="text" Id="title" placeholder="Title" name="Title" ng-model="registerViewModel.Title" class="form-control">
                                         </div>
-                                        <div class="col-md-4">
+                                        @*<div class="col-md-4">
                                             <label for="title">Position</label>
-                                            <input type="text" Id="position" placeholder="Position" ng-model="userProfile.Position" class="form-control">
-                                        </div>
+                                            <input type="text" Id="position" placeholder="Position" name="Position" ng-model="registerViewModel.Position" class="form-control">
+                                        </div>*@
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <div class="row">
                                         <div class="col-md-4">
-                                            <label for="secondaryMail">Secondary Mail</label>
-                                            <input type="text" id="secondaryMail" placeholder="Secondary Email" ng-model="userProfile.SecondaryEmail" class="form-control">
+                                            <label for="secondaryEmail">Secondary Mail</label>
+                                            <input type="text" id="secondaryEmail" placeholder="Secondary Email" name="SecondaryEmail" ng-model="registerViewModel.SecondaryEmail" class="form-control">
                                         </div>
                                         <div class="col-md-4">
-                                            <label for="secondaryMail">Secondary Phone</label>
-                                            <input type="text" id="secondaryPhone" placeholder="Secondary Phone" ng-model="userProfile.SecondaryPhone" class="form-control">
+                                            <label for="secondaryPhone">Secondary Phone</label>
+                                            <input type="text" id="secondaryPhone" name="SecondaryPhone" placeholder="Secondary Phone" ng-model="registerViewModel.SecondaryPhone" class="form-control">
                                         </div>
                                     </div>
                                 </div>
@@ -142,57 +122,31 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <label for="timeZone">TimeZone</label>
-                                            <input type="text" id="timeZone" placeholder="TimeZone" ng-model="userProfile.TimeZone" class="form-control">
+                                            <input type="text" id="timeZone" name="TimeZone" placeholder="TimeZone" ng-model="registerViewModel.TimeZone" class="form-control">
                                         </div>
                                         <div class="col-md-6">
                                             <label for="language">Language</label>
-                                            <input type="text" id="language" placeholder="Language" ng-model="userProfile.Language" class="form-control">
+                                            <input type="text" id="language" placeholder="Language" name="Language" ng-model="registerViewModel.Language" class="form-control">
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
-
                             <div ng-show="step == 3">
-
-                                @*<div class="form-group">
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div>
-                                                <label>
-                                                    <input type="checkbox" ng-model="organizationProfile.Default"> Make this the organization default profile
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <div class="row">
-                                        <div class="col-md-4">
-                                            <label for="profileName">Profile Name</label>
-                                            <input type="text" Id="profileName" placeholder="Profile Name" ng-model="organizationProfile.profileName" class="form-control">
-                                        </div>
-                                        <div class="col-md-4">
-                                            <label for="title">Description</label>
-                                            <input type="text" Id="title" placeholder="Description" ng-model="organizationProfile.description" class="form-control">
-                                        </div>
-                                    </div>
-                                </div>*@
 
                                 <div class="form-group">
                                     <div class="row">
                                         <div class="col-md-4">
                                             <label for="title">Primary Contact</label>
-                                            <input type="text" Id="primaryContact" placeholder="Contact Name" ng-model="organizationProfile.primaryContact" class="form-control">
+                                            <input type="text" Id="primaryContact" name="PrimaryContact" placeholder="Contact Name" ng-model="registerViewModel.PrimaryContact" class="form-control">
                                         </div>
                                         <div class="col-md-4">
                                             <label for="phone">Phone</label>
-                                            <input type="tel" id="phone" placeholder="Phone" ng-model="organizationProfile.phone" class="form-control">
+                                            <input type="tel" id="phone" name="OrgPhone" placeholder="Phone" ng-model="registerViewModel.OrgPhone" class="form-control">
                                         </div>
                                         <div class="col-md-4">
                                             <label for="fax">Fax</label>
-                                            <input type="tel" id="fax" placeholder="Fax Number" ng-model="organizationProfile.fax" class="form-control">
+                                            <input type="tel" id="fax" name ="Fax" placeholder="Fax Number" ng-model="registerViewModel.Fax" class="form-control">
                                         </div>
                                     </div>
                                 </div>
@@ -201,15 +155,15 @@
                                     <div class="row">
                                         <div class="col-md-4">
                                             <label for="email">Email</label>
-                                            <input type="text" id="email" placeholder="Email" ng-model="organizationProfile.email" class="form-control">
+                                            <input type="text" id="orgEmail" name ="OrgEmail" placeholder="Email" ng-model="registerViewModel.OrgEmail" class="form-control">
                                         </div>
                                         <div class="col-md-4">
                                             <label for="country">Country</label>
-                                            <input type="text" id="country" placeholder="Country" ng-model="organizationProfile.country" class="form-control">
+                                            <input type="text" id="country" placeholder="Country" name="Country" ng-model="registerViewModel.Country" class="form-control">
                                         </div>
                                         <div class="col-md-4">
                                             <label for="county">County</label>
-                                            <input type="text" id="county" placeholder="County" ng-model="organizationProfile.county" class="form-control">
+                                            <input type="text" id="county" placeholder="County" name="County" ng-model="registerViewModel.County" class="form-control">
                                         </div>
                                     </div>
                                 </div>
@@ -218,29 +172,21 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <label for="timeZone">TimeZone</label>
-                                            <input type="text" id="timeZone" placeholder="Time Zone" ng-model="organizationProfile.timeZone" class="form-control">
+                                            <input type="text" id="orgTimeZone" name="OrgTimeZone"placeholder="Time Zone" ng-model="registerViewModel.OrgTimeZone" class="form-control">
                                         </div>
                                         <div class="col-md-6">
                                             <label for="language">Language</label>
-                                            <input type="text" id="language" placeholder="Language" ng-model="organizationProfile.language" class="form-control">
+                                            <input type="text" id="orgLanguage" name="OrgLanguage" placeholder="Language" ng-model="registerViewModel.OrgLanguage" class="form-control">
                                         </div>
                                     </div>
                                 </div>
 
-                                @*<div class="form-group">
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <label for="notes">Notes</label>
-                                            <textarea id="notes" rows="4" placeholder="Notes" ng-model="organizationProfile.notes" class="form-control"></textarea>
-                                        </div>
-                                    </div>
-                                </div>*@
                             </div>
 
                             <div class="text-right m-t-xs">
                                 <button ng-click="wizard.prev()" ng-disabled="step == 1" class="btn btn-default">Previous</button>
                                 <button ng-click="wizard.next()" ng-disabled="step == 3" ng-hide="step == 3" class="btn btn-success">Next</button>
-                                <button ng-click="submit()" ng-show="step == 3" class="btn btn-success" ng-disabled="!user.approve">Submit</button>
+                                <button ng-click="submit()" ng-show="step == 3" class="btn btn-success">Submit</button>
                             </div>
 
                         </form>

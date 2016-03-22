@@ -77,8 +77,11 @@ namespace Spectrum.Web.Controllers.Api
 
             Mapper.Map(newOrganization, organization);
 
+            organization.ObjectState = ObjectState.Added;
             _organizationRepository.InsertOrUpdate(organization);
             await _organizationRepository.SaveAsync();
+            //HACK not sure why this is not updating on new save.
+            organization.OrganizationType = _context.OrganizationTypes.FirstOrDefault(t => t.Id == organization.OrganizationTypeId);
 
             return Request.CreateResponse(HttpStatusCode.Created,
                 new OrganizationViewModel
@@ -86,7 +89,7 @@ namespace Spectrum.Web.Controllers.Api
                     Id = organization.Id,
                     Name = organization.Name,
                     OrganizationTypeId = organization.OrganizationTypeId,
-                    OrganizationTypeName = organization.OrganizationType.Name,
+                    OrganizationTypeName = organization.OrganizationType?.Name
                 });
         }
 
