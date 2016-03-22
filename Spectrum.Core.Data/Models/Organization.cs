@@ -23,12 +23,14 @@ namespace Spectrum.Data.Core.Models
         public int Id { get; set; }
         public string Name { get; set; }
         public int? OrganizationTypeId { get; set; }
-        public bool? Cloaked { get; set; }
-        public bool? Archive { get; set; }
-        public DateTime? CreatedDate { get; set; }
-        public int? CreatedByUserId { get; set; }
-        public DateTime? ModifiedDate { get; set; }
-        public int? ModifiedByUserId { get; set; }
+        public virtual OrganizationType OrganizationType { get; set; }
+        
+        //public bool? Cloaked { get; set; }
+        //public bool? Archive { get; set; }
+        //public DateTime? CreatedDate { get; set; }
+        //public int? CreatedByUserId { get; set; }
+        //public DateTime? ModifiedDate { get; set; }
+        //public int? ModifiedByUserId { get; set; }
 
         public virtual ICollection<AreaOfResponsibility> AreaOfResponsibilities { get; set; }
         public virtual ICollection<Group> Groups { get; set; }
@@ -40,8 +42,6 @@ namespace Spectrum.Data.Core.Models
         public virtual ICollection<Role> Roles { get; set; }
         public virtual ICollection<Rule> Rules { get; set; }
         public virtual ICollection<UserOrganization> UserOrganizations { get; set; }
-
-        public virtual OrganizationType OrganizationType { get; set; }
 
         partial void InitializePartial();
     }

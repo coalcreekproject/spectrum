@@ -21,16 +21,6 @@ namespace Spectrum.Web.Controllers.Api
         private ICoreDbContext _context;
         private IRoleRepository _roleRepository;
 
-        //old
-        //public RolesController(ICoreUnitOfWork uow)
-        //{
-        //    _context = uow.Context;
-
-        //    //TODO: Newing this up is no good
-        //    _roleRepository = new RoleRepository(uow);
-        //}
-
-        //new
         public RolesController(IRoleRepository roleRepository)
         {
             _roleRepository = roleRepository;

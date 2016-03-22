@@ -16,7 +16,7 @@
     <AssemblyName>Spectrum.Web</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
-    <UseIISExpress>true</UseIISExpress>
+    <UseIISExpress>false</UseIISExpress>
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
@@ -248,6 +248,7 @@
     <Compile Include="Areas\Eoc\Controllers\Web\PositionLogController.cs" />
     <Compile Include="Areas\Eoc\EocAreaRegistration.cs" />
     <Compile Include="Controllers\Api\IdentityFocusController.cs" />
+    <Compile Include="Controllers\Api\OrganizationTypeController.cs" />
     <Compile Include="Controllers\Api\PositionsController.cs" />
     <Compile Include="Controllers\Api\RolesController.cs" />
     <Compile Include="Controllers\Api\UserPositionsController.cs" />
@@ -262,6 +263,7 @@
     <Compile Include="Controllers\Web\PortalController.cs" />
     <Compile Include="Controllers\Web\HomeController.cs" />
     <Compile Include="Controllers\Web\ManageController.cs" />
+    <Compile Include="Controllers\Web\RegistrationController.cs" />
     <Compile Include="Controllers\Web\SettingsController.cs" />
     <Compile Include="Controllers\Web\UserController.cs" />
     <Compile Include="Controllers\Web\OrganizationController.cs" />
@@ -294,8 +296,10 @@
     <Compile Include="Models\ManageLoginsViewModel.cs" />
     <Compile Include="Models\ConfigureTwoFactorViewModel.cs" />
     <Compile Include="Models\OrganizationProfileViewModel.cs" />
+    <Compile Include="Models\OrganizationTypeViewModel.cs" />
     <Compile Include="Models\OrganizationViewModel.cs" />
     <Compile Include="Models\PositionViewModel.cs" />
+    <Compile Include="Models\RegisterOrganizationViewModel.cs" />
     <Compile Include="Models\RegisterViewModel.cs" />
     <Compile Include="Models\ResetPasswordViewModel.cs" />
     <Compile Include="Models\RoleViewModel.cs" />
@@ -466,7 +470,10 @@
     <Content Include="Areas\Eoc\Views\IncidentManagement\Index.cshtml" />
     <Content Include="Areas\Eoc\Views\IncidentManagement\Partials\IncidentManagementIndex.cshtml" />
     <Content Include="Areas\Eoc\Views\Dashboard\Dashboard.cshtml" />
+    <Content Include="Scripts\app\core\organizations-index-new.js" />
+    <Content Include="Scripts\app\core\register-wizard.js" />
     <Content Include="Scripts\app\data\incidentData.js" />
+    <Content Include="Scripts\app\data\organization-data.js" />
     <Content Include="Scripts\app\directives\loading-directive.js" />
     <Content Include="Scripts\app\eoc\position-log-ctrl.js" />
     <Content Include="Scripts\app\eoc\position-log-mgmt-ctrl.js" />
@@ -639,6 +646,7 @@
     <Content Include="Views\Billing\Index.cshtml" />
     <Content Include="Views\Messages\Index.cshtml" />
     <Content Include="Views\Messages\Partials\MessagesIndex.cshtml" />
+    <Content Include="Views\Account\RegisterOrganization.cshtml" />
     <None Include="Views\Organization\Partials\AddOrganizationProfileModal.cshtml" />
     <Content Include="Views\Organization\Partials\AddOrganizationRoleModal.cshtml" />
     <Content Include="Views\Organization\Partials\DeleteOrganizationPositionModal.cshtml" />
@@ -654,6 +662,8 @@
     <Content Include="Views\Community\Partials\CommunityIndex.cshtml" />
     <Content Include="Views\Settings\Index.cshtml" />
     <Content Include="Views\Settings\Partials\SettingsIndex.cshtml" />
+    <Content Include="Views\Registration\Partials\RegistrationIndex.cshtml" />
+    <Content Include="Views\Registration\Partials\RegisterOld.cshtml" />
     <None Include="Views\User\Partials\DeleteUserProfileModal.cshtml" />
     <None Include="Views\User\Partials\EditUserProfileModal.cshtml" />
     <None Include="Views\User\Partials\AddUserProfileModal.cshtml" />
@@ -693,7 +703,7 @@
       <SubType>Designer</SubType>
     </Content>
     <None Include="Views\Account\Login.old.cshtml" />
-    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Registration\Index.cshtml" />
     <Content Include="Views\Account\ResetPassword.cshtml" />
     <Content Include="Views\Account\ResetPasswordConfirmation.cshtml" />
     <Content Include="Views\Account\SendCode.cshtml" />
@@ -724,6 +734,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="App_Start\Filters\" />
     <Folder Include="Areas\Eoc\Models\" />
     <Folder Include="Areas\Eoc\Views\Shared\" />
     <Folder Include="Scripts\vendor\" />
@@ -768,16 +779,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
-          <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>1155</DevelopmentServerPort>
-          <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:1155/</IISUrl>
-          <NTLMAuthentication>False</NTLMAuthentication>
-          <UseCustomServer>False</UseCustomServer>
-          <CustomServerUrl>
-          </CustomServerUrl>
-          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+          <SaveServerSettingsInUserFile>True</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
     </VisualStudio>

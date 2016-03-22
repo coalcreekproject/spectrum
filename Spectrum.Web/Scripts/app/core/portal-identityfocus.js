@@ -71,5 +71,4 @@
             $uibModalInstance.dismiss("cancel");
         };
     };
-})
-();
+})();

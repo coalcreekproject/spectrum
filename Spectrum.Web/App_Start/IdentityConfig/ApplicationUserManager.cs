@@ -3,6 +3,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Spectrum.Data.Core.Context;
+using Spectrum.Data.Core.Context.UnitOfWork;
 using Spectrum.Data.Core.Models;
 using Spectrum.Data.Core.Repositories;
 
@@ -43,7 +44,7 @@ namespace Spectrum.Web.IdentityConfig
 
         public static ApplicationUserManager Create(IdentityFactoryOptions<ApplicationUserManager> options, IOwinContext context) 
         {
-            var manager = new ApplicationUserManager(new UserRepository(context.Get<CoreDbContext>()));
+            var manager = new ApplicationUserManager(new UserRepository(new CoreUnitOfWork()));
             
             // Configure validation logic for usernames
             manager.UserValidator = new UserValidator<User, int>(manager)

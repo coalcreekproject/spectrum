@@ -43,21 +43,13 @@ namespace Spectrum.Web
             // container.LoadConfiguration();
 
             // TODO: Register your types here
-            // container.RegisterType<IProductRepository, ProductRepository>();
-            //container.RegisterType<IUserStore<User, int>, UserStore>(new InjectionConstructor(typeof(SpectrumCoreContext)));
-            //container.RegisterType<AccountController>(new InjectionConstructor());
-            //container.RegisterType<UserManager<User, int>>(new HierarchicalLifetimeManager());
-            //container.RegisterType<AccountController>(new InjectionConstructor());
-            //container.RegisterType<IAuthenticationManager>(
-            //    new InjectionFactory(o => HttpContext.Current.GetOwinContext().Authentication));
-            //container.RegisterType<DbContext, SpectrumCoreContext>(new HierarchicalLifetimeManager());
             
             container.RegisterType<ICoreUnitOfWork, CoreUnitOfWork>();
             container.RegisterType<UserManager<User, int>>(new HierarchicalLifetimeManager());
-            container.RegisterType<IUserStore<User, int>, UserRepository>(new InjectionConstructor(typeof(CoreDbContext)));
             container.RegisterType<AccountController>(new InjectionConstructor());
             container.RegisterType<ManageController>(new InjectionConstructor());
             container.RegisterType<IRoleRepository, RoleRepository>();
+            container.RegisterType<IUserRepository, UserRepository>();
         }
     }
 }
