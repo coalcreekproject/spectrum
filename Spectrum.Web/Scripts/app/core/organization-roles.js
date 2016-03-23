@@ -88,8 +88,9 @@ function EditOrganizationRoleModalController($scope, $uibModalInstance, organiza
 
         organizationRoleFactory.editOrganizationRoles(organizationRole)
             .then(function () {
-                // success
-            },
+                    var local = null;
+                    // success
+                },
                 function () {
                     // error
                     alert("could not edit or update organization role");
@@ -181,14 +182,14 @@ function organizationRoleFactory($http, $q) {
 
         var deferred = $q.defer();
 
-        $http.put('/api/Roles/' + organizationRole.id, organizationRole)
+        $http.put('/api/Roles/' + organizationRole.organizationId, organizationRole)
          .then(function (result) {
              // success
              var editedOrganizationRole = result.data;
 
              for (var i = 0; i < _organizationRoles.length; i++) {
-                 if (_organizationRoles[i].id === editedOrganizationRole.id) {
-                     _organizationRoles[i].name = editedOrganizationRole.mame;
+                 if (_organizationRoles[i].id === editedOrganizationRole.organizationId) {
+                     _organizationRoles[i].name = editedOrganizationRole.name;
                      _organizationRoles[i].description = editedOrganizationRole.description;
 
                      break;
@@ -209,13 +210,13 @@ function organizationRoleFactory($http, $q) {
 
         var deferred = $q.defer();
 
-        $http.delete('/api/Roles/' + organizationRole.id, organizationRole)
+        $http.delete('/api/Roles/' + organizationRole.roleId)
          .then(function (result) {
 
              var deletedOrganizationRole = result.data;
 
              for (var i = 0; i < _organizationRoles.length; i++) {
-                 if (_organizationRoles[i].id === deletedOrganizationRole.id) {
+                 if (_organizationRoles[i].roleId === deletedOrganizationRole.id) {
                      _organizationRoles.splice(i, 1);
                      break;
                  }

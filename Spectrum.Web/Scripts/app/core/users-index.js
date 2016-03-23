@@ -34,8 +34,6 @@ function config($locationProvider, $stateProvider, $urlRouterProvider, $compileP
 
 function userPanelController($scope, $http, $uibModal, $state, userFactory) {
 
-    $uibModal.scope = $scope;
-
     $scope.data = userFactory;
 
     userFactory.getUsers()
@@ -132,14 +130,17 @@ function AddUserModalController($scope, $uibModalInstance, userFactory) {
 
 function EditUserModalController($scope, $uibModalInstance, userFactory, user) {
 
-    $scope.user = user;
+    userFactory.getUser(user.id)
+        .then(function(result) {
+            $scope.user = result;
+        });
 
     $scope.ok = function () {
 
-        userFactory.editUser(user)
+        userFactory.editUser($scope.user)
             .then(function () {
                 // success
-            },
+                },
                 function () {
                     // error
                     alert("could not edit or update user");
@@ -187,6 +188,7 @@ angular
 function userFactory($http, $q) {
 
     var _users = [];
+    var _user = {};
 
     var _getUsers = function () {
 
@@ -206,6 +208,23 @@ function userFactory($http, $q) {
         return deferred.promise;
     };
 
+    var _getUser = function (id) {
+
+        var deferred = $q.defer();
+
+        $http.get('/api/Users/' + id)
+          .then(function (result) {
+              // Successful
+              angular.copy(result.data, _user);
+              deferred.resolve(_user);
+          },
+          function () {
+              // Error
+              deferred.reject();
+          });
+
+        return deferred.promise;
+    };
 
     var _addUser = function (newUser) {
 
@@ -243,7 +262,7 @@ function userFactory($http, $q) {
                  }
              }
 
-             deferred.resolve(editedUser);
+             deferred.resolve();
          },
          function () {
              // error
@@ -282,6 +301,7 @@ function userFactory($http, $q) {
     return {
         users: _users,
         getUsers: _getUsers,
+        getUser: _getUser,
         addUser: _addUser,
         editUser: _editUser,
         deleteUser: _deleteUser

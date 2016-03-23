@@ -34,13 +34,7 @@ namespace Spectrum.Web.Controllers.Api
 
             foreach (Organization o in _organizationRepository.All)
             {
-                organizationViewModels.Add(new OrganizationViewModel
-                {
-                    Id = o.Id,
-                    Name = o.Name,
-                    OrganizationTypeId = o.OrganizationTypeId,
-                    OrganizationTypeName = o.OrganizationType.Name
-                });
+                organizationViewModels.Add(Mapper.Map<OrganizationViewModel>(o));
             }
 
             //TODO: Get Paging working
@@ -58,15 +52,7 @@ namespace Spectrum.Web.Controllers.Api
                 return Request.CreateResponse(HttpStatusCode.NotFound);
             }
 
-            var organizationViewModel = new OrganizationViewModel
-            {
-                Id = organization.Id,
-                Name = organization.Name,
-                OrganizationTypeId = organization.OrganizationTypeId,
-                OrganizationTypeName = organization.OrganizationType.Name
-            };
-            
-            return Request.CreateResponse(HttpStatusCode.OK, organizationViewModel);
+            return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<OrganizationViewModel>(organization));
         }
 
         // POST: api/Organization
@@ -80,17 +66,8 @@ namespace Spectrum.Web.Controllers.Api
             organization.ObjectState = ObjectState.Added;
             _organizationRepository.InsertOrUpdate(organization);
             await _organizationRepository.SaveAsync();
-            //HACK not sure why this is not updating on new save.
-            organization.OrganizationType = _context.OrganizationTypes.FirstOrDefault(t => t.Id == organization.OrganizationTypeId);
 
-            return Request.CreateResponse(HttpStatusCode.Created,
-                new OrganizationViewModel
-                {
-                    Id = organization.Id,
-                    Name = organization.Name,
-                    OrganizationTypeId = organization.OrganizationTypeId,
-                    OrganizationTypeName = organization.OrganizationType?.Name
-                });
+            return Request.CreateResponse(HttpStatusCode.Created, Mapper.Map<OrganizationViewModel>(organization));
         }
 
         // PUT: api/Organization/5
@@ -110,7 +87,7 @@ namespace Spectrum.Web.Controllers.Api
             _organizationRepository.InsertOrUpdate(organization);
             await _organizationRepository.SaveAsync();
 
-            return Request.CreateResponse(HttpStatusCode.OK, organization);
+            return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<OrganizationViewModel>(organization));
         }
 
         // DELETE: api/Organization/5
@@ -130,7 +107,7 @@ namespace Spectrum.Web.Controllers.Api
             await _organizationRepository.SaveAsync();
 
             return Request.CreateResponse(HttpStatusCode.OK,
-                organization);
+                Mapper.Map<OrganizationViewModel>(organization));
         }
     }
 }

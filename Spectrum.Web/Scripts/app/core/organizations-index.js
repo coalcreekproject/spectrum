@@ -125,16 +125,18 @@ function organizationController($scope, $http, $uibModal, $state, organizationFa
 function AddOrganizationModalController($scope, $uibModalInstance, organizationFactory) {
 
     $scope.organizationTypes = organizationFactory.organizationTypes;
-    $scope.selected = $scope.organizationTypes[0];
 
-    $scope.ok = function(organization) {
+    $scope.ok = function(newOrganization) {
 
-        var inspect = organization;
+        // Set the values to the selected organization type
+        newOrganization.organizationTypeId = newOrganization.selectedOrgType.organizationTypeId;
+        newOrganization.organizationTypeName = newOrganization.selectedOrgType.name;
 
-        organizationFactory.addOrganizations(organization)
-            .then(function() {
-                    // success
-                    $uibModalInstance.close();
+        organizationFactory.addOrganizations(newOrganization)
+            .then(function (newlyCreatedOrganization) {
+                // success
+                newlyCreatedOrganization.organizationTypeName =
+                    findOrganizationTypeName(organizationFactory.organizationTypes, newlyCreatedOrganization.organizationTypeId);
                 },
                 function() {
                     // error
@@ -147,24 +149,37 @@ function AddOrganizationModalController($scope, $uibModalInstance, organizationF
     $scope.cancel = function() {
         $uibModalInstance.dismiss('cancel');
     };
+
+    function findOrganizationTypeName(orgTypes, orgIdToFind) {
+        for (var i = 0; i < orgTypes.length; i++) {
+            if (orgTypes[i].organizationTypeId === orgIdToFind) {
+                return orgTypes[i].name;
+            }
+        }
+        return "Not Found"; // Not found
+    }
 };
 
 function EditOrganizationModalController($scope, $uibModalInstance, organizationFactory, organization) {
 
-    $scope.organization = organization;
     $scope.organizationTypes = organizationFactory.organizationTypes;
-    $scope.organization.selectedOrgType = findSelectedOrganization($scope.organizationTypes, $scope.organization.organizationTypeId);
+    $scope.selectedOrgType = findSelectedOrganization($scope.organizationTypes, organization.organizationTypeId);
+
+    organizationFactory.getOrganization(organization.id)
+    .then(function (result) {
+        $scope.organization = result;
+    });
 
     $scope.ok = function (editOrganization)
     {
         // Set the values to the selected organization type
         editOrganization.organizationTypeId = editOrganization.selectedOrgType.organizationTypeId;
         editOrganization.organizationTypeName = editOrganization.selectedOrgType.name;
+        editOrganization.organizationType = null;
 
         organizationFactory.editOrganizations(editOrganization)
             .then(function () {
                 // success
-                    $uibModalInstance.close();
                 },
                 function () {
                     // error
@@ -222,6 +237,7 @@ angular
 
 function organizationFactory($http, $q) {
 
+    var _organization = {};
     var _organizations = [];
     var _organizationTypes = [];
 
@@ -242,6 +258,23 @@ function organizationFactory($http, $q) {
         return deferred.promise;
     }
 
+    var _getOrganization = function (id) {
+
+        var deferred = $q.defer();
+
+        $http.get('/api/Organizations/' + id)
+         .then(function (result) {
+             // success
+             angular.copy(result.data, _organization);
+             deferred.resolve(_organization);
+         },
+         function () {
+             // error
+             deferred.reject();
+         });
+
+        return deferred.promise;
+    };
 
     var _getOrganizations = function () {
 
@@ -341,7 +374,9 @@ function organizationFactory($http, $q) {
     return {
         organizationTypes: _organizationTypes,
         getOrganizationTypes: _getOrganizationTypes,
+        organization: _organization,
         organizations: _organizations,
+        getOrganization: _getOrganization,
         getOrganizations: _getOrganizations,
         addOrganizations: _addOrganization,
         editOrganizations: _editOrganization,

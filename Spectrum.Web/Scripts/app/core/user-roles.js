@@ -18,7 +18,7 @@ function UserRolesModalController($scope, $uibModalInstance, userRoleFactory, us
         lists: { "Available": [], "Assigned": [] }
     };
 
-    // Find the user default profile organization id
+    // Find the user default organization id
     for (var i = 0; i < user.userOrganizations.length; ++i) {
         if (user.userOrganizations[i].default === true) {
             userRoleParameters.organizationId = user.userOrganizations[i].organizationId;
