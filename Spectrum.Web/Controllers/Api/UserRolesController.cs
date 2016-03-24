@@ -1,4 +1,7 @@
-﻿using System.Linq;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
@@ -18,13 +21,14 @@ namespace Spectrum.Web.Controllers.Api
     {
         private ICoreDbContext _context;
         private UserRepository _userRepository;
+        private RoleRepository _roleRepository;
         private readonly ApplicationUserManager _manager;
 
         public UserRolesController(ICoreUnitOfWork uow)
         {
             _context = uow.Context;
-
             _userRepository = new UserRepository(uow);
+            _roleRepository = new RoleRepository(uow);
             _manager = new ApplicationUserManager(_userRepository);
         }
 
@@ -33,9 +37,21 @@ namespace Spectrum.Web.Controllers.Api
         public HttpResponseMessage Get(int id)
         {
             var user = _userRepository.FindByIdAsync(id).Result;
-            var userRoles = user.UserRoles;
+            var organizationId = GetDefaultOrganizationId(user);
+            var roles = _roleRepository.All.Where(r => r.OrganizationId == organizationId).ToList();
 
-            var userRoleViewModels = userRoles.Select(r => new UserRoleViewModel
+            var availableUserRoles = roles.Select(r => new UserRoleViewModel
+            {
+                ApplicationId = r.ApplicationId,
+                Default = null,
+                Description = r.Description,
+                Name = r.Name,
+                OrganizationId = organizationId,
+                RoleId = r.Id,
+                UserId = user.Id
+            }).ToList();
+
+            var assignedUserRoles = user.UserRoles.Select(r => new UserRoleViewModel
             {
                 ApplicationId = r.Role.ApplicationId,
                 Default = r.Default,
@@ -46,9 +62,42 @@ namespace Spectrum.Web.Controllers.Api
                 UserId = r.UserId
             }).ToList();
 
-            return Request.CreateResponse(HttpStatusCode.OK, userRoleViewModels);
+
+            SortRoles(availableUserRoles, assignedUserRoles);
+
+            return Request.CreateResponse(HttpStatusCode.OK, 
+                new Tuple<List<UserRoleViewModel>, List<UserRoleViewModel>>(availableUserRoles, assignedUserRoles));
         }
 
+        private void SortRoles(List<UserRoleViewModel> available, List<UserRoleViewModel> assigned)
+        {
+            foreach (var r in available.ToList())
+            {
+                if (assigned.Any(u => u.RoleId == r.RoleId))
+                {
+                    available.Remove(r);
+                }
+            }
+        }
+
+        private int GetDefaultOrganizationId(User user)
+        {
+            var defaultOrganization = user.UserOrganizations.FirstOrDefault(o => o.Default == true);
+
+            if (defaultOrganization != null)
+            {
+                return defaultOrganization.OrganizationId;
+            }
+
+            var firstOrganization = user.UserOrganizations.First();
+
+            if (firstOrganization != null)
+            {
+                return firstOrganization.OrganizationId;
+            }
+
+            return -1; //not found
+        }
 
         // PUT: api/Roles/5
         [HttpPut]

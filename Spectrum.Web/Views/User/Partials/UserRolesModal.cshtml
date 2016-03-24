@@ -23,7 +23,7 @@
                                         dnd-effect-allowed="move"
                                         dnd-selected="models.selected = item"
                                         ng-class="{'selected': models.selected === item}">
-                                        {{item.label}}
+                                        {{item.name}}
                                     </li>
                                 </ul>
                             </div>
@@ -42,9 +42,9 @@
                                         dnd-effect-allowed="move"
                                         dnd-selected="models.selected = item"
                                         ng-class="{'selected': models.selected === item}">
-                                        {{item.label}}
+                                        {{item.name}}
                                         <div>
-                                            <input type="checkbox" name="checkboxDefault" ng-model="item.Default"> Make default
+                                            <input type="checkbox" name="checkboxDefault" ng-model="item.default"> Make default
                                         </div>
                                     </li>
                                 </ul>
