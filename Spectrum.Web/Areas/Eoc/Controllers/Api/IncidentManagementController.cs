@@ -4,8 +4,10 @@ using System.Configuration;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Http;
+using Microsoft.AspNet.Identity;
 using Spectrum.Data.Eoc.Infrastructure;
 using Spectrum.Data.Eoc.Models;
+using Spectrum.Logic.Identity;
 using Spectrum.Web.Models;
 
 namespace Spectrum.Web.Areas.Eoc.Controllers.Api
@@ -19,10 +21,33 @@ namespace Spectrum.Web.Areas.Eoc.Controllers.Api
                 _authKey,
                 _databaseId,
                 _collectionId);
+
+            var userId = Convert.ToInt32(User.Identity.GetUserId());
+            var currentUser = UserUtility.GetUserFromMemoryCache(userId);
+
+            if (currentUser == null)
+            {
+                throw new ApplicationException("Unable to get the current user from cache.");
+            }
+
+            if (currentUser.SelectedOrganizationId == 0)
+            {
+                var firstOrgFound = currentUser.UserOrganizations.FirstOrDefault();
+                if (firstOrgFound == null)
+                {
+                    throw new ApplicationException("Unable to set the user's OrganizationId.");
+                }
+                currentUser.SelectedOrganizationId = firstOrgFound.OrganizationId;
+            }
+
+            _currentOrganizationId = currentUser.SelectedOrganizationId;
+            _currentUserId = currentUser.Id;
         }
 
         private readonly string _authKey = ConfigurationManager.AppSettings["authKey"];
         private readonly string _collectionId = ConfigurationManager.AppSettings["incidents-collection"];
+        private readonly int _currentOrganizationId;
+        private readonly int _currentUserId;
         private readonly string _databaseId = ConfigurationManager.AppSettings["eoc-database"];
         private readonly DocumentDbRepository<Incident> _dbRepository;
         private readonly string _endpoint = ConfigurationManager.AppSettings["endpoint"];
@@ -75,7 +100,7 @@ namespace Spectrum.Web.Areas.Eoc.Controllers.Api
         public IEnumerable<Incident> GetIncidents()
         {
             var incidents = _dbRepository.GetItems()
-                .Where(inc => inc.OrganizationId == 1 && inc.UserId == 1);
+                .Where(inc => inc.OrganizationId == _currentOrganizationId && inc.UserId == _currentUserId);
             return incidents;
         }
 
@@ -90,11 +115,23 @@ namespace Spectrum.Web.Areas.Eoc.Controllers.Api
 
             try
             {
-                // TODO: Hook into user utility for current user
-                incident.OrganizationId = 1;
-                incident.UserId = 1;
-                var document = await _dbRepository.UpdateItemAsync(incident.Id, incident);
-                return Ok(document.Id);
+                // Have to do a lookup of document or we lose any logs, or
+                // we could alternatively pass in the logs
+                // Investigate if we can update only certain fields of a document and
+                // not the document as a whole
+                var document = _dbRepository.GetItem(doc => doc.Id == incident.Id);
+                if (document == null)
+                {
+                    return BadRequest("Unable to find document to update: See PutIncident action.");
+                }
+
+                document.IncidentName = incident.IncidentName;
+                document.Level = incident.Level;
+                document.Status = incident.Status;
+                document.Type = incident.Type;
+
+                var documentUpdated = await _dbRepository.UpdateItemAsync(document.Id, document);
+                return Ok(documentUpdated.Id);
             }
             catch (Exception ex)
             {
@@ -138,9 +175,10 @@ namespace Spectrum.Web.Areas.Eoc.Controllers.Api
 
             try
             {
-                // TODO: Hook into user utility for current user
-                incident.OrganizationId = 1;
-                incident.UserId = 1;
+                incident.OrganizationId = _currentOrganizationId;
+                incident.UserId = _currentUserId;
+                incident.CreateDate = DateTime.UtcNow;
+
                 var document = await _dbRepository.CreateItemAsync(incident);
                 return Ok(document.Id);
             }
@@ -255,6 +293,7 @@ namespace Spectrum.Web.Areas.Eoc.Controllers.Api
             logToEdit.LogDate = incidentLog.Log.LogDate;
             logToEdit.LogEntry = incidentLog.Log.LogEntry;
             logToEdit.LogName = incidentLog.Log.LogName;
+            logToEdit.LogTitle = incidentLog.Log.LogTitle;
 
             var savedDoc = await _dbRepository.UpdateItemAsync(document.Id, document);
             return savedDoc.Id;

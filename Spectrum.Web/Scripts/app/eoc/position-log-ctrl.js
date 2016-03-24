@@ -1,65 +1,52 @@
 ﻿(function() {
     angular
-        .module("app.eoc")
-        .controller("PositionLogCtrl", PositionLogCtrl)
+        .module('app.eoc')
+        .controller('PositionLogCtrl', PositionLogCtrl)
         .config(config);
 
-    config.$inject = ["$locationProvider", "$stateProvider", "$urlRouterProvider", "$compileProvider"];
+    config.$inject = ['$locationProvider', '$stateProvider', '$urlRouterProvider', '$compileProvider'];
 
     function config($locationProvider, $stateProvider, $urlRouterProvider, $compileProvider) {
         // Optimize load start with remove binding information inside the DOM element
         $compileProvider.debugInfoEnabled(true);
 
         $stateProvider
-            .state("index", {
-                url: "",
-                templateUrl: "/Eoc/Templates/PositionLog/PositionLogIndex",
-                controller: "PositionLogCtrl",
-                controllerAs: "pl"
+            .state('index', {
+                url: '',
+                templateUrl: '/Eoc/Templates/PositionLog/PositionLogIndex',
+                controller: 'PositionLogCtrl',
+                controllerAs: 'pl'
             });
     }
 
-    PositionLogCtrl.$inject = ["$scope", "incidentData"];
+    PositionLogCtrl.$inject = ['$scope', 'incidentData'];
 
     function PositionLogCtrl($scope, incidentData) {
 
         var vm = this;
 
-        vm.name = "Willie";
         vm.incidents = [];
-        vm.search = "";
+        vm.search = '';
         vm.clear = clear;
-        vm.selectIncident = selectIncident;
 
-        function clear()
-        {
-            vm.search = "";
+        function clear() {
+            vm.search = '';
         }
 
-        function activate()
-        {
+        function activate() {
             return getIncidents();
         }
 
-        function selectIncident(incidentId)
-        {
-            // Transition to position log management page
-            var test = incidentId;
-        }
-
-        function getIncidents()
-        {
+        function getIncidents() {
             $scope.loading = true;
             return incidentData.getIncidents()
-                .then(function (incidents)
-                {
-                    vm.incidents = incidents;
-                    $scope.loading = false;
-                },
-                    function ()
-                    {
+                .then(function(incidents) {
+                        vm.incidents = incidents;
                         $scope.loading = false;
-                        console.log("Error loading incidents.  See log.");
+                    },
+                    function() {
+                        $scope.loading = false;
+                        console.log('Error loading incidents.  See log.');
                     });
         }
 
