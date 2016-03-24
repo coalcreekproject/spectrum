@@ -35,7 +35,6 @@
         vm.openEditModal = openEditModal;
         vm.openDeleteModal = openDeleteModal;
         vm.incidentId = $stateParams.incidentId;
-        vm.name = 'Wilkins';
         vm.search = '';
         vm.clear = clear;
 
@@ -138,6 +137,7 @@
 
             $scope.debugEnabled = false;
 
+            $scope.incidentId = incidentId;
             $scope.logItem = {};
 
             // Timepicker defaults
@@ -165,24 +165,9 @@
             $scope.saveChanges = function(logItem) {
 
                 // TODO: Better validation
-                if (logItem.occurred && logItem.date && logItem.selectedTime && logItem.remarks) {
-                    var year = logItem.date.getFullYear();
-                    var month = logItem.date.getMonth();
-                    var date = logItem.date.getDate();
-                    var hour = logItem.selectedTime.getHours();
-                    var mins = logItem.selectedTime.getMinutes();
-                    var setLogDate = new Date(year, month, date, hour, mins).toUTCString();
+                if (isValidPositionLogInput(logItem)) {
 
-                    // Shape the model
-                    var incidentLogInputViewModel = {
-                        "id": incidentId,
-                        "log": {
-                            "logId": 0,
-                            "logName": logItem.occurred,
-                            "logDate": setLogDate,
-                            "logEntry": logItem.remarks
-                        }
-                    };
+                    var incidentLogInputViewModel = createIncidenLogInputModel($scope.incidentId, logItem);
 
                     // Add the incident log
                     incidentData.addIncidentLog(incidentLogInputViewModel)
@@ -210,6 +195,7 @@
                 "logId": editModalData.logItem.logId,
                 "date": new Date(editModalData.logItem.logDate),
                 "selectedTime": new Date(editModalData.logItem.logDate),
+                "title": editModalData.logItem.logTitle,
                 "occurred": editModalData.logItem.logName,
                 "remarks": editModalData.logItem.logEntry
             };
@@ -242,25 +228,9 @@
             $scope.saveChanges = function(logItem) {
 
                 // TODO: Better validation
-                if (logItem.occurred && logItem.date && logItem.selectedTime && logItem.remarks) {
+                if (isValidPositionLogInput(logItem)) {
 
-                    var year = logItem.date.getFullYear();
-                    var month = logItem.date.getMonth();
-                    var date = logItem.date.getDate();
-                    var hour = logItem.selectedTime.getHours();
-                    var mins = logItem.selectedTime.getMinutes();
-                    var setLogDate = new Date(year, month, date, hour, mins).toUTCString();
-
-                    // Shape the model
-                    var incidentLogInputViewModel = {
-                        "id": $scope.incidentId,
-                        "log": {
-                            "logId": $scope.logItem.logId,
-                            "logName": logItem.occurred,
-                            "logDate": setLogDate,
-                            "logEntry": logItem.remarks
-                        }
-                    };
+                    var incidentLogInputViewModel = createIncidenLogInputModel($scope.incidentId, logItem);
 
                     // Edit the incident log
                     incidentData.editIncidentLog(incidentLogInputViewModel)
@@ -297,6 +267,43 @@
                     });
             };
         }
+    }
+
+    function isValidPositionLogInput(logItemInput) {
+        if (logItemInput.title && logItemInput.occurred &&
+            logItemInput.date && logItemInput.selectedTime
+            && logItemInput.remarks) {
+            return true;
+        }
+        return false;
+    }
+
+    function createIncidenLogInputModel(incidentId, logItemInput) {
+
+        // Format dates
+        var year = logItemInput.date.getFullYear();
+        var month = logItemInput.date.getMonth();
+        var date = logItemInput.date.getDate();
+        var hour = logItemInput.selectedTime.getHours();
+        var mins = logItemInput.selectedTime.getMinutes();
+        var setLogDate = new Date(year, month, date, hour, mins).toUTCString();
+
+        // New log or updating?
+        var logId = logItemInput.logId ? logItemInput.logId : 0;
+
+        // Shape the input view model
+        var inputViewModel = {
+            "id": incidentId,
+            "log": {
+                "logId": logId,
+                "logTitle": logItemInput.title,
+                "logName": logItemInput.occurred,
+                "logDate": setLogDate,
+                "logEntry": logItemInput.remarks
+            }
+        };
+
+        return inputViewModel;
     }
 
 })();

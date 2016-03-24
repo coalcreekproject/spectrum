@@ -8,12 +8,19 @@
     <div class="modal-body">
         <div class="well well-sm">
             <p>Do you want to remove incident {{incidentName}}?</p>
-            <p class="small">({{incidentId}})</p>
         </div>
     </div>
 </div>
 
 <div class="modal-footer">
-    <button class="btn btn-default" ng-click="cancel()" type="button">Cancel</button>
-    <button class="btn btn-success" ng-click="delete(incidentId)" type="button">Delete</button>
+    <button class="btn btn-default"
+            ng-click="cancel()"
+            type="button">
+        Cancel
+    </button>
+    <button class="btn btn-success"
+            ng-click="delete(incidentId)"
+            type="button">
+        Delete
+    </button>
 </div>
