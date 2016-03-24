@@ -8,18 +8,15 @@ function organizationRoleParameters() {
 
 function organizationRoleController($scope, $http, $window, $uibModal, $stateParams, organizationRoleFactory) {
 
-    $scope.organizationId = $stateParams.organizationId;
-    organizationRoleParameters.organizationId = $scope.organizationId;
+    organizationRoleParameters.organizationId = $stateParams.organizationId;
 
-    $uibModal.scope = $scope;
     $scope.data = organizationRoleFactory;
 
-    organizationRoleFactory.getOrganizationRoles($scope.organizationId)
-        .then(function (organizationRoles) {
-            // success
-            //$scope.data = organization;
-        },
-            function () {
+    organizationRoleFactory.getOrganizationRoles(organizationRoleParameters.organizationId)
+        .then(function() {
+                // success
+            },
+            function() {
                 // error
                 alert("Sorry! There was a problem loading organization roles.  Please try again later.");
             });
@@ -60,14 +57,14 @@ function AddOrganizationRoleModalController($scope, $uibModalInstance, organizat
 
     $scope.ok = function (organizationRole) {
 
-        organizationRole.OrganizationId = organizationRoleParameters.organizationId;
+        organizationRole.organizationId = organizationRoleParameters.organizationId;
+        organizationRole.roleId = null;
 
         organizationRoleFactory.addOrganizationRoles(organizationRole)
-            .then(function () {
-                // success
-                $uibModalInstance.close();
-            },
-                function () {
+            .then(function() {
+                    // success
+                },
+                function() {
                     // error
                     alert("could not save organization role");
                 });
@@ -88,7 +85,6 @@ function EditOrganizationRoleModalController($scope, $uibModalInstance, organiza
 
         organizationRoleFactory.editOrganizationRoles(organizationRole)
             .then(function () {
-                    var local = null;
                     // success
                 },
                 function () {
@@ -108,14 +104,13 @@ function DeleteOrganizationRoleModalController($scope, $uibModalInstance, organi
 
     $scope.organizationRole = organizationRole;
 
-    $scope.ok = function () {
+    $scope.ok = function() {
 
         organizationRoleFactory.deleteOrganizationRoles(organizationRole)
-            .then(function () {
-                // success
-
-            },
-                function () {
+            .then(function() {
+                    // success
+                },
+                function() {
                     // error
                     alert("could not delete organization Role");
                 });
@@ -129,9 +124,6 @@ function DeleteOrganizationRoleModalController($scope, $uibModalInstance, organi
     };
 };
 
-/**
- * Pass function into module
- */
 angular
     .module('app')
     .factory('organizationRoleFactory', organizationRoleFactory);
@@ -166,7 +158,7 @@ function organizationRoleFactory($http, $q) {
         $http.post('/api/Roles', newOrganizationRole)
          .then(function (result) {
              // success
-             var newlyCreatedOrganizationRole = result.data;
+             newOrganizationRole = result.data;
              _organizationRoles.splice(0, 0, newOrganizationRole);
              deferred.resolve(newlyCreatedOrganizationRole);
          },
@@ -182,13 +174,13 @@ function organizationRoleFactory($http, $q) {
 
         var deferred = $q.defer();
 
-        $http.put('/api/Roles/' + organizationRole.organizationId, organizationRole)
+        $http.put('/api/Roles/', organizationRole)
          .then(function (result) {
              // success
              var editedOrganizationRole = result.data;
 
              for (var i = 0; i < _organizationRoles.length; i++) {
-                 if (_organizationRoles[i].id === editedOrganizationRole.organizationId) {
+                 if (_organizationRoles[i].roleId=== editedOrganizationRole.roleId) {
                      _organizationRoles[i].name = editedOrganizationRole.name;
                      _organizationRoles[i].description = editedOrganizationRole.description;
 
@@ -216,7 +208,7 @@ function organizationRoleFactory($http, $q) {
              var deletedOrganizationRole = result.data;
 
              for (var i = 0; i < _organizationRoles.length; i++) {
-                 if (_organizationRoles[i].roleId === deletedOrganizationRole.id) {
+                 if (_organizationRoles[i].roleId === deletedOrganizationRole.roleId) {
                      _organizationRoles.splice(i, 1);
                      break;
                  }
