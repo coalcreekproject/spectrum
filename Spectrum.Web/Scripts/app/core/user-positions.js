@@ -9,19 +9,23 @@ function userPositionParameters() {
 
 function UserPositionsModalController($scope, $uibModalInstance, userPositionFactory, user) {
 
+    $scope.user = user;
     $scope.userId = user.id;
     userPositionParameters.userId = $scope.userId;
-    $scope.user = user;
-
+    
     $scope.models = {
         selected: null,
         lists: { "Available": [], "Assigned": [] }
     };
 
-    // Find the user default profile organization id
-    for (var i = 0; i < user.userProfiles.length; ++i) {
-        if (user.userProfiles[i].default === true) {
-            userPositionParameters.organizationId = user.userProfiles[i].organizationId;
+    // Find the user default organization id
+    for (var i = 0; i < user.userOrganizations.length; ++i) {
+        if (user.userOrganizations[i].default === true) {
+            userPositionParameters.organizationId = user.userOrganizations[i].organizationId;
+        } else {
+            if (user.userOrganizations.length > 0) {
+                userPositionParameters.organizationId = user.userOrganizations[0].organizationId;
+            }
         }
     }
 
@@ -101,6 +105,7 @@ function userPositionFactory($http, $q) {
 
     var _availablePositions = [];
     var _userPositions = [];
+
     var _getAvailablePositions = function (id) {
 
         var deferred = $q.defer();
@@ -143,12 +148,12 @@ function userPositionFactory($http, $q) {
 
         for (var i = 0; i < positionList.length; i++) {
             var userPosition = {
-                UserId: user.Id,
+                UserId: user.id,
                 PositionId: positionList[i].object.positionId,
                 OrganizationId: userPositionParameters.organizationId,
                 Default: positionList[i].default
             };
-            user.UserPositions.push(userPosition);
+            user.userPositions.push(userPosition);
         }
 
         var deferred = $q.defer();

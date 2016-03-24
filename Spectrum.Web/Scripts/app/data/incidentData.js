@@ -159,10 +159,6 @@
             {
                 "id": 2,
                 "name": "Natural Disaster"
-            },
-            {
-                "id": 3,
-                "name": "Fast Food Hazard"
             }
         ];
         var getIncidentTypes = function() {
@@ -176,7 +172,7 @@
         };
 
         // TODO: Move to global settings service
-        var incidentStatuses = ["Active", "Inactive", "Just Fucking Around"];
+        var incidentStatuses = ["Active", "Inactive"];
         var getIncidentStatuses = function() {
             return incidentStatuses;
         };

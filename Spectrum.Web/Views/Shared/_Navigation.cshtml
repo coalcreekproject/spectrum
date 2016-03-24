@@ -29,7 +29,7 @@
         <li ng-class="{active: $state.includes('app.eoc')}">
             <a><span class="nav-label">EOC</span><span class="fa arrow"></span> </a>
             <ul class="nav nav-second-level">
-                <li class="@Html.IsSelected(action: "Dashboard")">
+                <li class="@Html.IsSelected(action: "Dashboard")" style="opacity: .5">
                     <a href="@Url.Action("Index", "Dashboard", new {Area = "Eoc"})">Dashboard</a>
                 </li>
                 <li class="@Html.IsSelected(action: "Incident Management")">
@@ -38,20 +38,20 @@
                 <li class="@Html.IsSelected(action: "Position Log")">
                     <a href="@Url.Action("Index", "PositionLog")">Position Log</a>
                 </li>
-                <li class="@Html.IsSelected(action: "Timeline")">
-                    <a href="@Url.Action("", "")">Events Timeline</a>
+                <li class="@Html.IsSelected(action: "Timeline")" style="opacity: .5">
+                    <a href="#">Events Timeline</a>
                 </li>
                 <li class="@Html.IsSelected(action: "Checklists")">
                     <a href="@Url.Action("Index", "CheckList", new {Area = "Eoc"})">Checklists</a>
                 </li>
-                <li class="@Html.IsSelected(action: "Action Plans")">
-                    <a href="@Url.Action("", "")">Action Plans</a>
+                <li class="@Html.IsSelected(action: "Action Plans")" style="opacity: .5">
+                    <a href="#">Action Plans</a>
                 </li>
-                <li class="@Html.IsSelected(action: "Media")">
-                    <a href="@Url.Action("", "")">Press and Media</a>
+                <li class="@Html.IsSelected(action: "Media")" style="opacity: .5">
+                    <a href="#">Press and Media</a>
                 </li>
-                <li class="@Html.IsSelected(action: "Shelters")">
-                    <a href="@Url.Action("", "")">Shelters</a>
+                <li class="@Html.IsSelected(action: "Shelters")" style="opacity: .5">
+                    <a href="#">Shelters</a>
                 </li>
             </ul>
         </li>

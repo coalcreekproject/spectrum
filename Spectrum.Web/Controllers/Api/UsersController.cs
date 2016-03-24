@@ -56,14 +56,7 @@ namespace Spectrum.Web.Controllers.Api
                 return Request.CreateResponse(HttpStatusCode.NotFound);
             }
 
-            var userViewModel = new UserViewModel
-            {
-                Id = user.Id,
-                UserName = user.UserName,
-                Email = user.Email
-            };
-
-            return Request.CreateResponse(HttpStatusCode.OK, userViewModel); 
+            return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<UserViewModel>(user)); 
         }
 
         [HttpPost]
@@ -89,7 +82,7 @@ namespace Spectrum.Web.Controllers.Api
                 var addResult = _manager.Update(user);
                 if (addResult.Succeeded)
                 {
-                    return Request.CreateResponse(HttpStatusCode.Created, user);
+                    return Request.CreateResponse(HttpStatusCode.Created, Mapper.Map<UserViewModel>(user));
                 }
             }
 
@@ -128,7 +121,7 @@ namespace Spectrum.Web.Controllers.Api
             if (result.Succeeded)
             {
                 return Request.CreateResponse(HttpStatusCode.Created,
-                    user);
+                    Mapper.Map<UserViewModel>(user));
             }
             
             return Request.CreateResponse(HttpStatusCode.BadRequest);
@@ -150,7 +143,7 @@ namespace Spectrum.Web.Controllers.Api
 
             if (result.Succeeded)
             {
-                return Request.CreateResponse(HttpStatusCode.OK, user);
+                return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<UserViewModel>(user));
             }
 
             return Request.CreateResponse(HttpStatusCode.NoContent);

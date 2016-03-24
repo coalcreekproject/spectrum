@@ -9,7 +9,7 @@ namespace Spectrum.Web.Models
         public string Name { get; set; }
         public int? OrganizationTypeId { get; set; }
         public string OrganizationTypeName { get; set; }
-        public virtual OrganizationType OrganizationType { get; set; }
+        public virtual OrganizationTypeViewModel OrganizationType { get; set; }
         public List<OrganizationTypeViewModel> OrganizationTypes { get; set; }
     }
 }

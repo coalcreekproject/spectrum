@@ -70,14 +70,14 @@ namespace Spectrum.Web.Controllers.Api
             if (result.IsCompleted)
             {
                 return Request.CreateResponse(HttpStatusCode.Created,
-                    role);
+                    Mapper.Map<RoleViewModel>(role));
             }
 
             return Request.CreateResponse(HttpStatusCode.BadRequest);
         }
 
         // PUT: api/Roles/5
-        public HttpResponseMessage Put(int id, [FromBody] RoleViewModel editRole)
+        public HttpResponseMessage Put([FromBody] RoleViewModel editRole)
         {
             var role = _roleRepository.FindAsync(editRole.RoleId).Result;
 
@@ -93,7 +93,7 @@ namespace Spectrum.Web.Controllers.Api
             _roleRepository.InsertOrUpdate(role);
             _roleRepository.Save();
 
-            return Request.CreateResponse(HttpStatusCode.OK, role);
+            return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<RoleViewModel>(role));
         }
 
         // DELETE: api/Roles/5
@@ -110,7 +110,7 @@ namespace Spectrum.Web.Controllers.Api
             _roleRepository.Delete(role.Id);
             _roleRepository.SaveAsync();
 
-            return Request.CreateResponse(HttpStatusCode.OK, role);
+            return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<RoleViewModel>(role));
         }
     }
 }

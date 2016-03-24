@@ -14,9 +14,9 @@ function userGridController($scope, $http, $location, $uibModal, $state, uiGridC
         enableRowHeaderSelection: false,
         multiSelect: false,
         columnDefs: [
-            { field: 'Id', visible: false },
-            { field: 'UserName' },
-            { field: 'Email' },
+            { field: 'id', visible: false },
+            { field: 'userName' },
+            { field: 'email' },
             { name: 'Options', cellTemplate: '<button class="btn btn-sm btn-default" ng-click="grid.appScope.edit(row)">Edit</button>' +
                 '<button class="btn btn-sm btn-default" ng-click="grid.appScope.userprofiles(row)">Profiles</button>' +
                 '<button class="btn btn-sm btn-default" ng-click="grid.appScope.roles(row)">Roles</button>' +
@@ -99,7 +99,7 @@ function userGridController($scope, $http, $location, $uibModal, $state, uiGridC
     };
 
     $scope.userprofiles = function (row) {
-        $state.go('userprofiles', { 'userId': row.entity.Id });
+        $state.go('userprofiles', { 'userId': row.entity.id });
     };
 };
 

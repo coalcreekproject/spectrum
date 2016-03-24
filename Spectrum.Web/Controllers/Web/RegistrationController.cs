@@ -242,7 +242,7 @@ namespace Spectrum.Web.Controllers.Web
                     var coreDbContext = new CoreDbContext();
                     var registerViewModel = new RegisterViewModel
                     {
-                        OrganizationTypes = coreDbContext.OrganizationTypes.ToList()
+                        //OrganizationTypes = coreDbContext.OrganizationTypes.ToList()
                     };
 
                     return PartialView("~/Views/Registration/Partials/RegistrationIndex.cshtml", registerViewModel);

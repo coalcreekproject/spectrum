@@ -19,9 +19,14 @@
             <div class="form-group">
                 <div class="row">
                     <div class="col-md-6">
-                        <select class="form-control m-b" name="organizationType" id="organizationType" ng-model="organization.organizationTypeId">
+                        @*<select class="form-control m-b" name="organizationType" id="organizationType" ng-model="organization.organizationTypeId">
                             <option ng-repeat="option in organizationTypes" value="{{option.organizationTypeId}}">{{option.name}}</option>
-                        </select>
+                        </select>*@
+                        <select class="form-control m-b"
+                                name="organizationType"
+                                id="organizationType"
+                                ng-model="organization.selectedOrgType"
+                                ng-options="o.name for o in organizationTypes"></select>
                     </div>
                 </div>
             </div>

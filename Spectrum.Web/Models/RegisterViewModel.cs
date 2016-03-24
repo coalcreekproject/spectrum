@@ -71,7 +71,7 @@ namespace Spectrum.Web.Models
         public string OrgLanguage { get; set; }
 
         #endregion
-        public OrganizationType OrganizationType { get; set; }
-        public List<OrganizationType> OrganizationTypes { get; set; }
+        public OrganizationTypeViewModel OrganizationType { get; set; }
+        public List<OrganizationTypeViewModel> OrganizationTypes { get; set; }
     }
 }
