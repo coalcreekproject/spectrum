@@ -79,11 +79,18 @@ function AddOrganizationRoleModalController($scope, $uibModalInstance, organizat
 
 function EditOrganizationRoleModalController($scope, $uibModalInstance, organizationRoleFactory, organizationRole) {
 
-    $scope.organizationRole = organizationRole;
+    organizationRoleFactory.getOrganizationRole(organizationRole)
+        .then(function (result) {
+            $scope.organizationRole = result;
+        },
+        function () {
+            //Couldn't find it, stick the one passed in out there
+            $scope.organizationRole = organizationRole;
+        });
 
     $scope.ok = function () {
 
-        organizationRoleFactory.editOrganizationRoles(organizationRole)
+        organizationRoleFactory.editOrganizationRoles($scope.organizationRole)
             .then(function () {
                     // success
                 },
@@ -102,11 +109,18 @@ function EditOrganizationRoleModalController($scope, $uibModalInstance, organiza
 
 function DeleteOrganizationRoleModalController($scope, $uibModalInstance, organizationRoleFactory, organizationRole) {
 
-    $scope.organizationRole = organizationRole;
+    organizationRoleFactory.getOrganizationRole(organizationRole)
+    .then(function (result) {
+        $scope.organizationRole = result;
+    },
+    function () {
+        //Couldn't find it, stick the one passed in out there
+        $scope.organizationRole = organizationRole;
+    });
 
     $scope.ok = function() {
 
-        organizationRoleFactory.deleteOrganizationRoles(organizationRole)
+        organizationRoleFactory.deleteOrganizationRoles($scope.organizationRole)
             .then(function() {
                     // success
                 },
@@ -130,7 +144,27 @@ angular
 
 function organizationRoleFactory($http, $q) {
 
+    var _organizationRole = {};
     var _organizationRoles = [];
+    
+    var _getOrganizationRole = function (organizationRole) {
+
+        var deferred = $q.defer();
+
+        $http.get('/api/Roles/?roleId=' + organizationRole.roleId + '&' + 'organizationId=' + organizationRole.organizationId)
+          .then(function (result) {
+              // Successful
+              angular.copy(result.data, _organizationRole);
+              deferred.resolve(_organizationRole);
+          },
+          function () {
+              // Error
+              deferred.reject();
+          });
+
+        return deferred.promise;
+    };
+
 
     var _getOrganizationRoles = function (id) {
 
@@ -149,7 +183,6 @@ function organizationRoleFactory($http, $q) {
 
         return deferred.promise;
     };
-
 
     var _addOrganizationRole = function (newOrganizationRole) {
 
@@ -225,6 +258,8 @@ function organizationRoleFactory($http, $q) {
     };
 
     return {
+        organizationRole: _organizationRole,         
+        getOrganizationRole: _getOrganizationRole,
         organizationRoles: _organizationRoles,
         getOrganizationRoles: _getOrganizationRoles,
         addOrganizationRoles: _addOrganizationRole,
