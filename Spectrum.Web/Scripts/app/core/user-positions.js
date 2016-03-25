@@ -18,72 +18,27 @@ function UserPositionsModalController($scope, $uibModalInstance, userPositionFac
         lists: { "Available": [], "Assigned": [] }
     };
 
-    // Find the user default organization id
-    for (var i = 0; i < user.userOrganizations.length; ++i) {
-        if (user.userOrganizations[i].default === true) {
-            userPositionParameters.organizationId = user.userOrganizations[i].organizationId;
-        } else {
-            if (user.userOrganizations.length > 0) {
-                userPositionParameters.organizationId = user.userOrganizations[0].organizationId;
-            }
-        }
-    }
-
     $scope.data = userPositionFactory;
-
-    userPositionFactory.getAvailablePositions(userPositionParameters.organizationId)
-        .then(function(availablePositions) {
-                // success
-                $scope.availablePositions = availablePositions;
-                for (var i = 0; i < $scope.availablePositions.length; ++i) {
-                    $scope.models.lists.Available.push({
-                        label: $scope.availablePositions[i].name,
-                        object: $scope.availablePositions[i]
-                    });
-                }
-            },
-            function() {
-                // error
-                alert("could not get available positions");
-            });
-
 
     userPositionFactory.getUserPositions(userPositionParameters.userId)
         .then(function(userPositions) {
                 // success
                 $scope.userPositions = userPositions;
-                for (var i = 0; i < $scope.userPositions.length; ++i) {
-                    $scope.models.lists.Assigned.push({
-                        label: $scope.userPositions[i].name,
-                        object: $scope.userPositions[i]
-                    });
-                    var j = 0;
-                    while (j < $scope.models.lists.Available.length) {
-                        if ($scope.userPositions[i].positionId === $scope.models.lists.Available[j].object.positionId) {
-                            $scope.models.lists.Available.splice(j, 1);
-                        }
-                        j++;
-                    };
-                }
+                $scope.models.lists.Available = userPositions.item1;
+                $scope.models.lists.Assigned = userPositions.item2;
             },
             function() {
                 // error
                 alert("could not get user positions");
             });
 
-    // Model to JSON for demo purpose
-    //$scope.$watch('models', function (model) {
-    //    $scope.modelAsJson = angular.toJson(model, true);
-    //}, true);
-
-    $scope.ok = function () {
+    $scope.ok = function() {
 
         userPositionFactory.editUserPositions($scope.models.lists.Assigned, $scope.user)
-            .then(function () {
-                // success
-                $uibModalInstance.close();
-            },
-                function () {
+            .then(function() {
+                    // success
+                },
+                function() {
                     // error
                     alert("could not save positions");
                 });
@@ -145,16 +100,7 @@ function userPositionFactory($http, $q) {
     var _editUserPositions = function(positionList, user) {
 
         user.UserPositions = [];
-
-        for (var i = 0; i < positionList.length; i++) {
-            var userPosition = {
-                UserId: user.id,
-                PositionId: positionList[i].object.positionId,
-                OrganizationId: userPositionParameters.organizationId,
-                Default: positionList[i].default
-            };
-            user.userPositions.push(userPosition);
-        }
+        user.UserPositions = positionList;
 
         var deferred = $q.defer();
 

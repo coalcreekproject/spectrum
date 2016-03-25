@@ -65,7 +65,6 @@ function AddOrganizationPositionModalController($scope, $uibModalInstance, organ
         organizationPositionFactory.addOrganizationPositions(organizationPosition)
             .then(function () {
                 // success
-                $uibModalInstance.close();
             },
                 function () {
                     // error
@@ -112,7 +111,6 @@ function DeleteOrganizationPositionModalController($scope, $uibModalInstance, or
         organizationPositionFactory.deleteOrganizationPositions(organizationPosition)
             .then(function () {
                 // success
-
             },
                 function () {
                     // error
@@ -165,7 +163,7 @@ function organizationPositionFactory($http, $q) {
          .then(function (result) {
              // success
              var newlyCreatedOrganizationPosition = result.data;
-             _organizationPositions.splice(0, 0, newOrganizationPosition);
+             _organizationPositions.splice(0, 0, newlyCreatedOrganizationPosition);
              deferred.resolve(newlyCreatedOrganizationPosition);
          },
          function () {
@@ -186,9 +184,9 @@ function organizationPositionFactory($http, $q) {
              var editedOrganizationPosition = result.data;
 
              for (var i = 0; i < _organizationPositions.length; i++) {
-                 if (_organizationPositions[i].Id === editedOrganizationPosition.Id) {
-                     _organizationPositions[i].Name = editedOrganizationPosition.Name;
-                     _organizationPositions[i].Description = editedOrganizationPosition.Description;
+                 if (_organizationPositions[i].positionId === editedOrganizationPosition.positionId) {
+                     _organizationPositions[i].name = editedOrganizationPosition.name;
+                     _organizationPositions[i].description = editedOrganizationPosition.description;
 
                      break;
                  }
@@ -208,13 +206,13 @@ function organizationPositionFactory($http, $q) {
 
         var deferred = $q.defer();
 
-        $http.delete('/api/Positions/' + organizationPosition.Id, organizationPosition)
+        $http.delete('/api/Positions/' + organizationPosition.positionId)
          .then(function (result) {
 
              var deletedOrganizationPosition = result.data;
 
              for (var i = 0; i < _organizationPositions.length; i++) {
-                 if (_organizationPositions[i].Id === deletedOrganizationPosition.Id) {
+                 if (_organizationPositions[i].positionId === deletedOrganizationPosition.positionId) {
                      _organizationPositions.splice(i, 1);
                      break;
                  }

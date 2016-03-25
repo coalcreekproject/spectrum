@@ -29,14 +29,6 @@ namespace Spectrum.Web.Controllers.Api
             _positionRepository = new PositionRepository(uow);
         }
 
-        //[Dependency]
-        //public IPositionRepository RoleRepository
-        //{
-        //    get { return _positionRepository; }
-        //    set { _positionRepository = value; }
-        //}
-
-
         // GET: api/Positions
         [HttpGet]
         public IEnumerable<PositionViewModel> Get()
@@ -80,16 +72,10 @@ namespace Spectrum.Web.Controllers.Api
 
             position.ObjectState = ObjectState.Added;
             _positionRepository.InsertOrUpdate(position);
+            await _positionRepository.SaveAsync();
 
-            var result = Task.FromResult(_positionRepository.SaveAsync());
-
-            if (result.IsCompleted)
-            {
-                return Request.CreateResponse(HttpStatusCode.Created,
-                    position);
-            }
-
-            return Request.CreateResponse(HttpStatusCode.BadRequest);
+            return Request.CreateResponse(HttpStatusCode.Created,
+                Mapper.Map<PositionViewModel>(position));
         }
 
         [HttpPut]
@@ -110,7 +96,7 @@ namespace Spectrum.Web.Controllers.Api
             _positionRepository.InsertOrUpdate(position);
             _positionRepository.Save();
 
-            return Request.CreateResponse(HttpStatusCode.OK, position);
+            return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<PositionViewModel>(position));
         }
 
         [HttpDelete]
@@ -128,7 +114,7 @@ namespace Spectrum.Web.Controllers.Api
             _positionRepository.Delete(position.Id);
             _positionRepository.SaveAsync();
 
-            return Request.CreateResponse(HttpStatusCode.OK, position);
+            return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<PositionViewModel>(position));
         }
     }
 }

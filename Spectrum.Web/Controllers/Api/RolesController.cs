@@ -57,6 +57,15 @@ namespace Spectrum.Web.Controllers.Api
             return Request.CreateResponse(HttpStatusCode.OK, roleViewModels);
         }
 
+        [HttpGet]
+        // GET: api/Roles/5
+        public HttpResponseMessage Get(int roleId, int organizationId)
+        {
+            var role = _roleRepository.Find(roleId);
+
+            return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<RoleViewModel>(role));
+        }
+
         // POST: api/Roles
         public async Task<HttpResponseMessage> Post([FromBody] RoleViewModel newRole)
         {

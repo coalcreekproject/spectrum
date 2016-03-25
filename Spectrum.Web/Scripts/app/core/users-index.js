@@ -18,7 +18,6 @@ function config($locationProvider, $stateProvider, $urlRouterProvider, $compileP
             data: { pageTitle: 'index' }
         })
         .state('grid', {
-            //url: "/grid/:userId",
             url: "/grid",
             templateUrl: "/Templates/User/UserGridIndex",
             params: { userId: null },
@@ -130,9 +129,13 @@ function AddUserModalController($scope, $uibModalInstance, userFactory) {
 
 function EditUserModalController($scope, $uibModalInstance, userFactory, user) {
 
-    userFactory.getUser(user.id)
+    userFactory.getUser(user)
         .then(function(result) {
             $scope.user = result;
+        },
+        function () {
+            //Couldn't find it, stick the one passed in out there
+            $scope.user = user;
         });
 
     $scope.ok = function () {
@@ -157,15 +160,22 @@ function EditUserModalController($scope, $uibModalInstance, userFactory, user) {
 
 function DeleteUserModalController($scope, $uibModalInstance, userFactory, user) {
 
-    $scope.user = user;
+    userFactory.getUser(user)
+    .then(function (result) {
+        $scope.user = result;
+    },
+    function () {
+        //Couldn't find it, stick the one passed in out there
+        $scope.user = user;
+    });
 
     $scope.ok = function () {
 
-        userFactory.deleteUser(user)
-            .then(function () {
-                // success
-            },
-                function () {
+        userFactory.deleteUser($scope.user)
+            .then(function() {
+                    // success
+                },
+                function() {
                     // error
                     alert("could not delete user");
                 });
@@ -178,9 +188,6 @@ function DeleteUserModalController($scope, $uibModalInstance, userFactory, user)
     };
 };
 
-/**
- * Pass function into module
- */
 angular
     .module('app')
     .factory('userFactory', userFactory);
@@ -208,11 +215,11 @@ function userFactory($http, $q) {
         return deferred.promise;
     };
 
-    var _getUser = function (id) {
+    var _getUser = function (user) {
 
         var deferred = $q.defer();
 
-        $http.get('/api/Users/' + id)
+        $http.get('/api/Users/' + user.id)
           .then(function (result) {
               // Successful
               angular.copy(result.data, _user);

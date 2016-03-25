@@ -36,7 +36,7 @@
                     <a href="@Url.Action("Index", "IncidentManagement", new {Area = "Eoc"})">Incidents</a>
                 </li>
                 <li class="@Html.IsSelected(action: "Position Log")">
-                    <a href="@Url.Action("Index", "PositionLog")">Position Log</a>
+                    <a href="@Url.Action("Index", "PositionLog", new {Area = "Eoc"})">Position Log</a>
                 </li>
                 <li class="@Html.IsSelected(action: "Timeline")" style="opacity: .5">
                     <a href="#">Events Timeline</a>
