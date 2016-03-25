@@ -55,79 +55,84 @@ namespace Spectrum.Logic.Identity
             return userModel;
         }
 
+        private static Tuple<int, string> GetDefaultOrganizationData(User user)
+        {
+            var defaultOrganization = user.UserOrganizations.FirstOrDefault(o => o.Default == true);
+
+            if (defaultOrganization != null)
+            {
+                return new Tuple<int, string>(defaultOrganization.OrganizationId, defaultOrganization.Organization.Name);
+            }
+
+            var firstOrganization = user.UserOrganizations.First();
+
+            if (firstOrganization != null)
+            {
+                return new Tuple<int, string>(firstOrganization.OrganizationId, firstOrganization.Organization.Name);
+            }
+
+            return new Tuple<int, string>(0, "No Associated Organization"); //not found
+        }
+
+        private static Tuple<int, string> GetDefaultRoleData(User user)
+        {
+            var defaultRole = user.UserRoles.FirstOrDefault(o => o.Default == true);
+
+            if (defaultRole != null)
+            {
+                return new Tuple<int, string>(defaultRole.RoleId, defaultRole.Role.Name);
+            }
+
+            var firstRole = user.UserRoles.FirstOrDefault();
+
+            if (firstRole != null)
+            {
+                return new Tuple<int, string>(firstRole.RoleId, firstRole.Role.Name);
+            }
+
+            return new Tuple<int, string>(0, "No Roles Assigned"); //not found
+        }
+
+        private static Tuple<int, string> GetDefaultPositionData(User user)
+        {
+            var defaultPosition = user.UserPositions.FirstOrDefault(o => o.Default == true);
+
+            if (defaultPosition != null)
+            {
+                return new Tuple<int, string>(defaultPosition.PositionId, defaultPosition.Position.Name);
+            }
+
+            var firstPosition = user.UserPositions.FirstOrDefault();
+
+            if (firstPosition != null)
+            {
+                return new Tuple<int, string>(firstPosition.PositionId, firstPosition.Position.Name);
+            }
+
+            return new Tuple<int, string>(0, "No Positions Assigned"); //not found
+        }
+
         public static void SetLoginIdentityFocus(User user)
         {
             var profile = user.UserProfiles.FirstOrDefault(p => p.Default == true);
             var userModel = Mapper.Map<UserModel>(user);
 
+            var orgData = GetDefaultOrganizationData(user);
             //Set the default organization for the user
-            var defaultOrganization = user.UserOrganizations.FirstOrDefault(o => o.OrganizationId == profile?.OrganizationId && o.Default == true);
-
-            if (defaultOrganization != null)
-            {
-                userModel.SelectedOrganizationId = defaultOrganization.OrganizationId;
-                userModel.SelectedOrganizationName = defaultOrganization.Organization.Name;
-            }
-            else
-            {
-                var firstOrganization = user.UserOrganizations.FirstOrDefault(o => o.OrganizationId == profile?.OrganizationId);
-
-                if (firstOrganization != null)
-                {
-                    userModel.SelectedOrganizationId = firstOrganization.OrganizationId;
-                    userModel.SelectedOrganizationName = firstOrganization.Organization.Name;
-                }
-            }
-
-            //TODO: Should always have some value, business rule is, every user has a default profile and an organization.
-            if (defaultOrganization != null)
-            {
-                userModel.SelectedOrganizationId = defaultOrganization.OrganizationId;
-            }
+            userModel.SelectedOrganizationId = orgData.Item1;
+            userModel.SelectedOrganizationName = orgData.Item2;
 
             //Set the default role for the user
-            var defaultRole = user.UserRoles.FirstOrDefault(r =>
-            {
-                return r.Default != null && (r.OrganizationId == userModel.SelectedOrganizationId && r.Default == true);
-            });
+            var roleData = GetDefaultRoleData(user);
+            userModel.SelectedRoleId = roleData.Item1;
+            userModel.SelectedRoleName = roleData.Item2;
 
-            if (defaultRole != null)
-            {
-                userModel.SelectedRoleId = defaultRole.RoleId;
-                userModel.SelectedRoleName = defaultRole.Role.Name;
-            }
-            else
-            {
-                var firstRole = user.UserRoles.FirstOrDefault(r => r.OrganizationId == userModel.SelectedOrganizationId);
-
-                if (firstRole != null)
-                {
-                    userModel.SelectedRoleId = firstRole.RoleId;
-                    userModel.SelectedRoleName = firstRole.Role.Name;
-                }
-            }
-
-            //Set the default position for the user.
-            var defaultPosition = user.UserPositions.FirstOrDefault(p => p.OrganizationId == userModel.SelectedOrganizationId && p.Default == true);
-
-            if (defaultPosition != null)
-            {
-                userModel.SelectedPositionId = defaultPosition.PositionId;
-                userModel.SelectedPositionName = defaultPosition.Position.Name;
-            }
-            else
-            {
-                var firstPosition = user.UserPositions.FirstOrDefault(p => p.OrganizationId == userModel.SelectedOrganizationId);
-
-                if (firstPosition != null)
-                {
-                    userModel.SelectedPositionId = firstPosition.PositionId;
-                    userModel.SelectedPositionName = firstPosition.Position.Name;
-                }
-            }
+            //Set the default position for the user
+            var positionData = GetDefaultPositionData(user);
+            userModel.SelectedPositionId = positionData.Item1;
+            userModel.SelectedPositionName = positionData.Item2;
 
             MemoryCacheUser(userModel);
         }
-
     }
 }
