@@ -33,6 +33,13 @@ namespace Spectrum.Web.Areas.Eoc
                 );
 
             context.MapRoute(
+                name: "EocIncidentTimeline",
+                url: "Eoc/IncidentTimeline/{action}/{id}",
+                defaults: new { action = "Index", controller = "IncidentTimeline", id = UrlParameter.Optional },
+                namespaces: new[] { "Spectrum.Web.Areas.Eoc.Controllers.Web" }
+                );
+
+            context.MapRoute(
                 name: "EocChecklists",
                 url: "Eoc/CheckList/{action}/{id}",
                 defaults: new {action = "Index", controller = "CheckList", id = UrlParameter.Optional},

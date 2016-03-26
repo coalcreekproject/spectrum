@@ -1,0 +1,44 @@
+﻿<div class="row">
+
+    <div class="normalheader transition"
+         small-header>
+
+        <div class="hpanel"
+             content="{{vm.title}}"
+             placement="bottom"
+             title="{{vm.title}}">
+
+            <div class="panel-body">
+                <a href=""
+                   ng-click="small()">
+                    <div class="clip-header">
+                        <i class="fa fa-arrow-up"></i>
+                    </div>
+                </a>
+                <div class="m-t-lg pull-right"
+                     id="hbreadcrumb">
+                    <ol class="breadcrumb hbreadcrumb">
+                        <li>
+                            <a href="@Url.Action("Index", "Portal")">Portal</a>
+                        </li>
+                        <li class="active">
+                            {{vm.title}}
+                        </li>
+                    </ol>
+                </div>
+                <h2 class="font-light m-b-xs">
+                    {{vm.title}}
+                </h2>
+                <small>Manage your incident timeline {{vm.name}}.</small>
+            </div>
+        </div>
+    </div>
+
+    <loading></loading>
+
+    <div class="content"
+         ng-hide="loading">
+
+    </div>
+
+</div>
