@@ -253,6 +253,7 @@
     <Compile Include="Controllers\Api\RolesController.cs" />
     <Compile Include="Controllers\Api\UserPositionsController.cs" />
     <Compile Include="Controllers\Api\UserRolesController.cs" />
+    <Compile Include="Controllers\Api\UsStateDataController.cs" />
     <Compile Include="Controllers\Web\CommunityController.cs" />
     <Compile Include="Controllers\Web\AccountController.cs" />
     <Compile Include="Controllers\Web\BillingController.cs" />
@@ -486,6 +487,9 @@
     <Content Include="Areas\Eoc\Views\PositionLog\Partials\PositionLogManagement.cshtml" />
     <Content Include="Areas\Eoc\Views\PositionLog\Partials\PositionLogAddModal.cshtml" />
     <Content Include="Areas\Eoc\Views\PositionLog\Partials\PositionLogDeleteModal.cshtml" />
+    <EmbeddedResource Include="App_Data\county_list_by_state.json" />
+    <EmbeddedResource Include="App_Data\states_hash.json" />
+    <EmbeddedResource Include="App_Data\states_titlecase.json" />
     <None Include="Content\images\landing\header.jpg.old" />
     <Content Include="Content\images\landing\s1.png" />
     <Content Include="Content\images\landing\s2.png" />
@@ -733,7 +737,6 @@
     <Content Include="Views\User\Partials\UserPositionsModal.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
     <Folder Include="App_Start\Filters\" />
     <Folder Include="Areas\Eoc\Models\" />
     <Folder Include="Areas\Eoc\Views\Shared\" />
