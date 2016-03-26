@@ -184,16 +184,18 @@ function organizationRoleFactory($http, $q) {
         return deferred.promise;
     };
 
-    var _addOrganizationRole = function (newOrganizationRole) {
+    var _addOrganizationRole = function (organizationRole) {
+
+        var newOrganizationRole = {};
 
         var deferred = $q.defer();
 
-        $http.post('/api/Roles', newOrganizationRole)
+        $http.post('/api/Roles', organizationRole)
          .then(function (result) {
              // success
              newOrganizationRole = result.data;
              _organizationRoles.splice(0, 0, newOrganizationRole);
-             deferred.resolve(newlyCreatedOrganizationRole);
+             deferred.resolve(newOrganizationRole);
          },
          function () {
              // error

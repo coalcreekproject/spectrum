@@ -66,11 +66,7 @@ namespace Spectrum.Data.Core.Repositories
 
         public Task<User> FindByNameAsync(string userName)
         {
-            var result = Users.FirstOrDefault(u => u.UserName.Equals(userName));
-            //if (result == null)
-            //    return Task.FromResult(new User());
-
-            return Task.FromResult(result);
+            return Users.FirstOrDefaultAsync(u => u.UserName.Equals(userName));
         }
 
         #endregion
@@ -79,22 +75,12 @@ namespace Spectrum.Data.Core.Repositories
 
         public Task SetPasswordHashAsync(User user, string password)
         {
-            //var result = Users.FirstOrDefault(u => u.Id == user.Id);
-            //if (result == null)
-
             return Task.FromResult(user.PasswordHash = password);
-
-            //user.PasswordHash = password;
-            //Context.Entry(user).State = EntityState.Modified;
-
-            //return UnitOfWork.SaveAsync();
         }
 
         public Task<string> GetPasswordHashAsync(User user)
         {
             return Task.FromResult(Context.Users.Find(user.Id).PasswordHash);
-            //var result = Context.Users.Find(user.Id).PasswordHash;
-            //return Task.FromResult(result);
         }
 
         public Task<bool> HasPasswordAsync(User user)

@@ -74,15 +74,10 @@ namespace Spectrum.Web.Controllers.Api
             role.ObjectState = ObjectState.Added;
             _roleRepository.InsertOrUpdate(role);
 
-            var result = Task.FromResult(_roleRepository.SaveAsync());
+            await _roleRepository.SaveAsync();
 
-            if (result.IsCompleted)
-            {
-                return Request.CreateResponse(HttpStatusCode.Created,
-                    Mapper.Map<RoleViewModel>(role));
-            }
-
-            return Request.CreateResponse(HttpStatusCode.BadRequest);
+            return Request.CreateResponse(HttpStatusCode.Created,
+                Mapper.Map<RoleViewModel>(role));
         }
 
         // PUT: api/Roles/5

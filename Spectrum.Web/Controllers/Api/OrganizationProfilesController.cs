@@ -59,21 +59,15 @@ namespace Spectrum.Web.Controllers.Api
         }
 
         // POST: api/OrganizationProfiles
-        public async Task<HttpResponseMessage> Post([FromBody]OrganizationProfileViewModel newOrganizationProfile)
+        public async Task<HttpResponseMessage> Post([FromBody] OrganizationProfileViewModel newOrganizationProfile)
         {
             var organizationProfile = Mapper.Map<OrganizationProfile>(newOrganizationProfile);
 
             organizationProfile.ObjectState = ObjectState.Added;
             _organizationProfileRepository.InsertOrUpdate(organizationProfile);
-            var result = Task.FromResult(_organizationProfileRepository.SaveAsync());
+            await _organizationProfileRepository.SaveAsync();
 
-            if (result.IsCompleted)
-            {
-                return Request.CreateResponse(HttpStatusCode.Created,
-                    organizationProfile);
-            }
-
-            return Request.CreateResponse(HttpStatusCode.BadRequest);
+            return Request.CreateResponse(HttpStatusCode.Created, organizationProfile);
         }
 
         // PUT: api/OrganizationProfiles/5
