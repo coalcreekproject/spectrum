@@ -39,6 +39,25 @@
     <div class="content"
          ng-hide="loading">
 
-    </div>
+        <timeline>
+            <timeline-event ng-repeat="event in vm.events">
+                <timeline-badge class="{{event.badgeClass}}">
+                    <i class="glyphicon {{event.badgeIconClass}}"></i>
+                </timeline-badge>
+                <timeline-panel class="{{event.badgeClass}}">
+                    <timeline-heading>
+                        <h4>
+                            {{event.title}}
+                        </h4>
+                    </timeline-heading>
+                    <p>
+                        <b>Status:</b> {{event.status}}<br/>
+                        Level: {{event.level}}<br />
+                        Occurred at: {{event.createDate | date:'short'}}
+                    </p>
+                </timeline-panel>
+            </timeline-event>
+        </timeline>
 
+    </div>
 </div>

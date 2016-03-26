@@ -24,6 +24,7 @@
     IncidentMgmtCtrl.$inject = ['$scope', 'incidentData', '$uibModal'];
 
     function IncidentMgmtCtrl($scope, incidentData, $uibModal) {
+
         var INCIDENT_TEMPLATE_PATH = 'Eoc/Templates/IncidentManagement/';
 
         // Setting scope object

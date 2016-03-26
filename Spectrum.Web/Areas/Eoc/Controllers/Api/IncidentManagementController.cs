@@ -100,7 +100,8 @@ namespace Spectrum.Web.Areas.Eoc.Controllers.Api
         public IEnumerable<Incident> GetIncidents()
         {
             var incidents = _dbRepository.GetItems()
-                .Where(inc => inc.OrganizationId == _currentOrganizationId && inc.UserId == _currentUserId);
+                .Where(inc => inc.OrganizationId == _currentOrganizationId && inc.UserId == _currentUserId)
+                .OrderByDescending(inc => inc.CreateDate);
             return incidents;
         }
 
