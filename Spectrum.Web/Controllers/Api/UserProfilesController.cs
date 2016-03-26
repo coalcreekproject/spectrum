@@ -42,21 +42,16 @@ namespace Spectrum.Web.Controllers.Api
         }
 
         // POST: api/UserProfiles
-        public HttpResponseMessage Post([FromBody]UserProfileViewModel newUserProfile)
+        public HttpResponseMessage Post([FromBody] UserProfileViewModel newUserProfile)
         {
             var userProfile = Mapper.Map<UserProfile>(newUserProfile);
 
             userProfile.ObjectState = ObjectState.Added;
             _userProfileRepository.InsertOrUpdate(userProfile);
-            var result = Task.FromResult(_userProfileRepository.SaveAsync());
+            _userProfileRepository.SaveAsync();
 
-            if (result.IsCompleted)
-            {
-                return Request.CreateResponse(HttpStatusCode.Created,
-                    userProfile);
-            }
-
-            return Request.CreateResponse(HttpStatusCode.BadRequest);
+            return Request.CreateResponse(HttpStatusCode.Created,
+                userProfile);
         }
 
         // PUT: api/UserProfiles/5
