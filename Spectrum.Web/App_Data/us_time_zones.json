@@ -1,0 +1,52 @@
+﻿[
+  {
+    "Name": "US Eastern",
+    "Abbreviation": "ET",
+    "UtcOffset": "−05:00"
+  },
+  {
+    "Name": "US Central",
+    "Abbreviation": "CT",
+    "UtcOffset": "−06:00"
+  },
+  {
+    "Name": "US Mountain",
+    "Abbreviation": "MT",
+    "UtcOffset": "−07:00"
+  },
+  {
+    "Name": "US Pacific",
+    "Abbreviation": "PT",
+    "UtcOffset": "−08:00"
+  },
+  {
+    "Name": "US Alaska",
+    "Abbreviation": "AKT",
+    "UtcOffset": "−09:00"
+  },
+  {
+    "Name": "US Hawaii",
+    "Abbreviation": "HAT",
+    "UtcOffset": "−010:00"
+  },
+  {
+    "Name": "Wake Island",
+    "Abbreviation": "WI Unoffical",
+    "UtcOffset": "+12:00"
+  },
+  {
+    "Name": "Puerto Rico",
+    "Abbreviation": "ChT",
+    "UtcOffset": "+10"
+  },
+  {
+    "Name": "American Samoa",
+    "Abbreviation": "ST",
+    "UtcOffset": "−11:00"
+  },
+  {
+    "Name": "Baker Island",
+    "Abbreviation": "BI Unoffical",
+    "UtcOffset": "−06:00"
+  }
+]

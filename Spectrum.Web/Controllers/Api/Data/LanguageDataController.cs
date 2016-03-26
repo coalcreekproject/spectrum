@@ -1,21 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
+﻿using System.IO;
 using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Web;
 using System.Web.Http;
 
-namespace Spectrum.Web.Controllers.Api
+namespace Spectrum.Web.Controllers.Api.Data
 {
-    public class UsStateDataController : ApiController
+    public class LanguageDataController : ApiController
     {
         [HttpGet]
         public HttpResponseMessage Get()
         {
-            var json = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~/App_Data/states_titlecase.json"));
+            var json = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~/App_Data/language_list.json"));
 
             return new HttpResponseMessage()
             {

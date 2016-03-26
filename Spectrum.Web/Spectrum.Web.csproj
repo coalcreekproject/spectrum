@@ -248,12 +248,14 @@
     <Compile Include="Areas\Eoc\Controllers\Web\PositionLogController.cs" />
     <Compile Include="Areas\Eoc\EocAreaRegistration.cs" />
     <Compile Include="Controllers\Api\IdentityFocusController.cs" />
+    <Compile Include="Controllers\Api\Data\LanguageDataController.cs" />
     <Compile Include="Controllers\Api\OrganizationTypeController.cs" />
     <Compile Include="Controllers\Api\PositionsController.cs" />
     <Compile Include="Controllers\Api\RolesController.cs" />
     <Compile Include="Controllers\Api\UserPositionsController.cs" />
     <Compile Include="Controllers\Api\UserRolesController.cs" />
-    <Compile Include="Controllers\Api\UsStateDataController.cs" />
+    <Compile Include="Controllers\Api\Data\UsStateDataController.cs" />
+    <Compile Include="Controllers\Api\Data\UsTimeZoneDataController.cs" />
     <Compile Include="Controllers\Web\CommunityController.cs" />
     <Compile Include="Controllers\Web\AccountController.cs" />
     <Compile Include="Controllers\Web\BillingController.cs" />
@@ -317,6 +319,8 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="App_Data\us_time_zones.json" />
+    <None Include="App_Data\language_list.json" />
     <Content Include="Areas\Eoc\Views\Checklist\Index.cshtml" />
     <Content Include="Areas\Eoc\Views\Checklist\Partials\CheckListIndex.cshtml" />
     <Content Include="Areas\Eoc\Views\web.config" />
@@ -474,6 +478,7 @@
     <Content Include="Scripts\app\core\organizations-index-new.js" />
     <Content Include="Scripts\app\core\register-wizard.js" />
     <Content Include="Scripts\app\data\incidentData.js" />
+    <Content Include="Scripts\app\data\lookup-data-service.js" />
     <Content Include="Scripts\app\data\organization-data.js" />
     <Content Include="Scripts\app\directives\loading-directive.js" />
     <Content Include="Scripts\app\eoc\position-log-ctrl.js" />
@@ -488,8 +493,9 @@
     <Content Include="Areas\Eoc\Views\PositionLog\Partials\PositionLogAddModal.cshtml" />
     <Content Include="Areas\Eoc\Views\PositionLog\Partials\PositionLogDeleteModal.cshtml" />
     <EmbeddedResource Include="App_Data\county_list_by_state.json" />
-    <EmbeddedResource Include="App_Data\states_hash.json" />
-    <EmbeddedResource Include="App_Data\states_titlecase.json" />
+    <EmbeddedResource Include="App_Data\variants\states_hash.json" />
+    <EmbeddedResource Include="App_Data\variants\states_titlecase.json" />
+    <EmbeddedResource Include="App_Data\states_list.json" />
     <None Include="Content\images\landing\header.jpg.old" />
     <Content Include="Content\images\landing\s1.png" />
     <Content Include="Content\images\landing\s2.png" />

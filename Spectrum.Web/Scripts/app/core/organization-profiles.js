@@ -6,7 +6,11 @@ function organizationProfileParameters() {
     this.organizationId = null;
 };
 
-function organizationProfileController($scope, $http, $window, $uibModal, $stateParams, organizationProfileFactory) {
+function organizationProfileController($scope, $http, $window, $uibModal, $stateParams, lookupDataService, organizationProfileFactory) {
+
+    $scope.languages = [];
+    $scope.timeZones = [];
+    $scope.usStates = [];
 
     $scope.organizationId = $stateParams.organizationId;
     organizationProfileParameters.organizationId = $scope.organizationId;
@@ -14,12 +18,32 @@ function organizationProfileController($scope, $http, $window, $uibModal, $state
     $uibModal.scope = $scope;
     $scope.data = organizationProfileFactory;
 
+    lookupDataService.getLanguages()
+        .then(function() {
+            $scope.languages = result;
+        }, function () {
+            // error
+        });
+
+    lookupDataService.getTimeZones()
+        .then(function() {
+            $scope.timeZones = result;
+        }, function () {
+            // error
+        });
+
+    lookupDataService.getStates()
+        .then(function() {
+            $scope.usStates = result;
+        },function() {
+            // error
+        });
+
     organizationProfileFactory.getOrganizationProfiles($scope.organizationId)
-        .then(function (organizationProfiles) {
-            // success
-            //$scope.data = organization;
-        },
-            function () {
+        .then(function() {
+                // success
+            },
+            function() {
                 // error
                 alert("Sorry! There was a problem loading organization profiles.  Please try again later.");
             });
