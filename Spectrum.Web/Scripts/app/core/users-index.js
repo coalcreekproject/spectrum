@@ -3,6 +3,20 @@
     .controller('UserPanelController', userPanelController)
     .config(config);
 
+function userIndexUtility() {
+    this.organizationId = null;
+    this.userId = null;
+    this.users = null;
+
+    this.chunk = function(arr, size) {
+        var newArr = [];
+        for (var i = 0; i < arr.length; i += size) {
+            newArr.push(arr.slice(i, i + size));
+        }
+        return newArr;
+    };
+};
+
 function config($locationProvider, $stateProvider, $urlRouterProvider, $compileProvider) {
 
     // Optimize load start with remove binding information inside the DOM element
@@ -31,14 +45,21 @@ function config($locationProvider, $stateProvider, $urlRouterProvider, $compileP
         });
 }
 
+function chunk(arr, size) {
+    var newArr = [];
+    for (var i = 0; i < arr.length; i += size) {
+        newArr.push(arr.slice(i, i + size));
+    }
+    return newArr;
+}
+
 function userPanelController($scope, $http, $uibModal, $state, userFactory) {
 
     $scope.data = userFactory;
 
     userFactory.getUsers()
-        .then(function(users) {
+        .then(function () {
                 // success
-                //$scope.data = users;
             },
             function() {
                 // error
@@ -107,13 +128,16 @@ function userPanelController($scope, $http, $uibModal, $state, userFactory) {
 
 function AddUserModalController($scope, $uibModalInstance, userFactory) {
 
-    $scope.ok = function(user) {
+    var examinescope = $scope.chunkedUsers;
+
+    $scope.ok = function (user) {
+
+        var inspect = user;
 
         userFactory.addUser(user)
             .then(function() {
                     // success
-                $uibModalInstance.close();
-            },
+                },
                 function() {
                     // error
                     alert("could not save user");
@@ -194,41 +218,63 @@ angular
 
 function userFactory($http, $q) {
 
+    //var _flatUsers = [];
     var _users = [];
+    //var _chunkedUsers = [];
     var _user = {};
 
-    var _getUsers = function () {
+    //var _getUsers = function () {
+
+    //    var deferred = $q.defer();
+
+    //    $http.get('/api/Users')
+    //        .then(function (result) {
+    //            // Successful
+    //            angular.copy(result.data, _flatUsers);
+    //            _users = chunk(_flatUsers, 3);
+    //            deferred.resolve(_users);
+    //        },
+    //            function () {
+    //                // Error
+    //                deferred.reject();
+    //            });
+
+    //    return deferred.promise;
+    //};
+
+
+    var _getUsers = function() {
 
         var deferred = $q.defer();
 
         $http.get('/api/Users')
-          .then(function (result) {
-              // Successful
-              angular.copy(result.data, _users);
-              deferred.resolve(_users);
-          },
-          function () {
-              // Error
-              deferred.reject();
-          });
+            .then(function(result) {
+                    // Successful
+                    angular.copy(result.data, _users);
+                    deferred.resolve(_users);
+                },
+                function() {
+                    // Error
+                    deferred.reject();
+                });
 
         return deferred.promise;
     };
 
-    var _getUser = function (user) {
+    var _getUser = function(user) {
 
         var deferred = $q.defer();
 
         $http.get('/api/Users/' + user.id)
-          .then(function (result) {
-              // Successful
-              angular.copy(result.data, _user);
-              deferred.resolve(_user);
-          },
-          function () {
-              // Error
-              deferred.reject();
-          });
+            .then(function(result) {
+                    // Successful
+                    angular.copy(result.data, _user);
+                    deferred.resolve(_user);
+                },
+                function() {
+                    // Error
+                    deferred.reject();
+                });
 
         return deferred.promise;
     };
@@ -289,8 +335,8 @@ function userFactory($http, $q) {
              var deletedUser = result.data;
 
              for (var i = 0; i < _users.length; i++) {
-                 if (_users[i].id === deletedUser.id) {
-                     _users.splice(i, 1);
+                 if (users[i].id === deletedUser.id) {
+                     users.splice(i, 1);
                      break;
                  }
              }
@@ -307,7 +353,9 @@ function userFactory($http, $q) {
 
     return {
         users: _users,
+        //chunkedUsers: _chunkedUsers,
         getUsers: _getUsers,
+        //getChunkedUsers: _getChunkedUsers,
         getUser: _getUser,
         addUser: _addUser,
         editUser: _editUser,

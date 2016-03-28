@@ -13,7 +13,7 @@
                     <div class="col-md-12">
                         <div>
                             <label>
-                                <input type="checkbox" ng-model="organizationProfile.Default"> Make this the organization default profile
+                                <input type="checkbox" ng-model="organizationProfile.default"> Make this the organization default profile
                             </label>
                         </div>
                     </div>
@@ -58,7 +58,11 @@
                     </div>
                     <div class="col-md-4">
                         <label for="country">Country</label> 
-                        <input type="text" id="country" placeholder="Country" ng-model="organizationProfile.country" class="form-control">
+                        <select class="form-control m-b"
+                                name="country"
+                                id="country"
+                                ng-model="organizationProfile.selectedCountry"
+                                ng-options="option.name for option in countries"></select>
                     </div>
                     <div class="col-md-4">
                         <label for="county">County</label> 
@@ -70,12 +74,22 @@
             <div class="form-group">
                 <div class="row">
                     <div class="col-md-6">
-                        <label for="timeZone">TimeZone</label> 
-                        <input type="text" id="timeZone" placeholder="Time Zone" ng-model="organizationProfile.timeZone" class="form-control">
+                        <label for="timeZone">TimeZone</label>
+                        <select class="form-control m-b"
+                                name="timeZone"
+                                id="timeZone"
+                                ng-model="organizationProfile.selectedTimeZone"
+                                ng-options="option.name for option in timeZones">
+                        </select>
                     </div>
                     <div class="col-md-6">
                         <label for="language">Language</label>
-                        <input type="text" id="language" placeholder="Language" ng-model="organizationProfile.language" class="form-control">
+                        <select class="form-control m-b"
+                                name="language"
+                                id="language"
+                                ng-model="organizationProfile.selectedLang"
+                                ng-options="option.name for option in languages">
+                        </select>
                     </div>
                 </div>
             </div>
