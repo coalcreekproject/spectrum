@@ -1,24 +1,54 @@
 ﻿angular
     .module('app')
-    .controller('UserProfileController', userProfileController)
-    .service('UserProfileParameters', userProfileParameters);
+    .controller('userProfileController', userProfileController);
 
 function userProfileParameters() {
     this.userId = null;
 };
 
-function userProfileController($scope, $http, $window, $uibModal, $stateParams, userProfileFactory) {
+function userProfileController($scope, $http, $window, $uibModal, $stateParams, lookupDataService, userProfileFactory) {
+
+    var languages = [];
+    var timeZones = [];
+    var usStates = [];
+    var countries = [];
 
     $scope.userId = $stateParams.userId;
-    userProfileParameters.userId = $scope.userId;
-
-    $uibModal.scope = $scope;
+    userProfileParameters.userId = $stateParams.userId;
     $scope.data = userProfileFactory;
+
+    lookupDataService.getLanguages()
+        .then(function (result) {
+            languages = result;
+        }, function () {
+            // error
+        });
+
+    lookupDataService.getTimeZones()
+        .then(function (result) {
+            timeZones = result;
+        }, function () {
+            // error
+        });
+
+    lookupDataService.getStates()
+        .then(function (result) {
+            usStates = result;
+        }, function () {
+            // error
+        });
+
+    lookupDataService.getCountries()
+        .then(function (result) {
+            countries = result;
+        }, function () {
+            // error
+        });
 
     userProfileFactory.getUserProfiles($scope.userId)
         .then(function(userProfiles) {
-            // success
-        },
+                // success
+            },
             function() {
                 // error
                 alert("could not load user profiles");
@@ -27,7 +57,21 @@ function userProfileController($scope, $http, $window, $uibModal, $stateParams, 
     $scope.add = function () {
         var modalInstance = $uibModal.open({
             templateUrl: '/Templates/User/AddUserProfileModal',
-            controller: AddUserProfileModalController
+            controller: AddUserProfileModalController,
+            resolve: {
+                languages: function() {
+                    return angular.copy(languages);
+                },
+                timeZones: function() {
+                    return angular.copy(timeZones);
+                },
+                usStates: function() {
+                    return angular.copy(usStates);
+                },
+                countries: function () {
+                    return angular.copy(countries);
+                }
+            }
         });
     };
 
@@ -56,19 +100,29 @@ function userProfileController($scope, $http, $window, $uibModal, $stateParams, 
     };
 };
 
-function AddUserProfileModalController($scope, $uibModalInstance, userProfileFactory) {
+function AddUserProfileModalController($scope, $uibModalInstance, userProfileFactory, languages, timeZones, usStates, countries) {
 
-    $scope.ok = function (userProfile) {
+    $scope.languages = languages;
+    $scope.timeZones = timeZones;
+    $scope.usStates = usStates;
+    $scope.countries = countries;
 
-        userProfile.UserId = userProfileParameters.userId;
+    $scope.userProfile = {};
+
+    $scope.userProfile.selectedLang = $scope.languages[0];
+    $scope.userProfile.selectedTimeZone = $scope.timeZones[0];
+    $scope.userProfile.selectedState = $scope.usStates[0];
+    $scope.userProfile.selectedCountry = $scope.countries[0];
+
+    $scope.ok = function(userProfile) {
+
+        userProfile.userId = userProfileParameters.userId;
 
         userProfileFactory.addUserProfile(userProfile)
-            .then(function () {
-                // success
-                // TODO: Saved message
-                $uibModalInstance.close();
-            },
-                function () {
+            .then(function() {
+                    // success
+                },
+                function() {
                     // error
                     alert("could not save the profile.");
                 });
@@ -76,22 +130,29 @@ function AddUserProfileModalController($scope, $uibModalInstance, userProfileFac
         $uibModalInstance.close();
     };
 
-    $scope.cancel = function () {
+    $scope.cancel = function() {
         $uibModalInstance.dismiss('cancel');
     };
 };
 
 function EditUserProfileModalController($scope, $uibModalInstance, userProfileFactory, userProfile) {
 
-    $scope.userProfile = userProfile;
-
-    $scope.ok = function () {
-
-        userProfileFactory.editUserProfile(userProfile)
-            .then(function () {
-                // success
+    userProfileFactory.getUserProfile(userProfile)
+        .then(function(result) {
+                $scope.userProfile = result;
             },
-                function () {
+            function() {
+                //Couldn't find it, stick the one passed in out there
+                $scope.userProfile = userProfile;
+            });
+
+    $scope.ok = function() {
+
+        userProfileFactory.editUserProfile($scope.userProfile)
+            .then(function() {
+                    // success
+                },
+                function() {
                     // error
                     alert("could not edit or update profile");
                 });
@@ -99,14 +160,21 @@ function EditUserProfileModalController($scope, $uibModalInstance, userProfileFa
         $uibModalInstance.close();
     };
 
-    $scope.cancel = function () {
+    $scope.cancel = function() {
         $uibModalInstance.dismiss('cancel');
     };
 };
 
 function DeleteUserProfileModalController($scope, $uibModalInstance, userProfileFactory, userProfile) {
 
-    $scope.userProfile = userProfile;
+    userProfileFactory.getUserProfile(userProfile)
+        .then(function(result) {
+                $scope.userProfile = result;
+            },
+            function() {
+                //Couldn't find it, stick the one passed in out there
+                $scope.userProfile = userProfile;
+            });
 
     $scope.ok = function () {
 
@@ -136,7 +204,26 @@ angular
 
 function userProfileFactory($http, $q) {
 
+    var _userProfile = {};
     var _userProfiles = [];
+
+    var _getUserProfile = function (userProfile) {
+
+        var deferred = $q.defer();
+
+        $http.get('/api/UserProfiles/?profileId=' + userProfile.id + '&' + 'userId=' + userProfile.userId)
+          .then(function (result) {
+              // Successful
+              angular.copy(result.data, _userProfile);
+              deferred.resolve(_userProfile);
+          },
+          function () {
+              // Error
+              deferred.reject();
+          });
+
+        return deferred.promise;
+    };
 
     var _getUserProfiles = function (id) {
 
@@ -156,16 +243,20 @@ function userProfileFactory($http, $q) {
         return deferred.promise;
     };
 
-    var _addUserProfile = function (newUserProfile) {
+    var _addUserProfile = function (userProfile) {
+
+        userProfile.language = userProfile.selectedLang.name;
+        userProfile.country = userProfile.selectedCountry.name;
+        userProfile.timeZone = userProfile.selectedTimeZone.name;
 
         var deferred = $q.defer();
 
-        $http.post('/api/UserProfiles', newUserProfile)
+        $http.post('/api/UserProfiles', userProfile)
          .then(function (result) {
              // success
-             var newlyCreatedUserProfile = result.data;
-             _userProfiles.splice(0, 0, newlyCreatedUserProfile);
-             deferred.resolve(newlyCreatedUserProfile);
+             var newUserProfile = result.data;
+             _userProfiles.splice(0, 0, newUserProfile);
+             deferred.resolve(newUserProfile);
          },
          function () {
              // error
@@ -179,33 +270,14 @@ function userProfileFactory($http, $q) {
 
         var deferred = $q.defer();
 
-        $http.put('/api/UserProfiles/' + userProfile.Id, userProfile)
+        $http.put('/api/UserProfiles/' + userProfile.id, userProfile)
          .then(function (result) {
              // success
              var editedUserProfile = result.data;
 
              for (var i = 0; i < _userProfiles.length; i++) {
                  if (_userProfiles[i].id === editedUserProfile.id) {
-                     _userProfiles[i].userId = editedUserProfile.userId;
-                     _userProfiles[i].organizationId = editedUserProfile.organizationId;
-
-                     _userProfiles[i].default = editedUserProfile.default;
-                     _userProfiles[i].profileName = editedUserProfile.profileName;
-                     _userProfiles[i].title = editedUserProfile.title;
-                     _userProfiles[i].firstName = editedUserProfile.firstName;
-                     _userProfiles[i].fiddleName = editedUserProfile.fiddleName;
-                     _userProfiles[i].lastName = editedUserProfile.lastName;
-                     _userProfiles[i].nickName = editedUserProfile.nickName;
-
-                     _userProfiles[i].secondaryEmail = editedUserProfilesecondaryEmail;
-                     _userProfiles[i].secondaryPhoneNumber = editedUserProfile.secondaryPhoneNumber;
-
-                     _userProfiles[i].timeZone = editedUserProfile.timeZone;
-                     _userProfiles[i].dstAdjust = editedUserProfile.dstAdjust;
-                     _userProfiles[i].language = editedUserProfile.language;
-
-                     _userProfiles[i].photo = editedUserProfile.photo;
-                     _userProfiles[i].position = editedUserProfile.position;
+                     _userProfiles[i] = editedUserProfile;
                      break;
                  }
              }
@@ -247,7 +319,9 @@ function userProfileFactory($http, $q) {
     };
 
     return {
+        userProfile: _userProfile,
         userProfiles: _userProfiles,
+        getUserProfile: _getUserProfile,
         getUserProfiles: _getUserProfiles,
         addUserProfile: _addUserProfile,
         editUserProfile: _editUserProfile,
