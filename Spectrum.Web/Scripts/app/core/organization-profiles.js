@@ -84,6 +84,18 @@ function organizationProfileController($scope, $http, $window, $uibModal, $state
             resolve: {
                 organizationProfile: function () {
                     return angular.copy(organizationProfile);
+                },
+                languages: function () {
+                    return angular.copy(languages);
+                },
+                timeZones: function () {
+                    return angular.copy(timeZones);
+                },
+                usStates: function () {
+                    return angular.copy(usStates);
+                },
+                countries: function () {
+                    return angular.copy(countries);
                 }
             }
         });
@@ -96,6 +108,18 @@ function organizationProfileController($scope, $http, $window, $uibModal, $state
             resolve: {
                 organizationProfile: function () {
                     return angular.copy(organizationProfile);
+                },
+                languages: function () {
+                    return angular.copy(languages);
+                },
+                timeZones: function () {
+                    return angular.copy(timeZones);
+                },
+                usStates: function () {
+                    return angular.copy(usStates);
+                },
+                countries: function () {
+                    return angular.copy(countries);
                 }
             }
         });
@@ -138,15 +162,24 @@ function AddOrganizationProfileModalController($scope, $uibModalInstance, organi
     };
 };
 
-function EditOrganizationProfileModalController($scope, $uibModalInstance, organizationProfileFactory, organizationProfile) {
+function EditOrganizationProfileModalController($scope, $uibModalInstance, organizationProfileFactory, organizationProfile, languages, timeZones, usStates, countries) {
+
+    $scope.languages = languages;
+    $scope.timeZones = timeZones;
+    $scope.usStates = usStates;
+    $scope.countries = countries;
 
     organizationProfileFactory.getOrganizationProfile(organizationProfile)
         .then(function(result) {
                 $scope.organizationProfile = result;
+                $scope.organizationProfile.selectedLang = getSelectedLanguage($scope.organizationProfile, $scope.languages);
+                $scope.organizationProfile.selectedTimeZone = getSelectedTimeZone($scope.organizationProfile, $scope.timeZones);
             },
             function() {
                 //Couldn't find it, stick the one passed in out there
                 $scope.organizationProfile = organizationProfile;
+                $scope.organizationProfile.selectedLang = getSelectedLanguage($scope.organizationProfile, $scope.languages);
+                $scope.organizationProfile.selectedTimeZone = getSelectedTimeZone($scope.organizationProfile, $scope.timeZones);
             });
 
     $scope.ok = function() {
@@ -168,20 +201,29 @@ function EditOrganizationProfileModalController($scope, $uibModalInstance, organ
     };
 };
 
-function DeleteOrganizationProfileModalController($scope, $uibModalInstance, organizationProfileFactory, organizationProfile) {
+function DeleteOrganizationProfileModalController($scope, $uibModalInstance, organizationProfileFactory, organizationProfile, languages, timeZones, usStates, countries) {
+
+    $scope.languages = languages;
+    $scope.timeZones = timeZones;
+    $scope.usStates = usStates;
+    $scope.countries = countries;
 
     organizationProfileFactory.getOrganizationProfile(organizationProfile)
         .then(function(result) {
                 $scope.organizationProfile = result;
+                $scope.organizationProfile.selectedLang = getSelectedLanguage($scope.organizationProfile, $scope.languages);
+                $scope.organizationProfile.selectedTimeZone = getSelectedTimeZone($scope.organizationProfile, $scope.timeZones);
             },
             function() {
                 //Couldn't find it, stick the one passed in out there
                 $scope.organizationProfile = organizationProfile;
+                $scope.organizationProfile.selectedLang = getSelectedLanguage($scope.organizationProfile, $scope.languages);
+                $scope.organizationProfile.selectedTimeZone = getSelectedTimeZone($scope.organizationProfile, $scope.timeZones);
             });
 
     $scope.ok = function() {
 
-        organizationProfileFactory.deleteOrganizationProfiles(organizationProfile)
+        organizationProfileFactory.deleteOrganizationProfiles($scope.organizationProfile)
             .then(function() {
                     // success
                 },
@@ -198,6 +240,35 @@ function DeleteOrganizationProfileModalController($scope, $uibModalInstance, org
         $uibModalInstance.dismiss('cancel');
     };
 };
+
+function getSelectedLanguage(organizationProfile, languages) {
+
+    var language = {};
+
+    for (var i = 0; i < languages.length; i++) {
+        if (languages[i].name === organizationProfile.language) {
+            language = languages[i];
+            break;
+        }
+    }
+
+    return language;
+};
+
+function getSelectedTimeZone(organizationProfile, timeZones) {
+
+    var timeZone = {};
+
+    for (var i = 0; i < timeZones.length; i++) {
+        if (timeZones[i].name === organizationProfile.timeZone) {
+            timeZone = timeZones[i];
+            break;
+        }
+    }
+
+    return timeZone;
+}
+
 
 /**
  * Pass function into module
@@ -271,6 +342,10 @@ function organizationProfileFactory($http, $q) {
     };
 
     var _editOrganizationProfile = function (organizationProfile) {
+
+        organizationProfile.language = organizationProfile.selectedLang.name;
+        //organizationProfile.country = organizationProfile.selectedCountry.name;
+        organizationProfile.timeZone = organizationProfile.selectedTimeZone.name;
 
         var deferred = $q.defer();
 

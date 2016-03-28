@@ -55,24 +55,29 @@
     </div>
 
     <div class="content">
-            <div animate-panel child="col-lg-4" effect="fadeInRight">
-                <div class="row" ng-repeat="rows in chunkedUsers" >
-                    <div class="col-lg-4" ng-repeat="u in rows track by u.id" >
-                        <div class="hpanel hblue contact-panel">
+        <div ng-repeat="u in data.users track by u.id">
+            <div animate-panel child="row" effect="fadeInRight">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="hpanel">
                             <div class="panel-heading hbuilt">
                                 <div panel-tools></div>
                                 {{ u.userName }}
                             </div>
                             <div class="panel-body">
                                 <div class="row">
-                                    <div class="col-md-4">
+                                    <div class="col-sm-3">
                                         <label class="control-label">User Name: </label> {{ u.userName }}
                                     </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-4">
+                                    <div class="col-sm-3">
                                         <label class="control-label">Email: </label> {{ u.email }}
                                     </div>
+                                    @*<div class="col-sm-3">
+                                        <label class="control-label">Password: </label> {{ u.password }}
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <label class="control-label">Confirm Password: </label> {{ u.confirmPassword }}
+                                    </div>*@
                                 </div>
                             </div>
                             <div class="panel-footer">
@@ -89,10 +94,49 @@
                         </div>
                     </div>
                 </div>
-
-
-
             </div>
+        </div>
+    </div>
+
+    @*<div class="content">
+        <div animate-panel child="col-lg-4" effect="fadeInRight">
+            <div class="row" ng-repeat="rows in users" >
+                <div class="col-lg-4" ng-repeat="u in rows track by u.id" >
+                    <div class="hpanel hblue contact-panel">
+                        <div class="panel-heading hbuilt">
+                            <div panel-tools></div>
+                            {{ u.userName }}
+                        </div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <label class="control-label">User Name: </label> {{ u.userName }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <label class="control-label">Email: </label> {{ u.email }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel-footer">
+                            <div class="btn-toolbar">
+                                <div class="pull-right">
+                                    <button class="btn btn-sm btn-default" ng-click="edit({{ u }})">Edit</button>
+                                    <button class="btn btn-sm btn-default" ng-click="userprofiles({{ u }})">Profiles</button>
+                                    <button class="btn btn-sm btn-default" ng-click="roles({{ u }})">Roles</button>
+                                    <button class="btn btn-sm btn-default" ng-click="positions({{ u }})">Positions</button>
+                                    <button class="btn btn-sm btn-default" ng-click="delete({{ u }})">Delete</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>*@
+
+
+
+</div>
         </div>
     </div>
 

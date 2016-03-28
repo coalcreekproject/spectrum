@@ -74,11 +74,21 @@
                 <div class="row">
                     <div class="col-md-6">
                         <label for="timeZone">TimeZone</label>
-                        <input type="text" id="timeZone" placeholder="TimeZone" ng-model="userProfile.timeZone" class="form-control" disabled>
+                        <select class="form-control m-b"
+                                name="timeZone"
+                                id="timeZone"
+                                ng-model="userProfile.selectedTimeZone"
+                                ng-options="option.name for option in timeZones"
+                                disabled></select>
                     </div>
                     <div class="col-md-6">
                         <label for="language">Language</label>
-                        <input type="text" id="language" placeholder="Language" ng-model="userProfile.language" class="form-control" disabled>
+                        <select class="form-control m-b"
+                                name="language"
+                                id="language"
+                                ng-model="userProfile.selectedLang"
+                                ng-options="option.name for option in languages"
+                                disabled></select>
                     </div>
                 </div>
             </div>

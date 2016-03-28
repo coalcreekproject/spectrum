@@ -1,6 +1,6 @@
 ﻿angular
     .module('app')
-    .controller('userProfileController', userProfileController);
+    .controller('UserProfileController', userProfileController);
 
 function userProfileParameters() {
     this.userId = null;
@@ -82,6 +82,18 @@ function userProfileController($scope, $http, $window, $uibModal, $stateParams, 
             resolve: {
                 userProfile: function () {
                     return angular.copy(userProfile);
+                },
+                languages: function () {
+                    return angular.copy(languages);
+                },
+                timeZones: function () {
+                    return angular.copy(timeZones);
+                },
+                usStates: function () {
+                    return angular.copy(usStates);
+                },
+                countries: function () {
+                    return angular.copy(countries);
                 }
             }
         });
@@ -94,6 +106,18 @@ function userProfileController($scope, $http, $window, $uibModal, $stateParams, 
             resolve: {
                 userProfile: function () {
                     return angular.copy(userProfile);
+                },
+                languages: function () {
+                    return angular.copy(languages);
+                },
+                timeZones: function () {
+                    return angular.copy(timeZones);
+                },
+                usStates: function () {
+                    return angular.copy(usStates);
+                },
+                countries: function () {
+                    return angular.copy(countries);
                 }
             }
         });
@@ -108,7 +132,6 @@ function AddUserProfileModalController($scope, $uibModalInstance, userProfileFac
     $scope.countries = countries;
 
     $scope.userProfile = {};
-
     $scope.userProfile.selectedLang = $scope.languages[0];
     $scope.userProfile.selectedTimeZone = $scope.timeZones[0];
     $scope.userProfile.selectedState = $scope.usStates[0];
@@ -135,15 +158,24 @@ function AddUserProfileModalController($scope, $uibModalInstance, userProfileFac
     };
 };
 
-function EditUserProfileModalController($scope, $uibModalInstance, userProfileFactory, userProfile) {
+function EditUserProfileModalController($scope, $uibModalInstance, userProfileFactory, userProfile, languages, timeZones, usStates, countries) {
+
+    $scope.languages = languages;
+    $scope.timeZones = timeZones;
+    $scope.usStates = usStates;
+    $scope.countries = countries;
 
     userProfileFactory.getUserProfile(userProfile)
         .then(function(result) {
                 $scope.userProfile = result;
+                $scope.userProfile.selectedLang = getSelectedLanguage($scope.userProfile, $scope.languages);
+                $scope.userProfile.selectedTimeZone = getSelectedTimeZone($scope.userProfile, $scope.timeZones);
             },
             function() {
                 //Couldn't find it, stick the one passed in out there
-                $scope.userProfile = userProfile;
+                $scope.userProfile = organizationProfile;
+                $scope.userProfile.selectedLang = getSelectedLanguage($scope.userProfile, $scope.languages);
+                $scope.userProfile.selectedTimeZone = getSelectedTimeZone($scope.userProfile, $scope.timeZones);
             });
 
     $scope.ok = function() {
@@ -165,15 +197,24 @@ function EditUserProfileModalController($scope, $uibModalInstance, userProfileFa
     };
 };
 
-function DeleteUserProfileModalController($scope, $uibModalInstance, userProfileFactory, userProfile) {
+function DeleteUserProfileModalController($scope, $uibModalInstance, userProfileFactory, userProfile, languages, timeZones, usStates, countries) {
+
+    $scope.languages = languages;
+    $scope.timeZones = timeZones;
+    $scope.usStates = usStates;
+    $scope.countries = countries;
 
     userProfileFactory.getUserProfile(userProfile)
-        .then(function(result) {
-                $scope.userProfile = result;
-            },
-            function() {
+        .then(function (result) {
+            $scope.userProfile = result;
+            $scope.userProfile.selectedLang = getSelectedLanguage($scope.userProfile, $scope.languages);
+            $scope.userProfile.selectedTimeZone = getSelectedTimeZone($scope.userProfile, $scope.timeZones);
+        },
+            function () {
                 //Couldn't find it, stick the one passed in out there
-                $scope.userProfile = userProfile;
+                $scope.userProfile = organizationProfile;
+                $scope.userProfile.selectedLang = getSelectedLanguage($scope.userProfile, $scope.languages);
+                $scope.userProfile.selectedTimeZone = getSelectedTimeZone($scope.userProfile, $scope.timeZones);
             });
 
     $scope.ok = function () {
@@ -194,6 +235,34 @@ function DeleteUserProfileModalController($scope, $uibModalInstance, userProfile
         $uibModalInstance.dismiss('cancel');
     };
 };
+
+function getSelectedLanguage(userProfile, languages) {
+
+    var language = {};
+
+    for (var i=0; i < languages.length; i++) {
+        if (languages[i].name === userProfile.language) {
+            language = languages[i];
+            break;
+        }
+    }
+
+    return language;
+};
+
+function getSelectedTimeZone(userProfile, timeZones) {
+
+    var timeZone = {};
+
+    for (var i=0; i < timeZones.length; i++) {
+        if (timeZones[i].name === userProfile.timeZone) {
+            timeZone = timeZones[i];
+            break;
+        }
+    }
+
+    return timeZone;
+}
 
 /**
  * Pass function into module
@@ -267,6 +336,10 @@ function userProfileFactory($http, $q) {
     };
 
     var _editUserProfile = function (userProfile) {
+
+        userProfile.language = userProfile.selectedLang.name;
+        //userProfile.country = userProfile.selectedCountry.name;
+        userProfile.timeZone = userProfile.selectedTimeZone.name;
 
         var deferred = $q.defer();
 

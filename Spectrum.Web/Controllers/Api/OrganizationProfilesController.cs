@@ -81,9 +81,9 @@ namespace Spectrum.Web.Controllers.Api
         }
 
         // PUT: api/OrganizationProfiles/5
-        public async Task<HttpResponseMessage> Put(int id, [FromBody]OrganizationProfileViewModel editOrganizationProfile)
+        public async Task<HttpResponseMessage> Put([FromBody]OrganizationProfileViewModel editOrganizationProfile)
         {
-            var organizationProfile = _organizationProfileRepository.FindAsync(editOrganizationProfile.Id).Result;
+            var organizationProfile = _organizationProfileRepository.Find(editOrganizationProfile.Id);
 
             if (organizationProfile == null)
             {
@@ -92,7 +92,6 @@ namespace Spectrum.Web.Controllers.Api
 
             Mapper.Map(editOrganizationProfile, organizationProfile);
 
-            //TODO: Examine this graph more closely, namely drill down into the xtension method that chanages the EntityState based on the ObjectState value.
             organizationProfile.ObjectState = ObjectState.Modified;
             
             _organizationProfileRepository.InsertOrUpdate(organizationProfile);
@@ -104,7 +103,7 @@ namespace Spectrum.Web.Controllers.Api
         // DELETE: api/OrganizationProfiles/5
         public async Task<HttpResponseMessage> Delete(int id)
         {
-            var organizationProfile = _organizationProfileRepository.FindAsync(id).Result;
+            var organizationProfile = _organizationProfileRepository.Find(id);
 
             if (organizationProfile == null)
             {
