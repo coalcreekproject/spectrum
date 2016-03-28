@@ -247,6 +247,7 @@
     <Compile Include="Areas\Eoc\Controllers\Web\IncidentManagementController.cs" />
     <Compile Include="Areas\Eoc\Controllers\Web\PositionLogController.cs" />
     <Compile Include="Areas\Eoc\EocAreaRegistration.cs" />
+    <Compile Include="Controllers\Api\Data\CountryDataController.cs" />
     <Compile Include="Controllers\Api\IdentityFocusController.cs" />
     <Compile Include="Controllers\Api\Data\LanguageDataController.cs" />
     <Compile Include="Controllers\Api\OrganizationTypeController.cs" />
@@ -320,7 +321,8 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="App_Data\us_time_zones.json" />
-    <None Include="App_Data\language_list.json" />
+    <EmbeddedResource Include="App_Data\countries.json" />
+    <EmbeddedResource Include="App_Data\language_list.json" />
     <Content Include="Areas\Eoc\Views\Checklist\Index.cshtml" />
     <Content Include="Areas\Eoc\Views\Checklist\Partials\CheckListIndex.cshtml" />
     <Content Include="Areas\Eoc\Views\web.config" />
@@ -492,7 +494,7 @@
     <Content Include="Areas\Eoc\Views\PositionLog\Partials\PositionLogManagement.cshtml" />
     <Content Include="Areas\Eoc\Views\PositionLog\Partials\PositionLogAddModal.cshtml" />
     <Content Include="Areas\Eoc\Views\PositionLog\Partials\PositionLogDeleteModal.cshtml" />
-    <EmbeddedResource Include="App_Data\county_list_by_state.json" />
+    <EmbeddedResource Include="App_Data\county_list_by_state_hash.json" />
     <EmbeddedResource Include="App_Data\variants\states_hash.json" />
     <EmbeddedResource Include="App_Data\variants\states_titlecase.json" />
     <EmbeddedResource Include="App_Data\states_list.json" />
@@ -638,7 +640,7 @@
     <Content Include="Scripts\app\core\portal-identityfocus.js" />
     <Content Include="Scripts\app\core\user-positions.js" />
     <Content Include="Scripts\app\core\user-roles.js" />
-    <Content Include="Scripts\app\core\userprofiles-index.js" />
+    <Content Include="Scripts\app\core\user-profiles.js" />
     <Content Include="Scripts\app\core\users-index.js" />
     <Content Include="Scripts\app\core\messages-index.js" />
     <Content Include="Scripts\app\core\community-index.js" />

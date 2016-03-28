@@ -41,21 +41,31 @@ namespace Spectrum.Web.Controllers.Api
             return Request.CreateResponse(HttpStatusCode.OK, userProfileViewModels);
         }
 
+        [HttpGet]
+        // GET: api/Roles/5
+        public HttpResponseMessage Get(int profileId, int userId)
+        {
+            var userProfile = _userProfileRepository.Find(profileId);
+
+            return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<UserProfileViewModel>(userProfile));
+        }
+
         // POST: api/UserProfiles
-        public HttpResponseMessage Post([FromBody] UserProfileViewModel newUserProfile)
+        public async Task<HttpResponseMessage> Post([FromBody] UserProfileViewModel newUserProfile)
         {
             var userProfile = Mapper.Map<UserProfile>(newUserProfile);
 
             userProfile.ObjectState = ObjectState.Added;
             _userProfileRepository.InsertOrUpdate(userProfile);
-            _userProfileRepository.SaveAsync();
+            await _userProfileRepository.SaveAsync();
 
             return Request.CreateResponse(HttpStatusCode.Created,
-                userProfile);
+                Mapper.Map<UserProfileViewModel>(userProfile));
         }
-
+        
         // PUT: api/UserProfiles/5
-        public HttpResponseMessage Put([FromBody]UserProfileViewModel editedProfile)
+        [HttpPut]
+        public async Task<HttpResponseMessage> Put([FromBody]UserProfileViewModel editedProfile)
         {
             var userProfile = _userProfileRepository.FindAsync(editedProfile.Id).Result;
 
@@ -68,13 +78,13 @@ namespace Spectrum.Web.Controllers.Api
 
             userProfile.ObjectState = ObjectState.Modified;
             _userProfileRepository.InsertOrUpdate(userProfile);
-            _userProfileRepository.SaveAsync();
+            await _userProfileRepository.SaveAsync();
 
-            return Request.CreateResponse(HttpStatusCode.OK, userProfile);
+            return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<UserProfileViewModel>(userProfile));
         }
 
         // DELETE: api/UserProfiles/5
-        public HttpResponseMessage Delete(int id)
+        public async Task<HttpResponseMessage> Delete(int id)
         {
             var userProfile = _userProfileRepository.Find(id);
 
@@ -85,9 +95,9 @@ namespace Spectrum.Web.Controllers.Api
 
             userProfile.ObjectState = ObjectState.Deleted;
             _userProfileRepository.Delete(userProfile.Id);
-            _userProfileRepository.Save();
+            await _userProfileRepository.SaveAsync();
 
-            return Request.CreateResponse(HttpStatusCode.OK, userProfile);
+            return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<UserProfileViewModel>(userProfile));
         }
     }
 }

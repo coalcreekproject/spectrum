@@ -35,10 +35,23 @@ function userPanelController($scope, $http, $uibModal, $state, userFactory) {
 
     $scope.data = userFactory;
 
+    function chunk(arr, size) {
+        var newArr = [];
+        for (var i = 0; i < arr.length; i += size) {
+            newArr.push(arr.slice(i, i + size));
+        }
+        return newArr;
+    }
+
+    $scope.$watch($scope.data, function (val) {
+        $scope.data = [].concat.apply([], val);
+    }, true); // deep watch
+
     userFactory.getUsers()
         .then(function(users) {
-                // success
-                //$scope.data = users;
+            // success
+            $scope.chunkedUsers = chunk(users, 3);
+                var inpsect = 0;
             },
             function() {
                 // error
@@ -107,13 +120,14 @@ function userPanelController($scope, $http, $uibModal, $state, userFactory) {
 
 function AddUserModalController($scope, $uibModalInstance, userFactory) {
 
-    $scope.ok = function(user) {
+    $scope.ok = function (user) {
+
+        var inspect = user;
 
         userFactory.addUser(user)
             .then(function() {
                     // success
-                $uibModalInstance.close();
-            },
+                },
                 function() {
                     // error
                     alert("could not save user");

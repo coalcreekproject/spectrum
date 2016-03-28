@@ -9,6 +9,7 @@
         var _languages = [];
         var _timeZones = [];
         var _states = [];
+        var _countries = [];
 
         var _getLanguages = function() {
 
@@ -24,6 +25,8 @@
                         // Error
                         deferred.reject();
                     });
+
+            return deferred.promise;
         }
 
         var _getTimeZones = function() {
@@ -40,6 +43,8 @@
                         // Error
                         deferred.reject();
                     });
+
+            return deferred.promise;
         }
 
         var _getStates = function() {
@@ -56,12 +61,33 @@
                         // Error
                         deferred.reject();
                     });
+
+            return deferred.promise;
+        }
+
+        var _getCountries = function () {
+
+            var deferred = $q.defer();
+
+            $http.get('/api/CountryData')
+                .then(function (result) {
+                    // Successful
+                    angular.copy(result.data, _countries);
+                    deferred.resolve(_countries);
+                },
+                    function () {
+                        // Error
+                        deferred.reject();
+                    });
+
+            return deferred.promise;
         }
 
         return {
             getLanguages: _getLanguages,
             getTimeZones: _getTimeZones,
-            getStates: _getStates
+            getStates: _getStates,
+            getCountries: _getCountries
         };
     }
 })();

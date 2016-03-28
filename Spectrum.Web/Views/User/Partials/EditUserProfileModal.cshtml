@@ -12,7 +12,7 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div>
-                            <label> <input type="checkbox" name="checkboxDefault" ng-model="userProfile.Default"> Make this the default profile </label>
+                            <label> <input type="checkbox" name="checkboxDefault" ng-model="userProfile.default"> Make this the default profile </label>
                         </div>
                     </div>
                 </div>
@@ -54,10 +54,6 @@
                         <label for="title">Title</label>
                         <input type="text" Id="title" placeholder="Title" ng-model="userProfile.title" class="form-control">
                     </div>
-                    <div class="col-md-4">
-                        <label for="title">Position</label>
-                        <input type="text" Id="position" placeholder="Position" ng-model="userProfile.position" class="form-control">
-                    </div>
                 </div>
             </div>
 
@@ -69,7 +65,7 @@
                     </div>
                     <div class="col-md-4">
                         <label for="secondaryMail">Secondary Phone</label>
-                        <input type="text" id="secondaryPhone" placeholder="Secondary Phone" ng-model="userProfile.secondaryPhone" class="form-control">
+                        <input type="text" id="secondaryPhone" placeholder="Secondary Phone" ng-model="userProfile.secondaryPhoneNumber" class="form-control">
                     </div>
                 </div>
             </div>

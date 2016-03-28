@@ -8,9 +8,10 @@ function organizationProfileParameters() {
 
 function organizationProfileController($scope, $http, $window, $uibModal, $stateParams, lookupDataService, organizationProfileFactory) {
 
-    $scope.languages = [];
-    $scope.timeZones = [];
-    $scope.usStates = [];
+    var languages = [];
+    var timeZones = [];
+    var usStates = [];
+    var countries = [];
 
     $scope.organizationId = $stateParams.organizationId;
     organizationProfileParameters.organizationId = $scope.organizationId;
@@ -19,23 +20,30 @@ function organizationProfileController($scope, $http, $window, $uibModal, $state
     $scope.data = organizationProfileFactory;
 
     lookupDataService.getLanguages()
-        .then(function() {
-            $scope.languages = result;
+        .then(function(result) {
+            languages = result;
         }, function () {
             // error
         });
 
     lookupDataService.getTimeZones()
-        .then(function() {
-            $scope.timeZones = result;
+        .then(function(result) {
+            timeZones = result;
         }, function () {
             // error
         });
 
     lookupDataService.getStates()
-        .then(function() {
-            $scope.usStates = result;
+        .then(function (result) {
+            usStates = result;
         },function() {
+            // error
+        });
+
+    lookupDataService.getCountries()
+        .then(function(result) {
+            countries = result;
+        }, function() {
             // error
         });
 
@@ -48,10 +56,24 @@ function organizationProfileController($scope, $http, $window, $uibModal, $state
                 alert("Sorry! There was a problem loading organization profiles.  Please try again later.");
             });
 
-    $scope.add = function () {
+    $scope.add = function() {
         var modalInstance = $uibModal.open({
             templateUrl: '/Templates/Organization/addOrganizationProfileModal',
-            controller: AddOrganizationProfileModalController
+            controller: AddOrganizationProfileModalController,
+            resolve: {
+                languages: function() {
+                    return angular.copy(languages);
+                },
+                timeZones: function() {
+                    return angular.copy(timeZones);
+                },
+                usStates: function() {
+                    return angular.copy(usStates);
+                },
+                countries: function () {
+                    return angular.copy(countries);
+                }
+            }
         });
     };
 
@@ -80,18 +102,30 @@ function organizationProfileController($scope, $http, $window, $uibModal, $state
     };
 };
 
-function AddOrganizationProfileModalController($scope, $uibModalInstance, organizationProfileFactory) {
+function AddOrganizationProfileModalController($scope, $uibModalInstance, organizationProfileFactory, languages, timeZones, usStates, countries) {
+
+    $scope.languages = languages;
+    $scope.timeZones = timeZones;
+    $scope.usStates = usStates;
+    $scope.countries = countries;
+
+    $scope.organizationProfile = {};
+
+    $scope.organizationProfile.selectedLang = $scope.languages[0];
+    $scope.organizationProfile.selectedTimeZone = $scope.timeZones[0];
+    $scope.organizationProfile.selectedState = $scope.usStates[0];
+    $scope.organizationProfile.selectedCountry = $scope.countries[0];
 
     $scope.ok = function (organizationProfile) {
 
-        organizationProfile.OrganizationId = organizationProfileParameters.organizationId;
+        organizationProfile.organizationId = organizationProfileParameters.organizationId;
 
         organizationProfileFactory.addOrganizationProfiles(organizationProfile)
-            .then(function () {
+            .then(function() {
                 // success
-                $uibModalInstance.close();
-            },
-                function () {
+
+                },
+                function() {
                     // error
                     alert("could not save organization profile");
                 });
@@ -106,15 +140,22 @@ function AddOrganizationProfileModalController($scope, $uibModalInstance, organi
 
 function EditOrganizationProfileModalController($scope, $uibModalInstance, organizationProfileFactory, organizationProfile) {
 
-    $scope.organizationProfile = organizationProfile;
-
-    $scope.ok = function () {
-
-        organizationProfileFactory.editOrganizationProfiles(organizationProfile)
-            .then(function () {
-                // success
+    organizationProfileFactory.getOrganizationProfile(organizationProfile)
+        .then(function(result) {
+                $scope.organizationProfile = result;
             },
-                function () {
+            function() {
+                //Couldn't find it, stick the one passed in out there
+                $scope.organizationProfile = organizationProfile;
+            });
+
+    $scope.ok = function() {
+
+        organizationProfileFactory.editOrganizationProfiles($scope.organizationProfile)
+            .then(function() {
+                    // success
+                },
+                function() {
                     // error
                     alert("could not edit or update organization profile");
                 });
@@ -129,22 +170,28 @@ function EditOrganizationProfileModalController($scope, $uibModalInstance, organ
 
 function DeleteOrganizationProfileModalController($scope, $uibModalInstance, organizationProfileFactory, organizationProfile) {
 
-    $scope.organizationProfile = organizationProfile;
+    organizationProfileFactory.getOrganizationProfile(organizationProfile)
+        .then(function(result) {
+                $scope.organizationProfile = result;
+            },
+            function() {
+                //Couldn't find it, stick the one passed in out there
+                $scope.organizationProfile = organizationProfile;
+            });
 
-    $scope.ok = function () {
+    $scope.ok = function() {
 
         organizationProfileFactory.deleteOrganizationProfiles(organizationProfile)
-            .then(function () {
-                // success
-
-            },
-                function () {
+            .then(function() {
+                    // success
+                },
+                function() {
                     // error
                     alert("could not delete organization profile");
                 });
 
         $uibModalInstance.close();
-        
+
     };
 
     $scope.cancel = function () {
@@ -161,7 +208,26 @@ angular
 
 function organizationProfileFactory($http, $q) {
 
+    var _organizationProfile = {};
     var _organizationProfiles = [];
+
+    var _getOrganizationProfile = function (organizationProfile) {
+
+        var deferred = $q.defer();
+
+        $http.get('/api/OrganizationProfiles/?profileId=' + organizationProfile.id + '&' + 'organizationId=' + organizationProfile.organizationId)
+          .then(function (result) {
+              // Successful
+              angular.copy(result.data, _organizationProfile);
+              deferred.resolve(_organizationProfile);
+          },
+          function () {
+              // Error
+              deferred.reject();
+          });
+
+        return deferred.promise;
+    };
 
     var _getOrganizationProfiles = function (id) {
 
@@ -181,17 +247,20 @@ function organizationProfileFactory($http, $q) {
         return deferred.promise;
     };
 
+    var _addOrganizationProfile = function (organizationProfile) {
 
-    var _addOrganizationProfile = function (newOrganizationProfile) {
-
+        organizationProfile.language = organizationProfile.selectedLang.name;
+        organizationProfile.country = organizationProfile.selectedCountry.name;
+        organizationProfile.timeZone = organizationProfile.selectedTimeZone.name;
+        
         var deferred = $q.defer();
 
-        $http.post('/api/OrganizationProfiles', newOrganizationProfile)
+        $http.post('/api/OrganizationProfiles', organizationProfile)
          .then(function (result) {
              // success
-             var newlyCreatedOrganizationProfile = result.data;
+             var newOrganizationProfile = result.data;
              _organizationProfiles.splice(0, 0, newOrganizationProfile);
-             deferred.resolve(newlyCreatedOrganizationProfile);
+             deferred.resolve(newOrganizationProfile);
          },
          function () {
              // error
@@ -205,28 +274,14 @@ function organizationProfileFactory($http, $q) {
 
         var deferred = $q.defer();
 
-        $http.put('/api/OrganizationProfiles/' + organizationProfile.Id, organizationProfile)
+        $http.put('/api/OrganizationProfiles/' + organizationProfile.id, organizationProfile)
          .then(function (result) {
              // success
              var editedOrganizationProfile = result.data;
 
              for (var i = 0; i < _organizationProfiles.length; i++) {
-                 if (_organizationProfiles[i].Id === editedOrganizationProfile.Id) {
-                     _organizationProfiles[i].Default = editedOrganizationProfile.Default;
-                     _organizationProfiles[i].Name = editedOrganizationProfile.Name;
-                     _organizationProfiles[i].Description = editedOrganizationProfile.Description;
-                     _organizationProfiles[i].PrimaryContact = editedOrganizationProfile.PrimaryContact;
-                     _organizationProfiles[i].Phone = editedOrganizationProfile.Phone;
-                     _organizationProfiles[i].Fax = editedOrganizationProfile.Fax;
-                     _organizationProfiles[i].Email = editedOrganizationProfile.Email;
-                     _organizationProfiles[i].Country = editedOrganizationProfile.Country;
-                     _organizationProfiles[i].County = editedOrganizationProfile.County;
-                     _organizationProfiles[i].TimeZone = editedOrganizationProfile.TimeZone;
-                     _organizationProfiles[i].Language = editedOrganizationProfile.Language;
-                     _organizationProfiles[i].Notes = editedOrganizationProfile.Notes;
-
-                     //_organizationProfiles[i].val = editedOrganizationProfile.val;
-
+                 if (_organizationProfiles[i].id === editedOrganizationProfile.id) {
+                     _organizationProfiles[i] = editedOrganizationProfile;
                      break;
                  }
              }
@@ -241,34 +296,36 @@ function organizationProfileFactory($http, $q) {
         return deferred.promise;
     };
 
-    var _deleteOrganizationProfile = function (organizationProfile) {
+    var _deleteOrganizationProfile = function(organizationProfile) {
 
         var deferred = $q.defer();
 
-        $http.delete('/api/OrganizationProfiles/' + organizationProfile.Id, organizationProfile)
-         .then(function (result) {
+        $http.delete('/api/OrganizationProfiles/' + organizationProfile.id)
+            .then(function(result) {
 
-             var deletedOrganizationProfile = result.data;
+                    var deletedOrganizationProfile = result.data;
 
-             for (var i = 0; i < _organizations.length; i++) {
-                 if (_organizationProfiles[i].Id === deletedOrganizationProfile.Id) {
-                     _organizationProfiles.splice(i, 1);
-                     break;
-                 }
-             }
+                    for (var i = 0; i < _organizationProfiles.length; i++) {
+                        if (_organizationProfiles[i].id === deletedOrganizationProfile.id) {
+                            _organizationProfiles.splice(i, 1);
+                            break;
+                        }
+                    }
 
-             deferred.resolve();
-         },
-         function () {
-             // error
-             deferred.reject();
-         });
+                    deferred.resolve();
+                },
+                function() {
+                    // error
+                    deferred.reject();
+                });
 
         return deferred.promise;
     };
 
     return {
+        organizationProfile: _organizationProfile,
         organizationProfiles: _organizationProfiles,
+        getOrganizationProfile: _getOrganizationProfile,
         getOrganizationProfiles: _getOrganizationProfiles,
         addOrganizationProfiles: _addOrganizationProfile,
         editOrganizationProfiles: _editOrganizationProfile,

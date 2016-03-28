@@ -1,4 +1,4 @@
-﻿<div ng-controller="UserProfileController as userProfileController">
+﻿<div ng-controller="userProfileController">
     <div small-header class="normalheader transition">
         <div class="hpanel" title="Page header" content="Place your page title and breadcrumb." placement="bottom">
             <div class="panel-body">
@@ -49,14 +49,14 @@
     </div>
 
     <div class="content">
-        <div ng-repeat="p in data.userProfiles">
+        <div ng-repeat="p in data.userProfiles track by p.id">
             <div animate-panel child="row" effect="fadeInUp">
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="hpanel">
                             <div class="panel-heading hbuilt">
                                 <div panel-tools></div>
-                                {{ p.profileName }} Profile
+                                {{ p.profileName }}
                             </div>
                             <div class="panel-body">
                                 <div class="row">
@@ -83,7 +83,7 @@
                                         <label class="control-label">Secondary Email: </label> {{ p.secondaryEmail }}
                                     </div>
                                     <div class="col-sm-4">
-                                        <label class="control-label">Secondary Phone: </label> {{ p.secondaryPhone }}
+                                        <label class="control-label">Secondary Phone: </label> {{ p.secondaryPhoneNumber }}
                                     </div>
                                 </div>
                                 <div class="row">
@@ -93,9 +93,9 @@
                                     <div class="col-sm-4">
                                         <label class=" control-label">Time Zone: </label> {{ p.timeZone }}
                                     </div>
-                                    <div class="col-sm-4">
+                                    @*<div class="col-sm-4">
                                         <label>Adjust for DST: </label> {{ p.dstAdjust }}
-                                    </div>
+                                    </div>*@
                                 </div>
                             </div>
                             <div class="panel-footer">
