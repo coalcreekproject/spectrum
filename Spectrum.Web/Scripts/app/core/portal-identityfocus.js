@@ -20,10 +20,10 @@
 
         function getCurrentUser() {
             currentUserFactory.getCurrentUser()
-                .then(function (result) {
-                    $scope.currentUser = result;
-                },
-                    function () {
+                .then(function(result) {
+                        $scope.currentUser = result;
+                    },
+                    function() {
                         //error NOTE: need to change this to SignalR or some messaging engine.
                         alert("Sorry! There was a problem loading the current user.  Please try again later.", "error");
                     });

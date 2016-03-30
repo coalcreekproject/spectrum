@@ -4,7 +4,7 @@
     {
         public int Id { get; set; }
         public int OrganizationId { get; set; }
-        public int? AddressNorthAmericaId { get; set; }
+        public int? Address { get; set; }
         public bool Default { get; set; }
         public string ProfileName { get; set; }
         public string Description { get; set; }
