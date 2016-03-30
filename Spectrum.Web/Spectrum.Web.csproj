@@ -245,6 +245,7 @@
     <Compile Include="Areas\Eoc\Controllers\Web\CheckListController.cs" />
     <Compile Include="Areas\Eoc\Controllers\Web\DashboardController.cs" />
     <Compile Include="Areas\Eoc\Controllers\Web\IncidentManagementController.cs" />
+    <Compile Include="Areas\Eoc\Controllers\Web\IncidentTimelineController.cs" />
     <Compile Include="Areas\Eoc\Controllers\Web\PositionLogController.cs" />
     <Compile Include="Areas\Eoc\EocAreaRegistration.cs" />
     <Compile Include="Controllers\Api\Data\CountryDataController.cs" />
@@ -483,6 +484,7 @@
     <Content Include="Scripts\app\data\lookup-data-service.js" />
     <Content Include="Scripts\app\data\organization-data.js" />
     <Content Include="Scripts\app\directives\loading-directive.js" />
+    <Content Include="Scripts\app\eoc\incident-timeline-ctrl.js" />
     <Content Include="Scripts\app\eoc\position-log-ctrl.js" />
     <Content Include="Scripts\app\eoc\position-log-mgmt-ctrl.js" />
     <Content Include="Scripts\app\templates\im.html" />
@@ -498,6 +500,8 @@
     <EmbeddedResource Include="App_Data\variants\states_hash.json" />
     <EmbeddedResource Include="App_Data\variants\states_titlecase.json" />
     <EmbeddedResource Include="App_Data\states_list.json" />
+    <Content Include="Areas\Eoc\Views\IncidentTimeline\Index.cshtml" />
+    <Content Include="Areas\Eoc\Views\IncidentTimeline\Partials\IncidentTimelineIndex.cshtml" />
     <None Include="Content\images\landing\header.jpg.old" />
     <Content Include="Content\images\landing\s1.png" />
     <Content Include="Content\images\landing\s2.png" />
@@ -691,6 +695,7 @@
     <Content Include="Views\User\Partials\UserPositionsModal.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="App_Data\" />
     <Folder Include="App_Start\Filters\" />
     <Folder Include="Areas\Eoc\Models\" />
     <Folder Include="Areas\Eoc\Views\Shared\" />
