@@ -21,9 +21,25 @@ textarea {
 }
 
 .identity-focus {
-    min-width: 450px;
-    font-size: 14px !important;
+    min-width: 200px;
+    font-size: 16px !important;
 }
+
+.no-corners {
+  border-radius: 0 !important;
+  -moz-border-radius: 0 !important;    
+}
+
+
+.identity-focus-popover {
+    -moz-min-width: 225px;
+    -ms-min-width: 225px;
+    -o-min-width: 225px;
+    -webkit-min-width: 225px;
+    min-width: 225px;
+    font-size: 12px !important;
+}
+
 
 i.if-icon {
     font-size: 24px !important;

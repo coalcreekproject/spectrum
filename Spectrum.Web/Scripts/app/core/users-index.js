@@ -335,8 +335,8 @@ function userFactory($http, $q) {
              var deletedUser = result.data;
 
              for (var i = 0; i < _users.length; i++) {
-                 if (users[i].id === deletedUser.id) {
-                     users.splice(i, 1);
+                 if (_users[i].id === deletedUser.id) {
+                     _users.splice(i, 1);
                      break;
                  }
              }

@@ -60,11 +60,11 @@ function CheckListsController($scope) {
     $scope.data = [
         {
             "id": 1,
-            "title": "node1",
+            "title": "Respirator",
             "nodes": [
                 {
                     "id": 11,
-                    "title": "node1.1",
+                    "title": "Extra cartridges",
                     "nodes": [
                         {
                             "id": 111,
@@ -75,34 +75,34 @@ function CheckListsController($scope) {
                 },
                 {
                     "id": 12,
-                    "title": "node1.2",
+                    "title": "Surefire light",
                     "nodes": []
                 }
             ]
         },
         {
             "id": 2,
-            "title": "node2",
+            "title": "Radio",
             "nodes": [
                 {
                     "id": 21,
-                    "title": "node2.1",
+                    "title": "Spare battery",
                     "nodes": []
                 },
                 {
                     "id": 22,
-                    "title": "node2.2",
+                    "title": "PTT Keyset",
                     "nodes": []
                 }
             ]
         },
         {
             "id": 3,
-            "title": "node3",
+            "title": "Canine handler equipment",
             "nodes": [
                 {
                     "id": 31,
-                    "title": "node3.1",
+                    "title": "Harness",
                     "nodes": []
                 }
             ]
