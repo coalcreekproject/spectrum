@@ -626,6 +626,7 @@
     <Content Include="Views\Settings\Partials\SettingsIndex.cshtml" />
     <Content Include="Views\Registration\Partials\RegistrationIndex.cshtml" />
     <Content Include="Views\Registration\Partials\RegisterOld.cshtml" />
+    <Content Include="Views\Portal\Partials\IdentityPopover.cshtml" />
     <None Include="Views\User\Partials\DeleteUserProfileModal.cshtml" />
     <None Include="Views\User\Partials\EditUserProfileModal.cshtml" />
     <None Include="Views\User\Partials\AddUserProfileModal.cshtml" />

@@ -3,11 +3,14 @@ using System.Linq;
 using System.Runtime.Caching;
 using System.Runtime.CompilerServices;
 using System.Security.Principal;
+using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNet.Identity;
 using Spectrum.Data.Core.Caching;
 using Spectrum.Data.Core.Caching.Extensions;
+using Spectrum.Data.Core.Context.UnitOfWork;
 using Spectrum.Data.Core.Models;
+using Spectrum.Data.Core.Repositories;
 using Spectrum.Logic.Models;
 
 namespace Spectrum.Logic.Identity
@@ -43,6 +46,14 @@ namespace Spectrum.Logic.Identity
 
             var cache = MemoryCache.Default;
             var userModel = cache.Get<UserModel>("user:" + id);
+
+            if (userModel == null) //re-cache
+            {
+                var userRepository = new UserRepository(new CoreUnitOfWork());
+                var repoUser = userRepository.Users.FirstOrDefault(u => u.Id == (Convert.ToInt32(id)));
+                MemoryCacheUser(repoUser);
+                userModel = cache.Get<UserModel>("user:" + id);
+            }
 
             return userModel;
         }
