@@ -9,16 +9,13 @@
                 <div class="hpanel">
                     <div class="panel-body">
 
-                        <form name="simpleForm" id="simpleForm">
+                        <form name="Registration" id="Registration">
 
                             <div class="text-center m-b-md">
-
                                 <a ng-click="wizard.show(1)" class="btn" ng-class="{ 'btn-primary': step == 1, 'btn-default': step != 1}">Step 1 - Basic Data</a>
                                 <a ng-click="wizard.show(2)" class="btn" ng-class="{ 'btn-primary': step == 2, 'btn-default': step != 2}">Step 2 - User Profile</a>
                                 <a ng-click="wizard.show(3)" class="btn" ng-class="{ 'btn-primary': step == 3, 'btn-default': step != 3}">Step 3 - Organization Profile</a>
-
                             </div>
-
 
                             <div ng-show="step == 1" class="p-m">
 
@@ -44,7 +41,7 @@
                                             <select class="form-control m-b" name="OrganizationType" ng-model="registerViewModel.OrganizationTypeId">
                                                 @foreach (var t in Model.OrganizationTypes)
                                                 {
-                                                    <option value="@t.Id" name="@t.Name">@t.Name</option>
+                                                    <option value="@t.OrganizationTypeId" name="@t.Name">@t.Name</option>
                                                 }
                                             </select>
                                         </div>
@@ -70,59 +67,59 @@
                             </div>
 
                             <div ng-show="step == 2" class="p-m">
-                            
                                 <div class="form-group">
                                     <div class="row">
                                         <div class="col-md-4">
                                             <label for="firstName">First Name</label>
                                             <input type="text" id="firstName" name="FirstName" placeholder="First Name" ng-model="registerViewModel.FirstName" class="form-control" name="firstName">
                                         </div>
-                                        @*<div class="col-md-4">
-                                            <label for="middleName">Middle Name</label>
-                                            <input type="text" id="middleName" name="MiddleName" placeholder="Middle Name" ng-model="registerViewModel.MiddleName" class="form-control">
-                                        </div>*@
                                         <div class="col-md-4">
                                             <label for="lastName">Last Name</label>
                                             <input type="text" id="lastName" name="LastName" placeholder="Last Name" ng-model="registerViewModel.LastName" class="form-control">
                                         </div>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <div class="row">
                                         <div class="col-md-4">
-                                            <label for="nickName">Nickname/Preferred Name</label>
+                                            <label for="nickName">Nickname or Preferred Name</label>
                                             <input type="text" id="nickName" placeholder="Nickname" name="Nickname" ng-model="registerViewModel.Nickname" class="form-control">
                                         </div>
-                                        <div class="col-md-4">
-                                            <label for="title">Title</label>
-                                            <input type="text" Id="title" placeholder="Title" name="Title" ng-model="registerViewModel.Title" class="form-control">
-                                        </div>
-                                        @*<div class="col-md-4">
-                                            <label for="title">Position</label>
-                                            <input type="text" Id="position" placeholder="Position" name="Position" ng-model="registerViewModel.Position" class="form-control">
-                                        </div>*@
                                     </div>
                                 </div>
-
                                 <div class="form-group">
                                     <div class="row">
-                                        <div class="col-md-4">
-                                            <label for="secondaryEmail">Secondary Mail</label>
-                                            <input type="text" id="secondaryEmail" placeholder="Secondary Email" name="SecondaryEmail" ng-model="registerViewModel.SecondaryEmail" class="form-control">
-                                        </div>
-                                        <div class="col-md-4">
-                                            <label for="secondaryPhone">Secondary Phone</label>
-                                            <input type="text" id="secondaryPhone" name="SecondaryPhone" placeholder="Secondary Phone" ng-model="registerViewModel.SecondaryPhone" class="form-control">
+                                        <div class="col-md-10">
+                                            <label for="Street1">Street Address</label>
+                                            <input type="text" id="Street1" placeholder="Street address line 1" name="Street1" ng-model="registerViewModel.Street1" class="form-control">
                                         </div>
                                     </div>
                                 </div>
-
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-10">
+                                            <label for="Street1">Street Line 2 </label>
+                                            <input type="text" id="Street2" placeholder="Suite, building number, mail stop etc." name="Street2" ng-model="registerViewModel.Street2" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
                                 <div class="form-group">
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <label for="timeZone">TimeZone</label>
-                                            <input type="text" id="timeZone" name="TimeZone" placeholder="TimeZone" ng-model="registerViewModel.TimeZone" class="form-control">
+                                            <label for="City">City</label>
+                                            <input type="text" id="City" name="City" placeholder="City" ng-model="registerViewModel.City" class="form-control" name="firstName">
+                                        </div>
+                                        <div class="col-md-2">
+                                            <label for="State">State</label>
+                                            <input type="text" id="State" name="State" placeholder="State" ng-model="registerViewModel.State" class="form-control">
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="Zip">Zip</label>
+                                            <input type="text" id="Zip" placeholder="Zip" name="Zip" ng-model="registerViewModel.Zip" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <label for="UserPhone">Phone</label>
+                                            <input type="text" id="UserPhone" name="UserPhone" placeholder="Phone" ng-model="registerViewModel.UserPhone" class="form-control">
                                         </div>
                                         <div class="col-md-6">
                                             <label for="language">Language</label>
@@ -133,11 +130,10 @@
                             </div>
 
                             <div ng-show="step == 3">
-
                                 <div class="form-group">
                                     <div class="row">
                                         <div class="col-md-4">
-                                            <label for="title">Primary Contact</label>
+                                            <label for="primaryContact">Primary Contact</label>
                                             <input type="text" Id="primaryContact" name="PrimaryContact" placeholder="Contact Name" ng-model="registerViewModel.PrimaryContact" class="form-control">
                                         </div>
                                         <div class="col-md-4">
@@ -145,34 +141,48 @@
                                             <input type="tel" id="phone" name="OrgPhone" placeholder="Phone" ng-model="registerViewModel.OrgPhone" class="form-control">
                                         </div>
                                         <div class="col-md-4">
-                                            <label for="fax">Fax</label>
-                                            <input type="tel" id="fax" name ="Fax" placeholder="Fax Number" ng-model="registerViewModel.Fax" class="form-control">
+                                            <label for="OrgEmail">Email</label>
+                                            <input type="text" id="OrgEmail" name="OrgEmail" placeholder="Email" ng-model="registerViewModel.OrgEmail" class="form-control">
                                         </div>
                                     </div>
                                 </div>
-
                                 <div class="form-group">
                                     <div class="row">
-                                        <div class="col-md-4">
-                                            <label for="email">Email</label>
-                                            <input type="text" id="orgEmail" name ="OrgEmail" placeholder="Email" ng-model="registerViewModel.OrgEmail" class="form-control">
-                                        </div>
-                                        <div class="col-md-4">
-                                            <label for="country">Country</label>
-                                            <input type="text" id="country" placeholder="Country" name="Country" ng-model="registerViewModel.Country" class="form-control">
-                                        </div>
-                                        <div class="col-md-4">
-                                            <label for="county">County</label>
-                                            <input type="text" id="county" placeholder="County" name="County" ng-model="registerViewModel.County" class="form-control">
+                                        <div class="col-md-10">
+                                            <label for="Street1">Street Address</label>
+                                            <input type="text" id="Street1" placeholder="Street address line 1" name="Street1" ng-model="registerViewModel.Street1" class="form-control">
                                         </div>
                                     </div>
                                 </div>
-
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-10">
+                                            <label for="Street1">Street Line 2 </label>
+                                            <input type="text" id="Street2" placeholder="Suite, building number, mail stop etc." name="Street2" ng-model="registerViewModel.Street2" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
                                 <div class="form-group">
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <label for="timeZone">TimeZone</label>
-                                            <input type="text" id="orgTimeZone" name="OrgTimeZone"placeholder="Time Zone" ng-model="registerViewModel.OrgTimeZone" class="form-control">
+                                            <label for="City">City</label>
+                                            <input type="text" id="City" name="City" placeholder="City" ng-model="registerViewModel.City" class="form-control" name="firstName">
+                                        </div>
+                                        <div class="col-md-2">
+                                            <label for="State">State</label>
+                                            <input type="text" id="State" name="State" placeholder="State" ng-model="registerViewModel.State" class="form-control">
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="Zip">Zip</label>
+                                            <input type="text" id="Zip" placeholder="Zip" name="Zip" ng-model="registerViewModel.Zip" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <label for="county">County</label>
+                                            <input type="text" id="county" placeholder="County" name="County" ng-model="registerViewModel.County" class="form-control">
                                         </div>
                                         <div class="col-md-6">
                                             <label for="language">Language</label>
@@ -180,21 +190,16 @@
                                         </div>
                                     </div>
                                 </div>
-
                             </div>
-
                             <div class="text-right m-t-xs">
                                 <button ng-click="wizard.prev()" ng-disabled="step == 1" class="btn btn-default">Previous</button>
                                 <button ng-click="wizard.next()" ng-disabled="step == 3" ng-hide="step == 3" class="btn btn-success">Next</button>
                                 <button ng-click="submit()" ng-show="step == 3" class="btn btn-success">Submit</button>
                             </div>
-
                         </form>
-
                     </div>
                 </div>
             </div>
         </div>
-
     </div>
 </div>

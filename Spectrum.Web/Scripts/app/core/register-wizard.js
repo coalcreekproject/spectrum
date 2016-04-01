@@ -10,7 +10,7 @@ function config($stateProvider) {
     $stateProvider
         .state('index', {
             url: "",
-            templateUrl: "/Templates/Registration/RegisterIndex",
+            templateUrl: "/Templates/Registration/RegistrationIndex",
             data: { pageTitle: 'index' }
         });
 }

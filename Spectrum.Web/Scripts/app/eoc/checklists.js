@@ -60,37 +60,58 @@ function CheckListsController($scope) {
     $scope.data = [
         {
             "id": 1,
-            "title": "Respirator",
+            "title": "FR-7800B Respirator",
             "nodes": [
                 {
                     "id": 11,
-                    "title": "Extra cartridges",
+                    "title": "High Efficiency Cartridge FR-57/453-03-02R06",
                     "nodes": [
                         {
                             "id": 111,
-                            "title": "node1.1.1",
+                            "title": "FR-M40 Cartridge Substitute (FR-15-CBRN)",
                             "nodes": []
                         }
                     ]
                 },
                 {
                     "id": 12,
-                    "title": "Surefire light",
-                    "nodes": []
+                    "title": "Surefire 6P Flashlight",
+                    "nodes": [
+                                            {
+                                                "id": 111,
+                                                "title": "CR123 Batteries (x2)",
+                                                "nodes": []
+                                            }]
+                },
+                {
+                    "id": 12,
+                    "title": "Surefire Flashlight",
+                    "nodes": [
+                        {
+                            "id": 111,
+                            "title": "CR123 Batteries (x6)",
+                            "nodes": []
+                        }
+                    ]
                 }
             ]
         },
         {
             "id": 2,
-            "title": "Radio",
+            "title": "Motorola APX Radio",
             "nodes": [
                 {
                     "id": 21,
-                    "title": "Spare battery",
+                    "title": "Rechargable Battery Pack One",
                     "nodes": []
                 },
                 {
                     "id": 22,
+                    "title": "Rechargable Battery Pack Two",
+                    "nodes": []
+                },
+                {
+                    "id": 23,
                     "title": "PTT Keyset",
                     "nodes": []
                 }
@@ -98,11 +119,21 @@ function CheckListsController($scope) {
         },
         {
             "id": 3,
-            "title": "Canine handler equipment",
+            "title": "Supplemental 196A - Canine Handler Equipment",
             "nodes": [
                 {
                     "id": 31,
                     "title": "Harness",
+                    "nodes": []
+                },
+                {
+                    "id": 31,
+                    "title": "35 FT reflective lead",
+                    "nodes": []
+                },
+                {
+                    "id": 31,
+                    "title": "50 FT reflective lead",
                     "nodes": []
                 }
             ]

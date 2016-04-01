@@ -25,9 +25,14 @@ textarea {
     font-size: 16px !important;
 }
 
+.popover {
+    border-radius: 0 !important;
+    -moz-border-radius: 0 !important;
+}
+
 .no-corners {
-  border-radius: 0 !important;
-  -moz-border-radius: 0 !important;    
+    border-radius: 0 !important;
+    -moz-border-radius: 0 !important;
 }
 
 
