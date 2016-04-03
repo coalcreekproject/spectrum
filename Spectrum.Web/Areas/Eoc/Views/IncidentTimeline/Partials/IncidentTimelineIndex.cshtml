@@ -1,13 +1,9 @@
-﻿<div class="row">
-
-    <div class="normalheader transition"
-         small-header>
-
+﻿<div class="container-fluid">
+    <div class="normalheader transition" small-header>
         <div class="hpanel"
              content="{{vm.title}}"
              placement="bottom"
              title="{{vm.title}}">
-
             <div class="panel-body">
                 <a href=""
                    ng-click="small()">
@@ -22,42 +18,48 @@
                             <a href="@Url.Action("Index", "Portal")">Portal</a>
                         </li>
                         <li class="active">
-                            {{vm.title}}
+                            EOC
+                        </li>
+                        <li>
+                            <a href="@Url.Action("Index", "IncidentManagement")">Incident Management</a>
+                        </li>
+                        <li>
+                            Incident Timeline
                         </li>
                     </ol>
                 </div>
                 <h2 class="font-light m-b-xs">
                     {{vm.title}}
                 </h2>
-                <small>Manage your incident timeline {{vm.name}}.</small>
+                <small>A chronological anf graphic view of the events for this incident</small>
             </div>
         </div>
     </div>
 
-    <loading></loading>
-
-    <div class="content"
-         ng-hide="loading">
-
+    <div class="content">
         <timeline>
             <timeline-event ng-repeat="event in vm.events">
-                <timeline-badge class="{{event.badgeClass}}">
-                    <i class="glyphicon {{event.badgeIconClass}}"></i>
+
+                <timeline-badge class="{{event.badgeClass}} timeline-hidden" when-visible="vm.animateElementIn" when-not-visible="vm.animateElementOut">
+                    <i class="{{event.badgeIconClass}}"></i>
                 </timeline-badge>
-                <timeline-panel class="{{event.badgeClass}}">
+
+                <timeline-panel class="{{event.badgeClass}} timeline-hidden" when-visible="vm.animateElementIn" when-not-visible="vm.animateElementOut">
                     <timeline-heading>
                         <h4>
                             {{event.title}}
                         </h4>
                     </timeline-heading>
                     <p>
-                        <b>Status:</b> {{event.status}}<br/>
-                        Level: {{event.level}}<br />
-                        Occurred at: {{event.createDate | date:'short'}}
+                        @*<b>Status:</b> {{event.status}}<br />
+                        Level: {{event.level}}<br />*@
+                        <b>Occurred at:</b> {{event.createDate | date:'short'}}
+                        <b>Entry:</b> {{event.entry}}
                     </p>
                 </timeline-panel>
+
+
             </timeline-event>
         </timeline>
-
     </div>
 </div>

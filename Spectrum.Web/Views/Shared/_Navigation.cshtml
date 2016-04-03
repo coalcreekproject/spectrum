@@ -37,10 +37,25 @@
             <a href="@Url.Action("Index", "Portal", new {Area = string.Empty})">
                 <span class="nav-label">Portal</span><span class="label label-info pull-right">NEW</span></a>
         </li>
+        <li ng-class="{active: $state.includes('accounting')}"
+            style="opacity: .5">
+            <a>
+                <span class="nav-label">Accounting</span><span class="arrow fa"></span>
+            </a>
+            <ul class="nav nav-second-level"
+                ng-class="{in: $state.includes('Accounting')}">
+                <li>
+                    <a>Event Ledger</a>
+                </li>
+                <li>
+                    <a>Track Resources</a>
+                </li>
+            </ul>
+        </li>
         <li style="opacity: .5"
             ui-sref-active="active">
             <a ui-sref="analytics">
-                <span class="nav-label">Analytics</span><span class="label label-warning pull-right">COMING<br/>SOON!</span> </a>
+                <span class="nav-label">Analytics</span><span class="label label-warning pull-right">COMING<br/>NEXT!</span> </a>
         </li>
         <li ng-class="{active: $state.includes('app.eoc')}">
             <a>
@@ -58,9 +73,13 @@
                         Position Log
                     </a>
                 </li>
+                <li class="@Html.IsSelected(action: "Significant Events")"
+                    style="opacity: .5">
+                    <a href="#">Significant Events</a>
+                </li>
                 <li class="@Html.IsSelected(action: "Timeline")">
                     <a href="@Url.Action("Index", "IncidentTimeline", new {Area = "Eoc"})">
-                        Events Timeline
+                        Incident Timeline
                     </a>
                 </li>
                 <li class="@Html.IsSelected(action: "Checklists")">
@@ -160,20 +179,6 @@
                 ng-class="{in: $state.includes('forms')}">
                 <li class="@Html.IsSelected(action: "Login")">
                     <a>Right of Entry Manger</a>
-                </li>
-                <li class="@Html.IsSelected(action: "Login")">
-                    <a>Track Resources</a>
-                </li>
-            </ul>
-        </li>
-        <li ng-class="{active: $state.includes('accounting')}"
-            style="opacity: .5">
-            <a>
-                <span class="nav-label">Accounting</span><span class="arrow fa"></span> </a>
-            <ul class="nav nav-second-level"
-                ng-class="{in: $state.includes('forms')}">
-                <li class="@Html.IsSelected(action: "Login")">
-                    <a>Event Ledger</a>
                 </li>
                 <li class="@Html.IsSelected(action: "Login")">
                     <a>Track Resources</a>

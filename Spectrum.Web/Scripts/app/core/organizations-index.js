@@ -22,7 +22,7 @@ function config($stateProvider, $urlRouterProvider, $compileProvider) {
             }
         })
         .state('users', {
-            url: "/roles/:organizationId",
+            url: "/users/:organizationId",
             templateUrl: "/Templates/Organization/OrganizationUsers",
             data: {
                 pageTitle: 'users'

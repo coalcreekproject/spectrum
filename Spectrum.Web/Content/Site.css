@@ -53,3 +53,13 @@ i.if-icon {
 span.if-label {
     vertical-align: text-top;
 }
+
+.label-primary {
+  background-color: #34495e;
+  border-color: #34495e;
+  color: #FFFFFF ;
+}
+
+.incident-panel-footer {
+    font-size: 12px; 
+}

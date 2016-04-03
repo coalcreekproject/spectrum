@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Globalization;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
@@ -37,6 +39,65 @@ namespace Spectrum.Data.Core.Repositories
         {
             get { return Context.Users; }
         }
+
+        #region IUserRepositoryImplementation
+
+        public IQueryable<User> All
+        {
+            get { return Context.Users; }
+        }
+
+        public IQueryable<User> AllIncluding(params Expression<Func<User, object>>[] includeProperties)
+        {
+            IQueryable<User> query = Context.Users;
+            foreach (var includeProperty in includeProperties)
+            {
+                query = query.Include(includeProperty);
+            }
+            return query;
+        }
+
+        public User Find(int id)
+        {
+            return Context.Users.Find(id);
+        }
+
+        public Task<User> FindAsync(int userId)
+        {
+            return Context.Users.FirstOrDefaultAsync(o => o.Id.Equals(userId));
+        }
+
+        public void InsertOrUpdate(User user)
+        {
+            if (user.ObjectState == ObjectState.Added)
+            {
+                // New entity
+                Context.Users.Add(user);
+            }
+            else
+            {
+                // Existing entity
+                Context.Entry(user).State = EntityState.Modified;
+            }
+        }
+
+        public void Delete(int id)
+        {
+            var user = Context.Users.Find(id);
+            Context.Users.Remove(user);
+        }
+
+        public void Save()
+        {
+            Context.SaveChanges();
+        }
+
+        public Task SaveAsync()
+        {
+            return Context.SaveChangesAsync();
+        }
+
+        #endregion
 
         #region IUSerStore Implementation
 

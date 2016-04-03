@@ -19,38 +19,17 @@ namespace Spectrum.Web.Controllers.Api
     public class OrganizationUsersController : ApiController
     {
         private ICoreDbContext _context;
-        private IOrganizationRepository _organizationRepository;
         private IUserRepository _userRepository;
+        private IOrganizationUserRepository _organizationUserRepository;
 
         public OrganizationUsersController(ICoreUnitOfWork uow)
         {
             _context = uow.Context;
 
             //TODO: Newing this up is no good
-            _organizationRepository = new OrganizationRepository(uow);
+            _organizationUserRepository = new OrganizationUserRepository(uow);
             _userRepository = new UserRepository(uow);
         }
-
-        // GET: api/Users/orgId
-        //[HttpGet]
-        //public IEnumerable<UserViewModel> Get(int organizationId)
-        //{
-        //    var userViewModels = new List<UserViewModel>();
-
-        //    foreach (var u in _userRepository.Users)
-        //    {
-        //        userViewModels.Add(Mapper.Map<UserViewModel>(u));
-        //    }
-
-        //    //TODO: Get Paging working
-        //    return userViewModels;
-        //}
-
-        //[HttpGet]
-        //public HttpResponseMessage Get()
-        //{
-        //    return Request.CreateResponse(HttpStatusCode.OK);
-        //}
 
         [HttpGet]
         public HttpResponseMessage Get(int id)
@@ -61,13 +40,13 @@ namespace Spectrum.Web.Controllers.Api
             List<UserViewModel> availableUsers = Mapper.Map<List<User>, List<UserViewModel>>(users);
             var assignedUserTemp = users.Where(u => u.UserOrganizations.Any(uo => uo.OrganizationId == id));
             List<UserViewModel> assignedUsers = Mapper.Map<List<User>, List<UserViewModel>>(assignedUserTemp.ToList());
-            SortRoles(availableUsers, assignedUsers);
+            SortUsers(availableUsers, assignedUsers);
 
             return Request.CreateResponse(HttpStatusCode.OK,
                 new Tuple<List<UserViewModel>, List<UserViewModel>>(availableUsers, assignedUsers));
         }
 
-        private void SortRoles(List<UserViewModel> available, List<UserViewModel> assigned)
+        private void SortUsers(List<UserViewModel> available, List<UserViewModel> assigned)
         {
             foreach (var u in available.ToList())
             {
@@ -78,50 +57,33 @@ namespace Spectrum.Web.Controllers.Api
             }
         }
 
-        private int GetDefaultOrganizationId(User user)
-        {
-            var defaultOrganization = user.UserOrganizations.FirstOrDefault(o => o.Default == true);
-
-            if (defaultOrganization != null)
-            {
-                return defaultOrganization.OrganizationId;
-            }
-
-            var firstOrganization = user.UserOrganizations.First();
-
-            if (firstOrganization != null)
-            {
-                return firstOrganization.OrganizationId;
-            }
-
-            return -1; //not found
-        }
-
-
         // PUT: api/OrganizationProfiles/5
         [HttpPut]
-        public HttpResponseMessage Put(int id, [FromBody]UserListViewModel lists)
+        public async Task<HttpResponseMessage> Put(int id, [FromBody]UserListViewModel lists)
         {
+            var orgUsers = _organizationUserRepository.All.Where(uo => uo.OrganizationId.Equals(id));
 
-            //List<User> Available = Mapper.Map<List<UserViewModel>, List<User>>(lists.Available);
-            //List<User> Assigned = Mapper.Map<List<UserViewModel>, List<User>>(lists.Assigned);
+            foreach (var u in lists.Assigned)
+            {
+                if (!orgUsers.Any(ou => ou.OrganizationId.Equals(id) && ou.UserId.Equals(u.Id)))
+                {
+                    _organizationUserRepository.InsertOrUpdate(new UserOrganization
+                    {
+                        Default = false,
+                        ObjectState = ObjectState.Added,
+                        OrganizationId = id,
+                        UserId = u.Id
+                    });
+                }
+            }
 
-            //foreach (var u in Assigned)
-            //{
-            //    u.UserOrganizations.Clear();
-            //    u.UserOrganizations.Add(new UserOrganization
-            //    {
-            //        Default = false,
-            //        ObjectState = ObjectState.Added,
-            //        OrganizationId = id,
-            //        UserId = u.Id
-            //    });
+            foreach (var u in lists.Available)
+            {
+                _organizationUserRepository.Delete(id, u.Id);
+            }
 
-            //    // TODO: This sucks dokey b@lls, add the standard suite of methods to this repo in addition to the retarded stuff MS wants for identity framework
-            //    await _userRepository.UpdateAsync(u);
-            //}
+            await _organizationUserRepository.SaveAsync();
 
-            //return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<User>, List<UserViewModel>>(users));
             return Request.CreateResponse(HttpStatusCode.OK);
         }
     }

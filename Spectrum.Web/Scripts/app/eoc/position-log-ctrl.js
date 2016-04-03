@@ -10,13 +10,13 @@
         // Optimize load start with remove binding information inside the DOM element
         $compileProvider.debugInfoEnabled(true);
 
-        $stateProvider
-            .state('index', {
-                url: '',
-                templateUrl: '/Eoc/Templates/PositionLog/PositionLogIndex',
-                controller: 'PositionLogCtrl',
-                controllerAs: 'pl'
-            });
+        //$stateProvider
+        //    .state('index', {
+        //        url: '',
+        //        templateUrl: '/Eoc/Templates/PositionLog/PositionLogIndex',
+        //        controller: 'PositionLogCtrl',
+        //        controllerAs: 'pl'
+        //    });
     }
 
     PositionLogCtrl.$inject = ['$scope', 'incidentData'];

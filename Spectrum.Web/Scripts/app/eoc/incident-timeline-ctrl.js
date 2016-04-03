@@ -10,96 +10,140 @@
 
         // Optimize load start with remove binding information inside the DOM element
         $compileProvider.debugInfoEnabled(true);
-
-        // Set default state
-        $urlRouterProvider.otherwise('/dashboard');
-
-        $stateProvider
-            .state('index', {
-                url: '',
-                templateUrl: '/Eoc/Templates/IncidentTimeline/IncidentTimelineIndex',
-                controller: 'IncidentTimelineCtrl',
-                controllerAs: 'vm'
-            });
     }
 
-    IncidentTimelineCtrl.$inject = ['$scope', 'incidentData'];
+    IncidentTimelineCtrl.$inject = ['$scope', '$stateParams', 'incidentData'];
 
-    function IncidentTimelineCtrl($scope, incidentData) {
+    function IncidentTimelineCtrl($scope, $stateParams, incidentData) {
 
         /* jshint validthis:true */
         var vm = this;
         vm.title = 'Incident Timeline';
-        vm.name = 'Sean';
+        vm.name = 'Timeline';
         vm.events = [];
+        vm.incidentId = $stateParams.incidentId;
 
-        function getIncidents()
-        {
+        // optional: not mandatory (uses angular-scroll-animate) 
+        vm.animateElementIn = function ($el) {
+            $el.removeClass('timeline-hidden');
+            $el.addClass('bounce-in');
+        };
+
+        // optional: not mandatory (uses angular-scroll-animate)
+        vm.animateElementOut = function ($el) {
+            $el.addClass('timeline-hidden');
+            $el.removeClass('bounce-in');
+        };
+
+        function getIncident() {
             $scope.loading = true;
-            return incidentData.getIncidents()
-                .then(function (incidents)
-                {
-                    mapIncidentsToEvents(angular.copy(incidents));
+            return incidentData.getIncident(vm.incidentId)
+                .then(function(incident) {
+                    mapIncidentsToEvents(angular.copy(incident));
                     $scope.loading = false;
-                },
-                    function ()
-                    {
+                    },
+                    function() {
                         $scope.loading = false;
-                        console.log('Error loading incidents.  See log.');
+                        console.log('Error loading Incident.  See log.');
                     });
         }
 
-        function mapIncidentsToEvents(incidents)
+        function mapIncidentsToEvents(incident)
         {
-            if (incidents.length !== 0) {
-                incidents.forEach(addToEventsScope);
+            //Just get the first incident
+            //var incident = incidents[1];
+            var logs = incident.logs;
+
+            if (logs !== 0) {
+                logs.forEach(addToEventsScope);
             }
 
             function addToEventsScope(element) {
 
                 var badgeClass, badgeIconClass;
-                switch (element.level)
+                switch (getNumbersForTitles(element))
                 {
                     case 1:
-                        badgeClass = 'danger';
-                        badgeIconClass = 'glyphicon-exclamation-sign';
+                        badgeClass = 'warning';
+                        badgeIconClass = 'pe-7s-look';
                         break;
                     case 2:
-                        badgeClass = 'warning';
-                        badgeIconClass = 'glyphicon-warning-sign';
+                        badgeClass = 'danger';
+                        badgeIconClass = 'glyphicon glyphicon-fire';
                         break;
                     case 3:
-                        badgeClass = 'info';
-                        badgeIconClass = 'glyphicon-eye-open';
+                        badgeClass = 'warning';
+                        badgeIconClass = 'fa fa-ambulance';
                         break;
                     case 4:
-                        badgeClass = 'success';
-                        badgeIconClass = 'glyphicon-pencil';
+                        badgeClass = 'info';
+                        badgeIconClass = 'fa-hospital';
                         break;
                     case 5:
+                        badgeClass = 'info';
+                        badgeIconClass = 'fa fa-hospital';
+                        break;
+                    case 6:
                         badgeClass = 'primary';
-                        badgeIconClass = 'glyphicon-pencil';
+                        badgeIconClass = 'fa fa-certificate';
+                        break;
+                    case 7:
+                        badgeClass = 'primary';
+                        badgeIconClass = 'fa fa-certificate';
                         break;
                     default:
-                        badgeClass = 'primary';
-                        badgeIconClass = 'glyphicon-pencil';
+                        badgeClass = 'info';
+                        badgeIconClass = 'glyphicon glyphicon-asterisk';
                 }
 
                 var event = {
                     badgeClass: badgeClass,
                     badgeIconClass: badgeIconClass,
-                    title: element.incidentName,
-                    level: element.level,
-                    status: element.status,
-                    createDate: element.createDate
+                    name: element.logName,
+                    title: element.logTitle,
+                    entry: element.logEntry,
+                    createDate: element.logDate
                 }
                 vm.events.push(event);
             }
         }
 
+        function getNumbersForTitles(element) {
+
+            var substring = "SAR";
+            if (element.logTitle.indexOf(substring) > -1)
+                return 1;
+
+            substring = "Fire";
+            if (element.logTitle.indexOf(substring) > -1)
+                return 2;
+    
+            substring = "EMT";
+            if (element.logTitle.indexOf(substring) > -1)
+                return 3;
+
+            substring = "BCH";
+            if (element.logTitle.indexOf(substring) > -1)
+                return 4;
+
+            substring = "Hospital";
+            if (element.logTitle.indexOf(substring) > -1)
+                return 5;
+
+            substring = "Police";
+            if (element.logTitle.indexOf(substring) > -1)
+                return 6;
+
+            substring = "Sheriff";
+            if (element.logTitle.indexOf(substring) > -1)
+                return 7;
+
+            return -1;
+        }
+
         function activate()
         {
-            return getIncidents();
+            return getIncident();
         }
 
         // Activate page on load

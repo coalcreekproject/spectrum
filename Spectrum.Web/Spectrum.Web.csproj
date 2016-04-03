@@ -334,14 +334,10 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\font-awesome.css" />
-    <Content Include="Content\fonts\fontawesome-webfont.svg" />
-    <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
-    <Content Include="Content\fonts\Pe-icon-7-stroke.svg" />
-    <Content Include="Content\fonts\open-sans\css\OpenSans.css" />
-    <Content Include="Content\fonts\pe-icon-7-stroke\css\helper.css" />
-    <Content Include="Content\fonts\pe-icon-7-stroke\css\pe-icon-7-stroke.css" />
-    <Content Include="Content\fonts\pe-icon-7-stroke\fonts\Pe-icon-7-stroke.svg" />
+    <Content Include="Content\fonts\fontawesome\font-awesome.css" />
+    <Content Include="Content\fonts\fontawesome\fontawesome-webfont.svg" />
+    <Content Include="Content\icons\glyphicons\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\fonts\open-sans\OpenSans.css" />
     <Content Include="Content\images\green%402x.png" />
     <Content Include="Content\images\green.png" />
     <Content Include="Content\images\landing\banner.png" />
@@ -411,9 +407,9 @@
     <Content Include="Content\style.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Content\icons\pe-icon-7-stroke\css\helper.css" />
-    <Content Include="Content\icons\pe-icon-7-stroke\css\pe-icon-7-stroke.css" />
-    <Content Include="Content\icons\pe-icon-7-stroke\fonts\Pe-icon-7-stroke.svg" />
+    <Content Include="Content\icons\pe-icon-7-stroke\helper.css" />
+    <Content Include="Content\icons\pe-icon-7-stroke\pe-icon-7-stroke.css" />
+    <Content Include="Content\icons\pe-icon-7-stroke\Pe-icon-7-stroke.svg" />
     <Content Include="Content\images\a1.jpg" />
     <Content Include="Content\images\a2.jpg" />
     <Content Include="Content\images\a3.jpg" />
@@ -453,30 +449,24 @@
     <Content Include="Content\images\landing\c6.jpg" />
     <Content Include="Content\images\landing\c7.jpg" />
     <Content Include="Content\images\landing\c8.jpg" />
-    <Content Include="Content\fonts\fontawesome-webfont.eot" />
-    <Content Include="Content\fonts\fontawesome-webfont.ttf" />
-    <Content Include="Content\fonts\fontawesome-webfont.woff" />
-    <Content Include="Content\fonts\fontawesome-webfont.woff2" />
-    <Content Include="Content\fonts\FontAwesome.otf" />
-    <Content Include="Content\fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="Content\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Content\fonts\fontawesome\fontawesome-webfont.eot" />
+    <Content Include="Content\fonts\fontawesome\fontawesome-webfont.ttf" />
+    <Content Include="Content\fonts\fontawesome\fontawesome-webfont.woff" />
+    <Content Include="Content\fonts\fontawesome\fontawesome-webfont.woff2" />
+    <Content Include="Content\fonts\fontawesome\FontAwesome.otf" />
+    <Content Include="Content\icons\glyphicons\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\icons\glyphicons\glyphicons-halflings-regular.ttf" />
+    <Content Include="Content\icons\glyphicons\glyphicons-halflings-regular.woff" />
+    <Content Include="Content\icons\glyphicons\glyphicons-halflings-regular.woff2" />
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
-    <Content Include="Content\fonts\pe-icon-7-stroke\fonts\Pe-icon-7-stroke.eot" />
-    <Content Include="Content\fonts\pe-icon-7-stroke\fonts\Pe-icon-7-stroke.ttf" />
-    <Content Include="Content\fonts\pe-icon-7-stroke\fonts\Pe-icon-7-stroke.woff" />
     <Content Include="Areas\Eoc\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Eoc\Views\Dashboard\Index.cshtml" />
-    <Content Include="Content\fonts\Pe-icon-7-stroke.woff" />
-    <Content Include="Content\fonts\Pe-icon-7-stroke.eot" />
-    <Content Include="Content\fonts\Pe-icon-7-stroke.ttf" />
     <Content Include=".jshintrc" />
-    <Content Include="Content\fonts\open-sans\font\OpenSans-Semibold.woff" />
-    <Content Include="Content\fonts\open-sans\font\OpenSans-Bold.woff" />
-    <Content Include="Content\fonts\open-sans\font\OpenSans-Light.woff" />
-    <Content Include="Content\fonts\open-sans\font\OpenSans.woff" />
+    <Content Include="Content\fonts\open-sans\OpenSans-Semibold.woff" />
+    <Content Include="Content\fonts\open-sans\OpenSans-Bold.woff" />
+    <Content Include="Content\fonts\open-sans\OpenSans-Light.woff" />
+    <Content Include="Content\fonts\open-sans\OpenSans.woff" />
     <Content Include="Areas\Eoc\Views\IncidentManagement\Index.cshtml" />
     <Content Include="Areas\Eoc\Views\IncidentManagement\Partials\IncidentManagementIndex.cshtml" />
     <Content Include="Areas\Eoc\Views\Dashboard\Dashboard.cshtml" />
@@ -504,7 +494,7 @@
     <EmbeddedResource Include="App_Data\variants\states_titlecase.json" />
     <EmbeddedResource Include="App_Data\states_list.json" />
     <Content Include="Areas\Eoc\Views\IncidentTimeline\Index.cshtml" />
-    <Content Include="Areas\Eoc\Views\IncidentTimeline\Partials\IncidentTimelineIndex.cshtml" />
+    <None Include="Areas\Eoc\Views\IncidentTimeline\Partials\IncidentTimelineIndex.cshtml" />
     <None Include="Content\images\landing\header.jpg.old" />
     <Content Include="Content\images\landing\s1.png" />
     <Content Include="Content\images\landing\s2.png" />
@@ -710,9 +700,9 @@
     <Folder Include="Views\Contact\Partials\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\icons\pe-icon-7-stroke\fonts\Pe-icon-7-stroke.eot" />
-    <Content Include="Content\icons\pe-icon-7-stroke\fonts\Pe-icon-7-stroke.ttf" />
-    <Content Include="Content\icons\pe-icon-7-stroke\fonts\Pe-icon-7-stroke.woff" />
+    <Content Include="Content\icons\pe-icon-7-stroke\Pe-icon-7-stroke.eot" />
+    <Content Include="Content\icons\pe-icon-7-stroke\Pe-icon-7-stroke.ttf" />
+    <Content Include="Content\icons\pe-icon-7-stroke\Pe-icon-7-stroke.woff" />
     <Content Include="bower.json" />
   </ItemGroup>
   <ItemGroup>
