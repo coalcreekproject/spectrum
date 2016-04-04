@@ -20,6 +20,12 @@
                             <a href="@Url.Action("Index", "Portal")">Portal</a>
                         </li>
                         <li class="active">
+                            EOC
+                        </li>
+                        <li>
+                            <a href="@Url.Action("Index", "IncidentManagement")">Incident Management</a>
+                        </li>
+                        <li class="active">
                             Position Log
                         </li>
                     </ol>
@@ -57,9 +63,7 @@
         </div>
     </div>
 
-    <loading></loading>
-
-    <div class="content" ng-hide="loading">
+    <div class="content">
         <div class="panel">
             <div class="table-responsive">
                 <table class="table table-bordered table-position table-striped">

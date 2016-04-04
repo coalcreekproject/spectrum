@@ -20,14 +20,20 @@
                             <a href="@Url.Action("Index", "Portal")">Portal</a>
                         </li>
                         <li class="active">
-                            Position Log Management
+                            EOC
+                        </li>
+                        <li>
+                            <a href="@Url.Action("Index", "IncidentManagement")">Incident Management</a>
+                        </li>
+                        <li class="active">
+                            Position Log
                         </li>
                     </ol>
                 </div>
                 <h2 class="font-light m-b-xs">
                     Position Log for {{plm.incident.incidentName}}
                 </h2>
-                <small>Create log entries for {{plm.name}}.</small>
+                <small>Manage log entries for this incident</small>
             </div>
         </div>
     </div>
@@ -40,7 +46,7 @@
             <div class="hpanel">
                 <div class="panel-body">
                     <div class="form">
-                        <div class="col-lg-10">
+                        <div class="col-lg-6">
                             <div class="input-group m-b">
                                 <span class="input-group-btn">
                                     <button class="btn btn-primary" ng-click="plm.clear()" type="button">Clear filter</button>
@@ -51,7 +57,7 @@
                                        type="text">
                             </div>
                         </div>
-                        <div class="col-lg-2">
+                        <div class="col-lg-6">
                             <div class="pull-right">
                                 <div style="padding-bottom: 15px">
                                     <button class="btn btn-primary"
@@ -68,10 +74,7 @@
         </div>
     </div>
 
-    <loading></loading>
-
-    <div class="content"
-         ng-hide="loading">
+    <div class="content">
         <div ng-repeat="l in plm.incident.logs | filter:plm.search">
             <div animate-panel
                  child="row"
@@ -82,14 +85,14 @@
                             <div class="hbuilt panel-heading">
                                 <div panel-tools></div>
                                 <span>
-                                    {{ l.logTitle }} <small>{{ l.logDate | date:"MM/dd/yyyy 'at' h:mma"}}</small>
+                                    {{ l.logTitle }} {{ l.logDate | date:"MM/dd/yyyy 'at' h:mma"}}
                                 </span>
                             </div>
                             <div class="panel-body">
                                 <div class="row">
                                     <div class="col-sm-12">
-                                        <h3>Occurred at: {{l.logName}}</h3>
-                                        <p>{{ l.logEntry }}</p>
+                                        <label>Occurred at location:</label> {{l.logName}}<br/>
+                                        <label>Entry:</label> {{ l.logEntry }}
                                     </div>
                                 </div>
                             </div>
