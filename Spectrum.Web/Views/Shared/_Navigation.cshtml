@@ -35,9 +35,168 @@
         side-navigation>
         <li ui-sref-active="active">
             <a href="@Url.Action("Index", "Portal", new {Area = string.Empty})">
-                <span class="nav-label">Portal</span><span class="label label-info pull-right">NEW</span></a>
+                <span class="nav-label">Portal</span><span class="label label-info pull-right">NEW</span>
+            </a>
         </li>
-        <li ng-class="{active: $state.includes('accounting')}"
+
+
+        <li ng-class="{active: $state.includes('planning')}" style="opacity: .5">
+            <a>
+                <span class="nav-label">Mitigation</span><span class="arrow fa"></span>
+            </a>
+            <ul class="nav nav-second-level">
+                <li class="@Html.IsSelected(action: "")">
+                    <a>Strategy Builder</a>
+                </li>
+                <li class="@Html.IsSelected(action: "")">
+                    <a>Programs</a>
+                </li>
+            </ul>
+        </li>
+
+
+        <li ng-class="{active: $state.includes('preparedness')}" style="opacity: .5">
+            <a>
+                <span class="nav-label">Preparedness</span><span class="arrow fa"></span>
+            </a>
+            <ul class="nav nav-second-level">
+                <li class="@Html.IsSelected(action: "")">
+                    <a>Intelligence</a>
+                </li>
+                <li class="@Html.IsSelected(action: "")">
+                    <a>Planning</a>
+                </li>
+                <li class="@Html.IsSelected(action: "")">
+                    <a>Mutual Aid Agreements</a>
+                </li>
+                <li class="@Html.IsSelected(action: "")">
+                    <a>Memorandums of Understanding</a>
+                </li>
+                <li class="@Html.IsSelected(action: "")">
+                    <a>Vendor Management</a>
+                </li>
+            </ul>
+        </li>
+
+        <li ng-class="{active: $state.includes('response')}">
+            <a>
+                <span class="nav-label">Response</span><span class="arrow fa"></span>
+            </a>
+            <ul class="nav nav-second-level">
+                <li class="@Html.IsSelected(action: "")">
+                    <a href="@Url.Action("Index", "IncidentManagement", new {Area = "Eoc"})">
+                        <span class="label label-success pull-right">CREATE<br />INCIDENT</span>EOC
+                    </a>
+                </li>
+                <li class="@Html.IsSelected(action: "")" style="opacity: .5">
+                    <a>Community</a>
+                </li>
+            </ul>
+        </li>
+
+
+        <li ng-class="{active: $state.includes('recovery')}" style="opacity: .5">
+            <a>
+                <span class="nav-label">Recovery</span><span class="arrow fa"></span>
+            </a>
+            <ul class="nav nav-second-level"
+                ng-class="{in: $state.includes('forms')}">
+                <li class="@Html.IsSelected(action: "Login")">
+                    <a>Right of Entry Manger</a>
+                </li>
+                <li class="@Html.IsSelected(action: "Login")">
+                    <a>Track Resources</a>
+                </li>
+            </ul>
+        </li>
+
+    <li ng-class="{active: $state.includes('recovery')}" style="opacity: .5">
+        <a>
+            <span class="nav-label">Tools</span><span class="arrow fa"></span>
+        </a>
+        <ul class="nav nav-second-level"
+            ng-class="{in: $state.includes('forms')}">
+            <li class="@Html.IsSelected(action: "Login")">
+                <a>Accounting</a>
+            </li>
+            <li class="@Html.IsSelected(action: "Login")">
+                <a>Placeholder</a>
+            </li>
+        </ul>
+    </li>
+
+    <li ng-class="{active: $state.includes('example')}" style="opacity: .5">
+        <a>
+            <span class="nav-label">First Level</span><span class="arrow fa"></span>
+        </a>
+        <ul class="nav nav-second-level">
+            <li class="@Html.IsSelected(action: "")">
+                <a>First Level 1</a>
+            </li>
+            <li class="@Html.IsSelected(action: "")">
+                <a>First Level 2</a>
+            </li>
+            <li class="@Html.IsSelected(action: "")">
+                <a>First Level 3</a>
+            </li>
+            <li class="@Html.IsSelected(action: "")">
+                <a aria-expanded="false">
+                    <span class="nav-label">SECOND LEVEL</span><span class="arrow fa"></span>
+                </a>
+                <ul class="nav nav-third-level" aria-expanded="false">
+                    <li class="@Html.IsSelected(action: "")">
+                        <a style="padding-left: 40px">Second Level 1</a>
+                    </li>
+                    <li class="@Html.IsSelected(action: "")">
+                        <a style="padding-left: 40px">Second Level 2</a>
+                    </li>
+                    <li class="@Html.IsSelected(action: "")">
+                        <a style="padding-left: 40px">Second Level 3</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </li>
+
+
+    @*<li ng-class="{active: $state.includes('planning')}"
+            style="opacity: .5">
+            <a>
+                <span class="nav-label">Recovery</span><span class="arrow fa"></span>
+            </a>
+            <ul class="nav nav-second-level">
+                <li class="@Html.IsSelected(action: "")">
+                    <a>Emergency Operations Plan</a>
+                </li>
+                <li class="@Html.IsSelected(action: "")">
+                    <a>Annexes</a>
+                </li>
+                <li class="@Html.IsSelected(action: "")">
+                    <a>Mutual Aid Agreements</a>
+                </li>
+            </ul>
+        </li>*@
+
+    @*<li ng-class="{active: $state.includes('planning')}"
+            style="opacity: .5">
+            <a>
+                <span class="nav-label">Planning</span><span class="arrow fa"></span>
+            </a>
+            <ul class="nav nav-second-level">
+                <li class="@Html.IsSelected(action: "")">
+                    <a>Emergency Operations Plan</a>
+                </li>
+                <li class="@Html.IsSelected(action: "")">
+                    <a>Annexes</a>
+                </li>
+                <li class="@Html.IsSelected(action: "")">
+                    <a>Mutual Aid Agreements</a>
+                </li>
+            </ul>
+        </li>*@
+
+
+        @*<li ng-class="{active: $state.includes('accounting')}"
             style="opacity: .5">
             <a>
                 <span class="nav-label">Accounting</span><span class="arrow fa"></span>
@@ -51,15 +210,20 @@
                     <a>Track Resources</a>
                 </li>
             </ul>
-        </li>
-        <li style="opacity: .5"
+        </li>*@
+
+
+
+        @*<li style="opacity: .5"
             ui-sref-active="active">
             <a ui-sref="analytics">
-                <span class="nav-label">Analytics</span><span class="label label-success pull-right">COMING<br/>SOON!</span> </a>
+                <span class="nav-label">Analytics</span><span class="label label-success pull-right">COMING<br />SOON!</span>
+            </a>
         </li>
         <li ng-class="{active: $state.includes('app.eoc')}">
             <a>
-                <span class="nav-label">EOC</span><span class="arrow fa"></span> </a>
+                <span class="nav-label">EOC</span><span class="arrow fa"></span>
+            </a>
             <ul class="nav nav-second-level">
                 <li class="@Html.IsSelected(action: "Dashboard")"
                     style="opacity: .5">
@@ -100,11 +264,15 @@
                     <a href="#">Shelters</a>
                 </li>
             </ul>
-        </li>
-        <li ng-class="{active: $state.includes('excercises')}"
+        </li>*@
+
+
+
+        @*<li ng-class="{active: $state.includes('excercises')}"
             style="opacity: .5">
             <a>
-                <span class="nav-label">Excercises</span><span class="arrow fa"></span> </a>
+                <span class="nav-label">Excercises</span><span class="arrow fa"></span>
+            </a>
             <ul class="nav nav-second-level">
                 <li class="@Html.IsSelected(action: "Excercise Design")">
                     <a>Excercise Design</a>
@@ -125,11 +293,14 @@
                     <a>Evaluation</a>
                 </li>
             </ul>
-        </li>
-        <li ng-class="{active: $state.includes('intelligence')}"
+        </li>*@
+
+
+        @*<li ng-class="{active: $state.includes('intelligence')}"
             style="opacity: .5">
             <a>
-                <span class="nav-label">Intelligence</span><span class="arrow fa"></span> </a>
+                <span class="nav-label">Intelligence</span><span class="arrow fa"></span>
+            </a>
             <ul class="nav nav-second-level">
                 <li class="@Html.IsSelected(action: "Login")">
                     <a>Hazard Analysis</a>
@@ -141,11 +312,14 @@
                     <a>Social Networks</a>
                 </li>
             </ul>
-        </li>
-        <li ng-class="{active: $state.includes('planning')}"
+        </li>*@
+
+
+        @*<li ng-class="{active: $state.includes('planning')}"
             style="opacity: .5">
             <a>
-                <span class="nav-label">Planning</span><span class="arrow fa"></span> </a>
+                <span class="nav-label">Planning</span><span class="arrow fa"></span>
+            </a>
             <ul class="nav nav-second-level">
                 <li class="@Html.IsSelected(action: "")">
                     <a>Emergency Operations Plan</a>
@@ -157,33 +331,10 @@
                     <a>Mutual Aid Agreements</a>
                 </li>
             </ul>
-        </li>
-        <li ng-class="{active: $state.includes('response')}"
-            style="opacity: .5">
-            <a>
-                <span class="nav-label">Response</span><span class="arrow fa"></span> </a>
-            <ul class="nav nav-second-level">
-                <li class="@Html.IsSelected(action: "Overview")">
-                    <a><span class="label label-success pull-right">CREATE<br/>RESPONSE</span> Overview </a>
-                </li>
-                <li class="@Html.IsSelected(action: "ColumnsFromUp")">
-                    <a>ICS</a>
-                </li>
-            </ul>
-        </li>
-        <li ng-class="{active: $state.includes('recovery')}"
-            style="opacity: .5">
-            <a>
-                <span class="nav-label">Recovery</span><span class="arrow fa"></span> </a>
-            <ul class="nav nav-second-level"
-                ng-class="{in: $state.includes('forms')}">
-                <li class="@Html.IsSelected(action: "Login")">
-                    <a>Right of Entry Manger</a>
-                </li>
-                <li class="@Html.IsSelected(action: "Login")">
-                    <a>Track Resources</a>
-                </li>
-            </ul>
-        </li>
+        </li>*@
+
+
+
+
     </ul>
 </div>

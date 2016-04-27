@@ -64,3 +64,10 @@ span.if-label {
     font-size: 12px;
     margin-right: 5px;
 }
+
+#side-menu li .nav-third-level li a {
+  padding: 10px 10px 10px 0;
+  color: #6a6c6f;
+  text-transform: none;
+  font-weight: 600;
+}
