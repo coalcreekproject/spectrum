@@ -5,6 +5,7 @@ using System.Net;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using AutoMapper;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Spectrum.Data.Core.Context;
@@ -232,22 +233,41 @@ namespace Spectrum.Web.Controllers.Web
             }
         }
 
+        //public ActionResult Template(string template)
+        //{
+        //    switch (template.ToLower())
+        //    {
+        //        case "registerindex":
+
+        //            var coreDbContext = new CoreDbContext();
+        //            var registerViewModel = new RegisterViewModel
+        //            {
+        //                OrganizationTypes = Mapper.Map<List<OrganizationType>, List<OrganizationTypeViewModel>>(coreDbContext.OrganizationTypes.ToList())
+        //            };
+
+        //            return PartialView("~/Views/Registration/Partials/RegistrationIndex.cshtml", registerViewModel);
+        //        default:
+        //            throw new ApplicationException("Unknown Template");
+        //    }
+        //}
+
         [AllowAnonymous]
         public ActionResult Template(string template)
         {
-            switch (template.ToLower())
+            const string basePath = "~/Views/Registration/Partials/";
+            var partialView = basePath + template + ".cshtml";
+            try
             {
-                case "registerindex":
-
-                    var coreDbContext = new CoreDbContext();
-                    var registerViewModel = new RegisterViewModel
-                    {
-                        //OrganizationTypes = coreDbContext.OrganizationTypes.ToList()
-                    };
-
-                    return PartialView("~/Views/Registration/Partials/RegistrationIndex.cshtml", registerViewModel);
-                default:
-                    throw new ApplicationException("Unknown Template");
+                var coreDbContext = new CoreDbContext();
+                var registerViewModel = new RegisterViewModel
+                {
+                    OrganizationTypes = Mapper.Map<List<OrganizationType>, List<OrganizationTypeViewModel>>(coreDbContext.OrganizationTypes.ToList())
+                };
+                return PartialView(partialView, registerViewModel);
+            }
+            catch (Exception)
+            {
+                throw new ApplicationException("Unknown Template");
             }
         }
     }

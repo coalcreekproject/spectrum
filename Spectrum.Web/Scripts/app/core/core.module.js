@@ -18,7 +18,6 @@
         'angular-flot',
         'angles',
         'angular-peity',
-        'angular-timeline',
         'cgNotify',
         'ui.map',
         'ui.tree',
@@ -27,7 +26,9 @@
         'ui.sortable',
         'ui.grid',
         'ui.grid.selection',
-        'dndLists'
+        'dndLists',
+      	'angular-scroll-animate',
+        'angular-timeline'
     ]);
 
 })();

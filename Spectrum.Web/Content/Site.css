@@ -25,9 +25,14 @@ textarea {
     font-size: 16px !important;
 }
 
+.popover {
+    border-radius: 0 !important;
+    -moz-border-radius: 0 !important;
+}
+
 .no-corners {
-  border-radius: 0 !important;
-  -moz-border-radius: 0 !important;    
+    border-radius: 0 !important;
+    -moz-border-radius: 0 !important;
 }
 
 
@@ -47,4 +52,22 @@ i.if-icon {
 
 span.if-label {
     vertical-align: text-top;
+}
+
+.label-primary {
+  background-color: #34495e;
+  border-color: #34495e;
+  color: #FFFFFF ;
+}
+
+.incident-panel-footer {
+    font-size: 12px;
+    margin-right: 5px;
+}
+
+#side-menu li .nav-third-level li a {
+  padding: 10px 10px 10px 0;
+  color: #6a6c6f;
+  text-transform: none;
+  font-weight: 600;
 }

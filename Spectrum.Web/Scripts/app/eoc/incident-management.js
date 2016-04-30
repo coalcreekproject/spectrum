@@ -18,12 +18,33 @@
                 templateUrl: '/Eoc/Templates/IncidentManagement/IncidentManagementIndex',
                 controller: 'IncidentMgmtCtrl',
                 controllerAs: 'im'
+            })
+            //.state('position-log', {
+            //    url: "/position-log/:incidentId",
+            //    templateUrl: "/Eoc/Templates/PositionLog/PositionLogIndex",
+            //    controller: 'PositionLogCtrl',
+            //    controllerAs: 'pl',
+            //    data: {
+            //        pageTitle: 'PositionLog'
+            //    }
+            //});
+            .state('position-log', {
+                url: '/manage/:incidentId',
+                templateUrl: '/Eoc/Templates/PositionLog/PositionLogManagement',
+                controller: 'PositionLogMgmtCtrl',
+                controllerAs: 'plm'
+            })
+            .state('timeline', {
+                url: '/timeline/:incidentId',
+                templateUrl: '/Eoc/Templates/IncidentTimeline/IncidentTimelineIndex',
+                controller: 'IncidentTimelineCtrl',
+                controllerAs: 'vm'
             });
     }
 
-    IncidentMgmtCtrl.$inject = ['$scope', 'incidentData', '$uibModal'];
+    IncidentMgmtCtrl.$inject = ['$scope', '$state', 'incidentData', '$uibModal'];
 
-    function IncidentMgmtCtrl($scope, incidentData, $uibModal) {
+    function IncidentMgmtCtrl($scope, $state, incidentData, $uibModal) {
 
         var INCIDENT_TEMPLATE_PATH = 'Eoc/Templates/IncidentManagement/';
 
@@ -32,7 +53,6 @@
 
         // Defining variables at top of controller to quickly
         // scan all available operations
-        vm.name = 'Sean';
         vm.incidents = [];
         vm.search = '';
         vm.clear = clear;
@@ -41,6 +61,15 @@
         vm.deleteModal = deleteModal;
 
         // Then define controller functions
+
+
+        vm.incidentLog = function (incident) {
+            $state.go('position-log', { 'incidentId': incident.id });
+        };
+
+        vm.timeline = function (incident) {
+            $state.go('timeline', { 'incidentId': incident.id });
+        };
 
         function clear() {
             vm.search = '';

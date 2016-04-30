@@ -62,7 +62,8 @@
     "peity": "^3.2.0",
     "slimScroll": "~1.3.6",
     "sparkline": "http://omnipotent.net/jquery.sparkline/2.1.2/jquery.sparkline.js",
-    "angular-timeline": "^1.6.2"
+    "angular-timeline": "^1.6.2",
+    "angular-scroll-animate": "^0.9.8"
   },
   "resolutions": {
     "fullcalendar": "2.3.1",

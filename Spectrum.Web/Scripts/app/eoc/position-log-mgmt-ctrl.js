@@ -11,13 +11,13 @@
         // Optimize load start with remove binding information inside the DOM element
         $compileProvider.debugInfoEnabled(true);
 
-        $stateProvider
-            .state('posmgmt', {
-                url: '/manage/:incidentId',
-                templateUrl: '/Eoc/Templates/PositionLog/PositionLogManagement',
-                controller: 'PositionLogMgmtCtrl',
-                controllerAs: 'plm'
-            });
+        //$stateProvider
+        //    .state('posmgmt', {
+        //        url: '/manage/:incidentId',
+        //        templateUrl: '/Eoc/Templates/PositionLog/PositionLogManagement',
+        //        controller: 'PositionLogMgmtCtrl',
+        //        controllerAs: 'plm'
+        //    });
     }
 
     PositionLogMgmtCtrl.$inject = ['$scope', '$stateParams', '$uibModal', 'incidentData'];
@@ -41,7 +41,7 @@
         // Controller functions
         function clear() {
             vm.search = '';
-        }
+        }  
 
         function activate() {
             if (vm.incidentId) {

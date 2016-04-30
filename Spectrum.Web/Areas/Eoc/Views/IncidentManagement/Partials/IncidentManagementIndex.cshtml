@@ -17,7 +17,10 @@
                      id="hbreadcrumb">
                     <ol class="breadcrumb hbreadcrumb">
                         <li>
-                            <a href="@Url.Action("Index", "Portal")">Portal</a>
+                            <a href="@Url.Action("Index", "Portal", new { Area = string.Empty })">Portal</a>
+                        </li>
+                        <li class="active">
+                            EOC
                         </li>
                         <li class="active">
                             Incident Management
@@ -27,7 +30,7 @@
                 <h2 class="font-light m-b-xs">
                     Incident Management
                 </h2>
-                <small>Manage your incidents {{im.name}}.</small>
+                <small>Manage incidents</small>
             </div>
         </div>
     </div>
@@ -39,8 +42,8 @@
              effect="fadeInUp">
             <div class="hpanel">
                 <div class="panel-body">
-                    <div class="form-inline">
-                        <div class="col-lg-10">
+                    <div class="form">
+                        <div class="col-lg-6">
                             <div class="input-group m-b">
                                 <span class="input-group-btn">
                                     <button class="btn btn-primary" ng-click="im.clear()" type="button">Clear filter</button>
@@ -51,7 +54,7 @@
                                        type="text">
                             </div>
                         </div>
-                        <div class="col-lg-2">
+                        <div class="col-lg-6">
                             <div class="pull-right">
                                 <div style="padding-bottom: 15px">
                                     <button class="btn btn-primary"
@@ -68,13 +71,9 @@
         </div>
     </div>
 
-    <loading></loading>
-
-    <div class="content" ng-hide="loading">
+    <div class="content">
         <div ng-repeat="i in im.incidents | filter:im.search">
-            <div animate-panel
-                 child="row"
-                 effect="fadeInUp">
+            <div animate-panel child="row" effect="fadeInUp">
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="hpanel">
@@ -95,8 +94,16 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="panel-footer">
+
+
+                            @*<div class="panel-footer">
                                 <div class="btn-toolbar">
+                                    <div class="pull-left">
+                                        <a class="label label-primary incident-panel-footer" ng-click="im.incidentLog(i)">POSITION LOG</a>
+                                    </div>
+                                    <div class="pull-left">
+                                        <a class="label label-primary incident-panel-footer" ng-click="im.timeline(i)">TIMELINE</a>
+                                    </div>
                                     <div class="pull-right">
                                         <button class="btn btn-default btn-sm"
                                                 ng-click="im.editModal(i)">
@@ -108,7 +115,37 @@
                                         </button>
                                     </div>
                                 </div>
+                            </div>*@
+
+                            <div class="panel-footer contact-footer">
+                                <div class="row">
+                                    <div class="col-md-4 border-right">
+                                        <div class="contact-stat">
+                                            <a class="label label-warning incident-panel-footer" ng-click="im.incidentLog(i)">POSITION LOG</a>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 border-right">
+                                        <div class="contact-stat">
+                                            <a class="label label-primary incident-panel-footer" ng-click="im.timeline(i)">TIMELINE</a>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class=" pull-right">
+                                            <button class="btn btn-default btn-sm"
+                                                    ng-click="im.editModal(i)">
+                                                Edit
+                                            </button>
+                                            <button class="btn btn-default btn-sm"
+                                                    ng-click="im.deleteModal(i)">
+                                                Delete
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
+
+
+
                         </div>
                     </div>
                 </div>

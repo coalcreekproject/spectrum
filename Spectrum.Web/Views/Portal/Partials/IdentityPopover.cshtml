@@ -1,18 +1,14 @@
-﻿<div class="no-corners identity-focus-popover">
+﻿<div class="identity-focus-popover">
     @*<label>You Are: {{ currentUser.userName }}</label>*@
     <label>Organization:</label> {{ currentUser.selectedOrganizationName}} <br/>
     <label>Role:</label> {{ currentUser.selectedRoleName }} <br/>
     <label>Position:</label> {{ currentUser.selectedPositionName }}<br/>
-    <i class="pull-right">...click to change</i>
+    @*<i class="pull-right">...click to change</i>*@
 </div>
 
 
-@*<div>
-    <ul class="dropdown-menu filedropdown">
-        <li><div class="title">
-                <label>{{ currentUser.userName }}</label>
-            </div>
-        </li>
+@*<div class="no-corners">
+    <ul class="filedropdown">
         <li>
             <label>Organization:</label> {{ currentUser.selectedOrganizationName}}
         </li>

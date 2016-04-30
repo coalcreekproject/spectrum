@@ -63,6 +63,14 @@ namespace Spectrum.Logic.Identity
             var cache = MemoryCache.Default;
             var userModel = cache.Get<UserModel>("user:" + userId);
 
+            if (userModel == null) //re-cache
+            {
+                var userRepository = new UserRepository(new CoreUnitOfWork());
+                var repoUser = userRepository.Users.FirstOrDefault(u => u.Id == userId);
+                MemoryCacheUser(repoUser);
+                userModel = cache.Get<UserModel>("user:" + userId);
+            }
+
             return userModel;
         }
 

@@ -1,307 +1,328 @@
-﻿<div class="content" animate-panel effect="zoomIn" ng-controller="appCtrl as appCtrl">
-    <div class="row">
+﻿<div class="content" animate-panel effect="zoomIn" ng-controller="appCtrl">
+    @*<div class="row">
         <div class="col-lg-12 text-center m-t-md">
-            <h1>
+            <h3>
                 <span class="text-primary"><strong>Welcome to EM Suite</strong></span>
-            </h1>
+            </h3>
             <p class="text-primary">
                 The <strong>Next Generation</strong> of Emergency Management Sofware.
             </p>
         </div>
-    </div>
+    </div>*@
+
     <div class="row">
         <div class="col-lg-12 ">
             <div class="hpanel">
                 <div class="panel-heading">
                     <div panel-tools></div>
-                    Portal information and statistics
+                    Welcome message
                 </div>
                 <div class="panel-body">
-                    <div class="row">
-                        <div class="col-md-3 text-center">
-                            <div class="small">
-                                <i class="fa fa-bolt"></i> Resources
-                            </div>
-                            <div>
-                                <h1 class="font-extra-bold m-t-xl m-b-xs">
-                                    98
-                                </h1>
-                                <small>Dispatched to events</small>
-                            </div>
-                            <div class="small m-t-xl">
-                                <i class="fa fa-clock-o"></i> Data from March
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="text-center small">
-                                <i class="fa fa-laptop"></i> Active events in the current month.
-                            </div>
-                            <div class="flot-chart" style="height: 160px">
-                                <div flot class="flot-chart-content" dataset="chartUsersData" options="chartUsersOptions"></div>
-                            </div>
-                        </div>
-                        <div class="col-md-3 text-center">
-                            <div class="small">
-                                <i class="fa fa-clock-o"></i> Average event duration
-                            </div>
-                            <div>
-                                <h1 class="font-extra-bold m-t-xl m-b-xs">
-                                    32 hours
-                                </h1>
-                                <small>and 10 minutes</small>
-                            </div>
-                            <div class="small m-t-xl">
-                                <i class="fa fa-clock-o"></i> Last active in @DateTime.Today.ToShortDateString()
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="panel-footer">
-                    Last update: @DateTime.Now.ToLongTimeString()
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-lg-3">
-            <div class="hpanel">
-                <div class="panel-body text-center h-200">
-                    <i class="pe-7s-graph1 fa-4x"></i>
-                    <h4>Costs</h4>
-                    <h1 class="m-xs">$12,600.</h1>
-
-                    <h3 class="font-extra-bold no-margins text-info">
-                        Wild Canyon Fire response per hour.
-                    </h3>
-                    <small>Spectrum Operational metrics, mine data for you and presents data in formats you can customize.</small>
-                </div>
-                <div class="panel-footer">
-                    Find out more in <a href="#"><strong>accounting...</strong></a>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-3">
-            <div class="hpanel stats">
-                <div class="panel-body h-200">
-                    <div class="stats-title pull-left">
-                        <h4>Users Activity</h4>
-                    </div>
-                    <div class="stats-icon pull-right">
-                        <i class="pe-7s-share fa-4x"></i>
-                    </div>
-                    <div class="m-t-xl">
-                        <h3 class="m-b-xs">115</h3>
-                        <span class="font-bold no-margins">
-                            Spectrum Operational Account Users
-                        </span>
-                        @*<progressbar value="55" type="info" class="m-t-xs full progress-small"></progressbar>*@
-                        <div class="row">
-                            <div class="col-xs-6">
-                                <small class="stats-label">Hot Incident</small>
-                                <h4>Mile High Island</h4>
-                            </div>
-
-                            <div class="col-xs-6">
-                                <small class="stats-label">Status</small>
-                                <h5><span class="label label-danger">Active Critical</span></h5>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="panel-footer">
-                    Ask for visibility into this incident, <a href="#">by requesting an invitation.</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-3">
-            <div class="hpanel stats">
-                <div class="panel-body h-200">
-                    <div class="stats-title pull-left">
-                        <h4>Social Media Intelligence</h4>
-                    </div>
-                    <div class="stats-icon pull-right">
-                        <i class="pe-7s-monitor fa-4x"></i>
-                    </div>
-                    <div class="m-t-xl">
-                        <h3><span class="label label-success">86% Positive</span></h3>
-                        <span class="font-bold no-margins">
-                            Among social media users
-                        </span>
-                        <br />
-                        <small>
-                            People have a favorable impression of the handling of the Wild Canyon Fire Incident
-                        </small>
-                    </div>
-                </div>
-                <div class="panel-footer">
-                    More in the <a href="#"><strong>intelligence </strong></a>module...
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-3">
-            <div class="hpanel stats">
-                <div class="panel-body h-200">
-                    <div class="stats-title pull-left">
-                        <h4>Expendature to Date on Wild Canyon Fire Event</h4>
-                    </div>
-                    <div class="stats-icon pull-right">
-                        <i class="pe-7s-cash fa-4x"></i>
-                    </div>
-                    <div class="clearfix"></div>
-                    <div class="flot-chart">
-                        <div flot class="flot-chart-content" dataset="chartIncomeData" options="chartIncomeOptions"></div>
-                    </div>
-                    <div class="m-t-xs">
-
-                        <div class="row">
-                            <div class="col-xs-5">
-                                <small class="stat-label">To Date</small>
-                                <h4>$63,000</h4>
-                            </div>
-                            <div class="col-xs-7">
-                                <small class="stat-label">Today</small>
-                                <h4>$15,200<i class="fa fa-level-up text-info"></i></h4>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="panel-footer">
-                    See event details...
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        @*<div class="col-lg-3">
-            <div class="hpanel stats">
-                <div class="panel-heading">
-                    <div panel-tools></div>
-                    Last active
-                </div>
-                <div class="panel-body list">
-                    <div class="stats-title pull-left">
-                        <h4>Activity</h4>
-                    </div>
-                    <div class="stats-icon pull-right">
-                        <i class="pe-7s-science fa-4x"></i>
-                    </div>
-                    <div class="m-t-xl">
-                        <span class="font-bold no-margins">
-                            User 
-                        </span>
-                        <br />
-                        <small>
-                            Lorem Ipsum is simply dummy text of the printing simply all dummy text. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been.
-                        </small>
-                    </div>
-                    <div class="row m-t-md">
-                        <div class="col-lg-6">
-                            <h3 class="no-margins font-extra-bold text-info">300,102</h3>
-                            <div class="font-bold">98% <i class="fa fa-level-up text-info"></i></div>
-                        </div>
-                        <div class="col-lg-6">
-                            <h3 class="no-margins font-extra-bold text-info">280,200</h3>
-                            <div class="font-bold">98% <i class="fa fa-level-up text-info"></i></div>
-                        </div>
-                    </div>
-                    <div class="row m-t-md">
-                        <div class="col-lg-6">
-                            <h3 class="no-margins font-extra-bold ">120,108</h3>
-                            <div class="font-bold">38% <i class="fa fa-level-down"></i></div>
-                        </div>
-                        <div class="col-lg-6">
-                            <h3 class="no-margins font-extra-bold ">450,600</h3>
-                            <div class="font-bold">28% <i class="fa fa-level-down"></i></div>
-                        </div>
-
-                    </div>
-                </div>
-                <div class="panel-footer">
-                    This is standard panel footer
-                </div>
-            </div>
-        </div>*@
-        <div class="col-lg-12">
-            <div class="hpanel">
-                <div class="panel-heading">
-                    <div panel-tools></div>
-                    Recently active planning projects
-                </div>
-                <div class="panel-body list">
-                    <div class="table-responsive project-list">
-                        <table class="table table-striped">
-                            <thead>
-                                <tr>
-
-                                    <th colspan="2">Project</th>
-                                    <th>Completed</th>
-                                    <th>Task</th>
-                                    <th>Date</th>
-                                    <th>Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td><input icheck type="checkbox" ng-model="checkOne"></td>
-                                    <td>
-                                        Emergency Operations Plan for New County OEM
-                                        <br />
-                                        <small><i class="fa fa-clock-o"></i> Created Jan 21, 2016</small>
-                                    </td>
-                                    <td>
-                                        <pie-chart data="PieChart4.data" options="PieChart4.options"></pie-chart>
-                                    </td>
-                                    <td><strong>20%</strong></td>
-                                    <td>Jul 14, 2013</td>
-                                    <td><a href=""><i class="fa fa-check text-info"></i></a></td>
-                                </tr>
-                                <tr>
-                                    <td><input icheck type="checkbox" ng-model="unCheck1"></td>
-                                    <td>
-                                        Debris Clearing Annex
-                                        <br />
-                                        <small><i class="fa fa-clock-o"></i> Created Feb 9, 2016</small>
-                                    </td>
-                                    <td>
-                                        <pie-chart data="PieChart3.data" options="PieChart3.options"></pie-chart>
-                                    </td>
-                                    <td><strong>40%</strong></td>
-                                    <td>Jul 16, 2013</td>
-                                    <td><a href=""><i class="fa fa-check text-navy"></i></a></td>
-                                </tr>
-                                <tr>
-                                    <td><input icheck type="checkbox" ng-model="checkOne"></td>
-                                    <td>
-                                        Tri-County Mutual Aid Agreement
-                                        <br />
-                                        <small><i class="fa fa-clock-o"></i> Created Feb 12, 2016</small>
-                                    </td>
-                                    <td>
-                                        <pie-chart data="PieChart2.data" options="PieChart2.options"></pie-chart>
-                                    </td>
-                                    <td><strong>75%</strong></td>
-                                    <td>Jul 18, 2013</td>
-                                    <td><a href=""><i class="fa fa-check text-navy"></i></a></td>
-                                </tr>
-                                <tr>
-                                    <td><input icheck type="checkbox" ng-model="unCheck3"></td>
-                                    <td>
-                                        "Gamma"
-                                        <br />
-                                        <small><i class="fa fa-clock-o"></i> Created Dec 7, 2015</small>
-                                    </td>
-                                    <td>
-                                        <pie-chart data="PieChart5.data" options="PieChart5.options"></pie-chart>
-                                    </td>
-                                    <td><strong>16%</strong></td>
-                                    <td>Jul 22, 2013</td>
-                                    <td><a href=""><i class="fa fa-check text-navy"></i></a></td>
-                                </tr>
-                            </tbody>
-                        </table>
+                    <div class="col-lg-12 text-center m-t-md">
+                        <h2>
+                            <span class="text-primary"><strong>Welcome to EM Suite</strong></span>
+                        </h2>
+                        <p class="text-primary">
+                            The <strong>Next Generation</strong> of Emergency Management Sofware.
+                        </p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+            <div class="row">
+                <div class="col-lg-12 ">
+                    <div class="hpanel">
+                        <div class="panel-heading">
+                            <div panel-tools></div>
+                            Portal information and statistics
+                        </div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-md-3 text-center">
+                                    <div class="small">
+                                        <i class="fa fa-bolt"></i> Resources
+                                    </div>
+                                    <div>
+                                        <h1 class="font-extra-bold m-t-xl m-b-xs">
+                                            98
+                                        </h1>
+                                        <small>Dispatched to incidents</small>
+                                    </div>
+                                    <div class="small m-t-xl">
+                                        <i class="fa fa-clock-o"></i> Data from March
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="text-center">
+                                        <label>EOC activations in the current month</label>
+                                    </div>
+                                    <div class="flot-chart" style="height: 160px">
+                                        <div flot class="flot-chart-content" dataset="chartUsersData" options="chartUsersOptions"></div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 text-center">
+                                    <div class="small">
+                                        <i class="fa fa-clock-o"></i> Average incident duration
+                                    </div>
+                                    <div>
+                                        <h1 class="font-extra-bold m-t-xl m-b-xs">
+                                            32 hours
+                                        </h1>
+                                        <small>and 10 minutes</small>
+                                    </div>
+                                    <div class="small m-t-xl">
+                                        <i class="fa fa-clock-o"></i> Last active in @DateTime.Today.ToShortDateString()
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel-footer">
+                            Last update: @DateTime.Now.ToLongTimeString()
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="hpanel">
+                        <div class="panel-body text-center h-200">
+                            <i class="pe-7s-graph1 fa-4x"></i>
+                            <h4>Costs</h4>
+                            <h1 class="m-xs">$12,600.</h1>
+
+                            <h3 class="font-extra-bold no-margins text-info">
+                                Wild Canyon Fire response per hour.
+                            </h3>
+                            <small>Spectrum Operational metrics, mine data for you and presents data in formats you can customize.</small>
+                        </div>
+                        <div class="panel-footer">
+                            Find out more in <a href="#"><strong>accounting...</strong></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="hpanel stats">
+                        <div class="panel-body h-200">
+                            <div class="stats-title pull-left">
+                                <h4>Users Activity</h4>
+                            </div>
+                            <div class="stats-icon pull-right">
+                                <i class="pe-7s-share fa-4x"></i>
+                            </div>
+                            <div class="m-t-xl">
+                                <h3 class="m-b-xs">115</h3>
+                                <span class="font-bold no-margins">
+                                            Spectrum Operational Account Users
+                                        </span>
+                                @*<progressbar value="55" type="info" class="m-t-xs full progress-small"></progressbar>*@
+                                <div class="row">
+                                    <div class="col-xs-6">
+                                        <small class="stats-label">Hot Incident</small>
+                                        <h4>Mile High Island</h4>
+                                    </div>
+
+                                    <div class="col-xs-6">
+                                        <small class="stats-label">Status</small>
+                                        <h5><span class="label label-danger">Active Critical</span></h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel-footer">
+                            Ask for visibility into this incident, <a href="#">by requesting an invitation.</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="hpanel stats">
+                        <div class="panel-body h-200">
+                            <div class="stats-title pull-left">
+                                <h4>Social Media Intelligence</h4>
+                            </div>
+                            <div class="stats-icon pull-right">
+                                <i class="pe-7s-monitor fa-4x"></i>
+                            </div>
+                            <div class="m-t-xl">
+                                <h3><span class="label label-success">86% Positive</span></h3>
+                                <span class="font-bold no-margins">
+                                            Among social media users
+                                        </span>
+                                <br/>
+                                <small>
+                                    People have a favorable impression of the handling of the Wild Canyon Fire Incident
+                                </small>
+                            </div>
+                        </div>
+                        <div class="panel-footer">
+                            More in the <a href="#"><strong>intelligence </strong></a>module...
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="hpanel stats">
+                        <div class="panel-body h-200">
+                            <div class="stats-title pull-left">
+                                <h4>Expendature to Date on Wild Canyon Fire Event</h4>
+                            </div>
+                            <div class="stats-icon pull-right">
+                                <i class="pe-7s-cash fa-4x"></i>
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="flot-chart">
+                                <div flot class="flot-chart-content" dataset="chartIncomeData" options="chartIncomeOptions"></div>
+                            </div>
+                            <div class="m-t-xs">
+
+                                <div class="row">
+                                    <div class="col-xs-5">
+                                        <small class="stat-label">To Date</small>
+                                        <h4>$63,000</h4>
+                                    </div>
+                                    <div class="col-xs-7">
+                                        <small class="stat-label">Today</small>
+                                        <h4>$15,200<i class="fa fa-level-up text-info"></i></h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel-footer">
+                            See event details...
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                @*<div class="col-lg-3">
+                                <div class="hpanel stats">
+                                    <div class="panel-heading">
+                                        <div panel-tools></div>
+                                        Last active
+                                    </div>
+                                    <div class="panel-body list">
+                                        <div class="stats-title pull-left">
+                                            <h4>Activity</h4>
+                                        </div>
+                                        <div class="stats-icon pull-right">
+                                            <i class="pe-7s-science fa-4x"></i>
+                                        </div>
+                                        <div class="m-t-xl">
+                                            <span class="font-bold no-margins">
+                                                User
+                                            </span>
+                                            <br />
+                                            <small>
+                                                Lorem Ipsum is simply dummy text of the printing simply all dummy text. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been.
+                                            </small>
+                                        </div>
+                                        <div class="row m-t-md">
+                                            <div class="col-lg-6">
+                                                <h3 class="no-margins font-extra-bold text-info">300,102</h3>
+                                                <div class="font-bold">98% <i class="fa fa-level-up text-info"></i></div>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <h3 class="no-margins font-extra-bold text-info">280,200</h3>
+                                                <div class="font-bold">98% <i class="fa fa-level-up text-info"></i></div>
+                                            </div>
+                                        </div>
+                                        <div class="row m-t-md">
+                                            <div class="col-lg-6">
+                                                <h3 class="no-margins font-extra-bold ">120,108</h3>
+                                                <div class="font-bold">38% <i class="fa fa-level-down"></i></div>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <h3 class="no-margins font-extra-bold ">450,600</h3>
+                                                <div class="font-bold">28% <i class="fa fa-level-down"></i></div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="panel-footer">
+                                        This is standard panel footer
+                                    </div>
+                                </div>
+                            </div>*@
+                <div class="col-lg-12">
+                    <div class="hpanel">
+                        <div class="panel-heading">
+                            <div panel-tools></div>
+                            Recently active planning projects
+                        </div>
+                        <div class="panel-body list">
+                            <div class="table-responsive project-list">
+                                <table class="table table-striped">
+                                    <thead>
+                                    <tr>
+
+                                        <th colspan="2">Project</th>
+                                        <th>Completed</th>
+                                        <th>Task</th>
+                                        <th>Date</th>
+                                        <th>Action</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td><input icheck type="checkbox" ng-model="checkOne"></td>
+                                        <td>
+                                            Emergency Operations Plan for New County OEM
+                                            <br/>
+                                            <small><i class="fa fa-clock-o"></i> Created Jan 21, 2016</small>
+                                        </td>
+                                        <td>
+                                            <pie-chart data="PieChart4.data" options="PieChart4.options"></pie-chart>
+                                        </td>
+                                        <td><strong>20%</strong></td>
+                                        <td>Jul 14, 2013</td>
+                                        <td><a href=""><i class="fa fa-check text-info"></i></a></td>
+                                    </tr>
+                                    <tr>
+                                        <td><input icheck type="checkbox" ng-model="unCheck1"></td>
+                                        <td>
+                                            Debris Clearing Annex
+                                            <br/>
+                                            <small><i class="fa fa-clock-o"></i> Created Feb 9, 2016</small>
+                                        </td>
+                                        <td>
+                                            <pie-chart data="PieChart3.data" options="PieChart3.options"></pie-chart>
+                                        </td>
+                                        <td><strong>40%</strong></td>
+                                        <td>Jul 16, 2013</td>
+                                        <td><a href=""><i class="fa fa-check text-navy"></i></a></td>
+                                    </tr>
+                                    <tr>
+                                        <td><input icheck type="checkbox" ng-model="checkOne"></td>
+                                        <td>
+                                            Tri-County Mutual Aid Agreement
+                                            <br/>
+                                            <small><i class="fa fa-clock-o"></i> Created Feb 12, 2016</small>
+                                        </td>
+                                        <td>
+                                            <pie-chart data="PieChart2.data" options="PieChart2.options"></pie-chart>
+                                        </td>
+                                        <td><strong>75%</strong></td>
+                                        <td>Jul 18, 2013</td>
+                                        <td><a href=""><i class="fa fa-check text-navy"></i></a></td>
+                                    </tr>
+                                    <tr>
+                                        <td><input icheck type="checkbox" ng-model="unCheck3"></td>
+                                        <td>
+                                            "Gamma"
+                                            <br/>
+                                            <small><i class="fa fa-clock-o"></i> Created Dec 7, 2015</small>
+                                        </td>
+                                        <td>
+                                            <pie-chart data="PieChart5.data" options="PieChart5.options"></pie-chart>
+                                        </td>
+                                        <td><strong>16%</strong></td>
+                                        <td>Jul 22, 2013</td>
+                                        <td><a href=""><i class="fa fa-check text-navy"></i></a></td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>

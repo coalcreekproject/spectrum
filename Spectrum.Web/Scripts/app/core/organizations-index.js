@@ -21,6 +21,13 @@ function config($stateProvider, $urlRouterProvider, $compileProvider) {
                 pageTitle: 'index'
             }
         })
+        .state('users', {
+            url: "/users/:organizationId",
+            templateUrl: "/Templates/Organization/OrganizationUsers",
+            data: {
+                pageTitle: 'users'
+            }
+        })
         .state('roles', {
             url: "/roles/:organizationId",
             templateUrl: "/Templates/Organization/OrganizationRoles",
@@ -107,6 +114,10 @@ function organizationController($scope, $http, $uibModal, $state, organizationFa
                 }
             }
         });
+    };
+
+    $scope.users = function (organization) {
+        $state.go('users', { 'organizationId': organization.id });
     };
 
     $scope.profiles = function (organization) {
