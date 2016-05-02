@@ -26,6 +26,14 @@ namespace Spectrum.Logic.Identity
             cache.Set("user:" + userModel.Id, userModel);
         }
 
+        public static void RedisCacheUser(UserModel user)
+        {
+            var userModel = Mapper.Map<UserModel>(user);
+            var cache = RedisCache.Connection.GetDatabase();
+
+            cache.Set("user:" + userModel.Id, userModel);
+        }
+
         public static void MemoryCacheUser(User user)
         {
             var userModel = Mapper.Map<UserModel>(user);
@@ -68,6 +76,24 @@ namespace Spectrum.Logic.Identity
                 var userRepository = new UserRepository(new CoreUnitOfWork());
                 var repoUser = userRepository.Users.FirstOrDefault(u => u.Id == userId);
                 MemoryCacheUser(repoUser);
+                userModel = cache.Get<UserModel>("user:" + userId);
+            }
+
+            return userModel;
+        }
+
+
+        public static UserModel GetUserFromRedisCache(int userId)
+        {
+            var cache = RedisCache.Connection.GetDatabase();
+            var userModel = cache.Get<UserModel>("user:" + userId);
+
+
+            if (userModel == null) //re-cache
+            {
+                var userRepository = new UserRepository(new CoreUnitOfWork());
+                var repoUser = userRepository.Users.FirstOrDefault(u => u.Id == userId);
+                RedisCacheUser(repoUser);
                 userModel = cache.Get<UserModel>("user:" + userId);
             }
 
@@ -151,7 +177,7 @@ namespace Spectrum.Logic.Identity
             userModel.SelectedPositionId = positionData.Item1;
             userModel.SelectedPositionName = positionData.Item2;
 
-            MemoryCacheUser(userModel);
+            RedisCacheUser(userModel);
         }
     }
 }

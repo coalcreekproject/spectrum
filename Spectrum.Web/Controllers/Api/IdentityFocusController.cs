@@ -18,7 +18,7 @@ namespace Spectrum.Web.Controllers.Api
         [HttpGet]
         public HttpResponseMessage Get()
         {
-            var currentUser = UserUtility.GetUserFromMemoryCache(Convert.ToInt32(User.Identity.GetUserId()));
+            var currentUser = UserUtility.GetUserFromRedisCache(Convert.ToInt32(User.Identity.GetUserId()));
 
             if (currentUser == null)
             {
@@ -31,7 +31,7 @@ namespace Spectrum.Web.Controllers.Api
         [HttpPut]
         public HttpResponseMessage Put([FromBody]UserViewModel userViewModel)
         {
-            var currentUser = UserUtility.GetUserFromMemoryCache(userViewModel.Id);
+            var currentUser = UserUtility.GetUserFromRedisCache(userViewModel.Id);
 
             if (currentUser == null)
             {
@@ -51,7 +51,7 @@ namespace Spectrum.Web.Controllers.Api
             currentUser.SelectedPositionName =
                 currentUser.UserPositions.FirstOrDefault(p => p.PositionId.Equals(userViewModel.SelectedPositionId))?.Position.Name;
 
-            UserUtility.MemoryCacheUser(currentUser);
+            UserUtility.RedisCacheUser(currentUser);
 
             return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<UserViewModel>(currentUser));
         }

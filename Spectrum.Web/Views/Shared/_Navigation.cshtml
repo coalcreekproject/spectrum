@@ -88,8 +88,23 @@
                         <span class="label label-success pull-right">CREATE<br />INCIDENT</span>EOC
                     </a>
                 </li>
-                <li class="@Html.IsSelected(action: "")" style="opacity: .5">
-                    <a>Community</a>
+                <li class="@Html.IsSelected(action: "")">
+                    @*<a aria-expanded="false">
+                        <span class="nav-label">SECOND LEVEL</span><span class="arrow fa"></span>
+                    </a>*@
+                    <ul class="nav nav-third-level" aria-expanded="false">
+                        <li class="@Html.IsSelected(action: "")">
+                            <a href="@Url.Action("Index", "CheckList", new {Area = "Eoc"})" style="padding-left: 40px">
+                                Checklists
+                            </a>
+                        </li>
+                        <li class="@Html.IsSelected(action: "")">
+                            <a style="padding-left: 40px">Media</a>
+                        </li>
+                        <li class="@Html.IsSelected(action: "")">
+                            <a style="padding-left: 40px">Action Plans</a>
+                        </li>
+                    </ul>
                 </li>
             </ul>
         </li>
