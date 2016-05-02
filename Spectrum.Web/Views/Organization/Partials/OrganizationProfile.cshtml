@@ -7,7 +7,7 @@
 @section Styles {
 }
 
-<div ng-controller="OrganizationProfileController as organizationProfileController">
+<div ng-controller="OrganizationProfileController">
     <div small-header class="normalheader transition">
         <div class="hpanel" title="Page header" content="Place your page title and breadcrumb." placement="bottom">
             <div class="panel-body">
@@ -19,7 +19,7 @@
                 <div id="hbreadcrumb" class="pull-right m-t-lg">
                     <ol class="hbreadcrumb breadcrumb">
                         <li>
-                            <a href="@Url.Action("Index", "Dashboard")">Portal</a>
+                            <a href="@Url.Action("Index", "Portal")">Portal</a>
                         </li>
                         <li>
                             <a href="@Url.Action("Index", "Organization")">Organizations</a>
@@ -64,7 +64,7 @@
     </div>
 
     <div class="content">
-        <div ng-repeat="p in data.organizationProfiles track by p.Id">
+        <div ng-repeat="p in data.organizationProfiles track by p.id">
             <div animate-panel child="row" effect="fadeInRight">
                 <div class="row">
                     <div class="col-lg-12">

@@ -1,4 +1,4 @@
-﻿<div class="modal-dialog" ng-controller="identityFocusController as identityFocusController">
+﻿<div class="modal-dialog" ng-controller="identityFocusController">
     <div class="modal-header">
         <h4 class="modal-title">Change Identity Focus</h4>
         <small class="font-bold">Select the user organization and role to access the information in that context</small>
@@ -10,23 +10,26 @@
             <div class="form-group">
                 <div class="row">
                     <div class="col-md-7 dropdown">
-                        <label for="selectedOrganization">Organization</label>
-                        <select class="form-control m-b" id="selectedOrganization" name="selectedOrganization" ng-model="currentUser.selectedOrganization"
-                                ng-options="option.name for option in organizations track by option.organizationId"></select>
+                        <label for="selectedOrganizationId">Organization</label>
+                        <select class="form-control m-b" name="selectedOrganizationId" id="selectedOrganizationId" ng-model="currentUser.selectedOrganizationId">
+                            <option ng-repeat="option in organizations" value="{{option.organizationId}}" ng-selected="currentUser.selectedOrganizationId === option.organizationId">{{option.name}}</option>
+                        </select>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-7">
                         <label for="selectedRole">Role</label>
-                        <select class="form-control m-b" id="selectedRole" name="selectedRole" ng-model="currentUser.selectedRole"
-                                ng-options="option.name for option in roles track by option.roleId"></select>
+                        <select class="form-control m-b" name="selectedRole" id="selectedRole" ng-model="currentUser.selectedRoleId">
+                            <option ng-repeat="option in roles" value="{{option.roleId}}" ng-selected="currentUser.selectedRoleId === option.roleId">{{option.name}}</option>
+                        </select>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-7">
                         <label for="selectedPosition">Position</label>
-                        <select class="form-control m-b" id="selectedPosition" name="selectedPosition" ng-model="currentUser.selectedPosition"
-                                ng-options="option.name for option in positions track by option.positionId"></select>
+                        <select class="form-control m-b" name="selectedPosition" id="selectedPosition" ng-model="currentUser.selectedPositionId">
+                            <option ng-repeat="option in positions" value="{{option.positionId}}" ng-selected="currentUser.selectedPositionId === option.positionId">{{option.name}}</option>
+                        </select>
                     </div>
                 </div>
             </div>

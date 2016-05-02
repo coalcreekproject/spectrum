@@ -10,8 +10,8 @@
             <div class="form-group">
                 <div class="row">
                     <div class="col-md-6">
-                        <label for="OrganizationTypeId">Name</label>
-                        <input type="text" placeholder="Name" ng-model="organization.name" class="form-control">
+                        <label for="Name">Name</label>
+                        <input type="text" id="Name" placeholder="Name" ng-model="organization.name" class="form-control">
                     </div>
                 </div>
             </div>
@@ -19,8 +19,13 @@
             <div class="form-group">
                 <div class="row">
                     <div class="col-md-6">
-                        <label for="OrganizationTypeId">Organization Type</label>
-                        <input type="text" id="OrganizationTypeId" placeholder="OrganizationTypeId" ng-model="organization.organizationTypeId" class="form-control">
+                        <label for="organizationType">Organization Type</label>
+                        <select class="form-control m-b"
+                                name="organizationType"
+                                id="organizationType"
+                                ng-model="organization.selectedOrgType"
+                                ng-options="o.name for o in organizationTypes">
+                        </select>
                     </div>
                 </div>
             </div>

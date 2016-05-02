@@ -3,6 +3,8 @@
     .controller('OrganizationController', organizationController)
     .config(config);
 
+config.$inject = ["$stateProvider", "$urlRouterProvider", "$compileProvider"];
+
 function config($stateProvider, $urlRouterProvider, $compileProvider) {
 
     // Optimize load start with remove binding information inside the DOM element
@@ -17,6 +19,13 @@ function config($stateProvider, $urlRouterProvider, $compileProvider) {
             templateUrl: "/Templates/Organization/OrganizationIndex",
             data: {
                 pageTitle: 'index'
+            }
+        })
+        .state('users', {
+            url: "/users/:organizationId",
+            templateUrl: "/Templates/Organization/OrganizationUsers",
+            data: {
+                pageTitle: 'users'
             }
         })
         .state('roles', {
@@ -47,14 +56,21 @@ function config($stateProvider, $urlRouterProvider, $compileProvider) {
 
 function organizationController($scope, $http, $uibModal, $state, organizationFactory) {
 
-    $uibModal.scope = $scope;
-
     $scope.data = organizationFactory;
+    var organizationTypes;
+
+    organizationFactory.getOrganizationTypes()
+        .then(function(result) {
+            //succcess
+                organizationTypes = result;
+            },
+            function() {
+                //error
+            });
 
     organizationFactory.getOrganizations()
-        .then(function (organizations) {
+        .then(function () {
             // success
-            //$scope.data = organization;
         },
             function () {
                 // error
@@ -78,6 +94,14 @@ function organizationController($scope, $http, $uibModal, $state, organizationFa
                 }
             }
         });
+        modalInstance.result
+                .then(function ()
+                {
+                    // Rebind the scope, which is funked up
+                }).catch(function ()
+                {
+                    // Do nothing
+                });
     };
 
     $scope.delete = function (organization) {
@@ -90,6 +114,10 @@ function organizationController($scope, $http, $uibModal, $state, organizationFa
                 }
             }
         });
+    };
+
+    $scope.users = function (organization) {
+        $state.go('users', { 'organizationId': organization.id });
     };
 
     $scope.profiles = function (organization) {
@@ -107,15 +135,21 @@ function organizationController($scope, $http, $uibModal, $state, organizationFa
 
 function AddOrganizationModalController($scope, $uibModalInstance, organizationFactory) {
 
-    $scope.ok = function (organization) {
+    $scope.organizationTypes = organizationFactory.organizationTypes;
 
-        organizationFactory.addOrganizations(organization)
-            .then(function () {
+    $scope.ok = function(newOrganization) {
+
+        // Set the values to the selected organization type
+        newOrganization.organizationTypeId = newOrganization.selectedOrgType.organizationTypeId;
+        newOrganization.organizationTypeName = newOrganization.selectedOrgType.name;
+
+        organizationFactory.addOrganizations(newOrganization)
+            .then(function (newlyCreatedOrganization) {
                 // success
-                $uibModalInstance.close();
-        
-            },
-                function () {
+                newlyCreatedOrganization.organizationTypeName =
+                    findOrganizationTypeName(organizationFactory.organizationTypes, newlyCreatedOrganization.organizationTypeId);
+                },
+                function() {
                     // error
                     alert("could not save organization");
                 });
@@ -123,22 +157,41 @@ function AddOrganizationModalController($scope, $uibModalInstance, organizationF
         $uibModalInstance.close();
     };
 
-    $scope.cancel = function () {
+    $scope.cancel = function() {
         $uibModalInstance.dismiss('cancel');
-
     };
+
+    function findOrganizationTypeName(orgTypes, orgIdToFind) {
+        for (var i = 0; i < orgTypes.length; i++) {
+            if (orgTypes[i].organizationTypeId === orgIdToFind) {
+                return orgTypes[i].name;
+            }
+        }
+        return "Not Found"; // Not found
+    }
 };
 
 function EditOrganizationModalController($scope, $uibModalInstance, organizationFactory, organization) {
 
-    $scope.organization = organization;
+    $scope.organizationTypes = organizationFactory.organizationTypes;
+    $scope.selectedOrgType = findSelectedOrganization($scope.organizationTypes, organization.organizationTypeId);
 
-    $scope.ok = function () {
+    organizationFactory.getOrganization(organization.id)
+    .then(function (result) {
+        $scope.organization = result;
+    });
 
-        organizationFactory.editOrganizations(organization)
+    $scope.ok = function (editOrganization)
+    {
+        // Set the values to the selected organization type
+        editOrganization.organizationTypeId = editOrganization.selectedOrgType.organizationTypeId;
+        editOrganization.organizationTypeName = editOrganization.selectedOrgType.name;
+        editOrganization.organizationType = null;
+
+        organizationFactory.editOrganizations(editOrganization)
             .then(function () {
                 // success
-            },
+                },
                 function () {
                     // error
                     alert("could not edit or update organization");
@@ -151,6 +204,15 @@ function EditOrganizationModalController($scope, $uibModalInstance, organization
     $scope.cancel = function () {
         $uibModalInstance.dismiss('cancel');
     };
+
+    function findSelectedOrganization(orgTypes, orgIdToFind) {
+        for (var i = 0; i < orgTypes.length; i++) {
+            if (orgTypes[i].organizationTypeId === orgIdToFind) {
+                return orgTypes[i];
+            }
+        }
+        return -1; // Not found
+    }
 };
 
 function DeleteOrganizationModalController($scope, $uibModalInstance, organizationFactory, organization) {
@@ -162,7 +224,6 @@ function DeleteOrganizationModalController($scope, $uibModalInstance, organizati
         organizationFactory.deleteOrganizations(organization)
             .then(function () {
                 // success
-
             },
                 function () {
                     // error
@@ -170,7 +231,6 @@ function DeleteOrganizationModalController($scope, $uibModalInstance, organizati
                 });
 
         $uibModalInstance.close();
-
     };
 
     $scope.cancel = function () {
@@ -188,7 +248,44 @@ angular
 
 function organizationFactory($http, $q) {
 
+    var _organization = {};
     var _organizations = [];
+    var _organizationTypes = [];
+
+    var _getOrganizationTypes = function() {
+        var deferred = $q.defer();
+
+        $http.get('/api/OrganizationType')
+          .then(function (result) {
+              // Successful
+              angular.copy(result.data, _organizationTypes);
+              deferred.resolve(_organizationTypes);
+          },
+          function () {
+              // Error
+              deferred.reject();
+          });
+
+        return deferred.promise;
+    }
+
+    var _getOrganization = function (id) {
+
+        var deferred = $q.defer();
+
+        $http.get('/api/Organizations/' + id)
+         .then(function (result) {
+             // success
+             angular.copy(result.data, _organization);
+             deferred.resolve(_organization);
+         },
+         function () {
+             // error
+             deferred.reject();
+         });
+
+        return deferred.promise;
+    };
 
     var _getOrganizations = function () {
 
@@ -211,6 +308,8 @@ function organizationFactory($http, $q) {
 
     var _addOrganization = function (newOrganization) {
 
+        var local = newOrganization;
+
         var deferred = $q.defer();
 
         $http.post('/api/Organizations', newOrganization)
@@ -232,7 +331,7 @@ function organizationFactory($http, $q) {
 
         var deferred = $q.defer();
 
-        $http.put('/api/Organizations/' + organization.Id, organization)
+        $http.put('/api/Organizations/' + organization.id, organization)
          .then(function (result) {
              // success
              var editedOrganization = result.data;
@@ -240,7 +339,9 @@ function organizationFactory($http, $q) {
              for (var i = 0; i < _organizations.length; i++) {
                  if (_organizations[i].id === editedOrganization.id) {
                      _organizations[i].name = editedOrganization.name;
-                     _organizations[i].typeId = editedOrganization.typeId;
+                     _organizations[i].organizationTypeId = editedOrganization.organizationTypeId;
+                     _organizations[i].organizationTypeName = editedOrganization.organizationType.name;
+
                      break;
                  }
              }
@@ -259,7 +360,7 @@ function organizationFactory($http, $q) {
 
         var deferred = $q.defer();
 
-        $http.delete('/api/Organizations/' + organization.Id, organization)
+        $http.delete('/api/Organizations/' + organization.id, organization)
          .then(function (result) {
 
              var deletedOrganization = result.data;
@@ -282,7 +383,11 @@ function organizationFactory($http, $q) {
     };
 
     return {
+        organizationTypes: _organizationTypes,
+        getOrganizationTypes: _getOrganizationTypes,
+        organization: _organization,
         organizations: _organizations,
+        getOrganization: _getOrganization,
         getOrganizations: _getOrganizations,
         addOrganizations: _addOrganization,
         editOrganizations: _editOrganization,

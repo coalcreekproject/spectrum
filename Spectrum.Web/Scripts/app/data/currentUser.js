@@ -50,14 +50,6 @@
                 .then(function(result) {
                         // success
                         var editedUser = result.data;
-
-                        //currentUser.SelectedOrganizationId = editedUser.SelectedOrganizationId;
-                        //currentUser.SelectedOrganizationName = editedUser.SelectedOrganizationName;
-                        //currentUser.SelectedRoleId = editedUser.SelectedRoleId;
-                        //currentUser.SelectedRoleName = editedUser.SelectedRoleName;
-                        //currentUser.SelectedPositionId = editedUser.SelectedPositionId;
-                        //currentUser.SelectedPositionName = editedUser.SelectedPositionName;
-
                         deferred.resolve(editedUser);
                     },
                     function() {

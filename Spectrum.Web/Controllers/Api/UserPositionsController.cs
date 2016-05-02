@@ -11,6 +11,8 @@ using Spectrum.Data.Core.Models.Interfaces;
 using Spectrum.Data.Core.Repositories;
 using Spectrum.Web.IdentityConfig;
 using Spectrum.Web.Models;
+using System;
+using System.Collections.Generic;
 
 namespace Spectrum.Web.Controllers.Api
 {
@@ -18,6 +20,7 @@ namespace Spectrum.Web.Controllers.Api
     {
         private ICoreDbContext _context;
         private UserRepository _userRepository;
+        private PositionRepository _positionRepository;
         private readonly ApplicationUserManager _manager;
 
         public UserPositionsController(ICoreUnitOfWork uow)
@@ -26,6 +29,7 @@ namespace Spectrum.Web.Controllers.Api
 
             //Ugh still newing stuff up...
             _userRepository = new UserRepository(uow);
+            _positionRepository = new PositionRepository(uow);
             _manager = new ApplicationUserManager(_userRepository);
         }
 
@@ -34,22 +38,64 @@ namespace Spectrum.Web.Controllers.Api
         public HttpResponseMessage Get(int id)
         {
             var user = _userRepository.FindByIdAsync(id).Result;
-            var userPositions = user.UserPositions;
+            var organizationId = GetDefaultOrganizationId(user);
+            var positions = _positionRepository.All.Where(r => r.OrganizationId == organizationId).ToList();
 
-            var userPositionViewModels = userPositions.Select(u => new UserPositionViewModel
+            var availableUserPositions = positions.Select(p => new UserPositionViewModel
             {
-                Default = u.Default,
-                Description = u.Position.Description,
-                Name = u.Position.Name,
-                OrganizationId = u.OrganizationId,
-                PositionId = u.PositionId,
-                UserId = u.UserId,
-                Value = u.Position.Value
+                Default = null,
+                Description = p.Description,
+                Name = p.Name,
+                OrganizationId = organizationId,
+                PositionId = p.Id,
+                UserId = user.Id
             }).ToList();
 
-            return Request.CreateResponse(HttpStatusCode.OK, userPositionViewModels);
+            var assignedUserPositions = user.UserPositions.Select(r => new UserPositionViewModel
+            {
+                Default = r.Default,
+                Description = r.Position.Description,
+                Name = r.Position.Name,
+                OrganizationId = r.OrganizationId,
+                PositionId = r.PositionId,
+                UserId = r.UserId
+            }).ToList();
+
+            SortPositions(availableUserPositions, assignedUserPositions);
+
+            return Request.CreateResponse(HttpStatusCode.OK,
+                new Tuple<List<UserPositionViewModel>, List<UserPositionViewModel>>(availableUserPositions, assignedUserPositions));
         }
 
+        private void SortPositions(List<UserPositionViewModel> available, List<UserPositionViewModel> assigned)
+        {
+            foreach (var r in available.ToList())
+            {
+                if (assigned.Any(u => u.PositionId == r.PositionId))
+                {
+                    available.Remove(r);
+                }
+            }
+        }
+
+        private int GetDefaultOrganizationId(User user)
+        {
+            var defaultOrganization = user.UserOrganizations.FirstOrDefault(o => o.Default == true);
+
+            if (defaultOrganization != null)
+            {
+                return defaultOrganization.OrganizationId;
+            }
+
+            var firstOrganization = user.UserOrganizations.First();
+
+            if (firstOrganization != null)
+            {
+                return firstOrganization.OrganizationId;
+            }
+
+            return -1; //not found
+        }
 
         // PUT: api/Positions/5
         [HttpPut]
@@ -84,6 +130,5 @@ namespace Spectrum.Web.Controllers.Api
 
             return Request.CreateResponse(HttpStatusCode.BadRequest);
         }
-
     }
 }

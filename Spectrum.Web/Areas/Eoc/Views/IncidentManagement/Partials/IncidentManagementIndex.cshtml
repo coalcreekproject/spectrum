@@ -1,17 +1,26 @@
 ﻿<div class="row">
 
-    <div class="normalheader transition" small-header>
-        <div class="hpanel" content="Incidents" placement="bottom" title="Incidents">
+    <div class="normalheader transition"
+         small-header>
+        <div class="hpanel"
+             content="Incidents"
+             placement="bottom"
+             title="Incidents">
             <div class="panel-body">
-                <a href="" ng-click="small()">
+                <a href=""
+                   ng-click="small()">
                     <div class="clip-header">
                         <i class="fa fa-arrow-up"></i>
                     </div>
                 </a>
-                <div class="m-t-lg pull-right" id="hbreadcrumb">
+                <div class="m-t-lg pull-right"
+                     id="hbreadcrumb">
                     <ol class="breadcrumb hbreadcrumb">
                         <li>
-                            <a href="@Url.Action("Index", "Dashboard")">Dashboard</a>
+                            <a href="@Url.Action("Index", "Portal", new { Area = string.Empty })">Portal</a>
+                        </li>
+                        <li class="active">
+                            EOC
                         </li>
                         <li class="active">
                             Incident Management
@@ -21,28 +30,38 @@
                 <h2 class="font-light m-b-xs">
                     Incident Management
                 </h2>
-                <small>Manage your incidents {{im.name}}.</small>
+                <small>Manage incidents</small>
             </div>
         </div>
     </div>
 
-    <div child="row" class="normalheader transition" small-header>
-        <div animate-panel effect="fadeInUp">
+    <div child="row"
+         class="normalheader transition"
+         small-header>
+        <div animate-panel
+             effect="fadeInUp">
             <div class="hpanel">
                 <div class="panel-body">
-                    <div class="form-inline">
-                        <div class="col-lg-10">
+                    <div class="form">
+                        <div class="col-lg-6">
                             <div class="input-group m-b">
                                 <span class="input-group-btn">
-                                    <button class="btn btn-primary" type="button" ng-click="im.clear()">Clear filter</button>
+                                    <button class="btn btn-primary" ng-click="im.clear()" type="button">Clear filter</button>
                                 </span>
-                                <input class="form-control" placeholder="Filter incidents..." type="text" ng-model="im.search">
+                                <input class="form-control"
+                                       ng-model="im.search"
+                                       placeholder="Filter incidents..."
+                                       type="text">
                             </div>
                         </div>
-                        <div class="col-lg-2">
+                        <div class="col-lg-6">
                             <div class="pull-right">
                                 <div style="padding-bottom: 15px">
-                                    <button class="btn btn-primary" id="add" ng-click="im.openModal()">Add an Incident</button>
+                                    <button class="btn btn-primary"
+                                            id="add"
+                                            ng-click="im.openModal()">
+                                        Add an Incident
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -53,7 +72,6 @@
     </div>
 
     <div class="content">
-        <loading></loading>
         <div ng-repeat="i in im.incidents | filter:im.search">
             <div animate-panel child="row" effect="fadeInUp">
                 <div class="row">
@@ -76,14 +94,58 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="panel-footer">
+
+
+                            @*<div class="panel-footer">
                                 <div class="btn-toolbar">
+                                    <div class="pull-left">
+                                        <a class="label label-primary incident-panel-footer" ng-click="im.incidentLog(i)">POSITION LOG</a>
+                                    </div>
+                                    <div class="pull-left">
+                                        <a class="label label-primary incident-panel-footer" ng-click="im.timeline(i)">TIMELINE</a>
+                                    </div>
                                     <div class="pull-right">
-                                        <button class="btn btn-default btn-sm" ng-click="im.editModal(i)">Edit</button>
-                                        <button class="btn btn-default btn-sm" ng-click="im.deleteModal(i)">Delete</button>
+                                        <button class="btn btn-default btn-sm"
+                                                ng-click="im.editModal(i)">
+                                            Edit
+                                        </button>
+                                        <button class="btn btn-default btn-sm"
+                                                ng-click="im.deleteModal(i)">
+                                            Delete
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>*@
+
+                            <div class="panel-footer contact-footer">
+                                <div class="row">
+                                    <div class="col-md-4 border-right">
+                                        <div class="contact-stat">
+                                            <a class="label label-warning incident-panel-footer" ng-click="im.incidentLog(i)">POSITION LOG</a>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 border-right">
+                                        <div class="contact-stat">
+                                            <a class="label label-primary incident-panel-footer" ng-click="im.timeline(i)">TIMELINE</a>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class=" pull-right">
+                                            <button class="btn btn-default btn-sm"
+                                                    ng-click="im.editModal(i)">
+                                                Edit
+                                            </button>
+                                            <button class="btn btn-default btn-sm"
+                                                    ng-click="im.deleteModal(i)">
+                                                Delete
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
+
+
+
                         </div>
                     </div>
                 </div>

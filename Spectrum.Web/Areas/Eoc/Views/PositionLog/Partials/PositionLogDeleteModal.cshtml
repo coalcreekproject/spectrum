@@ -1,0 +1,18 @@
+﻿<div class="modal-dialog">
+
+    <div class="modal-header">
+        <h4 class="modal-title">Delete Log</h4>
+        <small class="font-bold">Do you want to remove this Log?</small>
+    </div>
+
+    <div class="modal-body">
+        <div class="well well-sm">
+            <p>Do you want to remove incident log: <b>{{logName}}</b>?</p>
+        </div>
+    </div>
+</div>
+
+<div class="modal-footer">
+    <button class="btn btn-default" ng-click="cancel()" type="button">Cancel</button>
+    <button class="btn btn-success" ng-click="delete()" type="button">Delete</button>
+</div>

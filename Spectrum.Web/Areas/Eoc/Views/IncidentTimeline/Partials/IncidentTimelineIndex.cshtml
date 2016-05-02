@@ -1,0 +1,65 @@
+﻿<div class="container-fluid">
+    <div class="normalheader transition" small-header>
+        <div class="hpanel"
+             content="{{vm.title}}"
+             placement="bottom"
+             title="{{vm.title}}">
+            <div class="panel-body">
+                <a href=""
+                   ng-click="small()">
+                    <div class="clip-header">
+                        <i class="fa fa-arrow-up"></i>
+                    </div>
+                </a>
+                <div class="m-t-lg pull-right"
+                     id="hbreadcrumb">
+                    <ol class="breadcrumb hbreadcrumb">
+                        <li>
+                            <a href="@Url.Action("Index", "Portal")">Portal</a>
+                        </li>
+                        <li class="active">
+                            EOC
+                        </li>
+                        <li>
+                            <a href="@Url.Action("Index", "IncidentManagement")">Incident Management</a>
+                        </li>
+                        <li>
+                            Incident Timeline
+                        </li>
+                    </ol>
+                </div>
+                <h2 class="font-light m-b-xs">
+                    {{vm.title}}
+                </h2>
+                <small>A chronological graphic view of the logs and events for this incident</small>
+            </div>
+        </div>
+    </div>
+
+    <div class="content">
+        <timeline>
+            <timeline-event ng-repeat="event in vm.events">
+
+                <timeline-badge class="{{event.badgeClass}} timeline-hidden" when-visible="vm.animateElementIn" when-not-visible="vm.animateElementOut">
+                    <i class="{{event.badgeIconClass}}"></i>
+                </timeline-badge>
+
+                <timeline-panel class="{{event.badgeClass}} timeline-hidden" when-visible="vm.animateElementIn" when-not-visible="vm.animateElementOut">
+                    <timeline-heading>
+                        <h4>
+                            {{event.title}}
+                        </h4>
+                    </timeline-heading>
+                    <p>
+                        @*<b>Status:</b> {{event.status}}<br />
+                        Level: {{event.level}}<br />*@
+                        <b>Occurred at:</b> {{event.createDate | date:'short'}}
+                        <b>Entry:</b> {{event.entry}}
+                    </p>
+                </timeline-panel>
+
+
+            </timeline-event>
+        </timeline>
+    </div>
+</div>

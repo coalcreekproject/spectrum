@@ -16,7 +16,7 @@
     <AssemblyName>Spectrum.Web</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
-    <UseIISExpress>true</UseIISExpress>
+    <UseIISExpress>false</UseIISExpress>
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
@@ -245,12 +245,20 @@
     <Compile Include="Areas\Eoc\Controllers\Web\CheckListController.cs" />
     <Compile Include="Areas\Eoc\Controllers\Web\DashboardController.cs" />
     <Compile Include="Areas\Eoc\Controllers\Web\IncidentManagementController.cs" />
+    <Compile Include="Areas\Eoc\Controllers\Web\IncidentTimelineController.cs" />
+    <Compile Include="Areas\Eoc\Controllers\Web\PositionLogController.cs" />
     <Compile Include="Areas\Eoc\EocAreaRegistration.cs" />
+    <Compile Include="Controllers\Api\Data\CountryDataController.cs" />
     <Compile Include="Controllers\Api\IdentityFocusController.cs" />
+    <Compile Include="Controllers\Api\Data\LanguageDataController.cs" />
+    <Compile Include="Controllers\Api\OrganizationTypeController.cs" />
+    <Compile Include="Controllers\Api\OrganizationUsersController.cs" />
     <Compile Include="Controllers\Api\PositionsController.cs" />
     <Compile Include="Controllers\Api\RolesController.cs" />
     <Compile Include="Controllers\Api\UserPositionsController.cs" />
     <Compile Include="Controllers\Api\UserRolesController.cs" />
+    <Compile Include="Controllers\Api\Data\UsStateDataController.cs" />
+    <Compile Include="Controllers\Api\Data\UsTimeZoneDataController.cs" />
     <Compile Include="Controllers\Web\CommunityController.cs" />
     <Compile Include="Controllers\Web\AccountController.cs" />
     <Compile Include="Controllers\Web\BillingController.cs" />
@@ -261,6 +269,7 @@
     <Compile Include="Controllers\Web\PortalController.cs" />
     <Compile Include="Controllers\Web\HomeController.cs" />
     <Compile Include="Controllers\Web\ManageController.cs" />
+    <Compile Include="Controllers\Web\RegistrationController.cs" />
     <Compile Include="Controllers\Web\SettingsController.cs" />
     <Compile Include="Controllers\Web\UserController.cs" />
     <Compile Include="Controllers\Web\OrganizationController.cs" />
@@ -287,18 +296,22 @@
     <Compile Include="Models\Identity\CustomUserRole.cs" />
     <Compile Include="Models\Identity\CustomUserStore.cs" />
     <Compile Include="Models\Identity\CustomUserLogin.cs" />
+    <Compile Include="Models\IncidentLogInputViewModel.cs" />
     <Compile Include="Models\ManageIndexViewModel.cs" />
     <Compile Include="Models\LoginViewModel.cs" />
     <Compile Include="Models\ManageLoginsViewModel.cs" />
     <Compile Include="Models\ConfigureTwoFactorViewModel.cs" />
     <Compile Include="Models\OrganizationProfileViewModel.cs" />
+    <Compile Include="Models\OrganizationTypeViewModel.cs" />
     <Compile Include="Models\OrganizationViewModel.cs" />
     <Compile Include="Models\PositionViewModel.cs" />
+    <Compile Include="Models\RegisterOrganizationViewModel.cs" />
     <Compile Include="Models\RegisterViewModel.cs" />
     <Compile Include="Models\ResetPasswordViewModel.cs" />
     <Compile Include="Models\RoleViewModel.cs" />
     <Compile Include="Models\SendCodeViewModel.cs" />
     <Compile Include="Models\SetPasswordViewModel.cs" />
+    <Compile Include="Models\UserListViewModel.cs" />
     <Compile Include="Models\UserOrganizationViewModel.cs" />
     <Compile Include="Models\UserPositionViewModel.cs" />
     <Compile Include="Models\UserProfileViewModel.cs" />
@@ -310,6 +323,9 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="App_Data\us_time_zones.json" />
+    <EmbeddedResource Include="App_Data\countries.json" />
+    <EmbeddedResource Include="App_Data\language_list.json" />
     <Content Include="Areas\Eoc\Views\Checklist\Index.cshtml" />
     <Content Include="Areas\Eoc\Views\Checklist\Partials\CheckListIndex.cshtml" />
     <Content Include="Areas\Eoc\Views\web.config" />
@@ -318,14 +334,10 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\font-awesome.css" />
-    <Content Include="Content\fonts\fontawesome-webfont.svg" />
-    <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
-    <Content Include="Content\fonts\Pe-icon-7-stroke.svg" />
-    <Content Include="Content\fonts\open-sans\css\OpenSans.css" />
-    <Content Include="Content\fonts\pe-icon-7-stroke\css\helper.css" />
-    <Content Include="Content\fonts\pe-icon-7-stroke\css\pe-icon-7-stroke.css" />
-    <Content Include="Content\fonts\pe-icon-7-stroke\fonts\Pe-icon-7-stroke.svg" />
+    <Content Include="Content\fonts\fontawesome\font-awesome.css" />
+    <Content Include="Content\fonts\fontawesome\fontawesome-webfont.svg" />
+    <Content Include="Content\icons\glyphicons\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\fonts\open-sans\OpenSans.css" />
     <Content Include="Content\images\green%402x.png" />
     <Content Include="Content\images\green.png" />
     <Content Include="Content\images\landing\banner.png" />
@@ -395,9 +407,9 @@
     <Content Include="Content\style.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Content\icons\pe-icon-7-stroke\css\helper.css" />
-    <Content Include="Content\icons\pe-icon-7-stroke\css\pe-icon-7-stroke.css" />
-    <Content Include="Content\icons\pe-icon-7-stroke\fonts\Pe-icon-7-stroke.svg" />
+    <Content Include="Content\icons\pe-icon-7-stroke\helper.css" />
+    <Content Include="Content\icons\pe-icon-7-stroke\pe-icon-7-stroke.css" />
+    <Content Include="Content\icons\pe-icon-7-stroke\Pe-icon-7-stroke.svg" />
     <Content Include="Content\images\a1.jpg" />
     <Content Include="Content\images\a2.jpg" />
     <Content Include="Content\images\a3.jpg" />
@@ -437,39 +449,52 @@
     <Content Include="Content\images\landing\c6.jpg" />
     <Content Include="Content\images\landing\c7.jpg" />
     <Content Include="Content\images\landing\c8.jpg" />
-    <Content Include="Content\fonts\fontawesome-webfont.eot" />
-    <Content Include="Content\fonts\fontawesome-webfont.ttf" />
-    <Content Include="Content\fonts\fontawesome-webfont.woff" />
-    <Content Include="Content\fonts\fontawesome-webfont.woff2" />
-    <Content Include="Content\fonts\FontAwesome.otf" />
-    <Content Include="Content\fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="Content\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Content\fonts\fontawesome\fontawesome-webfont.eot" />
+    <Content Include="Content\fonts\fontawesome\fontawesome-webfont.ttf" />
+    <Content Include="Content\fonts\fontawesome\fontawesome-webfont.woff" />
+    <Content Include="Content\fonts\fontawesome\fontawesome-webfont.woff2" />
+    <Content Include="Content\fonts\fontawesome\FontAwesome.otf" />
+    <Content Include="Content\icons\glyphicons\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\icons\glyphicons\glyphicons-halflings-regular.ttf" />
+    <Content Include="Content\icons\glyphicons\glyphicons-halflings-regular.woff" />
+    <Content Include="Content\icons\glyphicons\glyphicons-halflings-regular.woff2" />
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
-    <Content Include="Content\fonts\pe-icon-7-stroke\fonts\Pe-icon-7-stroke.eot" />
-    <Content Include="Content\fonts\pe-icon-7-stroke\fonts\Pe-icon-7-stroke.ttf" />
-    <Content Include="Content\fonts\pe-icon-7-stroke\fonts\Pe-icon-7-stroke.woff" />
     <Content Include="Areas\Eoc\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Eoc\Views\Dashboard\Index.cshtml" />
-    <Content Include="Content\fonts\Pe-icon-7-stroke.woff" />
-    <Content Include="Content\fonts\Pe-icon-7-stroke.eot" />
-    <Content Include="Content\fonts\Pe-icon-7-stroke.ttf" />
     <Content Include=".jshintrc" />
-    <Content Include="Content\fonts\open-sans\font\OpenSans-Semibold.woff" />
-    <Content Include="Content\fonts\open-sans\font\OpenSans-Bold.woff" />
-    <Content Include="Content\fonts\open-sans\font\OpenSans-Light.woff" />
-    <Content Include="Content\fonts\open-sans\font\OpenSans.woff" />
+    <Content Include="Content\fonts\open-sans\OpenSans-Semibold.woff" />
+    <Content Include="Content\fonts\open-sans\OpenSans-Bold.woff" />
+    <Content Include="Content\fonts\open-sans\OpenSans-Light.woff" />
+    <Content Include="Content\fonts\open-sans\OpenSans.woff" />
     <Content Include="Areas\Eoc\Views\IncidentManagement\Index.cshtml" />
     <Content Include="Areas\Eoc\Views\IncidentManagement\Partials\IncidentManagementIndex.cshtml" />
     <Content Include="Areas\Eoc\Views\Dashboard\Dashboard.cshtml" />
+    <Content Include="Scripts\app\core\organization-users.js" />
+    <Content Include="Scripts\app\core\organizations-index-new.js" />
+    <Content Include="Scripts\app\core\register-wizard.js" />
     <Content Include="Scripts\app\data\incidentData.js" />
+    <Content Include="Scripts\app\data\lookup-data-service.js" />
+    <Content Include="Scripts\app\data\organization-data.js" />
     <Content Include="Scripts\app\directives\loading-directive.js" />
+    <Content Include="Scripts\app\eoc\incident-timeline-ctrl.js" />
+    <Content Include="Scripts\app\eoc\position-log-ctrl.js" />
+    <Content Include="Scripts\app\eoc\position-log-mgmt-ctrl.js" />
     <Content Include="Scripts\app\templates\im.html" />
     <Content Include="Areas\Eoc\Views\IncidentManagement\Partials\IncidentManagementAddModal.cshtml" />
     <Content Include="Areas\Eoc\Views\IncidentManagement\Partials\IncidentManagementDeleteModal.cshtml" />
     <Content Include="Areas\Eoc\Views\IncidentManagement\Partials\IncidentManagementEditModal.cshtml" />
+    <Content Include="Areas\Eoc\Views\PositionLog\Index.cshtml" />
+    <Content Include="Areas\Eoc\Views\PositionLog\Partials\PositionLogIndex.cshtml" />
+    <Content Include="Areas\Eoc\Views\PositionLog\Partials\PositionLogManagement.cshtml" />
+    <Content Include="Areas\Eoc\Views\PositionLog\Partials\PositionLogAddModal.cshtml" />
+    <Content Include="Areas\Eoc\Views\PositionLog\Partials\PositionLogDeleteModal.cshtml" />
+    <EmbeddedResource Include="App_Data\county_list_by_state_hash.json" />
+    <EmbeddedResource Include="App_Data\variants\states_hash.json" />
+    <EmbeddedResource Include="App_Data\variants\states_titlecase.json" />
+    <EmbeddedResource Include="App_Data\states_list.json" />
+    <Content Include="Areas\Eoc\Views\IncidentTimeline\Index.cshtml" />
+    <None Include="Areas\Eoc\Views\IncidentTimeline\Partials\IncidentTimelineIndex.cshtml" />
     <None Include="Content\images\landing\header.jpg.old" />
     <Content Include="Content\images\landing\s1.png" />
     <Content Include="Content\images\landing\s2.png" />
@@ -510,60 +535,6 @@
     <Content Include="Scripts\app\directives\minimalizaMenu.js" />
     <Content Include="Scripts\app\directives\pageTitle.js" />
     <Content Include="Scripts\app\directives\touchSpin.js" />
-    <Content Include="Content\dist\development\app.js" />
-    <Content Include="Content\dist\development\bootstrap.js" />
-    <Content Include="Content\dist\development\bootstrap.min.js" />
-    <Content Include="Content\dist\development\charts.js" />
-    <Content Include="Content\dist\development\config.js" />
-    <Content Include="Content\dist\development\controllers\alerts.js" />
-    <Content Include="Content\dist\development\controllers\calendar.js" />
-    <Content Include="Content\dist\development\controllers\chartjs.js" />
-    <Content Include="Content\dist\development\controllers\charts_flot.js" />
-    <Content Include="Content\dist\development\controllers\clock.js" />
-    <Content Include="Content\dist\development\controllers\datatables.js" />
-    <Content Include="Content\dist\development\controllers\draggable.js" />
-    <Content Include="Content\dist\development\controllers\editor.js" />
-    <Content Include="Content\dist\development\controllers\forms.js" />
-    <Content Include="Content\dist\development\controllers\googleMap.js" />
-    <Content Include="Content\dist\development\controllers\grid.js" />
-    <Content Include="Content\dist\development\controllers\inline.js" />
-    <Content Include="Content\dist\development\controllers\list.js" />
-    <Content Include="Content\dist\development\controllers\main.js" />
-    <Content Include="Content\dist\development\controllers\modal.js" />
-    <Content Include="Content\dist\development\controllers\timeline.js" />
-    <Content Include="Content\dist\development\controllers\tour.js" />
-    <Content Include="Content\dist\development\controllers\wizard.js" />
-    <Content Include="Content\dist\development\directives\directives.js" />
-    <Content Include="Content\dist\development\directives\minimalizaMenu.js" />
-    <Content Include="Content\dist\development\directives\pageTitle.js" />
-    <Content Include="Content\dist\development\directives\touchSpin.js" />
-    <Content Include="Content\dist\development\factories\sweet-alert.js" />
-    <Content Include="Content\dist\development\filters\props.js" />
-    <Content Include="Content\dist\development\homer.js" />
-    <None Include="Content\dist\development\jquery-1.10.2.intellisense.js" />
-    <Content Include="Content\dist\development\jquery-1.10.2.js" />
-    <Content Include="Content\dist\development\jquery-1.10.2.min.js" />
-    <None Include="Content\dist\development\jquery.validate-vsdoc.js" />
-    <Content Include="Content\dist\development\jquery.validate.js" />
-    <Content Include="Content\dist\development\jquery.validate.min.js" />
-    <Content Include="Content\dist\development\jquery.validate.unobtrusive.js" />
-    <Content Include="Content\dist\development\jquery.validate.unobtrusive.min.js" />
-    <Content Include="Content\dist\development\modernizr-2.6.2.js" />
-    <Content Include="Content\dist\development\respond.js" />
-    <Content Include="Content\dist\development\respond.min.js" />
-    <Content Include="Content\dist\development\spectrum-core\organization-positions.js" />
-    <Content Include="Content\dist\development\spectrum-core\organization-profiles.js" />
-    <Content Include="Content\dist\development\spectrum-core\organization-roles.js" />
-    <Content Include="Content\dist\development\spectrum-core\organizations-index.js" />
-    <Content Include="Content\dist\development\spectrum-core\portal-userfocus.js" />
-    <Content Include="Content\dist\development\spectrum-core\user-roles.js" />
-    <Content Include="Content\dist\development\spectrum-core\userprofiles-index.js" />
-    <Content Include="Content\dist\development\spectrum-core\users-index.js" />
-    <Content Include="Content\dist\development\spectrum-core\userService.js" />
-    <Content Include="Content\dist\development\spectrum-core\usersgrid-index.js" />
-    <Content Include="Content\dist\development\spectrum-eoc\checklists.js" />
-    <Content Include="Content\dist\production\all.min.js" />
-    <Content Include="Content\dist\production\all.vendor.js" />
     <Content Include="Scripts\app\factories\sweet-alert.js" />
     <Content Include="Scripts\app\filters\props.js" />
     <Content Include="Scripts\app\controllers\main.js" />
@@ -612,7 +583,7 @@
     <Content Include="Scripts\app\core\portal-identityfocus.js" />
     <Content Include="Scripts\app\core\user-positions.js" />
     <Content Include="Scripts\app\core\user-roles.js" />
-    <Content Include="Scripts\app\core\userprofiles-index.js" />
+    <Content Include="Scripts\app\core\user-profiles.js" />
     <Content Include="Scripts\app\core\users-index.js" />
     <Content Include="Scripts\app\core\messages-index.js" />
     <Content Include="Scripts\app\core\community-index.js" />
@@ -630,9 +601,11 @@
     <Content Include="Views\Billing\Index.cshtml" />
     <Content Include="Views\Messages\Index.cshtml" />
     <Content Include="Views\Messages\Partials\MessagesIndex.cshtml" />
+    <Content Include="Views\Account\RegisterOrganization.cshtml" />
     <None Include="Views\Organization\Partials\AddOrganizationProfileModal.cshtml" />
     <Content Include="Views\Organization\Partials\AddOrganizationRoleModal.cshtml" />
     <Content Include="Views\Organization\Partials\DeleteOrganizationPositionModal.cshtml" />
+    <Content Include="Views\Organization\Partials\OrganizationUser.cshtml" />
     <None Include="Views\Organization\Partials\DeleteOrganizationProfileModal.cshtml" />
     <Content Include="Views\Organization\Partials\DeleteOrganizationRoleModal.cshtml" />
     <Content Include="Views\Organization\Partials\EditOrganizationPositionModal.cshtml" />
@@ -645,6 +618,9 @@
     <Content Include="Views\Community\Partials\CommunityIndex.cshtml" />
     <Content Include="Views\Settings\Index.cshtml" />
     <Content Include="Views\Settings\Partials\SettingsIndex.cshtml" />
+    <Content Include="Views\Registration\Partials\RegistrationIndex.cshtml" />
+    <Content Include="Views\Registration\Partials\RegisterOld.cshtml" />
+    <Content Include="Views\Portal\Partials\IdentityPopover.cshtml" />
     <None Include="Views\User\Partials\DeleteUserProfileModal.cshtml" />
     <None Include="Views\User\Partials\EditUserProfileModal.cshtml" />
     <None Include="Views\User\Partials\AddUserProfileModal.cshtml" />
@@ -684,7 +660,7 @@
       <SubType>Designer</SubType>
     </Content>
     <None Include="Views\Account\Login.old.cshtml" />
-    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Registration\Index.cshtml" />
     <Content Include="Views\Account\ResetPassword.cshtml" />
     <Content Include="Views\Account\ResetPasswordConfirmation.cshtml" />
     <Content Include="Views\Account\SendCode.cshtml" />
@@ -714,17 +690,19 @@
     <Content Include="Views\User\Partials\UserPositionsModal.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
+    <Folder Include="App_Start\Filters\" />
     <Folder Include="Areas\Eoc\Models\" />
     <Folder Include="Areas\Eoc\Views\Shared\" />
+    <Folder Include="Content\dist\development\" />
+    <Folder Include="Content\dist\production\" />
     <Folder Include="Scripts\vendor\" />
     <Folder Include="Views\Billing\Partials\" />
     <Folder Include="Views\Contact\Partials\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\icons\pe-icon-7-stroke\fonts\Pe-icon-7-stroke.eot" />
-    <Content Include="Content\icons\pe-icon-7-stroke\fonts\Pe-icon-7-stroke.ttf" />
-    <Content Include="Content\icons\pe-icon-7-stroke\fonts\Pe-icon-7-stroke.woff" />
+    <Content Include="Content\icons\pe-icon-7-stroke\Pe-icon-7-stroke.eot" />
+    <Content Include="Content\icons\pe-icon-7-stroke\Pe-icon-7-stroke.ttf" />
+    <Content Include="Content\icons\pe-icon-7-stroke\Pe-icon-7-stroke.woff" />
     <Content Include="bower.json" />
   </ItemGroup>
   <ItemGroup>
@@ -759,16 +737,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
-          <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>1155</DevelopmentServerPort>
-          <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:1155/</IISUrl>
-          <NTLMAuthentication>False</NTLMAuthentication>
-          <UseCustomServer>False</UseCustomServer>
-          <CustomServerUrl>
-          </CustomServerUrl>
-          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+          <SaveServerSettingsInUserFile>True</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
     </VisualStudio>

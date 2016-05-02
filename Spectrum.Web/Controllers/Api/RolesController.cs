@@ -21,16 +21,6 @@ namespace Spectrum.Web.Controllers.Api
         private ICoreDbContext _context;
         private IRoleRepository _roleRepository;
 
-        //old
-        //public RolesController(ICoreUnitOfWork uow)
-        //{
-        //    _context = uow.Context;
-
-        //    //TODO: Newing this up is no good
-        //    _roleRepository = new RoleRepository(uow);
-        //}
-
-        //new
         public RolesController(IRoleRepository roleRepository)
         {
             _roleRepository = roleRepository;
@@ -67,6 +57,15 @@ namespace Spectrum.Web.Controllers.Api
             return Request.CreateResponse(HttpStatusCode.OK, roleViewModels);
         }
 
+        [HttpGet]
+        // GET: api/Roles/5
+        public HttpResponseMessage Get(int roleId, int organizationId)
+        {
+            var role = _roleRepository.Find(roleId);
+
+            return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<RoleViewModel>(role));
+        }
+
         // POST: api/Roles
         public async Task<HttpResponseMessage> Post([FromBody] RoleViewModel newRole)
         {
@@ -75,19 +74,14 @@ namespace Spectrum.Web.Controllers.Api
             role.ObjectState = ObjectState.Added;
             _roleRepository.InsertOrUpdate(role);
 
-            var result = Task.FromResult(_roleRepository.SaveAsync());
+            await _roleRepository.SaveAsync();
 
-            if (result.IsCompleted)
-            {
-                return Request.CreateResponse(HttpStatusCode.Created,
-                    role);
-            }
-
-            return Request.CreateResponse(HttpStatusCode.BadRequest);
+            return Request.CreateResponse(HttpStatusCode.Created,
+                Mapper.Map<RoleViewModel>(role));
         }
 
         // PUT: api/Roles/5
-        public HttpResponseMessage Put(int id, [FromBody] RoleViewModel editRole)
+        public HttpResponseMessage Put([FromBody] RoleViewModel editRole)
         {
             var role = _roleRepository.FindAsync(editRole.RoleId).Result;
 
@@ -103,7 +97,7 @@ namespace Spectrum.Web.Controllers.Api
             _roleRepository.InsertOrUpdate(role);
             _roleRepository.Save();
 
-            return Request.CreateResponse(HttpStatusCode.OK, role);
+            return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<RoleViewModel>(role));
         }
 
         // DELETE: api/Roles/5
@@ -120,7 +114,7 @@ namespace Spectrum.Web.Controllers.Api
             _roleRepository.Delete(role.Id);
             _roleRepository.SaveAsync();
 
-            return Request.CreateResponse(HttpStatusCode.OK, role);
+            return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<RoleViewModel>(role));
         }
     }
 }

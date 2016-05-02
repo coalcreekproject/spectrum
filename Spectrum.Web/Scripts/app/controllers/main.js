@@ -39,7 +39,7 @@ function appCtrl($http, $scope, $timeout, $state) {
     $scope.barProfileData = [5, 6, 7, 2, 0, 4, 2, 4, 5, 7, 2, 4, 12, 11, 4];
     $scope.barProfileOptions = {
         type: 'bar',
-        barWidth: 7,
+        barWidth: 31,
         height: '30px',
         barColor: '#62cb31',
         negBarColor: '#53ac2a'
@@ -138,8 +138,10 @@ function appCtrl($http, $scope, $timeout, $state) {
      * Some Flot chart data and options used in Dashboard
      */
 
-    var data1 = [ [0, 55], [1, 48], [2, 40], [3, 36], [4, 40], [5, 60], [6, 50], [7, 51] ];
-    var data2 = [ [0, 56], [1, 49], [2, 41], [3, 38], [4, 46], [5, 67], [6, 57], [7, 59] ];
+    var data1 = [[1, 1], [2, 1], [3, 3], [4, 5], [5, 5], [6, 3], [7, 2], [8, 2], [9, 2], [10, 3], [11, 4], [12, 4], [13, 5],
+        [14, 6], [15, 7], [16,7], [17, 5], [18, 5], [19, 4], [20, 4], [21, 5], [22, 5], [23, 4], [24, 3], [25, 3], [26, 4],
+        [27, 3], [28, 3], [29, 4], [30, 3], [31, 2]];
+    var data2 = [];
 
     $scope.chartUsersData = [data1, data2];
     $scope.chartUsersOptions = {

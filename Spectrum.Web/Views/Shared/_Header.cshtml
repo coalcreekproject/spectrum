@@ -26,12 +26,11 @@
                     <i class="pe pe-7s-id if-icon"></i>
                     @if (User.Identity.IsAuthenticated)
                     {
-                        <span class="label label-info if-label">
-                            {{currentUser.userName}} for 
-                            {{currentUser.selectedOrganizationName}} as 
-                            {{currentUser.selectedRoleName}} in position 
-                            {{currentUser.selectedPositionName}}
-                        </span>
+                        <span uib-popover-template="'/Templates/Portal/IdentityPopover'" @*note: the single tick quoting - critical*@
+                              popover-placement="bottom-left"
+                              popover-trigger="mouseenter" 
+                              class="label label-info if-label">{{ currentUser.userName }}</span>
+
                     }
                 </a>
             </li>
@@ -110,12 +109,12 @@
                 <ul class="dropdown-menu hdropdown notification animated flipInX">
                     <li>
                         <a>
-                            <span class="label label-success">NEW</span> Update: The New County fire has been 80% contained.
+                            <span class="label label-success">NEW</span> Update: Wild Canyon Fire has been 80% contained.
                         </a>
                     </li>
                     <li>
                         <a>
-                            <span class="label label-warning">MSG</span> Request for volunteers in Jefferson county MO.
+                            <span class="label label-danger">MSG</span> Request for volunteers in Jefferson County MO.
                         </a>
                     </li>
                     <li>
@@ -182,7 +181,7 @@
                         @Html.ActionLink("Log in", "Login", "Account", new { Area = string.Empty }, htmlAttributes: new { id = "loginLink" })
                     </li>
                     <li>
-                        @Html.ActionLink("Register", "Register", "Account", new { Area = string.Empty }, htmlAttributes: new { id = "registerLink" })
+                        @Html.ActionLink("Register", "Index", "Registration", new { Area = string.Empty }, htmlAttributes: new { id = "registerLink" })
                     </li>
                     <li>
                         @Html.ActionLink("Sign Out", "SignOut", "Account", new { Area = string.Empty }, htmlAttributes: new { id = "signOutLink" })
@@ -193,5 +192,5 @@
                 </ul>
             </li>
         </ul>
-    </div>
+</div>
 </nav>

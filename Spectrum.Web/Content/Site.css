@@ -10,20 +10,41 @@
 }
 
 /* Set width on the form input elements since they're 100% wide by default */
-input,
+/*input,
 select,
 textarea {
     max-width: 280px;
-}
+}*/
 
 .navbar-logo {
     padding-left: 10px
 }
 
 .identity-focus {
-    min-width: 450px;
-    font-size: 14px !important;
+    min-width: 200px;
+    font-size: 16px !important;
 }
+
+.popover {
+    border-radius: 0 !important;
+    -moz-border-radius: 0 !important;
+}
+
+.no-corners {
+    border-radius: 0 !important;
+    -moz-border-radius: 0 !important;
+}
+
+
+.identity-focus-popover {
+    -moz-min-width: 225px;
+    -ms-min-width: 225px;
+    -o-min-width: 225px;
+    -webkit-min-width: 225px;
+    min-width: 225px;
+    font-size: 12px !important;
+}
+
 
 i.if-icon {
     font-size: 24px !important;
@@ -31,4 +52,22 @@ i.if-icon {
 
 span.if-label {
     vertical-align: text-top;
+}
+
+.label-primary {
+  background-color: #34495e;
+  border-color: #34495e;
+  color: #FFFFFF ;
+}
+
+.incident-panel-footer {
+    font-size: 12px;
+    margin-right: 5px;
+}
+
+#side-menu li .nav-third-level li a {
+  padding: 10px 10px 10px 0;
+  color: #6a6c6f;
+  text-transform: none;
+  font-weight: 600;
 }

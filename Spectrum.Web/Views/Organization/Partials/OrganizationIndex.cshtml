@@ -1,4 +1,4 @@
-﻿<div ng-controller="OrganizationController as organizationController">
+﻿<div ng-controller="OrganizationController">
     <div small-header class="normalheader transition">
         <div class="hpanel" title="Page header" content="Place your page title and breadcrumb." placement="bottom">
             <div class="panel-body">
@@ -53,7 +53,7 @@
 
 
     <div class="content">
-        <div ng-repeat="o in data.organizations track by o.Id">
+        <div ng-repeat="o in data.organizations track by o.id">
             <div animate-panel child="row" effect="fadeInRight">
                 <div class="row">
                     <div class="col-lg-12">
@@ -68,7 +68,7 @@
                                         <label class="control-label">Organization Name: </label> {{ o.name }}
                                     </div>
                                     <div class="col-sm-4">
-                                        <label class="control-label">Organization Type: </label> {{ o.organizationTypeId }}
+                                        <label class="control-label">Organization Type: </label> {{ o.organizationTypeName }}
                                     </div>
                                 </div>
                             </div>
@@ -77,6 +77,7 @@
                                     <div class="pull-right">
                                         <button class="btn btn-sm btn-default" ng-click="edit({{ o }})">Edit</button>
                                         <button class="btn btn-sm btn-default" ng-click="profiles({{ o }})">Profiles</button>
+                                        <button class="btn btn-sm btn-default" ng-click="users({{ o }})">Users</button>
                                         <button class="btn btn-sm btn-default" ng-click="roles({{ o }})">Roles</button>
                                         <button class="btn btn-sm btn-default" ng-click="positions({{ o }})">Positions</button>
                                         <button class="btn btn-sm btn-default" ng-click="jurisdictions({{ o }})">Jurisdictions</button>

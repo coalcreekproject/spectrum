@@ -1,0 +1,96 @@
+﻿<div class="row">
+
+    <div class="normalheader transition"
+         small-header>
+        <div class="hpanel"
+             content="Position Log"
+             placement="bottom"
+             title="Position Log">
+            <div class="panel-body">
+                <a href=""
+                   ng-click="small()">
+                    <div class="clip-header">
+                        <i class="fa fa-arrow-up"></i>
+                    </div>
+                </a>
+                <div class="m-t-lg pull-right"
+                     id="hbreadcrumb">
+                    <ol class="breadcrumb hbreadcrumb">
+                        <li>
+                            <a href="@Url.Action("Index", "Portal")">Portal</a>
+                        </li>
+                        <li class="active">
+                            EOC
+                        </li>
+                        <li>
+                            <a href="@Url.Action("Index", "IncidentManagement")">Incident Management</a>
+                        </li>
+                        <li class="active">
+                            Position Log
+                        </li>
+                    </ol>
+                </div>
+                <h2 class="font-light m-b-xs">
+                    Select Your Incident
+                </h2>
+                <small>Select an incident to add a position log entry to.</small>
+            </div>
+        </div>
+    </div>
+
+    <div child="row"
+         class="normalheader transition"
+         small-header>
+        <div animate-panel
+             effect="fadeInUp">
+            <div class="hpanel">
+                <div class="panel-body">
+                    <div class="form">
+                        <div class="col-lg-16">
+                            <div class="input-group m-b">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-primary" ng-click="pl.clear()" type="button">Clear filter</button>
+                                </span>
+                                <input class="form-control"
+                                       ng-model="pl.search"
+                                       placeholder="Filter incidents..."
+                                       type="text">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="content">
+        <div class="panel">
+            <div class="table-responsive">
+                <table class="table table-bordered table-position table-striped">
+                    <thead>
+                    <tr>
+                        <th>&nbsp;</th>
+                        <th>Incident</th>
+                        <th>Status</th>
+                        <th>Date Created</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="i in pl.incidents | filter:pl.search">
+                        <td>
+                            <a class="btn btn-primary btn-sm"
+                               role="button"
+                               ui-sref="posmgmt({incidentId: i.id})">
+                                Select Incident
+                            </a>
+                        </td>
+                        <td>{{i.incidentName}}</td>
+                        <td>{{i.status}}</td>
+                        <td>{{i.createDate | date:"MM/dd/yyyy"}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

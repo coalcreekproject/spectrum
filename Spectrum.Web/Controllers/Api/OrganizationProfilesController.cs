@@ -50,6 +50,7 @@ namespace Spectrum.Web.Controllers.Api
             var organizationProfiles = _organizationProfileRepository.All.Where(p => p.OrganizationId == id);
             var organizationProfileViewModels = new List<OrganizationProfileViewModel>();
 
+            //TODO: Automapper has a syntax to do list/collection coversions, remove the foreach
             foreach (var p in organizationProfiles)
             {
                 organizationProfileViewModels.Add(Mapper.Map<OrganizationProfileViewModel>(p));
@@ -58,28 +59,31 @@ namespace Spectrum.Web.Controllers.Api
             return Request.CreateResponse(HttpStatusCode.OK, organizationProfileViewModels);
         }
 
+        [HttpGet]
+        // GET: api/Roles/5
+        public HttpResponseMessage Get(int profileId, int organizationId)
+        {
+            var organizationProfile = _organizationProfileRepository.Find(profileId);
+
+            return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<OrganizationProfileViewModel>(organizationProfile));
+        }
+
         // POST: api/OrganizationProfiles
-        public async Task<HttpResponseMessage> Post([FromBody]OrganizationProfileViewModel newOrganizationProfile)
+        public async Task<HttpResponseMessage> Post([FromBody] OrganizationProfileViewModel newOrganizationProfile)
         {
             var organizationProfile = Mapper.Map<OrganizationProfile>(newOrganizationProfile);
 
             organizationProfile.ObjectState = ObjectState.Added;
             _organizationProfileRepository.InsertOrUpdate(organizationProfile);
-            var result = Task.FromResult(_organizationProfileRepository.SaveAsync());
+            await _organizationProfileRepository.SaveAsync();
 
-            if (result.IsCompleted)
-            {
-                return Request.CreateResponse(HttpStatusCode.Created,
-                    organizationProfile);
-            }
-
-            return Request.CreateResponse(HttpStatusCode.BadRequest);
+            return Request.CreateResponse(HttpStatusCode.Created, Mapper.Map<OrganizationProfileViewModel>(organizationProfile));
         }
 
         // PUT: api/OrganizationProfiles/5
-        public HttpResponseMessage Put(int id, [FromBody]OrganizationProfileViewModel editOrganizationProfile)
+        public async Task<HttpResponseMessage> Put([FromBody]OrganizationProfileViewModel editOrganizationProfile)
         {
-            var organizationProfile = _organizationProfileRepository.FindAsync(editOrganizationProfile.Id).Result;
+            var organizationProfile = _organizationProfileRepository.Find(editOrganizationProfile.Id);
 
             if (organizationProfile == null)
             {
@@ -88,20 +92,18 @@ namespace Spectrum.Web.Controllers.Api
 
             Mapper.Map(editOrganizationProfile, organizationProfile);
 
-            //TODO: Examine this graph more closely, namely drill down into the xtension method that chanages the EntityState based on the ObjectState value.
             organizationProfile.ObjectState = ObjectState.Modified;
-            //organizationProfile.Organization.ObjectState = ObjectState.Unchanged;
             
             _organizationProfileRepository.InsertOrUpdate(organizationProfile);
-            _organizationProfileRepository.SaveAsync();
+            await _organizationProfileRepository.SaveAsync();
 
-            return Request.CreateResponse(HttpStatusCode.OK, organizationProfile);
+            return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<OrganizationProfileViewModel>(organizationProfile));
         }
 
         // DELETE: api/OrganizationProfiles/5
-        public HttpResponseMessage Delete(int id)
+        public async Task<HttpResponseMessage> Delete(int id)
         {
-            var organizationProfile = _organizationProfileRepository.FindAsync(id).Result;
+            var organizationProfile = _organizationProfileRepository.Find(id);
 
             if (organizationProfile == null)
             {
@@ -110,9 +112,9 @@ namespace Spectrum.Web.Controllers.Api
 
             organizationProfile.ObjectState = ObjectState.Deleted;
             _organizationProfileRepository.Delete(organizationProfile.Id);
-            _organizationProfileRepository.SaveAsync();
+            await _organizationProfileRepository.SaveAsync();
 
-            return Request.CreateResponse(HttpStatusCode.OK, organizationProfile);
+            return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<OrganizationProfileViewModel>(organizationProfile));
         }
     }
 }

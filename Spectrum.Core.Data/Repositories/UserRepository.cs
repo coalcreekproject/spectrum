@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Globalization;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
@@ -9,10 +11,11 @@ using Spectrum.Data.Core.Context;
 using Spectrum.Data.Core.Context.UnitOfWork;
 using Spectrum.Data.Core.Models;
 using Spectrum.Data.Core.Models.Interfaces;
+using Spectrum.Data.Core.Repositories.Interfaces;
 
 namespace Spectrum.Data.Core.Repositories
 {
-    public class UserRepository : IQueryableUserStore<User, int>,
+    public class UserRepository : IUserRepository,
         IUserPasswordStore<User, int>,
         IUserLoginStore<User, int>,
         IUserEmailStore<User, int>,
@@ -22,51 +25,99 @@ namespace Spectrum.Data.Core.Repositories
         IUserTwoFactorStore<User, int>,
         IUserPhoneNumberStore<User, int>
     {
-        private readonly CoreDbContext _context;
-        private readonly ICoreUnitOfWork _coreUnitOfWork;
-
-        public UserRepository()
-        {
-            _context = new CoreDbContext();
-            _coreUnitOfWork = new CoreUnitOfWork(_context);
-        }
-        
-        public UserRepository(CoreDbContext context)
-        {
-            _context = context;
-            _coreUnitOfWork = new CoreUnitOfWork(_context);
-        }
-
         public UserRepository(ICoreUnitOfWork uow)
         {
-            _coreUnitOfWork = uow;
-            _context = uow.Context;
+            UnitOfWork = uow;
+            Context = uow.Context;
         }
+
+        public CoreDbContext Context { get; }
+
+        public ICoreUnitOfWork UnitOfWork { get; }
 
         public IQueryable<User> Users
         {
-            get { return _context.Users; }
+            get { return Context.Users; }
         }
+
+        #region IUserRepositoryImplementation
+
+        public IQueryable<User> All
+        {
+            get { return Context.Users; }
+        }
+
+        public IQueryable<User> AllIncluding(params Expression<Func<User, object>>[] includeProperties)
+        {
+            IQueryable<User> query = Context.Users;
+            foreach (var includeProperty in includeProperties)
+            {
+                query = query.Include(includeProperty);
+            }
+            return query;
+        }
+
+        public User Find(int id)
+        {
+            return Context.Users.Find(id);
+        }
+
+        public Task<User> FindAsync(int userId)
+        {
+            return Context.Users.FirstOrDefaultAsync(o => o.Id.Equals(userId));
+        }
+
+        public void InsertOrUpdate(User user)
+        {
+            if (user.ObjectState == ObjectState.Added)
+            {
+                // New entity
+                Context.Users.Add(user);
+            }
+            else
+            {
+                // Existing entity
+                Context.Entry(user).State = EntityState.Modified;
+            }
+        }
+
+        public void Delete(int id)
+        {
+            var user = Context.Users.Find(id);
+            Context.Users.Remove(user);
+        }
+
+        public void Save()
+        {
+            Context.SaveChanges();
+        }
+
+        public Task SaveAsync()
+        {
+            return Context.SaveChangesAsync();
+        }
+
+        #endregion
 
         #region IUSerStore Implementation
 
         public Task CreateAsync(User user)
         {
-            _context.Users.Add(user);
-            return _coreUnitOfWork.SaveAsync();
+            Context.Users.Add(user);
+            return UnitOfWork.SaveAsync();
         }
 
         public Task UpdateAsync(User user)
         {
             user.ObjectState = ObjectState.Modified;
-            _context.Entry(user).State = EntityState.Modified;
-            return _coreUnitOfWork.SaveAsync();
+            Context.Entry(user).State = EntityState.Modified;
+            return UnitOfWork.SaveAsync();
         }
 
         public Task DeleteAsync(User user)
         {
-            _context.Users.Remove(user);
-            return _coreUnitOfWork.SaveAsync();
+            Context.Users.Remove(user);
+            return UnitOfWork.SaveAsync();
         }
 
         public Task<User> FindByIdAsync(int userId)
@@ -76,11 +127,7 @@ namespace Spectrum.Data.Core.Repositories
 
         public Task<User> FindByNameAsync(string userName)
         {
-            var result = Users.FirstOrDefault(u => u.UserName.Equals(userName));
-            //if (result == null)
-            //    return Task.FromResult(new User());
-
-            return Task.FromResult(result);
+            return Users.FirstOrDefaultAsync(u => u.UserName.Equals(userName));
         }
 
         #endregion
@@ -89,27 +136,17 @@ namespace Spectrum.Data.Core.Repositories
 
         public Task SetPasswordHashAsync(User user, string password)
         {
-            //var result = Users.FirstOrDefault(u => u.Id == user.Id);
-            //if (result == null)
-
             return Task.FromResult(user.PasswordHash = password);
-
-            //user.PasswordHash = password;
-            //_context.Entry(user).State = EntityState.Modified;
-
-            //return _coreUnitOfWork.SaveAsync();
         }
 
         public Task<string> GetPasswordHashAsync(User user)
         {
-            return Task.FromResult(_context.Users.Find(user.Id).PasswordHash);
-            //var result = _context.Users.Find(user.Id).PasswordHash;
-            //return Task.FromResult(result);
+            return Task.FromResult(Context.Users.Find(user.Id).PasswordHash);
         }
 
         public Task<bool> HasPasswordAsync(User user)
         {
-            var password = _context.Users.Find(user.Id).PasswordHash;
+            var password = Context.Users.Find(user.Id).PasswordHash;
             return Task.FromResult(!string.IsNullOrEmpty(password));
         }
 
@@ -136,7 +173,7 @@ namespace Spectrum.Data.Core.Repositories
 
         public Task<User> FindAsync(UserLoginInfo login)
         {
-            return Task.FromResult(_context.Users.Find(login.ProviderKey));
+            return Task.FromResult(Context.Users.Find(login.ProviderKey));
         }
 
         public Task<IList<UserLoginInfo>> GetLoginsAsync(User user)
@@ -166,8 +203,8 @@ namespace Spectrum.Data.Core.Repositories
 
         public Task SetEmailAsync(User user, string email)
         {
-            _context.Users.Find(user).Email = email;
-            return _coreUnitOfWork.SaveAsync();
+            Context.Users.Find(user).Email = email;
+            return UnitOfWork.SaveAsync();
         }
 
         //TODO: This is not working with the ASP.NET Identity provider when 
@@ -183,13 +220,13 @@ namespace Spectrum.Data.Core.Repositories
 
         public Task<bool> GetEmailConfirmedAsync(User user)
         {
-            return Task.FromResult(_context.Users.Find(user).EmailConfirmed);
+            return Task.FromResult(Context.Users.Find(user).EmailConfirmed);
         }
 
         public Task SetEmailConfirmedAsync(User user, bool confirmed)
         {
-            _context.Users.Find(user).EmailConfirmed = confirmed;
-            return _coreUnitOfWork.SaveAsync();
+            Context.Users.Find(user).EmailConfirmed = confirmed;
+            return UnitOfWork.SaveAsync();
         }
 
         public Task<User> FindByEmailAsync(string email)
@@ -254,7 +291,7 @@ namespace Spectrum.Data.Core.Repositories
             var role = userRoles.Select(r => new UserRole()).FirstOrDefault();
 
             userRoles.Remove(role);
-            return _coreUnitOfWork.SaveAsync();
+            return UnitOfWork.SaveAsync();
         }
 
         public Task<IList<string>> GetRolesAsync(User user)
@@ -280,7 +317,7 @@ namespace Spectrum.Data.Core.Repositories
 
         public Task<DateTimeOffset> GetLockoutEndDateAsync(User user)
         {
-            var result = _context.Users.Find(user.Id);
+            var result = Context.Users.Find(user.Id);
 
             if (result.LockoutEndDateUtc == null)
                 return Task.FromResult(DateTimeOffset.UtcNow.AddHours(-1));
@@ -334,7 +371,7 @@ namespace Spectrum.Data.Core.Repositories
                 return Task.FromResult(user.LockoutEnabled = enabled);
             }
             result.LockoutEnabled = enabled;
-            return Task.FromResult(_coreUnitOfWork.SaveAsync());
+            return Task.FromResult(UnitOfWork.SaveAsync());
         }
 
         #endregion
@@ -391,9 +428,9 @@ namespace Spectrum.Data.Core.Repositories
 
         protected virtual void Dispose(bool disposing)
         {
-            if (disposing && _context != null)
+            if (disposing && Context != null)
             {
-                _context.Dispose();
+                Context.Dispose();
             }
         }
 

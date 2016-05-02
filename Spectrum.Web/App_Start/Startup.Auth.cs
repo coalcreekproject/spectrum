@@ -35,11 +35,13 @@ namespace Spectrum.Web
                     OnValidateIdentity = SecurityStampValidator
                         .OnValidateIdentity<ApplicationUserManager, User, int>(
                             validateInterval: TimeSpan.FromMinutes(30),
-                            regenerateIdentityCallback: (manager, user) =>
-                                user.GenerateUserIdentityAsync(manager),
+                            regenerateIdentityCallback: (manager, user) => user.GenerateUserIdentityAsync(manager),
                             getUserIdCallback: (id) => (id.GetUserId<int>()))
-                }
-            });            
+                },
+                SlidingExpiration = true,
+                ExpireTimeSpan = TimeSpan.FromMinutes(30)
+            });
+                        
             app.UseExternalSignInCookie(DefaultAuthenticationTypes.ExternalCookie);
 
             // Enables the application to temporarily store user information when they are verifying the second factor in the two-factor authentication process.

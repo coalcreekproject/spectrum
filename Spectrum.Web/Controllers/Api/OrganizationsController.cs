@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -33,12 +34,7 @@ namespace Spectrum.Web.Controllers.Api
 
             foreach (Organization o in _organizationRepository.All)
             {
-                organizationViewModels.Add(new OrganizationViewModel
-                {
-                    Id = o.Id,
-                    Name = o.Name,
-                    OrganizationTypeId = o.OrganizationTypeId
-                });
+                organizationViewModels.Add(Mapper.Map<OrganizationViewModel>(o));
             }
 
             //TODO: Get Paging working
@@ -56,14 +52,7 @@ namespace Spectrum.Web.Controllers.Api
                 return Request.CreateResponse(HttpStatusCode.NotFound);
             }
 
-            var organizationViewModel = new OrganizationViewModel
-            {
-                Id = organization.Id,
-                Name = organization.Name,
-                OrganizationTypeId = organization.OrganizationTypeId
-            };
-            
-            return Request.CreateResponse(HttpStatusCode.OK, organizationViewModel);
+            return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<OrganizationViewModel>(organization));
         }
 
         // POST: api/Organization
@@ -71,32 +60,21 @@ namespace Spectrum.Web.Controllers.Api
         public async Task<HttpResponseMessage> Post([FromBody]OrganizationViewModel newOrganization)
         {
             Organization organization = new Organization();
-            //{
-            //    Id = newOrganization.Id,
-            //    Name = newOrganization.Name,
-            //    OrganizationTypeId = newOrganization.OrganizationTypeId,
-            //    ObjectState = ObjectState.Added
-            //};
 
             Mapper.Map(newOrganization, organization);
 
+            organization.ObjectState = ObjectState.Added;
             _organizationRepository.InsertOrUpdate(organization);
-            var result = Task.FromResult(_organizationRepository.SaveAsync());
+            await _organizationRepository.SaveAsync();
 
-            if (result.IsCompleted)
-            {
-                return Request.CreateResponse(HttpStatusCode.Created,
-                    organization);
-            }
-
-            return Request.CreateResponse(HttpStatusCode.BadRequest);
+            return Request.CreateResponse(HttpStatusCode.Created, Mapper.Map<OrganizationViewModel>(organization));
         }
 
         // PUT: api/Organization/5
         [HttpPut]
-        public HttpResponseMessage Put([FromBody]OrganizationViewModel editOrganization)
+        public async Task<HttpResponseMessage> Put([FromBody]OrganizationViewModel editOrganization)
         {
-            var organization = _organizationRepository.FindAsync(editOrganization.Id).Result;
+            var organization = _organizationRepository.Find(editOrganization.Id);
 
             if (organization == null)
             {
@@ -105,25 +83,16 @@ namespace Spectrum.Web.Controllers.Api
 
             Mapper.Map(editOrganization, organization);
 
-            //organization.Name = editOrganization.Name;
-            //organization.OrganizationTypeId = editOrganization.OrganizationTypeId;
-
             organization.ObjectState = ObjectState.Modified;
             _organizationRepository.InsertOrUpdate(organization);
-            var result = Task.FromResult(_organizationRepository.SaveAsync());
+            await _organizationRepository.SaveAsync();
 
-            if (result.IsCompleted)
-            {
-                return Request.CreateResponse(HttpStatusCode.Created,
-                    organization);
-            }
-
-            return Request.CreateResponse(HttpStatusCode.BadRequest);
+            return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<OrganizationViewModel>(organization));
         }
 
         // DELETE: api/Organization/5
         [HttpDelete]
-        public HttpResponseMessage Delete(int id)
+        public async Task<HttpResponseMessage> Delete(int id)
         {
             Organization organization = _organizationRepository.Find(id);
 
@@ -135,15 +104,10 @@ namespace Spectrum.Web.Controllers.Api
             organization.ObjectState = ObjectState.Deleted;
             _organizationRepository.Delete(organization.Id);
 
-            var result = Task.FromResult(_organizationRepository.SaveAsync());
+            await _organizationRepository.SaveAsync();
 
-            if (result.IsCompleted)
-            {
-                return Request.CreateResponse(HttpStatusCode.Created,
-                    organization);
-            }
-
-            return Request.CreateResponse(HttpStatusCode.BadRequest);
+            return Request.CreateResponse(HttpStatusCode.OK,
+                Mapper.Map<OrganizationViewModel>(organization));
         }
     }
 }

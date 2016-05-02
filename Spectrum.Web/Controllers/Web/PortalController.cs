@@ -25,6 +25,8 @@ namespace Spectrum.Web.Controllers.Web
                     return PartialView("~/Views/Portal/Partials/PortalIndex.cshtml");
                 case "changeuserfocusmodal":
                     return PartialView("~/Views/Portal/Partials/ChangeIdentityFocusModal.cshtml");
+                case "identitypopover":
+                    return PartialView("~/Views/Portal/Partials/IdentityPopover.cshtml");
                 default:
                     throw new ApplicationException("Unknown Template");
             }

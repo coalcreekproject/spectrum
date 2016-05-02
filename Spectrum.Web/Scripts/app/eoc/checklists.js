@@ -60,49 +60,80 @@ function CheckListsController($scope) {
     $scope.data = [
         {
             "id": 1,
-            "title": "node1",
+            "title": "FR-7800B Respirator",
             "nodes": [
                 {
                     "id": 11,
-                    "title": "node1.1",
+                    "title": "High Efficiency Cartridge FR-57/453-03-02R06",
                     "nodes": [
                         {
                             "id": 111,
-                            "title": "node1.1.1",
+                            "title": "FR-M40 Cartridge Substitute (FR-15-CBRN)",
                             "nodes": []
                         }
                     ]
                 },
                 {
                     "id": 12,
-                    "title": "node1.2",
-                    "nodes": []
+                    "title": "Surefire 6P Flashlight",
+                    "nodes": [
+                                            {
+                                                "id": 111,
+                                                "title": "CR123 Batteries (x2)",
+                                                "nodes": []
+                                            }]
+                },
+                {
+                    "id": 12,
+                    "title": "Surefire Flashlight",
+                    "nodes": [
+                        {
+                            "id": 111,
+                            "title": "CR123 Batteries (x6)",
+                            "nodes": []
+                        }
+                    ]
                 }
             ]
         },
         {
             "id": 2,
-            "title": "node2",
+            "title": "Motorola APX Radio",
             "nodes": [
                 {
                     "id": 21,
-                    "title": "node2.1",
+                    "title": "Rechargable Battery Pack One",
                     "nodes": []
                 },
                 {
                     "id": 22,
-                    "title": "node2.2",
+                    "title": "Rechargable Battery Pack Two",
+                    "nodes": []
+                },
+                {
+                    "id": 23,
+                    "title": "PTT Keyset",
                     "nodes": []
                 }
             ]
         },
         {
             "id": 3,
-            "title": "node3",
+            "title": "Supplemental 196A - Canine Handler Equipment",
             "nodes": [
                 {
                     "id": 31,
-                    "title": "node3.1",
+                    "title": "Harness",
+                    "nodes": []
+                },
+                {
+                    "id": 31,
+                    "title": "35 FT reflective lead",
+                    "nodes": []
+                },
+                {
+                    "id": 31,
+                    "title": "50 FT reflective lead",
                     "nodes": []
                 }
             ]

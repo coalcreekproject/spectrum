@@ -13,7 +13,7 @@
                     <div class="col-md-12">
                         <div>
                             <label>
-                                <input icheck type="checkbox" name="checkboxDefault" ng-model="organizationProfile.Default" /> Make this the organization default profile
+                                <input type="checkbox" name="checkboxDefault" ng-model="organizationProfile.default" disabled/> Make this the organization default profile
                             </label>
                         </div>
                     </div>
@@ -24,11 +24,11 @@
                 <div class="row">
                     <div class="col-md-4">
                         <label for="profileName">Profile Name</label>
-                        <input type="text" Id="profileName" placeholder="Profile Name" ng-model="organizationProfile.profileName" class="form-control">
+                        <input type="text" Id="profileName" placeholder="Profile Name" ng-model="organizationProfile.profileName" class="form-control" disabled>
                     </div>
                     <div class="col-md-4">
                         <label for="description">Description</label>
-                        <input type="text" Id="description" placeholder="Description" ng-model="organizationProfile.description" class="form-control">
+                        <input type="text" Id="description" placeholder="Description" ng-model="organizationProfile.description" class="form-control" disabled>
                     </div>
                 </div>
             </div>
@@ -37,15 +37,15 @@
                 <div class="row">
                     <div class="col-md-4">
                         <label for="primaryContact">Primary Contact</label>
-                        <input type="text" Id="primaryContact" placeholder="Contact Name" ng-model="organizationProfile.primaryContact" class="form-control">
+                        <input type="text" Id="primaryContact" placeholder="Contact Name" ng-model="organizationProfile.primaryContact" class="form-control" disabled>
                     </div>
                     <div class="col-md-4">
                         <label for="phone">Phone</label>
-                        <input type="tel" id="phone" placeholder="Phone" ng-model="organizationProfile.phone" class="form-control">
+                        <input type="tel" id="phone" placeholder="Phone" ng-model="organizationProfile.phone" class="form-control" disabled>
                     </div>
                     <div class="col-md-4">
                         <label for="fax">Fax</label>
-                        <input type="tel" id="fax" placeholder="Fax Number" ng-model="organizationProfile.fax" class="form-control">
+                        <input type="tel" id="fax" placeholder="Fax Number" ng-model="organizationProfile.fax" class="form-control" disabled>
                     </div>
                 </div>
             </div>
@@ -54,15 +54,15 @@
                 <div class="row">
                     <div class="col-md-4">
                         <label for="email">Email</label>
-                        <input type="text" id="email" placeholder="Email" ng-model="organizationProfile.email" class="form-control">
+                        <input type="text" id="email" placeholder="Email" ng-model="organizationProfile.email" class="form-control" disabled>
                     </div>
                     <div class="col-md-4">
                         <label for="country">Country</label>
-                        <input type="text" id="country" placeholder="Country" ng-model="organizationProfile.country" class="form-control">
+                        <input type="text" id="country" placeholder="Country" ng-model="organizationProfile.country" class="form-control" disabled>
                     </div>
                     <div class="col-md-4">
                         <label for="county">County</label>
-                        <input type="text" id="county" placeholder="Secondary Phone" ng-model="organizationProfile.county" class="form-control">
+                        <input type="text" id="county" placeholder="Secondary Phone" ng-model="organizationProfile.county" class="form-control" disabled>
                     </div>
                 </div>
             </div>
@@ -71,11 +71,21 @@
                 <div class="row">
                     <div class="col-md-6">
                         <label for="timeZone">TimeZone</label>
-                        <input type="text" id="timeZone" placeholder="Time Zone" ng-model="organizationProfile.timeZone" class="form-control">
+                        <select class="form-control m-b"
+                                name="timeZone"
+                                id="timeZone"
+                                ng-model="organizationProfile.selectedTimeZone"
+                                ng-options="option.name for option in timeZones"
+                                disabled></select>
                     </div>
                     <div class="col-md-6">
                         <label for="language">Language</label>
-                        <input type="text" id="language" placeholder="Language" ng-model="organizationProfile.language" class="form-control">
+                        <select class="form-control m-b"
+                                name="language"
+                                id="language"
+                                ng-model="organizationProfile.selectedLang"
+                                ng-options="option.name for option in languages"
+                                disabled></select>
                     </div>
                 </div>
             </div>
