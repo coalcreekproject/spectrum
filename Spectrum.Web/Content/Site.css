@@ -71,3 +71,32 @@ span.if-label {
   text-transform: none;
   font-weight: 600;
 }
+
+/* Labels */
+/*.label-primary {
+  background-color: #34495e;
+}*/
+
+.label-primary2 {
+  background-color: #9b59b6;
+}
+
+/*.label-info {
+  background-color: #3498db
+}*/
+
+/*.label-warning {
+  background-color: #ffb606;
+}*/
+
+.label-warning2 {
+  background-color: #e67e22;
+}
+
+/*.label-danger {
+  background-color: #e74c3c;
+}*/
+
+.label-danger2 {
+  background-color: #c0392b;
+}
