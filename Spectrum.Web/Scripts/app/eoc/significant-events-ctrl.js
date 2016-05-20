@@ -160,10 +160,10 @@
                 // TODO: Better validation
                 if (isValidPositionLogInput(eventItem)) {
 
-                    var incidentLogInputViewModel = createIncidenEventInputModel($scope.incidentId, eventItem);
+                    var incidentEventInputViewModel = createIncidenEventInputModel($scope.incidentId, eventItem);
 
                     // Add the incident log
-                    incidentData.addIncidentLog(incidentLogInputViewModel)
+                    incidentData.addIncidentEvent(incidentEventInputViewModel)
                         .then(function() {
                             $uibModalInstance.close();
                         }, function(result) {
@@ -223,10 +223,10 @@
                 // TODO: Better validation
                 if (isValidPositionLogInput(eventItem)) {
 
-                    var incidentLogInputViewModel = createIncidenEventInputModel($scope.incidentId, eventItem);
+                    var incidentEventInputViewModel = createIncidenEventInputModel($scope.incidentId, eventItem);
 
                     // Edit the incident log
-                    incidentData.editIncidentLog(incidentLogInputViewModel)
+                    incidentData.editIncidentEvent(incidentEventInputViewModel)
                         .then(function() {
                             $uibModalInstance.close();
                         }, function(result) {
@@ -252,7 +252,7 @@
 
             $scope.delete = function() {
                 // Remove the incident
-                incidentData.deleteIncidentLog($scope.incidentId, $scope.logId)
+                incidentData.deleteIncidentEvent($scope.incidentId, $scope.logId)
                     .then(function() {
                         $uibModalInstance.close();
                     }, function(result) {
