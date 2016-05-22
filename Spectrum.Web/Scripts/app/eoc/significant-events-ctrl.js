@@ -78,7 +78,7 @@
 
         function openEditModal(eventItem) {
             var modalDialog = $uibModal.open({
-                templateUrl: POS_LOG_TEMPLATE_PATH + 'SignificantEventsAddModal',
+                templateUrl: POS_LOG_TEMPLATE_PATH + 'SignificantEventsEditModal',
                 controller: editModalInstance,
                 resolve: {
                     editModalData: function() {
@@ -158,7 +158,7 @@
             $scope.saveChanges = function(eventItem) {
 
                 // TODO: Better validation
-                if (isValidPositionLogInput(eventItem)) {
+                if (isValidEventInput(eventItem)) {
 
                     var incidentEventInputViewModel = createIncidenEventInputModel($scope.incidentId, eventItem);
 
@@ -185,12 +185,12 @@
 
             $scope.incidentId = editModalData.incidentId;
             $scope.eventItem = {
-                "EventId": editModalData.eventItem.logId,
-                "date": new Date(editModalData.eventItem.logDate),
-                "selectedTime": new Date(editModalData.eventItem.logDate),
-                "title": editModalData.eventItem.logTitle,
-                "occurred": editModalData.eventItem.logName,
-                "remarks": editModalData.eventItem.logEntry
+                "eventId": editModalData.eventItem.eventId,
+                "date": new Date(editModalData.eventItem.eventDate),
+                "selectedTime": new Date(editModalData.eventItem.eventDate),
+                "title": editModalData.eventItem.eventTitle,
+                "occurred": editModalData.eventItem.eventName,
+                "remarks": editModalData.eventItem.eventEntry
             };
 
             // Timepicker defaults
@@ -221,7 +221,7 @@
             $scope.saveChanges = function(eventItem) {
 
                 // TODO: Better validation
-                if (isValidPositionLogInput(eventItem)) {
+                if (isValidEventInput(eventItem)) {
 
                     var incidentEventInputViewModel = createIncidenEventInputModel($scope.incidentId, eventItem);
 
@@ -243,8 +243,8 @@
         function deleteModalInstance($scope, $uibModalInstance, deleteItemData) {
 
             $scope.incidentId = deleteItemData.incidentId;
-            $scope.logName = deleteItemData.eventItem.logName;
-            $scope.logId = deleteItemData.eventItem.logId;
+            $scope.eventName = deleteItemData.eventItem.eventName;
+            $scope.eventId = deleteItemData.eventItem.eventId;
 
             $scope.cancel = function() {
                 $uibModalInstance.dismiss('cancel');
@@ -252,7 +252,7 @@
 
             $scope.delete = function() {
                 // Remove the incident
-                incidentData.deleteIncidentEvent($scope.incidentId, $scope.logId)
+                incidentData.deleteIncidentEvent($scope.incidentId, $scope.eventId)
                     .then(function() {
                         $uibModalInstance.close();
                     }, function(result) {
@@ -262,7 +262,7 @@
         }
     }
 
-    function isValidPositionLogInput(eventItemInput) {
+    function isValidEventInput(eventItemInput) {
         if (eventItemInput.title && eventItemInput.occurred &&
             eventItemInput.date && eventItemInput.selectedTime
             && eventItemInput.remarks) {
@@ -281,8 +281,8 @@
         var mins = eventItemInput.selectedTime.getMinutes();
         var setEventDate = new Date(year, month, date, hour, mins).toUTCString();
 
-        // New log or updating?
-        var eventId = eventItemInput.logId ? eventItemInput.logId : 0;
+        // New event or updating?
+        var eventId = eventItemInput.eventId ? eventItemInput.eventId : 0;
 
         // Shape the input view model
         var inputViewModel = {

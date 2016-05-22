@@ -23,6 +23,8 @@ namespace Spectrum.Web.Areas.Eoc.Controllers.Api
                 _collectionId);
 
             var userId = Convert.ToInt32(User.Identity.GetUserId());
+
+            //TODO: Stop using this there is WebAPI Service for this, has been for months
             var currentUser = UserUtility.GetUserFromMemoryCache(userId);
 
             if (currentUser == null)
@@ -311,6 +313,174 @@ namespace Spectrum.Web.Areas.Eoc.Controllers.Api
             }
 
             document.Logs.Remove(logToRemove);
+            var savedDoc = await _dbRepository.UpdateItemAsync(document.Id, document);
+            return savedDoc.Id;
+        }
+
+        /*
+         * Significant Events
+         */
+
+
+        [Route("~/Eoc/api/Incident/{incidentId:guid}/Event/{eventId:int}")]
+        [HttpGet]
+        public IHttpActionResult GetIncidentEvent(Guid incidentId, int eventId)
+        {
+            var incident = _dbRepository.GetItem(item => item.Id == incidentId.ToString());
+
+            if (incident == null)
+            {
+                return NotFound();
+            }
+
+            if (incident.Events == null || !incident.Events.Any())
+            {
+                return BadRequest($"Incident {incidentId} does not contain any significant events.");
+            }
+
+            var incidentEvent = incident.Events.SingleOrDefault(e => e.EventId  == eventId);
+
+            if (incidentEvent == null)
+            {
+                return BadRequest($"Unable to find event with Id: {eventId}");
+            }
+
+            return Ok(incidentEvent);
+        }
+
+        [Route("~/Eoc/api/Incident/Event")]
+        [HttpPut]
+        public async Task<IHttpActionResult> PutIncidentEvent(IncidentEventInputViewModel incidentEvent)
+        {
+            if (string.IsNullOrEmpty(incidentEvent.Id) || incidentEvent.Event == null)
+            {
+                return BadRequest("Incident log data is invalid.");
+            }
+
+            try
+            {
+                var document = _dbRepository.GetItem(doc => doc.Id == incidentEvent.Id);
+                if (document == null)
+                {
+                    return BadRequest("Unable to find document to update: See PutIncidentLog action.");
+                }
+                var savedDocId = await EditEvent(document, incidentEvent);
+                return Ok(savedDocId);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+
+        [Route("~/Eoc/api/Incident/Event")]
+        [HttpPost]
+        public async Task<IHttpActionResult> PostIncidentEvent(IncidentEventInputViewModel incidentEvent)
+        {
+            if (string.IsNullOrEmpty(incidentEvent.Id) || incidentEvent.Event == null)
+            {
+                return BadRequest("Incident log data is invalid.");
+            }
+
+            try
+            {
+                var document = _dbRepository.GetItem(doc => doc.Id == incidentEvent.Id);
+                if (document == null)
+                {
+                    return BadRequest("Unable to find document to update: See PostIncidentLog action.");
+                }
+                var savedDocId = await InsertEvent(document, incidentEvent);
+                return Ok(savedDocId);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+
+        [Route("~/Eoc/api/Incident/{incidentId:guid}/Event/{eventId:int}")]
+        [HttpDelete]
+        public async Task<IHttpActionResult> DeleteIncidentEvent(Guid incidentId, int eventId)
+        {
+            if (eventId == 0 || incidentId == Guid.Empty)
+            {
+                return BadRequest("Incident log delete data is invalid.");
+            }
+
+            try
+            {
+                var document = _dbRepository.GetItem(doc => doc.Id == incidentId.ToString());
+                if (document == null)
+                {
+                    return BadRequest("Unable to find document to update: See DeleteIncidentEvent action.");
+                }
+
+                var savedDocId = await DeleteEvent(document, eventId);
+
+                return Ok(savedDocId);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        //Helpers I reckon
+        private async Task<string> InsertEvent(Incident document, IncidentEventInputViewModel incidentEvent)
+        {
+            const int eventId = 1;
+            if (document.Events != null)
+            {
+                // Find the max LogId value and +1
+                var maxId = document.Events.Max(e => e.EventId);
+
+                incidentEvent.Event.EventId = maxId + eventId;
+            }
+            else
+            {
+                // Add Events to document and insert an event
+                document.Events = new List<Event>();
+                incidentEvent.Event.EventId = eventId;
+            }
+
+            document.Events.Add(incidentEvent.Event);
+            var savedDoc = await _dbRepository.UpdateItemAsync(incidentEvent.Id, document);
+            return savedDoc.Id;
+        }
+
+        private async Task<string> EditEvent(Incident document, IncidentEventInputViewModel incidentEvent)
+        {
+            // Find the log entry
+            var eventToEdit = document.Events?.SingleOrDefault(e => e.EventId == incidentEvent.Event.EventId);
+
+            if (eventToEdit == null)
+            {
+                return null;
+            }
+
+            // Edit the properties
+            eventToEdit.EventDate = incidentEvent.Event.EventDate;
+            eventToEdit.EventEntry = incidentEvent.Event.EventEntry;
+            eventToEdit.EventName = incidentEvent.Event.EventName;
+            eventToEdit.EventTitle = incidentEvent.Event.EventTitle;
+
+            var savedDoc = await _dbRepository.UpdateItemAsync(document.Id, document);
+            return savedDoc.Id;
+        }
+
+        private async Task<string> DeleteEvent(Incident document, int eventId)
+        {
+            // Remove the log entry
+            var eventToRemove = document.Events?.SingleOrDefault(e => e.EventId == eventId);
+
+            if (eventToRemove == null)
+            {
+                return null;
+            }
+
+            document.Events.Remove(eventToRemove);
             var savedDoc = await _dbRepository.UpdateItemAsync(document.Id, document);
             return savedDoc.Id;
         }

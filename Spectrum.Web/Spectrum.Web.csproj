@@ -284,6 +284,7 @@
     <Compile Include="Helpers\HtmlHelperExtensions.cs" />
     <Compile Include="Models\AddPhoneNumberViewModel.cs" />
     <Compile Include="Models\ChangePasswordViewModel.cs" />
+    <Compile Include="Models\IncidentEventInputViewModel.cs" />
     <Compile Include="Models\FactorViewModel.cs" />
     <Compile Include="Models\ForgotPasswordViewModel.cs" />
     <Compile Include="Models\ExternalLoginConfirmationViewModel.cs" />
@@ -502,6 +503,7 @@
     <Content Include="Areas\Eoc\Views\SignificantEvents\Partials\SignificantEventsDeleteModal.cshtml" />
     <Content Include="Areas\Eoc\Views\SignificantEvents\Partials\SignificantEventsIndex.cshtml" />
     <Content Include="Areas\Eoc\Views\SignificantEvents\Partials\SignificantEventsManagement.cshtml" />
+    <Content Include="Areas\Eoc\Views\SignificantEvents\Partials\SignificantEventsEditModal.cshtml" />
     <None Include="Content\images\landing\header.jpg.old" />
     <Content Include="Content\images\landing\s1.png" />
     <Content Include="Content\images\landing\s2.png" />
