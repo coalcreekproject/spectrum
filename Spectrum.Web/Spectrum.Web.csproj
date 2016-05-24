@@ -247,6 +247,7 @@
     <Compile Include="Areas\Eoc\Controllers\Web\IncidentManagementController.cs" />
     <Compile Include="Areas\Eoc\Controllers\Web\IncidentTimelineController.cs" />
     <Compile Include="Areas\Eoc\Controllers\Web\PositionLogController.cs" />
+    <Compile Include="Areas\Eoc\Controllers\Web\SignificantEventsController.cs" />
     <Compile Include="Areas\Eoc\EocAreaRegistration.cs" />
     <Compile Include="Controllers\Api\Data\CountryDataController.cs" />
     <Compile Include="Controllers\Api\IdentityFocusController.cs" />
@@ -283,6 +284,7 @@
     <Compile Include="Helpers\HtmlHelperExtensions.cs" />
     <Compile Include="Models\AddPhoneNumberViewModel.cs" />
     <Compile Include="Models\ChangePasswordViewModel.cs" />
+    <Compile Include="Models\IncidentEventInputViewModel.cs" />
     <Compile Include="Models\FactorViewModel.cs" />
     <Compile Include="Models\ForgotPasswordViewModel.cs" />
     <Compile Include="Models\ExternalLoginConfirmationViewModel.cs" />
@@ -479,6 +481,7 @@
     <Content Include="Scripts\app\directives\loading-directive.js" />
     <Content Include="Scripts\app\eoc\incident-timeline-ctrl.js" />
     <Content Include="Scripts\app\eoc\position-log-ctrl.js" />
+    <Content Include="Scripts\app\eoc\significant-events-ctrl.js" />
     <Content Include="Scripts\app\eoc\position-log-mgmt-ctrl.js" />
     <Content Include="Scripts\app\templates\im.html" />
     <Content Include="Areas\Eoc\Views\IncidentManagement\Partials\IncidentManagementAddModal.cshtml" />
@@ -495,6 +498,12 @@
     <EmbeddedResource Include="App_Data\states_list.json" />
     <Content Include="Areas\Eoc\Views\IncidentTimeline\Index.cshtml" />
     <None Include="Areas\Eoc\Views\IncidentTimeline\Partials\IncidentTimelineIndex.cshtml" />
+    <Content Include="Areas\Eoc\Views\SignificantEvents\Index.cshtml" />
+    <Content Include="Areas\Eoc\Views\SignificantEvents\Partials\SignificantEventsAddModal.cshtml" />
+    <Content Include="Areas\Eoc\Views\SignificantEvents\Partials\SignificantEventsDeleteModal.cshtml" />
+    <Content Include="Areas\Eoc\Views\SignificantEvents\Partials\SignificantEventsIndex.cshtml" />
+    <Content Include="Areas\Eoc\Views\SignificantEvents\Partials\SignificantEventsManagement.cshtml" />
+    <Content Include="Areas\Eoc\Views\SignificantEvents\Partials\SignificantEventsEditModal.cshtml" />
     <None Include="Content\images\landing\header.jpg.old" />
     <Content Include="Content\images\landing\s1.png" />
     <Content Include="Content\images\landing\s2.png" />
