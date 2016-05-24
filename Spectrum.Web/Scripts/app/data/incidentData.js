@@ -100,6 +100,74 @@
             return deferred.promise;
         };
 
+
+         /*
+         * *****************************
+         * Incident Significant Event Logging
+         ******************************* 
+         */
+
+
+        var incidentEvent = {};
+
+        var getIncidentEvent = function (incidentId, EventId) {
+            var deferred = $q.defer();
+
+            $http.get("/Eoc/api/Incident/" + incidentId + "/Event/" + eventId)
+                .then(function (result) {
+                    angular.copy(result.data, incidentEvent);
+                    deferred.resolve(incidentEvent);
+                },
+                    function () {
+                        deferred.reject();
+                    });
+
+            return deferred.promise;
+        };
+
+        var addIncidentEvent = function (inputModel) {
+            var deferred = $q.defer();
+
+            $http.post("/Eoc/api/Incident/Event", inputModel)
+                .then(function (result) {
+                    deferred.resolve(result);
+                }, function () {
+                    deferred.reject();
+                });
+
+            return deferred.promise;
+        };
+
+        var editIncidentEvent = function (inputModel) {
+            var deferred = $q.defer();
+
+            $http.put("/Eoc/api/Incident/Event", inputModel)
+                .then(function (result) {
+                    deferred.resolve(result);
+                }, function () {
+                    deferred.reject();
+                });
+
+            return deferred.promise;
+        };
+
+        var deleteIncidentEvent = function (incidentId, eventId) {
+            var deferred = $q.defer();
+
+            $http.delete("/Eoc/api/Incident/" + incidentId + "/Event/" + eventId)
+                .then(function (result) {
+                    deferred.resolve(result);
+                }, function () {
+                    deferred.reject();
+                });
+
+            return deferred.promise;
+        };
+
+        /*
+         * End Significant event
+         */
+
         var editIncident = function(data) {
 
             var deferred = $q.defer();
@@ -181,12 +249,20 @@
             getIncident: getIncident,
             getIncidents: getIncidents,
             getIncidentLog: getIncidentLog,
+            getIncidentEvent: getIncidentEvent,
+
             addIncident: addIncident,
             addIncidentLog: addIncidentLog,
+            addIncidentEvent: addIncidentEvent,
+
             editIncident: editIncident,
             editIncidentLog: editIncidentLog,
+            editIncidentEvent: editIncidentEvent,
+
             deleteIncident: deleteIncident,
             deleteIncidentLog: deleteIncidentLog,
+            deleteIncidentEvent: deleteIncidentEvent,
+
             getIncidentTypes: getIncidentTypes,
             getIncidentLevels: getIncidentLevels,
             getIncidentStatuses: getIncidentStatuses

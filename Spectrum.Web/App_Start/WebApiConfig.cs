@@ -22,6 +22,8 @@ namespace Spectrum.Web
             // Default to camel case serialization
             config.Formatters.JsonFormatter.SerializerSettings.ContractResolver =
                 new CamelCasePropertyNamesContractResolver();
+
+            config.Filters.Add(new AuthorizeAttribute());
         }
     }
 }

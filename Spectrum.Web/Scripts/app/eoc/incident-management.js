@@ -19,20 +19,17 @@
                 controller: 'IncidentMgmtCtrl',
                 controllerAs: 'im'
             })
-            //.state('position-log', {
-            //    url: "/position-log/:incidentId",
-            //    templateUrl: "/Eoc/Templates/PositionLog/PositionLogIndex",
-            //    controller: 'PositionLogCtrl',
-            //    controllerAs: 'pl',
-            //    data: {
-            //        pageTitle: 'PositionLog'
-            //    }
-            //});
             .state('position-log', {
                 url: '/manage/:incidentId',
                 templateUrl: '/Eoc/Templates/PositionLog/PositionLogManagement',
                 controller: 'PositionLogMgmtCtrl',
                 controllerAs: 'plm'
+            })
+            .state('significant-events', {
+                url: '/significant-events/:incidentId',
+                templateUrl: '/Eoc/Templates/SignificantEvents/SignificantEventsManagement',
+                controller: 'SignificantEventsCtrl',
+                controllerAs: 'sem'
             })
             .state('timeline', {
                 url: '/timeline/:incidentId',
@@ -65,6 +62,10 @@
 
         vm.incidentLog = function (incident) {
             $state.go('position-log', { 'incidentId': incident.id });
+        };
+
+        vm.significantEvents = function (incident) {
+            $state.go('significant-events', { 'incidentId': incident.id });
         };
 
         vm.timeline = function (incident) {

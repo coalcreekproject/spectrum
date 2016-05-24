@@ -119,17 +119,22 @@
 
                             <div class="panel-footer contact-footer">
                                 <div class="row">
-                                    <div class="col-md-4 border-right">
+                                    <div class="col-md-3 border-right">
                                         <div class="contact-stat">
-                                            <a class="label label-warning incident-panel-footer" ng-click="im.incidentLog(i)">POSITION LOG</a>
+                                            <a class="label label-primary2 incident-panel-footer" ng-click="im.incidentLog(i)">POSITION LOG</a>
                                         </div>
                                     </div>
-                                    <div class="col-md-4 border-right">
+                                    <div class="col-md-3 border-right">
                                         <div class="contact-stat">
-                                            <a class="label label-primary incident-panel-footer" ng-click="im.timeline(i)">TIMELINE</a>
+                                            <a class="label label-primary2 incident-panel-footer" ng-click="im.significantEvents(i)">SIGNIFICANT EVENTS</a>
                                         </div>
                                     </div>
-                                    <div class="col-md-4">
+                                    <div class="col-md-3 border-right">
+                                        <div class="contact-stat">
+                                            <a class="label label-primary2 incident-panel-footer" ng-click="im.timeline(i)">TIMELINE</a>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
                                         <div class=" pull-right">
                                             <button class="btn btn-default btn-sm"
                                                     ng-click="im.editModal(i)">

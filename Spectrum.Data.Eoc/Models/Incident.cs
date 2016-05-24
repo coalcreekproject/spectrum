@@ -17,5 +17,6 @@ namespace Spectrum.Data.Eoc.Models
         public string Status { get; set; }
         public DateTime CreateDate { get; set; }
         public IList<Log> Logs { get; set; }
+        public IList<Event> Events { get; set; }
     }
 }
