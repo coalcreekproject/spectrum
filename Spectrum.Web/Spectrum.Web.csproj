@@ -610,6 +610,9 @@
     <Content Include="Views\Messages\Index.cshtml" />
     <Content Include="Views\Messages\Partials\MessagesIndex.cshtml" />
     <Content Include="Views\Account\RegisterOrganization.cshtml" />
+    <None Include="Properties\PublishProfiles\Release.pubxml">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Views\Organization\Partials\AddOrganizationProfileModal.cshtml" />
     <Content Include="Views\Organization\Partials\AddOrganizationRoleModal.cshtml" />
     <Content Include="Views\Organization\Partials\DeleteOrganizationPositionModal.cshtml" />
