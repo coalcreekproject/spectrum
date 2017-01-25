@@ -26,6 +26,19 @@
                 "Scripts/app.js"
             ]
         },
+        typescript: {
+            base: {
+                src: ['Scripts/app/core/typescript/*.ts'],
+                dest: 'Scripts/app/core/typescript',
+                options: {
+                    module: 'amd', //or commonjs 
+                    target: 'es5', //or es3 
+                    basePath: 'path/to/typescript/files',
+                    sourceMap: true,
+                    declaration: true
+                }
+            }
+        },
         // Must be run before the uglify step, otherwise the uglifier chokes on ES2015 syntax
         babel: {
             options: {

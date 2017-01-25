@@ -734,7 +734,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <TypeScriptCompile Include="Scripts\app\core\users-index.ts" />
+    <TypeScriptCompile Include="Scripts\app\core\typescript\users-index-new.ts" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
