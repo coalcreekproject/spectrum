@@ -472,6 +472,7 @@
     <Content Include="Areas\Eoc\Views\IncidentManagement\Index.cshtml" />
     <Content Include="Areas\Eoc\Views\IncidentManagement\Partials\IncidentManagementIndex.cshtml" />
     <Content Include="Areas\Eoc\Views\Dashboard\Dashboard.cshtml" />
+    <Content Include="gulpfile.js" />
     <Content Include="Scripts\app\core\organization-users.js" />
     <Content Include="Scripts\app\core\organizations-index-new.js" />
     <Content Include="Scripts\app\core\register-wizard.js" />

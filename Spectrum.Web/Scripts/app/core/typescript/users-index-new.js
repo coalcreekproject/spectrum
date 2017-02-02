@@ -10,6 +10,6 @@ var app;
             console.log(this.num + numTwo);
         };
         return foo;
-    })();
+    }());
 })(app || (app = {}));
 //# sourceMappingURL=users-index-new.js.map
